@@ -1,0 +1,22 @@
+{
+  "name": "praad",
+  "version": "0.0.0",
+  "description": "praad =====",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/deiwin/praad.git"
+  },
+  "author": "Deiwin Sarjas, Madis Lehtmets",
+  "license": "Apache License (v2)",
+  "bugs": {
+    "url": "https://github.com/deiwin/praad/issues"
+  },
+  "homepage": "https://github.com/deiwin/praad",
+  "dependencies": {
+    "node-static": "~0.7.3"
+  }
+}
