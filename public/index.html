@@ -1,1 +1,17 @@
-Hello world!
+<!doctype html>
+<html ng-app="phonecatApp">
+<head>
+  <script src="../lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="PhoneListCtrl">
+ 
+  <ul>
+    <li ng-repeat="phone in phones">
+      {{phone.name}}
+      <p>{{phone.snippet}}</p>
+    </li>
+  </ul>
+ 
+</body>
+</html>
