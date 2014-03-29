@@ -1,0 +1,22 @@
+{
+  "name": "praad",
+  "version": "0.0.0",
+  "homepage": "https://github.com/deiwin/praad",
+  "authors": [
+    "Deiwin Sarjas <deiwin.sarjas@gmail.com>",
+    "Madis Lehtmets"
+  ],
+  "main": "app.js",
+  "license": "Apache License (v2)",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.15"
+  }
+}
