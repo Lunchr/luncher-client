@@ -12,40 +12,105 @@ body {
     font-weight: 200;
     margin: 0;
 }
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Source Sans Pro', sans-serif;
+}
 h2, h3, .offer p {
     margin: 0;
 }
 h2, h3, p.price {
     font-size: 20px;
-    font-weight: 200;
+    font-weight: 400;
     text-transform: uppercase;
 }
 h3 {
     float: left;
     margin-right: 10px;
 }
+h4 {
+    text-align: center;
+    margin: 0;
+    color: #fff;
+    font-weight: 300;
+    font-size: 20px;
+}
 p.info {
     margin-top: 6px;
     height: 20px;
     overflow: hidden;
 }
+textarea, input { outline: none; }
 
 /***** HEADER *****/
 .header {
     height: 58px;
+    padding: 14px 0;
     background-color: #21a45b;
     border-bottom: 1px solid #10522e;
     background-image: url(../img/header_bg.png);
     background-repeat: repeat-x;
     background-position: bottom;
 }
+input.search {
+    padding: 4px 10px;
+    width: 100%;
+    border: 1px solid #fff !important;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+input.search:focus {
+    box-shadow: 0px 0px 5px #000;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #000;
+}
+input.search:focus::-webkit-input-placeholder {
+    color: #000;
+} 
+input.search:focus:-moz-placeholder {
+    color: #000;
+}
+input.search:focus::-moz-placeholder {
+    color: #000;
+}
+input.search:focus:-ms-input-placeholder {
+    color: #000;
+}
+input.search::-webkit-input-placeholder {
+    color: #fff;
+} 
+input.search:-moz-placeholder {
+    color: #fff;
+}
+input.search::-moz-placeholder {
+    color: #fff;
+}
+input.search:-ms-input-placeholder {
+    color: #fff;
+}
 
 /***** FILTER *****/
-.filter{
-    height: 58px;
+.filter {
+    height: 50px;
+    padding: 15px 0;
     background-image: url(../img/filter_bg.png);
     background-repeat: repeat-x;
     background-position: top;
+    font-weight: 400;
+}
+.filter-wrapper {
+    padding: 0 11px;
+}
+.filter a, .filter label {
+    text-transform: uppercase;
+    color: #939393;
+}
+.filter label {
+    line-height: 10px;
+}
+.filter a:hover, .filter input[type=checkbox]:checked + label, .filter input[type=checkbox] + label:hover {
+    text-decoration: none;
+    color: #000;
 }
 
 /***** OFFERS *****/
@@ -53,7 +118,7 @@ p.info {
     height: 50px;
     border: 1px solid #8b8b8b;
     border-radius: 5px;
-    padding: 11px 15px;
+    padding: 11px 10px;
     margin-bottom: 15px;
     background-color: #ececec;
 }
