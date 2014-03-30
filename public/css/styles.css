@@ -1,0 +1,63 @@
+
+/***** MAIN *****/
+html, body { 
+    height: 100%; 
+}
+body { 
+    background: #fbfbfb;
+    height: 100%;
+    color: #222;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 200;
+    margin: 0;
+}
+h2, h3, .offer p {
+    margin: 0;
+}
+h2, h3, p.price {
+    font-size: 20px;
+    font-weight: 200;
+    text-transform: uppercase;
+}
+h3 {
+    float: left;
+    margin-right: 10px;
+}
+p.info {
+    margin-top: 6px;
+    height: 20px;
+    overflow: hidden;
+}
+
+/***** HEADER *****/
+.header {
+    height: 58px;
+    background-color: #21a45b;
+    border-bottom: 1px solid #10522e;
+    background-image: url(../img/header_bg.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+}
+
+/***** FILTER *****/
+.filter{
+    height: 58px;
+    background-image: url(../img/filter_bg.png);
+    background-repeat: repeat-x;
+    background-position: top;
+}
+
+/***** OFFERS *****/
+.offer {
+    height: 50px;
+    border: 1px solid #8b8b8b;
+    border-radius: 5px;
+    padding: 11px 15px;
+    margin-bottom: 15px;
+    background-color: #ececec;
+}
+
+
+/***** FOOTER *****/
+
