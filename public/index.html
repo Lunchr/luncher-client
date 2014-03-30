@@ -1,17 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html ng-app="phonecatApp">
 <head>
-  <script src="../lib/angular/angular.js"></script>
-  <script src="js/controllers.js"></script>
+	<title>praad.ee | Päevapraed Tartus</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="favicon.ico?v=2">
+	<link href="css/styles.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700' rel='stylesheet' type='text/css'>
+	<script src="../lib/angular/angular.js"></script>
+	<script src="js/controllers.js"></script>
 </head>
 <body ng-controller="PhoneListCtrl">
- 
-  <ul>
-    <li ng-repeat="phone in phones">
-      {{phone.name}}
-      <p>{{phone.snippet}}</p>
-    </li>
-  </ul>
- 
+   <div class="header">
+       <div class="container">
+           <div class="row">
+               <div class="col-md-6"> <input ng-model="query"></div>
+               <div class="col-md-12"></div>
+               <div class="col-md-6"></div>
+           </div>
+       </div>
+   </div>
+   <div class="filter">
+       <div class="container">
+           <div class="row">
+               <div class="col-md-6"></div>
+               <div class="col-md-15"></div>
+               <div class="col-md-3"></div>
+           </div>
+       </div>
+   </div>
+   <div class="offers">
+       <div class="container">
+           <div class="offer" ng-repeat="offer in offers | filter:query">
+               <div class="row">
+                   <div class="col-xs-6">
+                       <h2>{{offer.location}}</h2>
+                   </div>
+                   <div class="col-xs-15">
+                       <h3>{{offer.title}}</h3>
+                       <p class="info">  -  {{offer.description}}</p>
+                   </div>
+                   <div class="col-xs-3">
+                       <p class="price">{{offer.price}} €</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div class="footer">
+       <div class="container">
+           
+       </div>
+   </div>
 </body>
 </html>
