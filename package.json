@@ -1,0 +1,30 @@
+{
+  "name": "praad",
+  "version": "0.0.0",
+  "description": "praad =====",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/deiwin/praad.git"
+  },
+  "author": "Deiwin Sarjas, Madis Lehtmets",
+  "license": "Apache License (v2)",
+  "bugs": {
+    "url": "https://github.com/deiwin/praad/issues"
+  },
+  "homepage": "https://github.com/deiwin/praad",
+  "dependencies": {
+    "node-static": "~0.7.3"
+  },
+  "devDependencies": {
+    "bower": "~1.3.1",
+    "karma-chrome-launcher": "~0.1.2",
+    "karma-jasmine": "~0.1.5",
+    "karma": "~0.12.1",
+    "requirejs": "~2.1.11",
+    "karma-requirejs": "~0.2.1"
+  }
+}
