@@ -12,46 +12,68 @@
 	<script src="js/controllers.js"></script>
 </head>
 <body ng-controller="PhoneListCtrl">
-   <div class="header">
-       <div class="container">
-           <div class="row">
-               <div class="col-md-6"> <input ng-model="query"></div>
-               <div class="col-md-12"></div>
-               <div class="col-md-6"></div>
-           </div>
-       </div>
-   </div>
-   <div class="filter">
-       <div class="container">
-           <div class="row">
-               <div class="col-md-6"></div>
-               <div class="col-md-15"></div>
-               <div class="col-md-3"></div>
-           </div>
-       </div>
-   </div>
-   <div class="offers">
-       <div class="container">
-           <div class="offer" ng-repeat="offer in offers | filter:query">
-               <div class="row">
-                   <div class="col-xs-6">
-                       <h2>{{offer.location}}</h2>
-                   </div>
-                   <div class="col-xs-15">
-                       <h3>{{offer.title}}</h3>
-                       <p class="info">  -  {{offer.description}}</p>
-                   </div>
-                   <div class="col-xs-3">
-                       <p class="price">{{offer.price}} €</p>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
-   <div class="footer">
-       <div class="container">
-           
-       </div>
-   </div>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <input class="search" type="text" placeholder="Otsi söögikohta või sööki..." ng-model="query">
+                </div>
+                <div class="col-md-12">
+                    <h4>Kolmapäev - 26. märts</h4>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+    </div>
+    <div class="filter">
+        <div class="container">
+            <div class="filter-wrapper">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-md-6">
+                        <a class="order-desc" id="order-location" href="#">Asukoht</a>
+                    </div>
+                    <div class="col-md-15">
+                        <form action="">
+                            <input type="checkbox" id="checkbox-kalast" name="meat" value="kalast"><label for="checkbox-kalast">Kalast</label>
+                            <input type="checkbox" id="checkbox-linnust" name="meat" value="linnust"><label for="checkbox-linnust">Linnust</label>
+                            <input type="checkbox" id="checkbox-seast" name="meat" value="seast"><label for="checkbox-seast">Seast</label>
+                            <input type="checkbox" id="checkbox-veisest" name="meat" value="veisest"><label for="checkbox-veisest">Veisest</label>
+                            <input type="checkbox" id="checkbox-lambast" name="meat" value="lambast"><label for="checkbox-lambast">Lambast</label>
+                         </form>                       
+                    </div>
+                    <div class="col-md-2">
+                        <a id="order-price" href="#">Hind</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offers">
+        <div class="container">
+            <div class="offer" ng-repeat="offer in offers | filter:query" id="{{offer.id}}">
+            	<div class="row">
+            		<div class="col-xs-1">
+                    	<a href="#" class="favorite"></a>
+                	</div>
+                    <div class="col-xs-6">
+                        <h2>{{offer.location}}</h2>
+                    </div>
+                    <div class="col-xs-15">
+                        <h3>{{offer.title}}</h3>
+                        <p class="info">  -  {{offer.description}}</p>
+                    </div>
+                    <div class="col-xs-2">
+                        <p class="price">{{offer.price}} €</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            
+        </div>
+    </div>
 </body>
 </html>
