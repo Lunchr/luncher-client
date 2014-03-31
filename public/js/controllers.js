@@ -1,6 +1,6 @@
-var phonecatApp = angular.module('phonecatApp', []);
+var praadApp = angular.module('praadApp', []);
  
-phonecatApp.controller('PhoneListCtrl', function ($scope) {
+praadApp.controller('OfferListCtrl', function ($scope) {
   $scope.offers = [
     {'id': '1',
      'location': 'Asian Chef',

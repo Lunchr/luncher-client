@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="phonecatApp">
+<html>
 <head>
 	<title>praad.ee | Päevapraed Tartus</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,7 +11,7 @@
 	<script src="../lib/angular/angular.js"></script>
 	<script src="js/controllers.js"></script>
 </head>
-<body ng-controller="PhoneListCtrl">
+<body ng-app="praadApp">
     <div class="header">
         <div class="container">
             <div class="row">
@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    <div class="offers">
+    <div class="offers" ng-controller="OfferListCtrl">
         <div class="container">
             <div class="offer" ng-repeat="offer in offers | filter:query" id="{{offer.id}}">
             	<div class="row">
