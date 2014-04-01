@@ -1,13 +1,14 @@
+'use strict';
 describe('PhoneCat controllers', function() {
-  beforeEach(module('phonecatApp'));
+  beforeEach(module('praadApp'));
  
-  describe('PhoneListCtrl', function(){
+  describe('OfferListCtrl', function(){
  
     it('should create "phones" model with 3 phones', inject(function($controller) {
       var scope = {},
-          ctrl = $controller('PhoneListCtrl', { $scope: scope });
+          ctrl = $controller('OfferListCtrl', { $scope: scope });
  
       expect(scope.offers.length).toBe(3);
     }));
   });
-}); 
+});

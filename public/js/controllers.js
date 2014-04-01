@@ -1,6 +1,7 @@
-var phonecatApp = angular.module('phonecatApp', []);
+'use strict';
+var praadApp = angular.module('praadApp', []);
  
-phonecatApp.controller('PhoneListCtrl', function ($scope) {
+praadApp.controller('OfferListCtrl', function ($scope) {
   $scope.offers = [
     {'id': '1',
      'location': 'Asian Chef',
@@ -16,6 +17,6 @@ phonecatApp.controller('PhoneListCtrl', function ($scope) {
      'location': 'Asian Chef',
      'title': 'Sweet & Sour Duck',
      'description': 'Pardifilee aedviljadega rikkalikus magushapus kastmes.',
-     'price': 3.6} 
+     'price': 3.6}
   ];
 });

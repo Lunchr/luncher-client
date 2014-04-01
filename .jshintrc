@@ -1,0 +1,20 @@
+{
+  "globals"   : {
+    /* jasmine */
+    "describe"   : false,
+    "it"         : false,
+    "before"     : false,
+    "beforeEach" : false,
+    "after"      : false,
+    "afterEach"  : false,
+    "expect"     : false,
+    /* angular */
+    "angular"    : false,
+    "module"     : false,
+    "inject"     : false,
+    /* protractor */
+    "browser"    : false,
+    "by"         : false,
+    "element"    : false
+  }
+}
