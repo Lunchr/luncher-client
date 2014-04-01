@@ -6,8 +6,7 @@ describe('Praad App', function() {
     var offers;
 
     beforeEach(function() {
-      // TODO get rid of the path, probably have to use a server
-      browser.driver.get('file:///home/deiwin/workspace/praad/public/index.html');
+      browser.get('http://localhost:8080/');
       offers = element.all(by.repeater('offer in offers'));
     });
  
