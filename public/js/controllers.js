@@ -35,3 +35,9 @@ praadApp.controller('TagListCtrl', function ($scope) {
      'label': 'Lambast'}
   ];
 });
+
+praadApp.filter('tag', function($scope){
+	return function(input){
+		return true;
+	};
+});
