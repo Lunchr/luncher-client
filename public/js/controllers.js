@@ -1,3 +1,4 @@
+'use strict';
 var praadApp = angular.module('praadApp', []);
  
 praadApp.controller('OfferListCtrl', function ($scope) {
@@ -16,6 +17,6 @@ praadApp.controller('OfferListCtrl', function ($scope) {
      'location': 'Asian Chef',
      'title': 'Sweet & Sour Duck',
      'description': 'Pardifilee aedviljadega rikkalikus magushapus kastmes.',
-     'price': 3.6} 
+     'price': 3.6}
   ];
 });

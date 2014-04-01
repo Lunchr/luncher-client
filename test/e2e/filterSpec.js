@@ -1,3 +1,4 @@
+'use strict';
 describe('Praad App', function() {
  
   describe('Offer list view', function() {
@@ -10,7 +11,7 @@ describe('Praad App', function() {
       offers = element.all(by.repeater('offer in offers'));
     });
  
-    it("should initially have 3 offers", function() {
+    it('should initially have 3 offers', function() {
       expect(offers.count()).toBe(3);
     });
  

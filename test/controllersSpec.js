@@ -1,3 +1,4 @@
+'use strict';
 describe('PhoneCat controllers', function() {
   beforeEach(module('praadApp'));
  
@@ -10,4 +11,4 @@ describe('PhoneCat controllers', function() {
       expect(scope.offers.length).toBe(3);
     }));
   });
-}); 
+});
