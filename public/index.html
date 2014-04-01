@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="praadApp">
 <head>
 	<title>praad.ee | Päevapraed Tartus</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,7 +11,7 @@
 	<script src="../lib/angular/angular.js"></script>
 	<script src="js/controllers.js"></script>
 </head>
-<body ng-app="praadApp">
+<body>
     <div class="header">
         <div class="container">
             <div class="row">
@@ -33,14 +33,13 @@
                     <div class="col-md-6">
                         <a class="order-desc" id="order-location" href="#">Asukoht</a>
                     </div>
-                    <div class="col-md-15">
+                    <div class="col-md-15" ng-controller="TagListCtrl">
                         <form action="">
-                            <input type="checkbox" id="checkbox-kalast" name="meat" value="kalast"><label for="checkbox-kalast">Kalast</label>
-                            <input type="checkbox" id="checkbox-linnust" name="meat" value="linnust"><label for="checkbox-linnust">Linnust</label>
-                            <input type="checkbox" id="checkbox-seast" name="meat" value="seast"><label for="checkbox-seast">Seast</label>
-                            <input type="checkbox" id="checkbox-veisest" name="meat" value="veisest"><label for="checkbox-veisest">Veisest</label>
-                            <input type="checkbox" id="checkbox-lambast" name="meat" value="lambast"><label for="checkbox-lambast">Lambast</label>
-                         </form>                       
+                            <span ng-repeat="tag in tagList">
+	                            <input type="checkbox" id="checkbox-{{tag.id}}" name="meat" ng-model="tag.selected">
+	                            <label for="checkbox-{{tag.id}}">{{tag.label}}</label>
+                            </span>
+                        </form>
                     </div>
                     <div class="col-md-2">
                         <a id="order-price" href="#">Hind</a>

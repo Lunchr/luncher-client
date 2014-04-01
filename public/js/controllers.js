@@ -20,3 +20,18 @@ praadApp.controller('OfferListCtrl', function ($scope) {
      'price': 3.6}
   ];
 });
+
+praadApp.controller('TagListCtrl', function ($scope) {
+  $scope.tagList = [
+    {'id': 'kala',
+     'label': 'Kalast'},
+    {'id': 'lind',
+     'label': 'Linnust'},
+    {'id': 'siga',
+     'label': 'Seast'},
+    {'id': 'veis',
+     'label': 'Veisest'},
+    {'id': 'lammas',
+     'label': 'Lambast'}
+  ];
+});
