@@ -1,5 +1,17 @@
 'use strict';
 var praadApp = angular.module('praadApp', []);
+
+praadApp.value('offerFilterState', {});
+
+praadApp.factory('doIntersect', function(){
+  return function (as, bs){
+    return as.some(function (a){
+      return bs.some(function (b){
+          return a === b;
+      });
+    });
+  };
+});
  
 praadApp.controller('OfferListCtrl', function ($scope) {
   $scope.offers = [
@@ -21,7 +33,7 @@ praadApp.controller('OfferListCtrl', function ($scope) {
   ];
 });
 
-praadApp.controller('TagListCtrl', function ($scope) {
+praadApp.controller('TagListCtrl', ['$scope', 'offerFilterState', function ($scope, offerFilterState) {
   $scope.tagList = [
     {'id': 'kala',
      'label': 'Kalast'},
@@ -34,10 +46,23 @@ praadApp.controller('TagListCtrl', function ($scope) {
     {'id': 'lammas',
      'label': 'Lambast'}
   ];
-});
 
-praadApp.filter('tag', function($scope){
-	return function(input){
-		return true;
-	};
-});
+  $scope.tagSelectionChanged = function(){
+    offerFilterState.selectedTags = offerFilterState.selectedTags || [];
+    $scope.tagList.forEach(function (tag){
+      if (tag.selected){
+        offerFilterState.selectedTags.push(tag.id);
+      }
+    });
+  };
+
+}]);
+
+praadApp.filter('tag', ['offerFilterState', 'doIntersect', function (offerFilterState, doIntersect){
+  return function(input){
+    if (offerFilterState.selectedTags && offerFilterState.selectedTags.length > 0){
+      return doIntersect(offerFilterState.selectedTags, input.tags);
+    }
+    return true;
+  };
+}]);

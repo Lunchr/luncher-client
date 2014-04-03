@@ -8,7 +8,7 @@
 	<link href="css/styles.css" rel="stylesheet" type="text/css" />
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700' rel='stylesheet' type='text/css'>
-	<script src="../lib/angular/angular.js"></script>
+	<script src="lib/angular/angular.js"></script>
 	<script src="js/controllers.js"></script>
 </head>
 <body>
@@ -36,7 +36,7 @@
                     <div class="col-md-15" ng-controller="TagListCtrl">
                         <form action="">
                             <span ng-repeat="tag in tagList">
-	                            <input type="checkbox" id="checkbox-{{tag.id}}" name="meat" ng-model="tag.selected">
+	                            <input type="checkbox" id="checkbox-{{tag.id}}" name="meat" ng-model="tag.selected" ng-change="tagSelectionChanged()">
 	                            <label for="checkbox-{{tag.id}}">{{tag.label}}</label>
                             </span>
                         </form>
@@ -50,7 +50,7 @@
     </div>
     <div class="offers" ng-controller="OfferListCtrl">
         <div class="container">
-            <div class="offer" ng-repeat="offer in offers | filter:query" id="{{offer.id}}">
+            <div class="offer" ng-repeat="offer in offers | filter:query | tag" id="{{offer.id}}">
             	<div class="row">
             		<div class="col-xs-1">
                     	<a href="#" class="favorite"></a>
