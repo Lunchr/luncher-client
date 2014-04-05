@@ -2,6 +2,23 @@ describe('OfferList cotrollers', function() {
   'use strict';
   beforeEach(module('offerListControllers'));
 
+  describe('Search controller', function() {
+    var $scope;
+
+    beforeEach(inject(function ($rootScope, $controller) {
+      $scope = $rootScope.$new();
+      $controller('SearchCtrl', {$scope: $scope});
+    }));
+
+    it('should update filter state service', inject(function (offerFilterState) {
+      $scope.query = "Who is ...";
+
+      $scope.$apply();
+
+      expect(offerFilterState.query).toBe("Who is ...");
+    }));
+  });
+
   describe('TagList controller', function() {
     var $scope;
 

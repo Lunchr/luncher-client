@@ -49,3 +49,9 @@ offerListControllers.controller('TagListCtrl', ['$scope', 'offerFilterState', fu
     });
   }, true);
 }]);
+
+offerListControllers.controller('SearchCtrl', ['$scope', 'offerFilterState', function ($scope, offerFilterState) {
+  $scope.$watch('query', function (query){
+    offerFilterState.query = query;
+  }, true);
+}]);

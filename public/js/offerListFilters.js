@@ -25,3 +25,9 @@ offerListFilters.filter('tag', ['filterFilter', 'offerFilterState', 'doIntersect
     };
   }
 ]);
+
+offerListFilters.filter('search', ['filterFilter', 'offerFilterState', function (filterFilter, offerFilterState){
+  return function (offers){
+    return filterFilter(offers, offerFilterState.query);
+  };
+}]);

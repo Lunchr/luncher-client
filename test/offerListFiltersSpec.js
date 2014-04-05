@@ -32,7 +32,7 @@ describe('OfferList filters', function() {
     }));
   });
 
-  describe('TagList filter', function() {
+  describe('filters', function() {
     var offers;
 
     beforeEach(inject(function () {
@@ -73,45 +73,70 @@ describe('OfferList filters', function() {
       });
     }));
 
-    it('should return same array if no tags selected', inject(function (tagFilter) {
-      var filteredOffers = tagFilter(offers);
-      expect(filteredOffers.length).toBe(3);
-      expect(filteredOffers).toContainId('1');
-      expect(filteredOffers).toContainId('2');
-      expect(filteredOffers).toContainId('3');
-    }));
-
-
-    it('should return same array if no tags selected, even if state initialized',
-      inject(function (tagFilter, offerFilterState) {
-        offerFilterState.selectedTags=[];
+    describe('TagList filter', function() {
+      it('should return same array if no tags selected', inject(function (tagFilter) {
         var filteredOffers = tagFilter(offers);
+
         expect(filteredOffers.length).toBe(3);
         expect(filteredOffers).toContainId('1');
         expect(filteredOffers).toContainId('2');
         expect(filteredOffers).toContainId('3');
-      }
-    ));
-
-    describe('with one tag selected', function() {
-      beforeEach(inject(function (offerFilterState) {
-        offerFilterState.selectedTags=['lind'];
       }));
 
-      it('should return array of offers with selected tags', inject(function (tagFilter) {
-        var filteredOffers = tagFilter(offers);
-        expect(filteredOffers.length).toBe(1);
-        expect(filteredOffers).toContainId('1');
-      }));
+
+      it('should return same array if no tags selected, even if state initialized',
+        inject(function (tagFilter, offerFilterState) {
+          offerFilterState.selectedTags=[];
+          var filteredOffers = tagFilter(offers);
+          expect(filteredOffers.length).toBe(3);
+          expect(filteredOffers).toContainId('1');
+          expect(filteredOffers).toContainId('2');
+          expect(filteredOffers).toContainId('3');
+        }
+      ));
+
+      describe('with one tag selected', function() {
+        beforeEach(inject(function (offerFilterState) {
+          offerFilterState.selectedTags=['lind'];
+        }));
+
+        it('should return array of offers with selected tags', inject(function (tagFilter) {
+          var filteredOffers = tagFilter(offers);
+          expect(filteredOffers.length).toBe(1);
+          expect(filteredOffers).toContainId('1');
+        }));
+      });
+
+      describe('with more tags selected', function() {
+        beforeEach(inject(function (offerFilterState) {
+          offerFilterState.selectedTags=['lind', 'loom', 'siga', 'part'];
+        }));
+
+        it('should return array of offers with selected tags', inject(function (tagFilter) {
+          var filteredOffers = tagFilter(offers);
+          expect(filteredOffers.length).toBe(3);
+          expect(filteredOffers).toContainId('1');
+          expect(filteredOffers).toContainId('2');
+          expect(filteredOffers).toContainId('3');
+        }));
+      });
     });
 
-    describe('with more tags selected', function() {
-      beforeEach(inject(function (offerFilterState) {
-        offerFilterState.selectedTags=['lind', 'loom', 'siga', 'part'];
+    describe('Search filter', function() {
+      it('should return same array for undefined query', inject(function (searchFilter) {
+        var filteredOffers = searchFilter(offers);
+
+        expect(filteredOffers.length).toBe(3);
+        expect(filteredOffers).toContainId('1');
+        expect(filteredOffers).toContainId('2');
+        expect(filteredOffers).toContainId('3');
       }));
 
-      it('should return array of offers with selected tags', inject(function (tagFilter) {
-        var filteredOffers = tagFilter(offers);
+      it('should return same array for empty query', inject(function (searchFilter, offerFilterState) {
+        offerFilterState.query = "";
+
+        var filteredOffers = searchFilter(offers);
+
         expect(filteredOffers.length).toBe(3);
         expect(filteredOffers).toContainId('1');
         expect(filteredOffers).toContainId('2');

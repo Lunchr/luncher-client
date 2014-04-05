@@ -17,7 +17,7 @@
     <div class="header">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" ng-controller="SearchCtrl">
                     <input class="search" type="text" placeholder="Otsi söögikohta või sööki..." ng-model="query">
                 </div>
                 <div class="col-md-12">
@@ -52,7 +52,7 @@
     </div>
     <div class="offers" ng-controller="OfferListCtrl">
         <div class="container">
-            <div class="offer" ng-repeat="offer in offers | filter:query | tag" id="{{offer.id}}">
+            <div class="offer" ng-repeat="offer in offers | search | tag" id="{{offer.id}}">
                 <div class="row">
                     <div class="col-xs-1">
                         <a href="#" class="favorite"></a>
