@@ -14,6 +14,11 @@ describe('PraadApp', function() {
       expect(doIntersect([], [])).toBe(false);
     }));
 
+    it('should return false for undefined', inject(function (doIntersect) {
+      expect(doIntersect(undefined, ['a', 'b'])).toBe(false);
+      expect(doIntersect(['a', 'b', 'c'])).toBe(false);
+    }));
+
     it('should return false for non-intersecting arrays', inject(function (doIntersect) {
       expect(doIntersect(['a', 'b', 'c'], ['x', 'y', 'z'])).toBe(false);
     }));
@@ -64,18 +69,31 @@ describe('PraadApp', function() {
         expect(offerFilterState.selectedTags[0]).toBe('lind');
       }));
 
-      it('should add multiple selected tags to list', inject(function (offerFilterState) {
-        $scope.tagList[1].selected = true;
-        $scope.tagList[2].selected = true;
+      describe('with 2 tags selected', function() {
 
-        $scope.tagSelectionChanged();
+        beforeEach(function (){
+          $scope.tagList[1].selected = true;
+          $scope.tagList[2].selected = true;
 
-        expect(offerFilterState.selectedTags.length).toBe(2);
-        expect(offerFilterState.selectedTags).toContain('lind');
-        expect(offerFilterState.selectedTags).toContain('siga');
-      }));
+          $scope.tagSelectionChanged();
+        });
+
+        it('should add multiple selected tags to list', inject(function (offerFilterState) {
+          expect(offerFilterState.selectedTags.length).toBe(2);
+          expect(offerFilterState.selectedTags).toContain('lind');
+          expect(offerFilterState.selectedTags).toContain('siga');
+        }));
+
+        it('should remove from selected tags to list', inject(function (offerFilterState) {
+          $scope.tagList[2].selected = false;
+
+          $scope.tagSelectionChanged();
+
+          expect(offerFilterState.selectedTags.length).toBe(1);
+          expect(offerFilterState.selectedTags).toContain('lind');
+        }));
+      });
     });
-
   });
 
   describe('TagList filter', function() {
@@ -102,34 +120,50 @@ describe('PraadApp', function() {
          'price': 3.6,
          'tags': ['loom']}
       ];
-    }));
 
-    it('should return true if no tags selected', inject(function (tagFilter) {
-      offers.forEach(function (offer){
-        expect(tagFilter(offer)).toBe(true);
+      this.addMatchers({
+        toContainId: function (expected){
+          var actual = this.actual;
+          var notText = this.isNot ? ' not' : '';
+
+          this.message = function(){
+            return "Expected " + actual + notText + " to contain id " + expected;
+          }
+
+          return actual.some(function (elem){
+            return elem.id === expected
+          });
+        }
       });
     }));
 
+    it('should return same array if no tags selected', inject(function (tagFilter) {
+      var filteredOffers = tagFilter(offers);
+      expect(filteredOffers.length).toBe(3);
+      expect(filteredOffers).toContainId('1');
+      expect(filteredOffers).toContainId('2');
+      expect(filteredOffers).toContainId('3');
+    }));
 
-    it('should return true if no tags selected, even if state initialized', inject(function (tagFilter, offerFilterState) {
+
+    it('should return same array if no tags selected, even if state initialized', inject(function (tagFilter, offerFilterState) {
       offerFilterState.selectedTags=[];
-      offers.forEach(function (offer){
-        expect(tagFilter(offer)).toBe(true);
-      });
+      var filteredOffers = tagFilter(offers);
+      expect(filteredOffers.length).toBe(3);
+      expect(filteredOffers).toContainId('1');
+      expect(filteredOffers).toContainId('2');
+      expect(filteredOffers).toContainId('3');
     }));
 
-    describe('with one selected tag', function() {
+    describe('with one tag selected', function() {
       beforeEach(inject(function (offerFilterState) {
         offerFilterState.selectedTags=['lind'];
       }));
 
-      it('should return true for selected tags', inject(function (tagFilter) {
-        expect(tagFilter(offers[0])).toBe(true);
-      }));
-
-      it('should return false for unselected tags', inject(function (tagFilter) {
-        expect(tagFilter(offers[1])).toBe(false);
-        expect(tagFilter(offers[2])).toBe(false);
+      it('should return array of offers with selected tags', inject(function (tagFilter) {
+        var filteredOffers = tagFilter(offers);
+        expect(filteredOffers.length).toBe(1);
+        expect(filteredOffers).toContainId('1');
       }));
     });
 
@@ -138,10 +172,12 @@ describe('PraadApp', function() {
         offerFilterState.selectedTags=['lind', 'loom', 'siga', 'part'];
       }));
 
-      it('should return true for all tags', inject(function (tagFilter) {
-        offers.forEach(function (offer){
-          expect(tagFilter(offer)).toBe(true);
-        });
+      it('should return array of offers with selected tags', inject(function (tagFilter) {
+        var filteredOffers = tagFilter(offers);
+        expect(filteredOffers.length).toBe(3);
+        expect(filteredOffers).toContainId('1');
+        expect(filteredOffers).toContainId('2');
+        expect(filteredOffers).toContainId('3');
       }));
     });
   });
