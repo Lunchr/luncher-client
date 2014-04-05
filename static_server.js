@@ -1,4 +1,4 @@
-'use strict';
+/*jshint strict:false */
 var static = require('node-static');
 
 //

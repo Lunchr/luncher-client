@@ -1,5 +1,5 @@
-'use strict';
 describe('PraadApp', function() {
+  'use strict';
   beforeEach(module('praadApp'));
 
   beforeEach(inject(function (offerFilterState) {
@@ -99,7 +99,7 @@ describe('PraadApp', function() {
   describe('TagList filter', function() {
     var offers;
  
-    beforeEach(inject(function ($rootScope, $controller) {
+    beforeEach(inject(function () {
       offers = [
         {'id': '1',
          'location': 'Asian Chef',
@@ -127,11 +127,11 @@ describe('PraadApp', function() {
           var notText = this.isNot ? ' not' : '';
 
           this.message = function(){
-            return "Expected " + actual + notText + " to contain id " + expected;
-          }
+            return 'Expected ' + actual + notText + ' to contain id ' + expected;
+          };
 
           return actual.some(function (elem){
-            return elem.id === expected
+            return elem.id === expected;
           });
         }
       });

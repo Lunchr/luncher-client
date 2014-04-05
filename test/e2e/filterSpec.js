@@ -1,5 +1,5 @@
-'use strict';
 describe('Praad App', function() {
+  'use strict';
  
   describe('Offer list view', function() {
   
