@@ -1,19 +1,19 @@
 describe('Praad App', function() {
   'use strict';
- 
+
   describe('Offer list view', function() {
-  
+
     var offers;
 
     beforeEach(function() {
-      browser.get('http://localhost:8080/');
+      browser.get('/');
       offers = element.all(by.repeater('offer in offers'));
     });
- 
+
     it('should initially have 3 offers', function() {
       expect(offers.count()).toBe(3);
     });
- 
+
     it('should filter the offer list as user types into the search box', function() {
       element(by.model('query')).sendKeys('kana');
 
