@@ -28,6 +28,16 @@ offerListFilters.filter('tag', ['filterFilter', 'offerFilterState', 'doIntersect
 
 offerListFilters.filter('search', ['filterFilter', 'offerFilterState', function (filterFilter, offerFilterState){
   return function (offers){
-    return filterFilter(offers, offerFilterState.query);
+    return filterFilter(offers, function (offer){
+      var query = new RegExp(offerFilterState.query, 'i');
+
+      var result = offer.title.match(query);
+      result = result || offer.description.match(query);
+      result = result || offer.location.match(query);
+      result = result || offer.tags.some(function (tag){
+        return tag.match(query);
+      });
+      return result;
+    });
   };
 }]);

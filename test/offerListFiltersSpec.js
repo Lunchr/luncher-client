@@ -44,7 +44,7 @@ describe('OfferList filters', function() {
          'price': 3.4,
          'tags': ['lind']},
         {'id': '2',
-         'location': 'Asian Chef',
+         'location': 'Another Place',
          'title': 'Sweet & Sour Pork',
          'description': 'Seafilee aedviljadega rikkalikus magushapus kastmes.',
          'price': 3.5,
@@ -141,6 +141,67 @@ describe('OfferList filters', function() {
         expect(filteredOffers).toContainId('1');
         expect(filteredOffers).toContainId('2');
         expect(filteredOffers).toContainId('3');
+      }));
+
+      it('should filter on the description', inject(function (searchFilter, offerFilterState) {
+        offerFilterState.query = "Kana";
+
+        var filteredOffers = searchFilter(offers);
+
+        expect(filteredOffers.length).toBe(1);
+        expect(filteredOffers).toContainId('1');
+      }));
+
+      it('should be case insensitive', inject(function (searchFilter, offerFilterState) {
+        offerFilterState.query = "kana";
+
+        var filteredOffers = searchFilter(offers);
+
+        expect(filteredOffers.length).toBe(1);
+        expect(filteredOffers).toContainId('1');
+      }));
+
+      it('should filter on the title', inject(function (searchFilter, offerFilterState) {
+        offerFilterState.query = "Chicken";
+
+        var filteredOffers = searchFilter(offers);
+
+        expect(filteredOffers.length).toBe(1);
+        expect(filteredOffers).toContainId('1');
+      }));
+
+      it('should filter on tags', inject(function (searchFilter, offerFilterState) {
+        offerFilterState.query = "lind";
+
+        var filteredOffers = searchFilter(offers);
+
+        expect(filteredOffers.length).toBe(1);
+        expect(filteredOffers).toContainId('1');
+      }));
+
+      it('should filter on location', inject(function (searchFilter, offerFilterState) {
+        offerFilterState.query = "Another";
+
+        var filteredOffers = searchFilter(offers);
+
+        expect(filteredOffers.length).toBe(1);
+        expect(filteredOffers).toContainId('2');
+      }));
+
+      it('should not filter on price', inject(function (searchFilter, offerFilterState) {
+        offerFilterState.query = "3.6";
+
+        var filteredOffers = searchFilter(offers);
+
+        expect(filteredOffers.length).toBe(0);
+      }));
+
+      it('should not filter on id', inject(function (searchFilter, offerFilterState) {
+        offerFilterState.query = "1";
+
+        var filteredOffers = searchFilter(offers);
+
+        expect(filteredOffers.length).toBe(0);
       }));
     });
   });
