@@ -14,13 +14,15 @@ offerListFilters.factory('doIntersect', function(){
   };
 });
 
-offerListFilters.filter('tag', ['filterFilter', 'offerFilterState', 'doIntersect', function (filterFilter, offerFilterState, doIntersect){
-  return function (offers){
-    return filterFilter(offers, function (offer){
-      if (offerFilterState.selectedTags && offerFilterState.selectedTags.length > 0){
-        return doIntersect(offerFilterState.selectedTags, offer.tags);
-      }
-      return true;
-    });
-  };
-}]);
+offerListFilters.filter('tag', ['filterFilter', 'offerFilterState', 'doIntersect',
+  function (filterFilter, offerFilterState, doIntersect){
+    return function (offers){
+      return filterFilter(offers, function (offer){
+        if (offerFilterState.selectedTags && offerFilterState.selectedTags.length > 0){
+          return doIntersect(offerFilterState.selectedTags, offer.tags);
+        }
+        return true;
+      });
+    };
+  }
+]);

@@ -4,7 +4,11 @@ describe('OfferList filters', function() {
 
   beforeEach(inject(function (offerFilterState) {
     // Clear filter state
-    for (var prop in offerFilterState) { if (offerFilterState.hasOwnProperty(prop)) { delete offerFilterState[prop]; } }
+    for (var prop in offerFilterState) {
+      if (offerFilterState.hasOwnProperty(prop)){
+        delete offerFilterState[prop];
+      }
+    }
   }));
 
   describe('doIntersect service', function() {
@@ -78,14 +82,16 @@ describe('OfferList filters', function() {
     }));
 
 
-    it('should return same array if no tags selected, even if state initialized', inject(function (tagFilter, offerFilterState) {
-      offerFilterState.selectedTags=[];
-      var filteredOffers = tagFilter(offers);
-      expect(filteredOffers.length).toBe(3);
-      expect(filteredOffers).toContainId('1');
-      expect(filteredOffers).toContainId('2');
-      expect(filteredOffers).toContainId('3');
-    }));
+    it('should return same array if no tags selected, even if state initialized',
+      inject(function (tagFilter, offerFilterState) {
+        offerFilterState.selectedTags=[];
+        var filteredOffers = tagFilter(offers);
+        expect(filteredOffers.length).toBe(3);
+        expect(filteredOffers).toContainId('1');
+        expect(filteredOffers).toContainId('2');
+        expect(filteredOffers).toContainId('3');
+      }
+    ));
 
     describe('with one tag selected', function() {
       beforeEach(inject(function (offerFilterState) {
