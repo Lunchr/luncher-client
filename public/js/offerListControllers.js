@@ -1,20 +1,9 @@
 'use strict';
-var praadApp = angular.module('praadApp', []);
+var offerListControllers = angular.module('offerListControllers', [
+  'offerListFilters'
+  ]);
 
-praadApp.value('offerFilterState', {});
-
-praadApp.factory('doIntersect', function(){
-  return function (as, bs){
-    if (!as || !bs) return false;
-    return as.some(function (a){
-      return bs.some(function (b){
-          return a === b;
-      });
-    });
-  };
-});
- 
-praadApp.controller('OfferListCtrl', function ($scope) {
+offerListControllers.controller('OfferListCtrl', function ($scope) {
   $scope.offers = [
     {'id': '1',
      'location': 'Asian Chef',
@@ -37,7 +26,7 @@ praadApp.controller('OfferListCtrl', function ($scope) {
   ];
 });
 
-praadApp.controller('TagListCtrl', ['$scope', 'offerFilterState', function ($scope, offerFilterState) {
+offerListControllers.controller('TagListCtrl', ['$scope', 'offerFilterState', function ($scope, offerFilterState) {
   $scope.tagList = [
     {'id': 'kala',
      'label': 'Kalast'},
@@ -51,24 +40,18 @@ praadApp.controller('TagListCtrl', ['$scope', 'offerFilterState', function ($sco
      'label': 'Lambast'}
   ];
 
-  $scope.tagSelectionChanged = function(){
+  $scope.$watch('tagList', function (tagList){
     offerFilterState.selectedTags = [];
-    $scope.tagList.forEach(function (tag){
+    tagList.forEach(function (tag){
       if (tag.selected){
         offerFilterState.selectedTags.push(tag.id);
       }
     });
-  };
-
+  }, true);
 }]);
 
-praadApp.filter('tag', ['filterFilter', 'offerFilterState', 'doIntersect', function (filterFilter, offerFilterState, doIntersect){
-  return function (offers){
-    return filterFilter(offers, function (offer){
-      if (offerFilterState.selectedTags && offerFilterState.selectedTags.length > 0){
-        return doIntersect(offerFilterState.selectedTags, offer.tags);
-      }
-      return true;
-    });
-  };
+offerListControllers.controller('SearchCtrl', ['$scope', 'offerFilterState', function ($scope, offerFilterState) {
+  $scope.$watch('query', function (query){
+    offerFilterState.query = query;
+  }, true);
 }]);
