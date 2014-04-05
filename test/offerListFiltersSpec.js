@@ -32,6 +32,13 @@ describe('OfferList filters', function() {
     }));
   });
 
+  describe('levDist service', function() {
+    it('should calculate Levensthein distance', inject(function (levDist) {
+      expect(levDist("abc", "abd")).toBe(1);
+      expect(levDist("ca", "abc")).toBe(3);
+    }));
+  });
+
   describe('filters', function() {
     var offers;
 
