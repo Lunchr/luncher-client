@@ -1,11 +1,10 @@
 language: node_js
 node_js:
 - '0.10'
-install:
+before_script:
 - npm install -g grunt-cli
 - npm install -g bower
-before_script:
-  - curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
+- curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
 env:
   global:
   - secure: ba15wuuAU+tx/YCXViOEQzbNrgU835NA5PYQQkIRVbGSSzbNUpCOFrKbQ+lgM9FZvQjM0hv9fX37kuiTc2d88HtSUoyCmesx7EMwiJIIwNLGE1ZHC8PuuLTlnN1Gj7zouqL1rGML1nhje81ZuyZ/HYqlcaeXA+XDrYryshoDQqg=
