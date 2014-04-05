@@ -5,9 +5,8 @@ offerListFilters.value('offerFilterState', {});
 
 offerListFilters.factory('doIntersect', function(){
   return function (as, bs){
-    if (!as || !bs) return false;
-    return as.some(function (a){
-      return bs.some(function (b){
+    return !!as && as.some(function (a){
+      return !!bs && bs.some(function (b){
           return a === b;
       });
     });
