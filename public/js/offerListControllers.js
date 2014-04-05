@@ -40,12 +40,12 @@ offerListControllers.controller('TagListCtrl', ['$scope', 'offerFilterState', fu
      'label': 'Lambast'}
   ];
 
-  $scope.tagSelectionChanged = function(){
+  $scope.$watch('tagList', function (tagList){
     offerFilterState.selectedTags = [];
-    $scope.tagList.forEach(function (tag){
+    tagList.forEach(function (tag){
       if (tag.selected){
         offerFilterState.selectedTags.push(tag.id);
       }
     });
-  };
+  }, true);
 }]);

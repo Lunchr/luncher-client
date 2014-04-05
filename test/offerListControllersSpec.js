@@ -21,7 +21,7 @@ describe('OfferList cotrollers', function() {
 
     describe('tag selection listener', function() {
       it('should set selected tags to empty list if nothing selected (undefined)', inject(function (offerFilterState) {
-        $scope.tagSelectionChanged();
+        $scope.$apply();
 
         expect(offerFilterState.selectedTags.length).toBe(0);
       }));
@@ -29,7 +29,7 @@ describe('OfferList cotrollers', function() {
       it('should set selected tags to empty list if nothing selected (false)', inject(function (offerFilterState) {
         $scope.tagList[0].selected = false;
 
-        $scope.tagSelectionChanged();
+        $scope.$apply();
 
         expect(offerFilterState.selectedTags.length).toBe(0);
       }));
@@ -37,7 +37,7 @@ describe('OfferList cotrollers', function() {
       it('should add selected tag to list', inject(function (offerFilterState) {
         $scope.tagList[1].selected = true;
 
-        $scope.tagSelectionChanged();
+        $scope.$apply();
 
         expect(offerFilterState.selectedTags.length).toBe(1);
         expect(offerFilterState.selectedTags[0]).toBe('lind');
@@ -49,7 +49,7 @@ describe('OfferList cotrollers', function() {
           $scope.tagList[1].selected = true;
           $scope.tagList[2].selected = true;
 
-          $scope.tagSelectionChanged();
+          $scope.$apply();
         });
 
         it('should add multiple selected tags to list', inject(function (offerFilterState) {
@@ -61,7 +61,7 @@ describe('OfferList cotrollers', function() {
         it('should remove from selected tags to list', inject(function (offerFilterState) {
           $scope.tagList[2].selected = false;
 
-          $scope.tagSelectionChanged();
+          $scope.$apply();
 
           expect(offerFilterState.selectedTags.length).toBe(1);
           expect(offerFilterState.selectedTags).toContain('lind');

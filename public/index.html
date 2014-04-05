@@ -38,8 +38,8 @@
                     <div class="col-md-15" ng-controller="TagListCtrl">
                         <form action="">
                             <span ng-repeat="tag in tagList">
-	                            <input type="checkbox" id="checkbox-{{tag.id}}" name="meat" ng-model="tag.selected" ng-change="tagSelectionChanged()">
-	                            <label for="checkbox-{{tag.id}}">{{tag.label}}</label>
+                                <input type="checkbox" id="checkbox-{{tag.id}}" name="meat" ng-model="tag.selected">
+                                <label for="checkbox-{{tag.id}}">{{tag.label}}</label>
                             </span>
                         </form>
                     </div>
@@ -53,10 +53,10 @@
     <div class="offers" ng-controller="OfferListCtrl">
         <div class="container">
             <div class="offer" ng-repeat="offer in offers | filter:query | tag" id="{{offer.id}}">
-            	<div class="row">
-            		<div class="col-xs-1">
-                    	<a href="#" class="favorite"></a>
-                	</div>
+                <div class="row">
+                    <div class="col-xs-1">
+                        <a href="#" class="favorite"></a>
+                    </div>
                     <div class="col-xs-6">
                         <h2>{{offer.location}}</h2>
                     </div>
