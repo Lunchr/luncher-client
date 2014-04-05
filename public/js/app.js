@@ -1,4 +1,6 @@
-'use strict';
-var praadApp = angular.module('praadApp', [
-	'offerListControllers'
-	]);
+(function(){
+  'use strict';
+  var praadApp = angular.module('praadApp', [
+    'offerListControllers'
+    ]);
+})();
