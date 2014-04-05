@@ -31,6 +31,8 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-bower-task": "^0.3.4"
+    "grunt-bower-task": "^0.3.4",
+    "grunt-karma-coveralls": "^2.4.3",
+    "karma-coverage": "^0.2.1"
   }
 }

@@ -31,9 +31,17 @@ module.exports = function(grunt) {
     },
     bower: {
       install: {}
+    },
+    coveralls: {
+      options: {
+        debug: true,
+        coverage_dir: 'coverage',
+        force: true
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
