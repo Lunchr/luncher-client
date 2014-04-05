@@ -16,8 +16,19 @@ module.exports = function(grunt) {
       options: {
         configFile: 'config/karma.conf.js'
       },
-      ci: {
+      once: {
         singleRun: true
+      },
+      ci: {
+        singleRun: true,
+        preprocessors: {
+          'public/js/**/*.js': ['coverage']
+        },
+        reporters: ['progress', 'coverage'],
+        coverageReporter: {
+          type: "lcov",
+          dir: "coverage/"
+        }
       },
       dev: {
         background: true
@@ -47,7 +58,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-bower-task');
 
-  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci']);
+  grunt.registerTask('pre_push', ['jshint', 'karma:once']);
+  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'coveralls']);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
 };
