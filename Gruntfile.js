@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     },
     shell: {
       protractor_update: {
-        command: 'node_modules/protractor/bin/webdriver-manager update'
+        command: 'node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
       }
     },
     watch: {
