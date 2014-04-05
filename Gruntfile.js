@@ -43,7 +43,7 @@ module.exports = function(grunt) {
       protractor_update: {
         command: 'node_modules/protractor/bin/webdriver-manager update'
       }
-    }
+    },
     watch: {
       karma: {
         files: [jsFiles, testFiles],
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-connect');
 
-  grunt.registerTask('e2eTest', ['shell:protractor_update', 'connect:server' 'protractor:ci']);
+  grunt.registerTask('e2eTest', ['shell:protractor_update', 'connect:server', 'protractor:ci']);
   grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'e2eTest']);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
