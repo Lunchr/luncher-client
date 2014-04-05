@@ -1,10 +1,17 @@
 module.exports = function(grunt) {
+  'use strict';
 
   var jsFiles = 'public/js/**/*.js';
   var testFiles = 'test/**/*.js';
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    jshint: {
+      options: {
+        jshintrc: true
+      },
+      all: ['Gruntfile.js', jsFiles, testFiles]
+    },
     karma: {
       options: {
         configFile: 'config/karma.conf.js'
@@ -22,19 +29,17 @@ module.exports = function(grunt) {
         tasks: ['karma:dev:run']
       }
     },
-    jshint: {
-      options: {
-        jshintrc: true
-      },
-      all: ['Gruntfile.js', jsFiles, testFiles]
+    bower: {
+      install: {}
     }
   });
 
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-bower-task');
 
-  grunt.registerTask('test', ['jshint', 'karma:ci']);
+  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci']);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
 };
