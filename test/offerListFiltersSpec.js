@@ -2,13 +2,8 @@ describe('OfferList filters', function() {
   'use strict';
   beforeEach(module('offerListFilters'));
 
-  beforeEach(inject(function (offerFilterState) {
-    // Clear filter state
-    for (var prop in offerFilterState) {
-      if (offerFilterState.hasOwnProperty(prop)){
-        delete offerFilterState[prop];
-      }
-    }
+  it('should have filter state service', inject(function (offerFilterState) {
+    expect(offerFilterState).toBeDefined();
   }));
 
   describe('doIntersect service', function() {
@@ -32,8 +27,12 @@ describe('OfferList filters', function() {
     }));
   });
 
-  describe('filters', function() {
+  describe('with filter state', function() {
     var offers;
+
+    beforeEach(inject(function (offerFilterState) {
+      pruneObject(offerFilterState);
+    }));
 
     beforeEach(inject(function () {
       offers = [

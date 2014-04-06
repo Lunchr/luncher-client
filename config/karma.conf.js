@@ -17,7 +17,7 @@ module.exports = function(config) {
     'public/lib/angular-*/*.js',
     'config/test-main.js',
     'public/js/**/*.js',
-    'test/*Spec.js'
+    'test/*.js'
     ],
 
     // list of files to exclude
