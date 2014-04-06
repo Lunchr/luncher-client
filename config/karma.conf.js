@@ -14,7 +14,7 @@ module.exports = function(config) {
     files: [
     'public/lib/angular/angular.js',
     'public/lib/angular-*/*.js',
-    'test-main.js',
+    'config/test-main.js',
     'public/js/**/*.js',
     'test/*Spec.js'
     ],
