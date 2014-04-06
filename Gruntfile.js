@@ -10,7 +10,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: true
       },
-      all: ['Gruntfile.js', jsFiles, testFiles]
+      all: ['*.js', jsFiles, testFiles]
     },
     karma: {
       options: {
@@ -32,6 +32,27 @@ module.exports = function(grunt) {
       },
       dev: {
         background: true
+      }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 8080,
+          base: 'public'
+        }
+      }
+    },
+    protractor: {
+      options: {
+        configFile: 'protractor.conf.js'
+      },
+      ci : {
+        keepAlive: false
+      }
+    },
+    shell: {
+      protractor_update: {
+        command: 'node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
       }
     },
     watch: {
@@ -56,10 +77,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   grunt.registerTask('pre_push', ['jshint', 'karma:once']);
-  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'coveralls']);
+  grunt.registerTask('e2eTest', ['shell:protractor_update', 'connect:server', 'protractor:ci']);
+  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'e2eTest', 'coveralls']);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
 };
