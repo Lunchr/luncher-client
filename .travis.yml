@@ -6,5 +6,5 @@ before_script:
 - curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
 env:
   global:
-  - secure: ba15wuuAU+tx/YCXViOEQzbNrgU835NA5PYQQkIRVbGSSzbNUpCOFrKbQ+lgM9FZvQjM0hv9fX37kuiTc2d88HtSUoyCmesx7EMwiJIIwNLGE1ZHC8PuuLTlnN1Gj7zouqL1rGML1nhje81ZuyZ/HYqlcaeXA+XDrYryshoDQqg=
-  - secure: LXYEJ2g2oS1O8Z+WZV6SaJi3y2lkYNJ14HQm31sTUD/z7PwO1MREjMYTrmoq0ZBThej933Dq984fE87nXUaquthKqntEGmr7ByWOWidVUaHtnDEcsAxBbXvto5GHR+hswm3PsN6AsJALVplHaKNTN9tXQbng3oB61d2TouAChxk=
+  - secure: TqPeV/7WDU01qn8jjYJkzJGnwREdjgkZCu5JW5HUnuh5Dfk89iEB8P2+hD6DnGdDQlrzBrPyvUuYRIF/cFsZIucbFTcbJXIm2YuHrSTP37UU+9N+hZd/sFNmQYjKhVhxSBysDfiCvIVgfLoxm93bWBMYCx37NRiT8WD9qCAKp1w=
+  - secure: gguwvrGPPXUzMH0ygShVhk84iI3G/VHlT5OFPG/rN0RkGb383Xnvb7CSqwLWlDMINHCu3wSK3oAc69V5HYg/vfuRLX83I4GZQEzCVKZl0XqiVzvIfUFPO2TY0US2QkHUn1/F6bhSSKQPcqNlMvRxxfiKOMnlO7Ed2spYk1Qygfg=
