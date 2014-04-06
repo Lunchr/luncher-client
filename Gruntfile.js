@@ -10,7 +10,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: true
       },
-      all: ['*.js', jsFiles, testFiles]
+      all: ['*.js', 'config/**/*.js', jsFiles, testFiles]
     },
     karma: {
       options: {
