@@ -83,8 +83,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
 
   grunt.registerTask('pre_push', ['jshint', 'karma:once']);
-  grunt.registerTask('e2eTest', ['shell:protractor_update', 'connect:server', 'protractor:ci']);
-  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'e2eTest', 'coveralls']);
+  grunt.registerTask('e2e', ['shell:protractor_update', 'connect:server', 'protractor:ci']);
+  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'e2e', 'coveralls']);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
 };
