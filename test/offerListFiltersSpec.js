@@ -31,45 +31,9 @@ describe('OfferList filters', function() {
     var offers;
 
     beforeEach(inject(function (offerFilterState) {
-      pruneObject(offerFilterState);
-    }));
-
-    beforeEach(inject(function () {
-      offers = [
-        {'id': '1',
-         'location': 'Asian Chef',
-         'title': 'Sweet & Sour Chicken',
-         'description': 'Kanafilee aedviljadega rikkalikus magushapus kastmes.',
-         'price': 3.4,
-         'tags': ['lind']},
-        {'id': '2',
-         'location': 'Another Place',
-         'title': 'Sweet & Sour Pork',
-         'description': 'Seafilee aedviljadega rikkalikus magushapus kastmes.',
-         'price': 3.5,
-         'tags': ['siga']},
-        {'id': '3',
-         'location': 'Asian Chef',
-         'title': 'Sweet & Sour Beef',
-         'description': 'Veisefilee aedviljadega rikkalikus magushapus kastmes.',
-         'price': 3.6,
-         'tags': ['loom']}
-      ];
-
-      this.addMatchers({
-        toContainId: function (expected){
-          var actual = this.actual;
-          var notText = this.isNot ? ' not' : '';
-
-          this.message = function(){
-            return 'Expected ' + actual + notText + ' to contain id ' + expected;
-          };
-
-          return actual.some(function (elem){
-            return elem.id === expected;
-          });
-        }
-      });
+      offers = offerUtils.getMockOffers();
+      utils.pruneObject(offerFilterState);
+      this.addMatchers(offerUtils.matchers);
     }));
 
     describe('TagList filter', function() {
@@ -132,7 +96,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should return same array for empty query', inject(function (searchFilter, offerFilterState) {
-        offerFilterState.query = "";
+        offerFilterState.query = '';
 
         var filteredOffers = searchFilter(offers);
 
@@ -143,7 +107,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should filter on the description', inject(function (searchFilter, offerFilterState) {
-        offerFilterState.query = "Kana";
+        offerFilterState.query = 'Kana';
 
         var filteredOffers = searchFilter(offers);
 
@@ -152,7 +116,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should be case insensitive', inject(function (searchFilter, offerFilterState) {
-        offerFilterState.query = "kana";
+        offerFilterState.query = 'kana';
 
         var filteredOffers = searchFilter(offers);
 
@@ -161,7 +125,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should filter on the title', inject(function (searchFilter, offerFilterState) {
-        offerFilterState.query = "Chicken";
+        offerFilterState.query = 'Chicken';
 
         var filteredOffers = searchFilter(offers);
 
@@ -170,7 +134,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should filter on tags', inject(function (searchFilter, offerFilterState) {
-        offerFilterState.query = "lind";
+        offerFilterState.query = 'lind';
 
         var filteredOffers = searchFilter(offers);
 
@@ -179,7 +143,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should filter on location', inject(function (searchFilter, offerFilterState) {
-        offerFilterState.query = "Another";
+        offerFilterState.query = 'Another';
 
         var filteredOffers = searchFilter(offers);
 
@@ -188,7 +152,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should not filter on price', inject(function (searchFilter, offerFilterState) {
-        offerFilterState.query = "3.6";
+        offerFilterState.query = '3.6';
 
         var filteredOffers = searchFilter(offers);
 
@@ -196,7 +160,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should not filter on id', inject(function (searchFilter, offerFilterState) {
-        offerFilterState.query = "1";
+        offerFilterState.query = '1';
 
         var filteredOffers = searchFilter(offers);
 
