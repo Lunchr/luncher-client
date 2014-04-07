@@ -4,7 +4,8 @@
   "description": "praad",
   "main": "static_server.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "start": "node static_server.js"
   },
   "repository": {
     "type": "git",

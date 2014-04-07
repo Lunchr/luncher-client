@@ -12,3 +12,9 @@ To run the tests on your own machine you need to first install [node.js](nodejs.
     cd praad
     npm install
     grunt test
+
+### Looking at the page ###
+
+The simplest way to see the page in action is to open the `public/index.html` file in you browser. This works for now,
+but soon enough the data will be coming from the server and the page must be started with `npm start`. Currently
+`npm start` will run a static server that you can access at `http://localhost:8080`.
