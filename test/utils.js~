@@ -8,5 +8,5 @@ var utils = (function (){
         }
       }
     }
-  };
+  }
 })();
