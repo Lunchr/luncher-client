@@ -6,8 +6,9 @@ praad
 ## Development setup ##
 
 To run the tests on your own machine you need to first install [node.js](nodejs.org). Once you have it installed just run:
+    
+    npm install -g grunt-cli
     git clone git@github.com:deiwin/praad.git
     cd praad
-    npm install -g grunt-cli
     npm install
     grunt test
