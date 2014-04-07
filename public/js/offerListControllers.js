@@ -1,7 +1,8 @@
 (function(){
   'use strict';
   var offerListControllers = angular.module('offerListControllers', [
-    'offerListFilters'
+    'offerListFilters',
+    'offerListSorters'
     ]);
 
   offerListControllers.controller('OfferListCtrl', function ($scope) {
