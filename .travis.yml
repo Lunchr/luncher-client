@@ -3,10 +3,14 @@ node_js:
 - '0.10'
 before_script:
 - npm install -g grunt-cli
+- npm install -g codeclimate-test-reporter
+after_script:
+- cat coverage/lcov.info | codeclimate
 env:
   global:
   - secure: TqPeV/7WDU01qn8jjYJkzJGnwREdjgkZCu5JW5HUnuh5Dfk89iEB8P2+hD6DnGdDQlrzBrPyvUuYRIF/cFsZIucbFTcbJXIm2YuHrSTP37UU+9N+hZd/sFNmQYjKhVhxSBysDfiCvIVgfLoxm93bWBMYCx37NRiT8WD9qCAKp1w=
   - secure: gguwvrGPPXUzMH0ygShVhk84iI3G/VHlT5OFPG/rN0RkGb383Xnvb7CSqwLWlDMINHCu3wSK3oAc69V5HYg/vfuRLX83I4GZQEzCVKZl0XqiVzvIfUFPO2TY0US2QkHUn1/F6bhSSKQPcqNlMvRxxfiKOMnlO7Ed2spYk1Qygfg=
+  - secure: WHzsF6qGr049DUVORbgwjs5tV8OzLt4OnQehEpKTjhGa4EIIwm4MFpK525WDOCWW92p2nnSvqd1trd44bHsKXGcl87uX+V0CCRW5B1f4aRj54VBFo5+K3lEossM2a6Amqs4ZZDEJkmhHMHffMVEW3TFKlibF4BLp7CM5kUfcwYE=
 addons:
   sauce_connect:
     username:
