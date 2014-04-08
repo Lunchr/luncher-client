@@ -16,17 +16,30 @@ describe('OfferList sorters', function() {
     }));
 
     describe('offer sorter directive', function() {
-      var element, $scope;
+      var element, scope, parentScope;
       beforeEach(inject(function ($compile, $rootScope){
-        $scope = $rootScope.$new();
-        element = angular.element('<sorter>{{2+2}}</sorter>');
-        $compile(element)($scope);
+        parentScope = $rootScope.$new();
+        element = angular.element('<offers-sorter>{{2+2}}</offers-sorter>');
+        $compile(element)(parentScope);
+        scope = element.isolateScope();
+        parentScope.$digest();
       }));
 
-      it('should contain \'4\'', function() {
-        $scope.$digest();
+      it('should contain 4', function() {
         expect(element.html()).toBe('4');
       });
+
+      it('should have asc/desc state on scope', function(){
+        expect(scope.isAscending).toBeDefined();
+      });
+
+      it('should have default asc state of true', function(){
+        expect(scope.isAscending).toBe(true);
+      });
+
+      it('should hide asc state from parent scope', inject(function ($rootScope) {
+        expect(parentScope.isAscending).toBeUndefined();
+      }));
 
     });
 
