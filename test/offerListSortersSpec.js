@@ -19,7 +19,7 @@ describe('OfferList sorters', function() {
       var element, scope, parentScope;
       beforeEach(inject(function ($compile, $rootScope){
         parentScope = $rootScope.$new();
-        element = angular.element('<offers-sorter>{{2+2}}</offers-sorter>');
+        element = angular.element('<offers-sorter order-by="location">{{2+2}}</offers-sorter>');
         $compile(element)(parentScope);
         scope = element.isolateScope();
         parentScope.$digest();
@@ -40,6 +40,32 @@ describe('OfferList sorters', function() {
       it('should hide asc state from parent scope', inject(function ($rootScope) {
         expect(parentScope.isAscending).toBeUndefined();
       }));
+
+      it('should have orderBy value set from the attribute', function() {
+        expect(scope.orderBy).toBe('location');
+      });
+
+      describe('when element clicked', function() {
+        beforeEach(function (){
+          scope.clicked();
+        });
+
+        it('should should reverse order for this sorter', inject(function (offerOrderState) {
+          expect(scope.isAscending).toBe(false);
+          scope.clicked();
+          expect(scope.isAscending).toBe(true);
+        }));
+
+        it('should change the orderBy value of the state service', inject(function (offerOrderState) {
+          expect(offerOrderState.orderBy).toBe('location');
+        }));
+
+        it('should set the asc/desc value of the state service', inject(function (offerOrderState) {
+          expect(offerOrderState.isAscending).toBe(false);
+          scope.clicked();
+          expect(offerOrderState.isAscending).toBe(true);
+        }));
+      });
 
     });
 
