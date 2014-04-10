@@ -34,7 +34,9 @@
                 <div class="row">
                     <div class="col-xs-1"></div>
                     <div class="col-md-6">
-                        <a class="order-desc" id="order-location" href="#">Asukoht</a>
+                        <offers-sorter order-by="location">
+                            <a id="order-location" href="#">Asukoht</a>
+                        </offers-sorter>
                     </div>
                     <div class="col-md-15" ng-controller="TagListCtrl">
                         <form action="">
@@ -45,7 +47,9 @@
                         </form>
                     </div>
                     <div class="col-md-2">
-                        <a id="order-price" href="#">Hind</a>
+                        <offers-sorter order-by="price">
+                            <a id="order-price" href="#">Hind</a>
+                        </offers-sorter>
                     </div>
                 </div>
             </div>
