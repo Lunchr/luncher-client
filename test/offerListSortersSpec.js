@@ -22,6 +22,7 @@ describe('OfferList sorters', function() {
         element = angular.element('<offers-sorter order-by="location">{{2+2}}</offers-sorter>');
         $compile(element)(parentScope);
         scope = element.isolateScope();
+        spyOn(scope, 'clicked').andCallThrough();
         parentScope.$digest();
       }));
 
@@ -43,6 +44,11 @@ describe('OfferList sorters', function() {
 
       it('should have orderBy value set from the attribute', function() {
         expect(scope.orderBy).toBe('location');
+      });
+
+      it('should call scope\'s clicked method on click', function() {
+        $(element).click();
+        expect(scope.clicked).toHaveBeenCalled();
       });
 
       describe('when element clicked', function() {
