@@ -26,8 +26,8 @@ describe('OfferList sorters', function() {
         parentScope.$digest();
       }));
 
-      it('should contain 4', function() {
-        expect(element.html()).toBe('4');
+      it('should contain 4 in a span', function() {
+        expect(element.children().html()).toBe('4');
       });
 
       it('should have asc/desc state on scope', function(){

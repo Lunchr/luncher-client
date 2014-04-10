@@ -19,15 +19,15 @@
           $scope.isAscending = !$scope.isAscending;
           offerOrderState.orderBy = $scope.orderBy;
           offerOrderState.isAscending = $scope.isAscending;
+          $scope.$apply();
         };
       },
       // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
       restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-      //template: '<div ng-transclude></div>',
+      template: '<span ng-class="\'order-\' + (isAscending ? \'asc\' : \'desc\')" ng-transclude></span>',
       //templateUrl: '',
-      //replace: false,
-      //transclude: true,
-      // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+      replace: true,
+      transclude: true,
       link: function($scope, iElm, iAttrs, controller) {
         iElm.bind('click', function (){
           $scope.clicked();
