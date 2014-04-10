@@ -57,12 +57,12 @@ describe('OfferList sorters', function() {
 
       describe('when element clicked', function() {
         beforeEach(function (){
-          scope.clicked();
+          $(element).click();
         });
 
         it('should should reverse order for this sorter', inject(function (offerOrderState) {
           expect(scope.isAscending).toBe(false);
-          scope.clicked();
+          $(element).click();
           expect(scope.isAscending).toBe(true);
         }));
 
@@ -72,12 +72,14 @@ describe('OfferList sorters', function() {
 
         it('should set the asc/desc value of the state service', inject(function (offerOrderState) {
           expect(offerOrderState.isAscending).toBe(false);
-          scope.clicked();
+          $(element).click();
           expect(offerOrderState.isAscending).toBe(true);
         }));
 
         it('should have class order-{asc/desc} swapped', function() {
           expect(element).toHaveClass('order-desc');
+          $(element).click();
+          expect(element).toHaveClass('order-asc');
         });
       });
 
