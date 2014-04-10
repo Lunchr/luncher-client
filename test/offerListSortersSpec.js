@@ -46,6 +46,10 @@ describe('OfferList sorters', function() {
         expect(scope.orderBy).toBe('location');
       });
 
+      it('should have class order-asc by default', function() {
+        expect(element).toHaveClass('order-asc');
+      });
+
       it('should call scope\'s clicked method on click', function() {
         $(element).click();
         expect(scope.clicked).toHaveBeenCalled();
@@ -71,6 +75,10 @@ describe('OfferList sorters', function() {
           scope.clicked();
           expect(offerOrderState.isAscending).toBe(true);
         }));
+
+        it('should have class order-{asc/desc} swapped', function() {
+          expect(element).toHaveClass('order-desc');
+        });
       });
 
     });
