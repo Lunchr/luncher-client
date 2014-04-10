@@ -1,9 +1,9 @@
 
 /***** MAIN *****/
-html, body { 
-    height: 100%; 
+html, body {
+    height: 100%;
 }
-body { 
+body {
     background: #fbfbfb;
     height: 100%;
     color: #222;
@@ -39,8 +39,8 @@ p.info {
     height: 20px;
     overflow: hidden;
 }
-textarea, input { 
-    outline: none; 
+textarea, input {
+    outline: none;
 }
 
 /***** HEADER *****/
@@ -87,7 +87,7 @@ input.search:hover {
 }
 input.search:focus::-webkit-input-placeholder {
     color: #000;
-} 
+}
 input.search:focus:-moz-placeholder {
     color: #000;
 }
@@ -99,7 +99,7 @@ input.search:focus:-ms-input-placeholder {
 }
 input.search::-webkit-input-placeholder {
     color: #fff;
-} 
+}
 input.search:-moz-placeholder {
     color: #fff;
 }
@@ -137,6 +137,14 @@ input.search:-ms-input-placeholder {
 .filter a:hover, .filter input[type=checkbox]:checked + label, .filter input[type=checkbox]:hover + label, .filter input[type=checkbox] + label:hover {
     text-decoration: none;
     color: #000;
+}
+
+.order-asc:after {
+    content:'\2228';
+}
+
+.order-desc:after {
+    content:'\2227';
 }
 
 /***** OFFERS *****/
