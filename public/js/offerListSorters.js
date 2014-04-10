@@ -16,6 +16,9 @@
           offerOrderState.orderBy = $scope.orderBy;
           offerOrderState.isAscending = $scope.isAscending;
         };
+        $scope.isActive = function (){
+          return $scope.orderBy === offerOrderState.orderBy;
+        };
       },
       restrict: 'E',
       template: '<span ng-class="\'order-\' + (isAscending ? \'asc\' : \'desc\')" ng-click="clicked()" ng-transclude></span>',
