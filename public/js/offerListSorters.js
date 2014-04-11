@@ -21,7 +21,7 @@
         };
       },
       restrict: 'E',
-      template: '<span ng-class="\'order-\' + (isAscending ? \'asc\' : \'desc\')" ng-click="clicked()" ng-transclude></span>',
+      template: '<span ng-class="{\'order-active\': isActive(), \'order-asc\': isAscending, \'order-desc\': !isAscending }" ng-click="clicked()" ng-transclude></span>',
       replace: true,
       transclude: true
     };

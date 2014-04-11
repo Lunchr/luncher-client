@@ -86,10 +86,15 @@ describe('OfferList sorters', function() {
       describe('when state ordered by current directive', function() {
         beforeEach(inject(function (offerOrderState){
           offerOrderState.orderBy = "location";
+          scope.$apply();
         }));
 
         it('should be marked active', function() {
           expect(scope.isActive()).toBe(true);
+        });
+
+        it('should have the order-active class', function() {
+          expect(element).toHaveClass('order-active');
         });
 
         it('should have the default class order-asc', function() {
@@ -100,15 +105,24 @@ describe('OfferList sorters', function() {
       describe('when state ordered by some other directive', function() {
         beforeEach(inject(function (offerOrderState){
           offerOrderState.orderBy = "not-location";
+          scope.$apply();
         }));
 
         it('should not be marked active', function() {
           expect(scope.isActive()).toBe(false);
         });
 
-        it('should not have any order class', function() {
-          expect(element).not.toHaveClass('order-asc');
-          expect(element).not.toHaveClass('order-desc');
+        it('should not have the order-active class', function() {
+          expect(element).not.toHaveClass('order-active');
+        });
+
+        it('should turn active after a click', function() {
+          $(element).click();
+          expect(element).toHaveClass('order-active');
+        });
+
+        it('should have the default class order-asc', function() {
+          expect(element).toHaveClass('order-asc');
         });
       });
     });
