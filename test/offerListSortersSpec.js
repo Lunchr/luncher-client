@@ -35,9 +35,9 @@ describe('OfferList sorters', function() {
         expect(scope.isAscending).toBe(true);
       });
 
-      it('should hide asc state from parent scope', inject(function ($rootScope) {
+      it('should hide asc state from parent scope', function () {
         expect(parentScope.isAscending).toBeUndefined();
-      }));
+      });
 
       it('should have orderBy value set from the attribute', function() {
         expect(scope.orderBy).toBe('location');
@@ -57,11 +57,11 @@ describe('OfferList sorters', function() {
           $(element).click();
         });
 
-        it('should should reverse order for this sorter', inject(function (offerOrderState) {
+        it('should should reverse order for this sorter', function () {
           expect(scope.isAscending).toBe(false);
           $(element).click();
           expect(scope.isAscending).toBe(true);
-        }));
+        });
 
         it('should change the orderBy value of the state service', inject(function (offerOrderState) {
           expect(offerOrderState.orderBy).toBe('location');
@@ -82,7 +82,7 @@ describe('OfferList sorters', function() {
 
       describe('when state ordered by current directive', function() {
         beforeEach(inject(function (offerOrderState){
-          offerOrderState.orderBy = "location";
+          offerOrderState.orderBy = 'location';
           scope.$apply();
         }));
 
@@ -101,7 +101,7 @@ describe('OfferList sorters', function() {
 
       describe('when state ordered by some other directive', function() {
         beforeEach(inject(function (offerOrderState){
-          offerOrderState.orderBy = "not-location";
+          offerOrderState.orderBy = 'not-location';
           scope.$apply();
         }));
 
