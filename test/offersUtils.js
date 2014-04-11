@@ -35,6 +35,23 @@ var offerUtils = (function (){
         return actual.some(function (elem){
           return elem.id === expected;
         });
+      },
+      toHaveIdOrder: function (expected){
+        var actual = this.actual;
+        var actualIds = actual.map(function (elem){
+          return elem.id;
+        });
+        var notText = this.isNot ? ' not' : '';
+
+        this.message = function(){
+          return 'Expected offers ' + notText + ' to be ordered like: ' + expected + '. Got: ' + actualIds;
+        };
+
+        var sameLength = actual.length === expected.length;
+        var sameIdOrder = expected.every(function (id, index){
+          return actual[index].id === id;
+        });
+        return sameLength && sameIdOrder;
       }
     }
   };
