@@ -24,34 +24,40 @@ var offerUtils = (function (){
       ];
     },
     matchers: {
-      toContainId: function (expected){
-        var actual = this.actual;
-        var notText = this.isNot ? ' not' : '';
+      toContainId: function(util, customEqualityTesters) {
+        return {
+          compare: function (actual, expected){
+            var result = {};
 
-        this.message = function(){
-          return 'Expected ' + actual + notText + ' to contain id ' + expected;
+            result.pass = actual.some(function (elem){
+              return elem.id === expected;
+            });
+
+            var notText = result.pass ? ' not' : '';
+            result.message = 'Expected ' + actual + notText + ' to contain id ' + expected;
+            return result;
+          }
         };
-
-        return actual.some(function (elem){
-          return elem.id === expected;
-        });
       },
-      toHaveIdOrder: function (expected){
-        var actual = this.actual;
-        var actualIds = actual.map(function (elem){
-          return elem.id;
-        });
-        var notText = this.isNot ? ' not' : '';
+      toHaveIdOrder: function(util, customEqualityTesters) {
+        return {
+          compare: function (actual, expected){
+            var result = {};
 
-        this.message = function(){
-          return 'Expected offers ' + notText + ' to be ordered like: ' + expected + '. Got: ' + actualIds;
+            var sameLength = actual.length === expected.length;
+            var sameIdOrder = expected.every(function (id, index){
+              return actual[index].id === id;
+            });
+            result.pass = sameLength && sameIdOrder;
+
+            var actualIds = actual.map(function (elem){
+              return elem.id;
+            });
+            var notText = result.pass ? ' not' : '';
+            result.message = 'Expected offers ' + notText + ' to be ordered like: ' + expected + '. Got: ' + actualIds;
+            return result;
+          }
         };
-
-        var sameLength = actual.length === expected.length;
-        var sameIdOrder = expected.every(function (id, index){
-          return actual[index].id === id;
-        });
-        return sameLength && sameIdOrder;
       }
     }
   };

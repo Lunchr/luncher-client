@@ -4,15 +4,20 @@ var utils = (function (){
   // jasmine matcher for expecting an element to have a css class
   // https://github.com/angular/angular.js/blob/master/test/matchers.js
   beforeEach(function() {
-    this.addMatchers({
-      toHaveClass: function(cls) {
-        var actualDump = angular.mock.dump(this.actual);
-        var notText = this.isNot ? ' not' : '';
-        this.message = function() {
-          return 'Expected "' + actualDump + '" '+ notText + ' to have class "' + cls + '".';
-        };
+    jasmine.addMatchers({
+      toHaveClass: function(util, customEqualityTesters) {
+        return {
+          compare: function (actual, expected){
+            var result = {};
 
-        return this.actual.hasClass(cls);
+            result.pass = actual.hasClass(expected);
+
+            var actualDump = angular.mock.dump(actual);
+            var notText = result.pass ? ' not' : '';
+            result.message = 'Expected "' + actualDump + '" '+ notText + ' to have class "' + expected + '".';
+            return result;
+          }
+        };
       }
     });
   });

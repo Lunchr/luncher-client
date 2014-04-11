@@ -33,7 +33,7 @@ describe('OfferList filters', function() {
     beforeEach(inject(function (offerFilterState) {
       offers = offerUtils.getMockOffers();
       utils.pruneObject(offerFilterState);
-      this.addMatchers(offerUtils.matchers);
+      jasmine.addMatchers(offerUtils.matchers);
     }));
 
     describe('TagList filter', function() {

@@ -9,7 +9,7 @@ describe('OfferList sorters', function() {
   describe('with order state', function () {
     beforeEach(inject(function (offerOrderState) {
       utils.pruneObject(offerOrderState);
-      this.addMatchers(offerUtils.matchers);
+      jasmine.addMatchers(offerUtils.matchers);
     }));
 
     describe('offer sorter directive', function() {
@@ -19,8 +19,8 @@ describe('OfferList sorters', function() {
         element = angular.element('<offers-sorter order-by="location">{{2+2}}</offers-sorter>');
         $compile(element)(parentScope);
         scope = element.isolateScope();
-        spyOn(scope, 'clicked').andCallThrough();
         parentScope.$digest();
+        spyOn(scope, 'clicked').and.callThrough();
       }));
 
       it('should contain 4 in a span', function() {
