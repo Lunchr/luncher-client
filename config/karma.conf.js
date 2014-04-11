@@ -18,7 +18,8 @@ module.exports = function(config) {
     'public/lib/angular-*/*.js',
     'config/test-main.js',
     'public/js/**/*.js',
-    'test/*.js'
+    'test/*.js',
+    'public/partials/*.html'
     ],
 
     // list of files to exclude
@@ -31,7 +32,14 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+        'public/partials/*.html': 'ng-html2js'
+    },
+
+    ngHtml2JsPreprocessor: {
+        stripPrefix: 'public/',
+        moduleName: 'partials'
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

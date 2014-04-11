@@ -1,5 +1,6 @@
 describe('OfferList sorters', function() {
   'use strict';
+  beforeEach(module('partials'));
   beforeEach(module('offerListSorters'));
 
   it('should have order state', inject(function (offerOrderState) {

@@ -4,7 +4,7 @@
 
   offerListSorters.value('offerOrderState', {});
 
-  offerListSorters.directive('offersSorter', ['offerOrderState', function (offerOrderState){
+  offerListSorters.directive('offersSorter', ['offerOrderState', '$templateCache', function (offerOrderState, $templateCache){
     return {
       scope: {
         orderBy: '@'
@@ -21,7 +21,8 @@
         };
       },
       restrict: 'E',
-      template: '<span ng-class="{\'order-active\': isActive(), \'order-asc\': isAscending, \'order-desc\': !isAscending }" ng-click="clicked()" ng-transclude></span>',
+      //templateUrl: 'partials/offersSorterDirective.html',
+      template: $templateCache.get('partials/offersSorterDirective.html'),
       replace: true,
       transclude: true
     };
