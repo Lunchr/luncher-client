@@ -26,4 +26,12 @@
       transclude: true
     };
   }]);
+
+  offerListSorters.filter('order', ['orderByFilter', 'offerOrderState', function (orderByFilter, offerOrderState){
+    return function (offers){
+      var asc = offerOrderState.isAscending;
+      var reverse = typeof asc === 'undefined' ? false : !asc;
+      return orderByFilter(offers, offerOrderState.orderBy, reverse);
+    };
+  }]);
 })();

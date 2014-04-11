@@ -7,10 +7,7 @@ describe('OfferList sorters', function() {
   }));
 
   describe('with order state', function () {
-    var offers;
-
     beforeEach(inject(function (offerOrderState) {
-      offers = offerUtils.getMockOffers();
       utils.pruneObject(offerOrderState);
       this.addMatchers(offerUtils.matchers);
     }));
@@ -125,6 +122,54 @@ describe('OfferList sorters', function() {
           expect(element).toHaveClass('order-asc');
         });
       });
+    });
+
+    describe('with offer sorter \'filter\'', function () {
+      var offers, sort;
+      beforeEach(inject(function (orderFilter){
+        offers = offerUtils.getMockOffers();
+        sort = orderFilter;
+      }));
+
+      it('should return same data if offer order state empty', function() {
+        var orderedOffers = sort(offers);
+
+        expect(orderedOffers).toHaveIdOrder(['1', '2', '3']);
+      });
+
+      it('should return same data if offer order state\'s orderBy field empty', inject(function (offerOrderState) {
+        offerOrderState.isAscending = false;
+
+        var orderedOffers = sort(offers);
+
+        expect(orderedOffers).toHaveIdOrder(['1', '2', '3']);
+      }));
+
+      it('should order by price ascendingly', inject(function (offerOrderState) {
+        offerOrderState.orderBy = 'price';
+        offerOrderState.isAscending = true;
+
+        var orderedOffers = sort(offers);
+
+        expect(orderedOffers).toHaveIdOrder(['2', '1', '3']);
+      }));
+
+      it('order ascendingly by default', inject(function (offerOrderState) {
+        offerOrderState.orderBy = 'price';
+
+        var orderedOffers = sort(offers);
+
+        expect(orderedOffers).toHaveIdOrder(['2', '1', '3']);
+      }));
+
+      it('should order by price descendingly', inject(function (offerOrderState) {
+        offerOrderState.orderBy = 'price';
+        offerOrderState.isAscending = false;
+
+        var orderedOffers = sort(offers);
+
+        expect(orderedOffers).toHaveIdOrder(['3', '1', '2']);
+      }));
     });
   });
 });
