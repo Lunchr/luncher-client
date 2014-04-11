@@ -143,7 +143,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should filter on location', inject(function (searchFilter, offerFilterState) {
-        offerFilterState.query = 'Another';
+        offerFilterState.query = 'Bulgarian';
 
         var filteredOffers = searchFilter(offers);
 
