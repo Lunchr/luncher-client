@@ -17,7 +17,7 @@
        'location': 'Bulgarian Chef',
        'title': 'Sweet & Sour Pork',
        'description': 'Seafilee aedviljadega rikkalikus magushapus kastmes.',
-       'price': 3.5,
+       'price': 3.3,
        'tags': ['siga']},
       {'id': '3',
        'location': 'Caesar Chef',
