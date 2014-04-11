@@ -139,11 +139,11 @@ input.search:-ms-input-placeholder {
     color: #000;
 }
 
-.order-asc:after {
+.order-asc.order-active:after {
     content:'\2228';
 }
 
-.order-desc:after {
+.order-desc.order-active:after {
     content:'\2227';
 }
 
