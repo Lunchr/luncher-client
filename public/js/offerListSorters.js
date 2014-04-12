@@ -4,7 +4,7 @@
 
   offerListSorters.value('offerOrderState', {});
 
-  offerListSorters.directive('offersSorter', ['offerOrderState', '$templateCache', function (offerOrderState, $templateCache){
+  offerListSorters.directive('offersSorter', ['offerOrderState', function (offerOrderState){
     return {
       scope: {
         orderBy: '@'
@@ -21,8 +21,7 @@
         };
       },
       restrict: 'E',
-      //templateUrl: 'partials/offersSorterDirective.html',
-      template: $templateCache.get('partials/offersSorterDirective.html'),
+      templateUrl: 'partials/offersSorterDirective.html',
       replace: true,
       transclude: true
     };

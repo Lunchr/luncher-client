@@ -15,13 +15,16 @@ describe('OfferList sorters', function() {
 
     describe('offer sorter directive', function() {
       var element, scope, parentScope;
-      beforeEach(inject(function ($compile, $rootScope){
+      beforeEach(inject(function ($compile, $rootScope, $timeout){
         parentScope = $rootScope.$new();
         element = angular.element('<offers-sorter order-by="location">{{2+2}}</offers-sorter>');
         $compile(element)(parentScope);
-        scope = element.isolateScope();
-        parentScope.$digest();
-        spyOn(scope, 'clicked').and.callThrough();
+        $timeout(function (){
+          scope = element.isolateScope();
+          parentScope.$digest();
+          spyOn(scope, 'clicked').and.callThrough();
+        });
+        $timeout.flush();
       }));
 
       it('should contain 4 in a span', function() {
