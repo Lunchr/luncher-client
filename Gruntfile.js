@@ -14,7 +14,10 @@ module.exports = function(grunt) {
     },
     karma: {
       options: {
-        configFile: 'config/karma.conf.js'
+        configFile: 'config/karma.conf.js',
+        preprocessors: {
+          'public/partials/*.html': 'ng-html2js'
+        }
       },
       once: {
         singleRun: true
@@ -22,6 +25,7 @@ module.exports = function(grunt) {
       ci: {
         singleRun: true,
         preprocessors: {
+          'public/partials/*.html': 'ng-html2js',
           'public/js/**/*.js': ['coverage']
         },
         reporters: ['progress', 'coverage'],
