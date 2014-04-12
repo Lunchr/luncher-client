@@ -29,6 +29,25 @@ var utils = (function (){
           delete obj[prop];
         }
       }
+    },
+    compile: function(html){
+      var element, scope, parentScope;
+      inject(function ($compile, $rootScope, $timeout){
+        parentScope = $rootScope.$new();
+        element = angular.element(html);
+        $compile(element)(parentScope);
+        $timeout(function (){
+          scope = element.isolateScope();
+          parentScope.$digest();
+        });
+        $timeout.flush();
+      });
+
+      return {
+        element: element,
+        scope: scope,
+        parentScope: parentScope
+      }
     }
   };
 })();
