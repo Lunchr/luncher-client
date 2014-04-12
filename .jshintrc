@@ -8,15 +8,20 @@
     "after"      : false,
     "afterEach"  : false,
     "expect"     : false,
+    "spyOn"      : false,
     /* angular */
     "angular"    : false,
     "module"     : false,
     "inject"     : false,
+    "$"          : false,
     /* protractor */
     "browser"    : false,
     "by"         : false,
     "element"    : false,
     /* node */
-    "require"    : false
+    "require"    : false,
+    /* local */
+    "utils"      : true,
+    "offerUtils" : true
   }
 }

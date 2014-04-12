@@ -1,7 +1,8 @@
 (function(){
   'use strict';
   var offerListControllers = angular.module('offerListControllers', [
-    'offerListFilters'
+    'offerListFilters',
+    'offerListSorters'
     ]);
 
   offerListControllers.controller('OfferListCtrl', function ($scope) {
@@ -13,13 +14,13 @@
        'price': 3.4,
        'tags': ['lind']},
       {'id': '2',
-       'location': 'Asian Chef',
+       'location': 'Bulgarian Chef',
        'title': 'Sweet & Sour Pork',
        'description': 'Seafilee aedviljadega rikkalikus magushapus kastmes.',
-       'price': 3.5,
+       'price': 3.3,
        'tags': ['siga']},
       {'id': '3',
-       'location': 'Asian Chef',
+       'location': 'Caesar Chef',
        'title': 'Sweet & Sour Duck',
        'description': 'Pardifilee aedviljadega rikkalikus magushapus kastmes.',
        'price': 3.6,

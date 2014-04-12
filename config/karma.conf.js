@@ -13,11 +13,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+    'public/lib/jquery/dist/*.js',
     'public/lib/angular/angular.js',
     'public/lib/angular-*/*.js',
     'config/test-main.js',
     'public/js/**/*.js',
-    'test/*Spec.js'
+    'test/*.js',
+    'public/partials/*.html'
     ],
 
     // list of files to exclude
@@ -30,7 +32,11 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+
+    ngHtml2JsPreprocessor: {
+        stripPrefix: 'public/',
+        moduleName: 'partials'
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
