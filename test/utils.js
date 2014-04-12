@@ -47,7 +47,7 @@ var utils = (function (){
         element: element,
         scope: scope,
         parentScope: parentScope
-      }
+      };
     }
   };
 })();
