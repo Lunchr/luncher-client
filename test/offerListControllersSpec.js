@@ -25,12 +25,12 @@ describe('OfferList cotrollers', function() {
     beforeEach(inject(function ($rootScope, $controller, $httpBackend) {
       $httpBackend.expectGET('offers/tags.json').respond([
         {'id': 'kala',
-         'label': 'Kalast'},
+        'label': 'Kalast'},
         {'id': 'lind',
-         'label': 'Linnust'},
+        'label': 'Linnust'},
         {'id': 'siga',
-         'label': 'Seast'}
-      ]);
+        'label': 'Seast'}
+        ]);
 
       $scope = $rootScope.$new();
       $controller('TagListCtrl', {$scope: $scope});
@@ -100,13 +100,27 @@ describe('OfferList cotrollers', function() {
   describe('OfferListCtrl', function(){
     var $scope;
 
-    beforeEach(inject(function($rootScope, $controller) {
+    beforeEach(inject(function ($rootScope, $controller, $httpBackend) {
+      $httpBackend.expectGET('offers/offers.json').respond([
+      {
+        "id":"1"
+      },
+      {
+        "id":"2"
+      },
+      {
+        "id":"3"
+      }
+      ]);
+
       $scope = $rootScope.$new();
       $controller('OfferListCtrl', {$scope: $scope});
     }));
 
-    it('should create "offers" model with 3 offers', function() {
+    it('should have model with 3 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
+      expect($scope.offers.length).toBe(0);
+      $httpBackend.flush();
       expect($scope.offers.length).toBe(3);
-    });
+    }));
   });
 });
