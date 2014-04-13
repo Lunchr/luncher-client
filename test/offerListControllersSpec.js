@@ -22,21 +22,31 @@ describe('OfferList cotrollers', function() {
   describe('TagList controller', function() {
     var $scope;
 
-    beforeEach(inject(function ($rootScope, $controller) {
-      $scope = $rootScope.$new();
-      $controller('TagListCtrl', {$scope: $scope});
-
-      $scope.tagList = [
+    beforeEach(inject(function ($rootScope, $controller, $httpBackend) {
+      $httpBackend.expectGET('offers/tags.json').respond([
         {'id': 'kala',
          'label': 'Kalast'},
         {'id': 'lind',
          'label': 'Linnust'},
         {'id': 'siga',
          'label': 'Seast'}
-      ];
+      ]);
+
+      $scope = $rootScope.$new();
+      $controller('TagListCtrl', {$scope: $scope});
+    }));
+
+    it('should have tags after we mock-respond to the HTTP request', inject(function ($httpBackend) {
+      expect($scope.tagList.length).toBe(0);
+      $httpBackend.flush();
+      expect($scope.tagList.length).toBe(3);
     }));
 
     describe('tag selection listener', function() {
+      beforeEach(inject(function ($httpBackend){
+        $httpBackend.flush();
+      }));
+
       it('should set selected tags to empty list if nothing selected (undefined)', inject(function (offerFilterState) {
         $scope.$apply();
 

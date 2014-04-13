@@ -1,0 +1,22 @@
+[
+  {
+    "id":"kala",
+    "label":"Kalast"
+  },
+  {
+    "id":"lind",
+    "label":"Linnust"
+  },
+  {
+    "id":"siga",
+    "label":"Seast"
+  },
+  {
+    "id":"veis",
+    "label":"Veisest"
+  },
+  {
+    "id":"lammas",
+    "label":"Lambast"
+  }
+]
