@@ -1,18 +1,27 @@
 describe('Common directives', function() {
   'use strict';
-  beforeEach(module('partials'));
-  beforeEach(module('commonDirectives'));
+  beforeEach(module('commonDirectives', 'partials', 'mocks'));
 
   describe('millisUntilMidnight service', function (){
     var millisUntilMidnight;
-    beforeEach(inject(function (_millisUntilMidnight_){
+
+    beforeEach(inject(function (_millisUntilMidnight_, timezonesJSON){
       millisUntilMidnight = _millisUntilMidnight_;
+
+      var tz = timezoneJS.timezone;
+      tz.loadingScheme = tz.loadingSchemes.MANUAL_LOAD;
+      tz.loadZoneDataFromObject(timezonesJSON);
     }));
 
-    it('should calculate time millisecnds left to midnight from the provided time', function(){
-      var aDate = new Date(1397498021195);
+    it('should calculate time millisecnds left to midnight in Tallinn\'s timezone from the provided time', inject(function (){
+      var aDate = new timezoneJS.Date(1397498021195, 'Europe/Tallinn');
       expect(millisUntilMidnight(aDate)).toBe(11178805);
-    });
+    }));
+
+    it('should calculate time millisecnds left to midnight in London\'s timezone from the provided time', inject(function (){
+      var aDate = new timezoneJS.Date(1397498021195, 'Europe/London');
+      expect(millisUntilMidnight(aDate)).toBe(18378805);
+    }));
   });
 
   describe('MILLIS_IN_24H constant', function(){

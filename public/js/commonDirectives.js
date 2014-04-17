@@ -6,9 +6,8 @@
 
   commonDirectives.factory('millisUntilMidnight', function(){
     return function (date){
-      var midnight = new Date(date);
-      midnight.setHours(24, 0, 0, 0);
-      return midnight - date;
+      var time = date.getTime();
+      return date.setHours(24, 0, 0, 0) - date.setTime(time);
     };
   });
 
