@@ -5,12 +5,14 @@ describe('OfferList cotrollers', function() {
   describe('Search controller', function() {
     var $scope;
 
-    beforeEach(inject(function ($rootScope, $controller) {
+    beforeEach(inject(function($rootScope, $controller) {
       $scope = $rootScope.$new();
-      $controller('SearchCtrl', {$scope: $scope});
+      $controller('SearchCtrl', {
+        $scope: $scope
+      });
     }));
 
-    it('should update filter state service', inject(function (offerFilterState) {
+    it('should update filter state service', inject(function(offerFilterState) {
       $scope.query = "Who is ...";
 
       $scope.$apply();
@@ -22,38 +24,42 @@ describe('OfferList cotrollers', function() {
   describe('TagList controller', function() {
     var $scope;
 
-    beforeEach(inject(function ($rootScope, $controller, $httpBackend) {
-      $httpBackend.expectGET('offers/tags.json').respond([
-        {'id': 'kala',
-        'label': 'Kalast'},
-        {'id': 'lind',
-        'label': 'Linnust'},
-        {'id': 'siga',
-        'label': 'Seast'}
-        ]);
+    beforeEach(inject(function($rootScope, $controller, $httpBackend) {
+      $httpBackend.expectGET('offers/tags.json').respond([{
+        'id': 'kala',
+        'label': 'Kalast'
+      }, {
+        'id': 'lind',
+        'label': 'Linnust'
+      }, {
+        'id': 'siga',
+        'label': 'Seast'
+      }]);
 
       $scope = $rootScope.$new();
-      $controller('TagListCtrl', {$scope: $scope});
+      $controller('TagListCtrl', {
+        $scope: $scope
+      });
     }));
 
-    it('should have tags after we mock-respond to the HTTP request', inject(function ($httpBackend) {
+    it('should have tags after we mock-respond to the HTTP request', inject(function($httpBackend) {
       expect($scope.tagList.length).toBe(0);
       $httpBackend.flush();
       expect($scope.tagList.length).toBe(3);
     }));
 
     describe('tag selection listener', function() {
-      beforeEach(inject(function ($httpBackend){
+      beforeEach(inject(function($httpBackend) {
         $httpBackend.flush();
       }));
 
-      it('should set selected tags to empty list if nothing selected (undefined)', inject(function (offerFilterState) {
+      it('should set selected tags to empty list if nothing selected (undefined)', inject(function(offerFilterState) {
         $scope.$apply();
 
         expect(offerFilterState.selectedTags.length).toBe(0);
       }));
 
-      it('should set selected tags to empty list if nothing selected (false)', inject(function (offerFilterState) {
+      it('should set selected tags to empty list if nothing selected (false)', inject(function(offerFilterState) {
         $scope.tagList[0].selected = false;
 
         $scope.$apply();
@@ -61,7 +67,7 @@ describe('OfferList cotrollers', function() {
         expect(offerFilterState.selectedTags.length).toBe(0);
       }));
 
-      it('should add selected tag to list', inject(function (offerFilterState) {
+      it('should add selected tag to list', inject(function(offerFilterState) {
         $scope.tagList[1].selected = true;
 
         $scope.$apply();
@@ -72,20 +78,20 @@ describe('OfferList cotrollers', function() {
 
       describe('with 2 tags selected', function() {
 
-        beforeEach(function (){
+        beforeEach(function() {
           $scope.tagList[1].selected = true;
           $scope.tagList[2].selected = true;
 
           $scope.$apply();
         });
 
-        it('should add multiple selected tags to list', inject(function (offerFilterState) {
+        it('should add multiple selected tags to list', inject(function(offerFilterState) {
           expect(offerFilterState.selectedTags.length).toBe(2);
           expect(offerFilterState.selectedTags).toContain('lind');
           expect(offerFilterState.selectedTags).toContain('siga');
         }));
 
-        it('should remove from selected tags to list', inject(function (offerFilterState) {
+        it('should remove from selected tags to list', inject(function(offerFilterState) {
           $scope.tagList[2].selected = false;
 
           $scope.$apply();
@@ -97,24 +103,22 @@ describe('OfferList cotrollers', function() {
     });
   });
 
-  describe('OfferListCtrl', function(){
+  describe('OfferListCtrl', function() {
     var $scope;
 
-    beforeEach(inject(function ($rootScope, $controller, $httpBackend) {
-      $httpBackend.expectGET('offers/offers.json').respond([
-      {
-        "id":"1"
-      },
-      {
-        "id":"2"
-      },
-      {
-        "id":"3"
-      }
-      ]);
+    beforeEach(inject(function($rootScope, $controller, $httpBackend) {
+      $httpBackend.expectGET('offers/offers.json').respond([{
+        "id": "1"
+      }, {
+        "id": "2"
+      }, {
+        "id": "3"
+      }]);
 
       $scope = $rootScope.$new();
-      $controller('OfferListCtrl', {$scope: $scope});
+      $controller('OfferListCtrl', {
+        $scope: $scope
+      });
     }));
 
     it('should have model with 3 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {

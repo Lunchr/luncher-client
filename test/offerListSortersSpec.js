@@ -3,19 +3,19 @@ describe('OfferList sorters', function() {
   beforeEach(module('partials'));
   beforeEach(module('offerListSorters'));
 
-  it('should have order state', inject(function (offerOrderState) {
+  it('should have order state', inject(function(offerOrderState) {
     expect(offerOrderState).toBeDefined();
   }));
 
-  describe('with order state', function () {
-    beforeEach(inject(function (offerOrderState) {
+  describe('with order state', function() {
+    beforeEach(inject(function(offerOrderState) {
       utils.pruneObject(offerOrderState);
       jasmine.addMatchers(offerUtils.matchers);
     }));
 
     describe('offer sorter directive', function() {
       var element, scope, parentScope;
-      beforeEach(function (){
+      beforeEach(function() {
         var compiled = utils.compile('<offers-sorter order-by="location">{{2+2}}</offers-sorter>');
         element = compiled.element;
         scope = compiled.scope;
@@ -27,15 +27,15 @@ describe('OfferList sorters', function() {
         expect(element.children().html()).toBe('4');
       });
 
-      it('should have asc/desc state on scope', function(){
+      it('should have asc/desc state on scope', function() {
         expect(scope.isAscending).toBeDefined();
       });
 
-      it('should have default asc state of true', function(){
+      it('should have default asc state of true', function() {
         expect(scope.isAscending).toBe(true);
       });
 
-      it('should hide asc state from parent scope', function () {
+      it('should hide asc state from parent scope', function() {
         expect(parentScope.isAscending).toBeUndefined();
       });
 
@@ -53,21 +53,21 @@ describe('OfferList sorters', function() {
       });
 
       describe('when element clicked', function() {
-        beforeEach(function (){
+        beforeEach(function() {
           $(element).click();
         });
 
-        it('should should reverse order for this sorter', function () {
+        it('should should reverse order for this sorter', function() {
           expect(scope.isAscending).toBe(false);
           $(element).click();
           expect(scope.isAscending).toBe(true);
         });
 
-        it('should change the orderBy value of the state service', inject(function (offerOrderState) {
+        it('should change the orderBy value of the state service', inject(function(offerOrderState) {
           expect(offerOrderState.orderBy).toBe('location');
         }));
 
-        it('should set the asc/desc value of the state service', inject(function (offerOrderState) {
+        it('should set the asc/desc value of the state service', inject(function(offerOrderState) {
           expect(offerOrderState.isAscending).toBe(false);
           $(element).click();
           expect(offerOrderState.isAscending).toBe(true);
@@ -81,7 +81,7 @@ describe('OfferList sorters', function() {
       });
 
       describe('when state ordered by current directive', function() {
-        beforeEach(inject(function (offerOrderState){
+        beforeEach(inject(function(offerOrderState) {
           offerOrderState.orderBy = 'location';
           scope.$apply();
         }));
@@ -100,7 +100,7 @@ describe('OfferList sorters', function() {
       });
 
       describe('when state ordered by some other directive', function() {
-        beforeEach(inject(function (offerOrderState){
+        beforeEach(inject(function(offerOrderState) {
           offerOrderState.orderBy = 'not-location';
           scope.$apply();
         }));
@@ -124,9 +124,9 @@ describe('OfferList sorters', function() {
       });
     });
 
-    describe('with offer sorter \'filter\'', function () {
+    describe('with offer sorter \'filter\'', function() {
       var offers, sort;
-      beforeEach(inject(function (orderFilter){
+      beforeEach(inject(function(orderFilter) {
         offers = offerUtils.getMockOffers();
         sort = orderFilter;
       }));
@@ -137,7 +137,7 @@ describe('OfferList sorters', function() {
         expect(orderedOffers).toHaveIdOrder(['1', '2', '3']);
       });
 
-      it('should return same data if offer order state\'s orderBy field empty', inject(function (offerOrderState) {
+      it('should return same data if offer order state\'s orderBy field empty', inject(function(offerOrderState) {
         offerOrderState.isAscending = false;
 
         var orderedOffers = sort(offers);
@@ -145,7 +145,7 @@ describe('OfferList sorters', function() {
         expect(orderedOffers).toHaveIdOrder(['1', '2', '3']);
       }));
 
-      it('should order by price ascendingly', inject(function (offerOrderState) {
+      it('should order by price ascendingly', inject(function(offerOrderState) {
         offerOrderState.orderBy = 'price';
         offerOrderState.isAscending = true;
 
@@ -154,7 +154,7 @@ describe('OfferList sorters', function() {
         expect(orderedOffers).toHaveIdOrder(['2', '1', '3']);
       }));
 
-      it('order ascendingly by default', inject(function (offerOrderState) {
+      it('order ascendingly by default', inject(function(offerOrderState) {
         offerOrderState.orderBy = 'price';
 
         var orderedOffers = sort(offers);
@@ -162,7 +162,7 @@ describe('OfferList sorters', function() {
         expect(orderedOffers).toHaveIdOrder(['2', '1', '3']);
       }));
 
-      it('should order by price descendingly', inject(function (offerOrderState) {
+      it('should order by price descendingly', inject(function(offerOrderState) {
         offerOrderState.orderBy = 'price';
         offerOrderState.isAscending = false;
 

@@ -2,10 +2,10 @@ describe('Common directives', function() {
   'use strict';
   beforeEach(module('commonDirectives', 'partials', 'mocks'));
 
-  describe('millisUntilMidnight service', function (){
+  describe('millisUntilMidnight service', function() {
     var millisUntilMidnight;
 
-    beforeEach(inject(function (_millisUntilMidnight_, timezonesJSON){
+    beforeEach(inject(function(_millisUntilMidnight_, timezonesJSON) {
       millisUntilMidnight = _millisUntilMidnight_;
 
       var tz = timezoneJS.timezone;
@@ -13,18 +13,18 @@ describe('Common directives', function() {
       tz.loadZoneDataFromObject(timezonesJSON);
     }));
 
-    it('should calculate time millisecnds left to midnight in Tallinn\'s timezone from the provided time', inject(function (){
+    it('should calculate time millisecnds left to midnight in Tallinn\'s timezone from the provided time', inject(function() {
       var aDate = new timezoneJS.Date(1397498021195, 'Europe/Tallinn');
       expect(millisUntilMidnight(aDate)).toBe(11178805);
     }));
 
-    it('should calculate time millisecnds left to midnight in London\'s timezone from the provided time', inject(function (){
+    it('should calculate time millisecnds left to midnight in London\'s timezone from the provided time', inject(function() {
       var aDate = new timezoneJS.Date(1397498021195, 'Europe/London');
       expect(millisUntilMidnight(aDate)).toBe(18378805);
     }));
   });
 
-  describe('MILLIS_IN_24H constant', function(){
+  describe('MILLIS_IN_24H constant', function() {
     it('should be equal to millisecnds in a day', inject(function(MILLIS_IN_24H) {
       expect(MILLIS_IN_24H / 1000 / 60 / 60).toBe(24);
     }));
@@ -32,25 +32,25 @@ describe('Common directives', function() {
 
   describe('date directive', function() {
     var element, scope, parentScope;
-    beforeEach(function (){
+    beforeEach(function() {
       var compiled = utils.compile('<date/>');
       element = compiled.element;
       scope = compiled.scope;
       parentScope = compiled.parentScope;
     });
 
-    it('should have a date object on scope', function (){
+    it('should have a date object on scope', function() {
       expect(scope.date).toBeDefined();
       expect(scope.date instanceof Date).toBe(true);
     });
 
-    it('should format the date', function (){
+    it('should format the date', function() {
       scope.date = new Date(1397496910156);
       scope.$apply();
       expect(element.children().html()).toBe('Monday, April 14, 2014');
     });
 
-    it('should update date after timeout flush', inject(function ($timeout){
+    it('should update date after timeout flush', inject(function($timeout) {
       var currentDate = scope.date;
 
       $timeout.flush();
@@ -58,7 +58,7 @@ describe('Common directives', function() {
       expect(scope.date).not.toBe(currentDate);
     }));
 
-    it('should not update date after timeout flush if element destroyed', inject(function ($timeout){
+    it('should not update date after timeout flush if element destroyed', inject(function($timeout) {
       var currentDate = scope.date;
       element.remove();
 
@@ -67,12 +67,12 @@ describe('Common directives', function() {
       expect(scope.date).not.toBe(currentDate);
     }));
 
-    describe('with timeout flushed (i.e. after midnight)', function (){
-      beforeEach(inject(function ($timeout){
+    describe('with timeout flushed (i.e. after midnight)', function() {
+      beforeEach(inject(function($timeout) {
         $timeout.flush();
       }));
 
-      it('should update after 24 hours', inject(function ($interval, MILLIS_IN_24H){
+      it('should update after 24 hours', inject(function($interval, MILLIS_IN_24H) {
         var currentDate = scope.date;
 
         $interval.flush(MILLIS_IN_24H);
@@ -80,7 +80,7 @@ describe('Common directives', function() {
         expect(scope.date).not.toBe(currentDate);
       }));
 
-      it('should update after 24 hours, multiple times', inject(function ($interval, MILLIS_IN_24H){
+      it('should update after 24 hours, multiple times', inject(function($interval, MILLIS_IN_24H) {
         var currentDate = scope.date;
         $interval.flush(MILLIS_IN_24H);
         expect(scope.date).not.toBe(currentDate);
@@ -90,7 +90,7 @@ describe('Common directives', function() {
         expect(scope.date).not.toBe(currentDate);
       }));
 
-      it('should not update after less than 24 hours', inject(function ($interval, MILLIS_IN_24H){
+      it('should not update after less than 24 hours', inject(function($interval, MILLIS_IN_24H) {
         var currentDate = scope.date;
 
         $interval.flush(MILLIS_IN_24H - 100);
@@ -98,7 +98,7 @@ describe('Common directives', function() {
         expect(scope.date).toBe(currentDate);
       }));
 
-      it('should not update if element destroyed', inject(function ($interval, MILLIS_IN_24H){
+      it('should not update if element destroyed', inject(function($interval, MILLIS_IN_24H) {
         var currentDate = scope.date;
         element.remove();
 

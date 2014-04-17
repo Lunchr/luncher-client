@@ -1,4 +1,4 @@
-(function (){
+(function() {
   'use strict';
   var allTestFiles = [];
   var TEST_REGEXP = /Spec\.js$/i;

@@ -13,31 +13,31 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-    'public/lib/jquery/dist/*.js',
-    'public/lib/angular/angular.js',
-    'public/lib/angular-*/*.js',
-    'public/lib/timezone-js/src/date.js',
-    'config/test-main.js',
-    'public/js/**/*.js',
-    'test/*.js',
-    'test/mock/**/*.js',
-    'public/partials/*.html'
+      'public/lib/jquery/dist/*.js',
+      'public/lib/angular/angular.js',
+      'public/lib/angular-*/*.js',
+      'public/lib/timezone-js/src/date.js',
+      'config/test-main.js',
+      'public/js/**/*.js',
+      'test/*.js',
+      'test/mock/**/*.js',
+      'public/partials/*.html'
     ],
 
     // list of files to exclude
     exclude: [
-    'public/lib/angular-loader/*',
-    'public/lib/**/*.min.js',
-    'public/lib/angular-scenario/*',
-    '**/*.tmp'
+      'public/lib/angular-loader/*',
+      'public/lib/**/*.min.js',
+      'public/lib/angular-scenario/*',
+      '**/*.tmp'
     ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 
     ngHtml2JsPreprocessor: {
-        stripPrefix: 'public/',
-        moduleName: 'partials'
+      stripPrefix: 'public/',
+      moduleName: 'partials'
     },
 
     // test results reporter to use

@@ -2,7 +2,7 @@ exports.config = {
   baseUrl: 'http://localhost:8080',
   specs: ['test/e2e/*Spec.js']
 };
-if (process.env.TRAVIS){
+if (process.env.TRAVIS) {
   exports.config.seleniumAddress = 'http://localhost:4445/wd/hub';
   exports.config.capabilities = {
     'name': 'Travis CI',
@@ -14,9 +14,9 @@ if (process.env.TRAVIS){
   // Pass results to SauceLabs
   exports.config.onPrepare = function() {
     jasmine.getEnv().addReporter(new jasmine.TerminalReporter({
-      print: function(){/*Suppress logging*/},
-      onComplete: function (runner){
-        if (runner.results().failedCount === 0){
+      print: function() { /*Suppress logging*/ },
+      onComplete: function(runner) {
+        if (runner.results().failedCount === 0) {
           var SauceLabs = require('saucelabs');
           var sauceServer = new SauceLabs({
             username: process.env.SAUCE_USERNAME,
