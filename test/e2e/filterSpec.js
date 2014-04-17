@@ -1,6 +1,11 @@
 describe('Praad App', function() {
   'use strict';
 
+  beforeEach(function() {
+    var ptor = protractor.getInstance();
+    ptor.ignoreSynchronization = true;
+  });
+
   describe('Offer list view', function() {
 
     var offers;
