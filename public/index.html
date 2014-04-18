@@ -10,74 +10,17 @@
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700' rel='stylesheet' type='text/css'>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/mainView.js"></script>
     <script src="js/offerListControllers.js"></script>
     <script src="js/offerListFilters.js"></script>
     <script src="js/offerListSorters.js"></script>
     <script src="js/commonDirectives.js"></script>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6" ng-controller="SearchCtrl">
-                    <input class="search" type="text" placeholder="Otsi söögikohta või sööki..." ng-model="query">
-                </div>
-                <div class="col-md-12">
-                    <date/>
-                </div>
-                <div class="col-md-6"></div>
-            </div>
-        </div>
-    </div>
-    <div class="filter">
-        <div class="container">
-            <div class="filter-wrapper">
-                <div class="row">
-                    <div class="col-xs-1"></div>
-                    <div class="col-md-6">
-                        <offers-sorter order-by="location">
-                            <a id="order-location" href="#">Asukoht</a>
-                        </offers-sorter>
-                    </div>
-                    <div class="col-md-15" ng-controller="TagListCtrl">
-                        <form action="">
-                            <span ng-repeat="tag in tagList">
-                                <input type="checkbox" id="checkbox-{{tag.id}}" name="meat" ng-model="tag.selected">
-                                <label for="checkbox-{{tag.id}}">{{tag.label}}</label>
-                            </span>
-                        </form>
-                    </div>
-                    <div class="col-md-2">
-                        <offers-sorter order-by="price">
-                            <a id="order-price" href="#">Hind</a>
-                        </offers-sorter>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="offers" ng-controller="OfferListCtrl">
-        <div class="container">
-            <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer.id}}">
-                <div class="row">
-                    <div class="col-xs-1">
-                        <a href="#" class="favorite"></a>
-                    </div>
-                    <div class="col-xs-6">
-                        <h2>{{offer.location}}</h2>
-                    </div>
-                    <div class="col-xs-15">
-                        <h3>{{offer.title}}</h3>
-                        <p class="info">  -  {{offer.description}}</p>
-                    </div>
-                    <div class="col-xs-2">
-                        <p class="price">{{offer.price}} €</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <ng-view></ng-view>
+
     <div class="footer">
         <div class="container">
 
