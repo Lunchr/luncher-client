@@ -86,6 +86,24 @@ module.exports = function(grunt) {
         }
       };
     })();
+    (function configureMocha() {
+      config.mochacov = {
+        options: {
+          require: ['should'],
+          files: ['test/server/**/*.js']
+        },
+        once: {
+          options: {
+            reporter: 'spec'
+          }
+        },
+        ci: {
+          options: {
+            coveralls: true
+          }
+        }
+      };
+    })();
   })();
 
 
@@ -100,10 +118,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-mocha-cov');
 
   grunt.registerTask('pre_push', ['jshint', 'karma:once']);
   grunt.registerTask('e2e', ['shell:protractor_update', 'connect:server', 'protractor:ci']);
-  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'e2e', 'coveralls']);
+  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'mochacov:ci', 'e2e', 'coveralls']);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
 };

@@ -39,6 +39,16 @@
     "grunt-shell": "^0.6.4",
     "grunt-contrib-connect": "^0.7.1",
     "saucelabs": "^0.1.1",
-    "karma-ng-html2js-preprocessor": "^0.1.0"
+    "karma-ng-html2js-preprocessor": "^0.1.0",
+    "should": "^3.3.1",
+    "grunt-mocha-cov": "^0.2.1"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        "app.js",
+        "routes"
+      ]
+    }
   }
 }
