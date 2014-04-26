@@ -3,81 +3,94 @@ module.exports = function(grunt) {
 
   var jsFiles = 'public/js/**/*.js';
   var testFiles = 'test/**/*.js';
-  // Project configuration.
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    jshint: {
+
+  var config = {};
+
+  (function configureCommon() {
+    config.pkg = grunt.file.readJSON('package.json');
+    config.jshint = {
       options: {
         jshintrc: true
       },
       all: ['*.js', 'config/**/*.js', jsFiles, testFiles]
-    },
-    karma: {
-      options: {
-        configFile: 'config/karma.conf.js',
-        preprocessors: {
-          'public/partials/*.html': 'ng-html2js'
-        }
-      },
-      once: {
-        singleRun: true
-      },
-      ci: {
-        singleRun: true,
-        preprocessors: {
-          'public/partials/*.html': 'ng-html2js',
-          'public/js/**/*.js': ['coverage']
-        },
-        reporters: ['progress', 'coverage'],
-        coverageReporter: {
-          type: "lcov",
-          dir: "coverage/"
-        }
-      },
-      dev: {
-        background: true
-      }
-    },
-    connect: {
-      server: {
-        options: {
-          port: 8080,
-          base: 'public'
-        }
-      }
-    },
-    protractor: {
-      options: {
-        configFile: 'protractor.conf.js'
-      },
-      ci: {
-        options: {
-          keepAlive: false
-        }
-      }
-    },
-    shell: {
-      protractor_update: {
-        command: 'node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
-      }
-    },
-    watch: {
+    };
+    config.bower = {
+      install: {}
+    };
+  })();
+
+  (function configureTests() {
+    config.watch = {
       karma: {
         files: [jsFiles, testFiles],
         tasks: ['karma:dev:run']
       }
-    },
-    bower: {
-      install: {}
-    },
-    coveralls: {
+    };
+    config.coveralls = {
       options: {
         debug: true,
         coverage_dir: 'coverage',
         force: true
       }
-    }
-  });
+    };
+    (function configureKarma() {
+      config.karma = {
+        options: {
+          configFile: 'config/karma.conf.js',
+          preprocessors: {
+            'public/partials/*.html': 'ng-html2js'
+          }
+        },
+        once: {
+          singleRun: true
+        },
+        ci: {
+          singleRun: true,
+          preprocessors: {
+            'public/partials/*.html': 'ng-html2js',
+            'public/js/**/*.js': ['coverage']
+          },
+          reporters: ['progress', 'coverage'],
+          coverageReporter: {
+            type: 'lcov',
+            dir: 'coverage/'
+          }
+        },
+        dev: {
+          background: true
+        }
+      };
+    })();
+    (function configureE2e() {
+      config.connect = {
+        server: {
+          options: {
+            port: 8080,
+            base: 'public'
+          }
+        }
+      };
+      config.protractor = {
+        options: {
+          configFile: 'protractor.conf.js'
+        },
+        ci: {
+          options: {
+            keepAlive: false
+          }
+        }
+      };
+      config.shell = {
+        protractor_update: {
+          command: 'node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
+        }
+      };
+    })();
+  })();
+
+
+  // Project configuration.
+  grunt.initConfig(config);
 
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-karma');
