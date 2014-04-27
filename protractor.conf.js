@@ -26,7 +26,7 @@ if (process.env.TRAVIS) {
             sauceServer.updateJob(session.getId(), {
               passed: true
             }, function(error, response) {
-              console.log('SauceLab callback called')
+              console.log('SauceLab callback called');
               if (error) {
                 console.error(error);
               } else {

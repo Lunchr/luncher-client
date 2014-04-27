@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   var mochaSource = ['src/**/*.js'];
   var sourceFiles = karmaSource.concat(mochaSource);
 
-  var configFiles = ['config/**/*.js'];
+  var configFiles = ['*.js', 'config/**/*.js'];
 
   var karmaTests = ['test/client/**/*.js'];
   var mochaTests = ['test/server/**/*.js'];
@@ -54,9 +54,17 @@ module.exports = function(grunt) {
           src: [testFiles]
         }
       },
+      config: {
+        options: {
+          scripturl: true
+        },
+        files: {
+          src: configFiles
+        }
+      },
       source: {
         files: {
-          src: configFiles.concat(sourceFiles)
+          src: sourceFiles
         }
       }
     };
