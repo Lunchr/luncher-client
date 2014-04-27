@@ -64,7 +64,6 @@ module.exports = function(grunt) {
       install: {}
     };
   })();
-
   (function configureTests() {
     config.watch = {
       karma: {
@@ -87,10 +86,8 @@ module.exports = function(grunt) {
     };
     config.coveralls = {
       options: {
-        force: true
-      },
-      merged: {
-        src: 'coverage/lcov.info'
+        force: true,
+        coverage_dir: 'coverage',
       }
     };
     (function configureKarma() {
@@ -175,7 +172,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig(config);
 
-  grunt.loadNpmTasks('grunt-coveralls');
+  grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
