@@ -5,7 +5,7 @@ before_script:
 - npm install -g grunt-cli
 - npm install -g codeclimate-test-reporter
 after_script:
-- cat coverage/*/lcov.info | codeclimate
+- cat coverage/lcov.info | codeclimate
 env:
   global:
   - secure: TqPeV/7WDU01qn8jjYJkzJGnwREdjgkZCu5JW5HUnuh5Dfk89iEB8P2+hD6DnGdDQlrzBrPyvUuYRIF/cFsZIucbFTcbJXIm2YuHrSTP37UU+9N+hZd/sFNmQYjKhVhxSBysDfiCvIVgfLoxm93bWBMYCx37NRiT8WD9qCAKp1w=
