@@ -43,7 +43,8 @@
     "grunt-coveralls": "^0.3.0",
     "lcov-result-merger": "0.0.2",
     "grunt-mocha-cov": "^0.2.1",
-    "grunt-contrib-clean": "^0.5.0"
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-sed": "^0.1.1"
   },
   "config": {
     "blanket": {

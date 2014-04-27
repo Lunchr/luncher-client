@@ -137,6 +137,14 @@ module.exports = function(grunt) {
       };
     })();
     (function configureMocha() {
+      var lcovOutput = 'coverage/server/lcov.info';
+      config.sed = {
+        mocha_lcov: {
+          path: lcovOutput,
+          pattern: __dirname,
+          replacement: '.'
+        }
+      };
       config.mochacov = {
         options: {
           require: ['should'],
@@ -151,7 +159,7 @@ module.exports = function(grunt) {
           options: {
             instrument: true,
             reporter: 'mocha-lcov-reporter',
-            output: 'coverage/server/lcov.info'
+            output: lcovOutput
           }
         }
       };
@@ -171,10 +179,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-mocha-cov');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-sed');
 
   grunt.registerTask('e2e', ['shell:protractor_update', 'connect:server', 'protractor:ci']);
   grunt.registerTask('once', ['jshint', 'karma:once', 'mochacov:once']);
-  grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'mochacov:ci', 'e2e', 'coveralls']);
+  grunt.registerTask('mocha:ci', ['mochacov:ci', 'sed:mocha_lcov']);
+  grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'mocha:ci', 'e2e', 'coveralls']);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
 };
