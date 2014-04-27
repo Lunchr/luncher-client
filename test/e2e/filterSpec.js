@@ -4,6 +4,7 @@ describe('Praad App', function() {
   beforeEach(function() {
     var ptor = protractor.getInstance();
     ptor.ignoreSynchronization = true;
+    ptor.sleep(2000);
   });
 
   describe('Offer list view', function() {

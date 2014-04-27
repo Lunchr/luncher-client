@@ -1,0 +1,1 @@
+exports.asd = function asd (){};
