@@ -1,8 +1,16 @@
 module.exports = function(grunt) {
   'use strict';
 
-  var jsFiles = 'public/js/**/*.js';
-  var testFiles = 'test/**/*.js';
+  var karmaSource = ['public/js/**/*.js'];
+  var mochaSource = ['*.js', 'routes/**/*.js'];
+  var sourceFiles = karmaSource.concat(mochaSource);
+
+  var configFiles = ['config/**/*.js'];
+
+  var karmaTests = ['test/client/**/*.js'];
+  var mochaTests = ['test/server/**/*.js'];
+  var e2eTests = ['test/e2e/**/*.js'];
+  var testFiles = karmaTests.concat(mochaTests).concat(e2eTests);
 
   var config = {};
 
@@ -10,9 +18,46 @@ module.exports = function(grunt) {
     config.pkg = grunt.file.readJSON('package.json');
     config.jshint = {
       options: {
-        jshintrc: true
+        globals: {
+          require: false
+        }
       },
-      all: ['*.js', 'config/**/*.js', jsFiles, testFiles]
+      tests: {
+        options: {
+          globals: {
+            /* jasmine */
+            describe: false,
+            it: false,
+            before: false,
+            beforeEach: false,
+            after: false,
+            afterEach: false,
+            expect: false,
+            spyOn: false,
+            /* angular */
+            angular: false,
+            module: false,
+            inject: false,
+            $: false,
+            /* protractor */
+            browser: false,
+            by: false,
+            element: false,
+            /* local */
+            utils: true,
+            offerUtils: true
+          },
+          expr: true
+        },
+        files: {
+          src: [testFiles]
+        }
+      },
+      source: {
+        files: {
+          src: configFiles.concat(sourceFiles)
+        }
+      }
     };
     config.bower = {
       install: {}
@@ -22,7 +67,7 @@ module.exports = function(grunt) {
   (function configureTests() {
     config.watch = {
       karma: {
-        files: [jsFiles, testFiles],
+        files: karmaSource.concat(karmaTests),
         tasks: ['karma:dev:run']
       }
     };
@@ -90,7 +135,7 @@ module.exports = function(grunt) {
       config.mochacov = {
         options: {
           require: ['should'],
-          files: ['test/server/**/*.js']
+          files: mochaTests
         },
         once: {
           options: {
@@ -120,8 +165,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-mocha-cov');
 
-  grunt.registerTask('pre_push', ['jshint', 'karma:once']);
   grunt.registerTask('e2e', ['shell:protractor_update', 'connect:server', 'protractor:ci']);
+  grunt.registerTask('once', ['jshint', 'karma:once', 'mochacov:once']);
   grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'mochacov:ci', 'e2e', 'coveralls']);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
