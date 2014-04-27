@@ -79,16 +79,18 @@ module.exports = function(grunt) {
         replacement: 'SF:',
         recursive: true
       }
-    }
+    };
+    config.shell = {
+      merge_lcov: {
+        command: 'node_modules/lcov-result-merger/bin/lcov-result-merger "coverage/**/lcov.info" "coverage/lcov.info"'
+      }
+    };
     config.coveralls = {
       options: {
         force: true
       },
-      mocha: {
-        src: 'coverage/server/lcov.info'
-      },
-      karma: {
-        src: 'coverage/client/**/lcov.info'
+      merged: {
+        src: 'coverage/lcov.info'
       }
     };
     (function configureKarma() {
@@ -138,10 +140,8 @@ module.exports = function(grunt) {
           }
         }
       };
-      config.shell = {
-        protractor_update: {
-          command: 'node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
-        }
+      config.shell.protractor_update = {
+        command: 'node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
       };
     })();
     (function configureMocha() {
@@ -190,7 +190,9 @@ module.exports = function(grunt) {
   grunt.registerTask('e2e', ['shell:protractor_update', 'connect:server', 'protractor:ci']);
   grunt.registerTask('once', ['jshint', 'karma:once', 'mochacov:once']);
   grunt.registerTask('mocha:ci', ['mochacov:ci', 'sed:mocha_lcov']);
-  grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'mocha:ci', 'sed:clean_lcov', 'e2e', 'coveralls']);
+  grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'mocha:ci',
+    'sed:clean_lcov', 'shell:merge_lcov', 'e2e', 'coveralls'
+  ]);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
 };
