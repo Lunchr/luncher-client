@@ -1,1 +1,1 @@
-exports.asd = function asd (){}
+exports.asd = function asd (){};

@@ -16,6 +16,7 @@ module.exports = function(grunt) {
 
   (function configureCommon() {
     config.pkg = grunt.file.readJSON('package.json');
+    config.clean = ['coverage'];
     config.jshint = {
       options: {
         globals: {
@@ -169,10 +170,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-mocha-cov');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('e2e', ['shell:protractor_update', 'connect:server', 'protractor:ci']);
   grunt.registerTask('once', ['jshint', 'karma:once', 'mochacov:once']);
-  grunt.registerTask('test', ['bower:install', 'jshint', 'karma:ci', 'mochacov:ci', 'e2e', 'coveralls']);
+  grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'mochacov:ci', 'e2e', 'coveralls']);
   grunt.registerTask('dev', ['karma:dev', 'watch']);
 
 };
