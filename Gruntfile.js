@@ -88,6 +88,7 @@ module.exports = function(grunt) {
       options: {
         force: true,
         coverage_dir: 'coverage',
+        recursive: false
       }
     };
     (function configureKarma() {
