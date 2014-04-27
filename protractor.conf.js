@@ -25,6 +25,13 @@ if (process.env.TRAVIS) {
           browser.getSession().then(function(session) {
             sauceServer.updateJob(session.getId(), {
               passed: true
+            }, function(error, response) {
+              console.log('SauceLab callback called')
+              if (error) {
+                console.error(error);
+              } else {
+                console.log(response);
+              }
             });
           });
         }
