@@ -15,7 +15,7 @@ var app = module.exports = express();
  */
 
 app.set('port', process.env.PORT || 8080);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 /**
  * Start Server

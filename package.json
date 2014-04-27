@@ -2,10 +2,10 @@
   "name": "praad",
   "version": "0.0.0",
   "description": "praad",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "grunt test",
-    "start": "node app.js"
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",
@@ -33,7 +33,6 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-bower-task": "^0.3.4",
-    "grunt-karma-coveralls": "^2.4.3",
     "karma-coverage": "^0.2.1",
     "grunt-protractor-runner": "^0.2.4",
     "grunt-shell": "^0.6.4",
@@ -41,13 +40,14 @@
     "saucelabs": "^0.1.1",
     "karma-ng-html2js-preprocessor": "^0.1.0",
     "should": "^3.3.1",
-    "grunt-mocha-cov": "^0.2.1"
+    "grunt-coveralls": "^0.3.0",
+    "lcov-result-merger": "0.0.2",
+    "grunt-mocha-cov": "^0.2.1",
   },
   "config": {
     "blanket": {
       "pattern": [
-        "app.js",
-        "routes"
+        "src"
       ]
     }
   }

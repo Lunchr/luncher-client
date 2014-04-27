@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   'use strict';
 
   var karmaSource = ['public/js/**/*.js'];
-  var mochaSource = ['*.js', 'routes/**/*.js'];
+  var mochaSource = ['src/**/*.js'];
   var sourceFiles = karmaSource.concat(mochaSource);
 
   var configFiles = ['config/**/*.js'];
@@ -73,9 +73,13 @@ module.exports = function(grunt) {
     };
     config.coveralls = {
       options: {
-        debug: true,
-        coverage_dir: 'coverage',
         force: true
+      },
+      mocha: {
+        src: 'coverage/server/lcov.info'
+      },
+      karma: {
+        src: 'coverage/client/**/lcov.info'
       }
     };
     (function configureKarma() {
@@ -98,7 +102,7 @@ module.exports = function(grunt) {
           reporters: ['progress', 'coverage'],
           coverageReporter: {
             type: 'lcov',
-            dir: 'coverage/'
+            dir: 'coverage/client'
           }
         },
         dev: {
@@ -144,18 +148,19 @@ module.exports = function(grunt) {
         },
         ci: {
           options: {
-            coveralls: true
+            instrument: true,
+            reporter: 'mocha-lcov-reporter',
+            output: 'coverage/server/lcov.info'
           }
         }
       };
     })();
   })();
 
-
   // Project configuration.
   grunt.initConfig(config);
 
-  grunt.loadNpmTasks('grunt-karma-coveralls');
+  grunt.loadNpmTasks('grunt-coveralls');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
