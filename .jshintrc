@@ -23,7 +23,8 @@
     "offerUtils": true,
     /* node */
     "require": false,
-    "__dirname": false
+    "__dirname": false,
+    "exports": false
   },
   "expr": true,
   "scripturl": true
