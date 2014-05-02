@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     config.jshint = {
       options: {
         globals: {
-          require: false
+          require: true
         }
       },
       tests: {
