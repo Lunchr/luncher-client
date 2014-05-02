@@ -1,10 +1,14 @@
 (function(exports) {
   'use strict';
+  if (global.GENTLY) require = GENTLY.hijack(require);
+  var connection = require('./../db/connection');
 
   exports.offers = (function() {
     return {
       get: function(req, res) {
-        res.json({});
+        connection.offers.get(function (err, offers){
+          res.json(offers);
+        });
       }
     };
   })();

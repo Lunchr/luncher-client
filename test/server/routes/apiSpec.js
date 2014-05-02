@@ -1,33 +1,48 @@
 describe('API', function() {
   'use strict';
-  var api = require('../../../src/routes/api');
-  var gently = new(require('gently'))();
+  var srcDir = './../../../src/';
+  var gently = global.GENTLY = new(require('gently'))();
+  var api = require(srcDir + 'routes/api');
 
-  describe('offers', function() {
-    var offers = api.offers;
-    it('should export offers', function() {
-      offers.should.be.ok;
-    });
+  describe("with dummy DB connection", function() {
+    var connection = gently.hijacked['./../db/connection'];
 
-    describe('\'get\' router', function() {
-      var get = offers.get;
-
-      it('should be available', function() {
-        get.should.be.ok;
+    describe('offers', function() {
+      var offers = api.offers;
+      it('should export offers', function() {
+        offers.should.be.ok;
       });
 
-      it('should be a function', function() {
-        get.should.be.a.Function;
-      });
+      describe('\'get\' router', function() {
+        var get = offers.get;
 
-      describe('with request and response', function() {
-        var req = {},
-          res = {};
+        it('should be available', function() {
+          get.should.be.ok;
+        });
 
-        it('should respond with json data', function() {
-          gently.expect(res, 'json');
-          get(req, res);
-          gently.verify();
+        it('should be a function', function() {
+          get.should.be.a.Function;
+        });
+
+        describe('with request and response', function() {
+          var req = {},
+            res = {};
+
+          it('should respond with data from the DB', function() {
+            var data = {offers: ['offer1', 'offer2']};
+            connection.offers = {
+              get: function(callback) {
+                callback(null, data);
+              }
+            };
+
+            gently.expect(res, 'json', function(jsonData) {
+              jsonData.should.eql(data);
+            });
+            get(req, res);
+
+            gently.verify();
+          });
         });
       });
     });
