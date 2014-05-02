@@ -5,7 +5,8 @@
 
 var express = require('express'),
   http = require('http'),
-  path = require('path');
+  path = require('path'),
+  api = require('./routes/api');
 
 var app = module.exports = express();
 
@@ -16,6 +17,8 @@ var app = module.exports = express();
 
 app.set('port', process.env.PORT || 8080);
 app.use(express.static(path.join(__dirname, '..', 'public')));
+
+app.get('/api/offers', api.offers.get);
 
 /**
  * Start Server
