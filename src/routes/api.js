@@ -1,6 +1,5 @@
 (function(exports) {
   'use strict';
-  if (global.GENTLY) require = GENTLY.hijack(require);
   var connection = require('./../db/connection');
 
   exports.offers = (function() {

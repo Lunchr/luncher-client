@@ -26,7 +26,7 @@
     "__dirname": false,
     "exports": false,
     "global": false,
-    "GENTLY": true
+    "mockery": true
   },
   "expr": true,
   "scripturl": true
