@@ -31,7 +31,21 @@ describe('DB connection', function() {
           options.should.eql({});
           return findResult;
         });
-        gently.expect(findResult, 'exec', function(execCallback) {
+        var populateRestosResult = {};
+        gently.expect(findResult, 'populate', function(field, refFields) {
+          field.should.eql('restaurant');
+          refFields.split(' ').length.should.eql('1');
+          refFields.split(' ').should.containEql('name');
+          return populateRestosResult;
+        });
+        var populateTagsResult = {};
+        gently.expect(populateRestosResult, 'populate', function(field, refFields) {
+          field.should.eql('tags');
+          refFields.split(' ').length.should.eql('1');
+          refFields.split(' ').should.containEql('name');
+          return populateTagsResult;
+        });
+        gently.expect(populateTagsResult, 'exec', function(execCallback) {
           execCallback.should.eql(callback);
         });
 

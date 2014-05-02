@@ -10,6 +10,8 @@ module.exports = (function() {
         get: function(callback) {
           Offer
           .find({})
+          .populate('restaurant', 'name')
+          .populate('tags', 'name')
           .exec(callback);
         }
       };
