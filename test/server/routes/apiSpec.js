@@ -2,20 +2,8 @@ describe('API', function() {
   'use strict';
   var srcDir = './../../../src/',
     gently = new(require('gently'))(),
-    mockery = require('mockery'),
-    connection = {},
-    api;
-
-  before(function() {
-    mockery.enable();
-
-    mockery.registerMock('./../db/connection', connection);
-    mockery.registerAllowable(srcDir + 'routes/api');
+    connection = require(srcDir + 'db/connection'),
     api = require(srcDir + 'routes/api');
-  });
-  after(function() {
-    mockery.disable();
-  });
 
   describe('offers', function() {
     var offers;

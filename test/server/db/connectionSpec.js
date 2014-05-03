@@ -1,26 +1,10 @@
 describe('DB connection', function() {
   'use strict';
   var srcDir = './../../../src/',
-    connection,
-    mockery = require('mockery'),
+    connection = require(srcDir + 'db/connection'),
     gently = new(require('gently'))(),
-    mongoose = {},
-    Offer = {};
-
-  beforeEach(function() {
-    mockery.enable();
-
-    mongoose.model = function(model) {
-      if (model === 'Offer') return Offer;
-    };
-    mockery.registerMock('mongoose', mongoose);
-    mockery.registerMock('./models', {});
-    mockery.registerAllowable(srcDir + 'db/connection');
-    connection = require(srcDir + 'db/connection');
-  });
-  afterEach(function() {
-    mockery.disable();
-  });
+    mongoose = require('mongoose'),
+    Offer = mongoose.model('Offer');
 
   describe('offers', function() {
 
