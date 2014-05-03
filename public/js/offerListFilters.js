@@ -20,7 +20,7 @@
         return filterFilter(offers, function(offer) {
           if (offerFilterState.selectedTags && offerFilterState.selectedTags.length > 0) {
             var tagNames = offer.tags.map(function(tag){
-              return tag.name
+              return tag.name;
             });
             return doIntersect(offerFilterState.selectedTags, tagNames);
           }
