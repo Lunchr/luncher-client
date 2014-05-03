@@ -22,8 +22,11 @@
     "utils": true,
     "offerUtils": true,
     /* node */
-    "require": false,
-    "__dirname": false
+    "require": true,
+    "__dirname": false,
+    "exports": false,
+    "global": false,
+    "mockery": true
   },
   "expr": true,
   "scripturl": true

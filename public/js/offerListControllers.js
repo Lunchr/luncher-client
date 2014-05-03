@@ -8,19 +8,19 @@
 
   offerListControllers.controller('OfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.offers = $resource('offers/offers.json').query();
+      $scope.offers = $resource('api/offers').query();
     }
   ]);
 
   offerListControllers.controller('TagListCtrl', ['$scope', 'offerFilterState', '$resource',
     function($scope, offerFilterState, $resource) {
-      $scope.tagList = $resource('offers/tags.json').query();
+      $scope.tagList = $resource('api/tags').query();
 
       $scope.$watch('tagList', function(tagList) {
         offerFilterState.selectedTags = [];
         tagList.forEach(function(tag) {
           if (tag.selected) {
-            offerFilterState.selectedTags.push(tag.id);
+            offerFilterState.selectedTags.push(tag.name);
           }
         });
       }, true);

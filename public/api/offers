@@ -1,0 +1,34 @@
+[{
+  "id": "1",
+  "restaurant": {
+    "name": "Asian Chef"
+  },
+  "title": "Sweet & Sour Chicken",
+  "description": "Kanafilee aedviljadega rikkalikus magushapus kastmes.",
+  "price": 3.4,
+  "tags": [{
+    "name": "lind"
+  }]
+}, {
+  "id": "2",
+  "restaurant": {
+    "name": "Bulgarian Chef"
+  },
+  "title": "Sweet & Sour Pork",
+  "description": "Seafilee aedviljadega rikkalikus magushapus kastmes.",
+  "price": 3.3,
+  "tags": [{
+    "name": "siga"
+  }]
+}, {
+  "id": "3",
+  "restaurant": {
+    "name": "Caesar Chef"
+  },
+  "title": "Sweet & Sour Duck",
+  "description": "Pardifilee aedviljadega rikkalikus magushapus kastmes.",
+  "price": 3.6,
+  "tags": [{
+    "name": "part"
+  }]
+}]
