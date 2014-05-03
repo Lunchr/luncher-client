@@ -4,25 +4,49 @@ var offerUtils = (function() {
     getMockOffers: function() {
       return [{
         'id': '1',
-        'location': 'Asian Chef',
+        'restaurant': {
+          'name': 'Asian Chef'
+        },
         'title': 'Sweet & Sour Chicken',
         'description': 'Kanafilee aedviljadega rikkalikus magushapus kastmes.',
         'price': 3.4,
-        'tags': ['lind']
+        'tags': [{
+          'name': 'lind'
+        }]
       }, {
         'id': '2',
-        'location': 'Bulgarian Chef',
+        'restaurant': {
+          'name': 'Bulgarian Chef'
+        },
         'title': 'Sweet & Sour Pork',
         'description': 'Seafilee aedviljadega rikkalikus magushapus kastmes.',
         'price': 3.3,
-        'tags': ['siga']
+        'tags': [{
+          'name': 'siga'
+        }]
       }, {
         'id': '3',
-        'location': 'Caesar Chef',
+        'restaurant': {
+          'name': 'Caesar Chef'
+        },
         'title': 'Sweet & Sour Beef',
         'description': 'Veisefilee aedviljadega rikkalikus magushapus kastmes.',
         'price': 3.6,
-        'tags': ['loom']
+        'tags': [{
+          'name': 'loom'
+        }]
+      }];
+    },
+    getMockTags: function() {
+      return [{
+        'name': 'kala',
+        'displayName': 'Kalast'
+      }, {
+        'name': 'lind',
+        'displayName': 'Linnust'
+      }, {
+        'name': 'siga',
+        'displayName': 'Seast'
       }];
     },
     matchers: {

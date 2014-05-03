@@ -25,16 +25,7 @@ describe('OfferList cotrollers', function() {
     var $scope;
 
     beforeEach(inject(function($rootScope, $controller, $httpBackend) {
-      $httpBackend.expectGET('offers/tags.json').respond([{
-        'id': 'kala',
-        'label': 'Kalast'
-      }, {
-        'id': 'lind',
-        'label': 'Linnust'
-      }, {
-        'id': 'siga',
-        'label': 'Seast'
-      }]);
+      $httpBackend.expectGET('offers/tags.json').respond(offerUtils.getMockTags());
 
       $scope = $rootScope.$new();
       $controller('TagListCtrl', {

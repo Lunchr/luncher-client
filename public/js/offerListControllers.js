@@ -20,7 +20,7 @@
         offerFilterState.selectedTags = [];
         tagList.forEach(function(tag) {
           if (tag.selected) {
-            offerFilterState.selectedTags.push(tag.id);
+            offerFilterState.selectedTags.push(tag.name);
           }
         });
       }, true);
