@@ -1,6 +1,7 @@
 module.exports = (function() {
   'use strict';
   var mongoose = require('mongoose');
+  require('./models');
 
   return {
     offers: (function() {
