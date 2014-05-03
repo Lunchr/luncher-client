@@ -14,6 +14,7 @@ describe('DB connection', function() {
       if (model === 'Offer') return Offer;
     };
     mockery.registerMock('mongoose', mongoose);
+    mockery.registerMock('./models', {});
     mockery.registerAllowable(srcDir + 'db/connection');
     connection = require(srcDir + 'db/connection');
   });
