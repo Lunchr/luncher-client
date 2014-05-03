@@ -25,7 +25,7 @@ describe('OfferList cotrollers', function() {
     var $scope;
 
     beforeEach(inject(function($rootScope, $controller, $httpBackend) {
-      $httpBackend.expectGET('offers/tags.json').respond(offerUtils.getMockTags());
+      $httpBackend.expectGET('api/tags').respond(offerUtils.getMockTags());
 
       $scope = $rootScope.$new();
       $controller('TagListCtrl', {
@@ -98,13 +98,7 @@ describe('OfferList cotrollers', function() {
     var $scope;
 
     beforeEach(inject(function($rootScope, $controller, $httpBackend) {
-      $httpBackend.expectGET('offers/offers.json').respond([{
-        "id": "1"
-      }, {
-        "id": "2"
-      }, {
-        "id": "3"
-      }]);
+      $httpBackend.expectGET('api/offers').respond(offerUtils.getMockOffers());
 
       $scope = $rootScope.$new();
       $controller('OfferListCtrl', {
