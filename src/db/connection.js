@@ -16,6 +16,17 @@ module.exports = (function() {
           .exec(callback);
         }
       };
+    })(),
+    tags: (function() {
+      var Tag = mongoose.model('Tag');
+
+      return {
+        get: function(callback) {
+          Tag
+          .find({})
+          .exec(callback);
+        }
+      };
     })()
   };
 })();

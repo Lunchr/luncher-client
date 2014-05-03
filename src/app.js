@@ -40,6 +40,7 @@
    */
 
   app.get('/api/offers', api.offers.get);
+  app.get('/api/tags', api.tags.get);
 
   app.set('port', process.env.PORT || 8080);
   app.use(express.static(path.join(__dirname, '..', 'public')));

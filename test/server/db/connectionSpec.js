@@ -3,13 +3,16 @@ describe('DB connection', function() {
   var srcDir = './../../../src/',
     connection = require(srcDir + 'db/connection'),
     gently = new(require('gently'))(),
-    mongoose = require('mongoose'),
-    Offer = mongoose.model('Offer');
+    mongoose = require('mongoose');
 
   describe('offers', function() {
+    var Offer;
+    before(function() {
+      Offer = mongoose.model('Offer');
+    });
 
     describe('get', function() {
-      it('get should call find and exec', function() {
+      it('should call find and exec', function() {
         var callback = function() {};
         var findResult = {};
         gently.expect(Offer, 'find', function(options) {
@@ -35,6 +38,31 @@ describe('DB connection', function() {
         });
 
         connection.offers.get(callback);
+
+        gently.verify();
+      });
+    });
+  });
+
+  describe('tags', function() {
+    var Tag;
+    before(function() {
+      Tag = mongoose.model('Tag');
+    });
+
+    describe('get', function() {
+      it('should call find and exec', function() {
+        var callback = function() {};
+        var findResult = {};
+        gently.expect(Tag, 'find', function(options) {
+          options.should.eql({});
+          return findResult;
+        });
+        gently.expect(findResult, 'exec', function(execCallback) {
+          execCallback.should.eql(callback);
+        });
+
+        connection.tags.get(callback);
 
         gently.verify();
       });
