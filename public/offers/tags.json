@@ -1,22 +1,16 @@
-[
-  {
-    "id":"kala",
-    "label":"Kalast"
-  },
-  {
-    "id":"lind",
-    "label":"Linnust"
-  },
-  {
-    "id":"siga",
-    "label":"Seast"
-  },
-  {
-    "id":"veis",
-    "label":"Veisest"
-  },
-  {
-    "id":"lammas",
-    "label":"Lambast"
-  }
-]
+[{
+  "name": "kala",
+  "displayName": "Kalast"
+}, {
+  "name": "lind",
+  "displayName": "Linnust"
+}, {
+  "name": "siga",
+  "displayName": "Seast"
+}, {
+  "name": "veis",
+  "displayName": "Veisest"
+}, {
+  "name": "lammas",
+  "displayName": "Lambast"
+}]
