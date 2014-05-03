@@ -1,7 +1,7 @@
 describe('DB connection', function() {
   'use strict';
   var srcDir = './../../../src/',
-    connection, // = require(srcDir + 'db/connection'),
+    connection,
     mockery = require('mockery'),
     gently = new(require('gently'))(),
     mongoose = {},
