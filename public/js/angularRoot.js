@@ -2,6 +2,7 @@
   'use strict';
   var praadApp = angular.module('praadApp', [
     'mainView',
+    'restaurantAdminView',
     'ngRoute'
   ]).config(['$routeProvider',
     function($routeProvider) {
