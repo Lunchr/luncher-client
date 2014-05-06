@@ -1,0 +1,53 @@
+<div class="container" ng-controller="RestaurantAdminViewCtrl">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-1">
+                    (wrench)
+                </div>
+                <div class="col-md-6">
+                    {{restaurant.name}}
+                </div>
+                <div class="col-md-10">
+                    <date/>
+                </div>
+                <div class="col-md-7"></div>
+            </div>
+        </div>
+    </div>
+    <div class="filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-1">
+                    (plus)
+                </div>
+                <div class="col-md-6">
+                    Lisa uus pakkumine
+                </div>
+                <div class="col-md-17"></div>
+            </div>
+        </div>
+    </div>
+    <div class="offers" ng-controller="RestaurantOfferListCtrl">
+        <div class="container">
+            <div class="offer" ng-repeat="offer in offers | orderBy:'offer.date'">
+                <div class="row">
+                    <div class="col-xs-1">
+                        <a href="javascript:undefined" class="edit">(pen)</a>
+                    </div>
+                    <div class="col-xs-6">
+                        <h3>{{offer.date | date:'EEE MM.dd'}}</h3>
+                        <h4>{{offer.fromTime | date:'shortTime'}} - {{offer.toTime | date:'shortTime'}}</h4>
+                    </div>
+                    <div class="col-xs-15">
+                        <h3>{{offer.title}}</h3>
+                        <p class="info">  -  {{offer.description}}</p>
+                    </div>
+                    <div class="col-xs-2">
+                        <p class="price">{{offer.price}} €</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
