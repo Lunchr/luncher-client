@@ -4,6 +4,25 @@ describe('OfferList cotrollers', function() {
 
   describe('RestaurantOfferListCtrl', function() {
     var $scope;
+
+    beforeEach(inject(function($rootScope, $controller, $httpBackend) {
+      $httpBackend.expectGET('api/restaurant').respond(offerUtils.getMockRestaurant());
+
+      $scope = $rootScope.$new();
+      $controller('RestaurantAdminViewCtrl', {
+        $scope: $scope
+      });
+    }));
+
+    it('should have restaurant data after we mock-respond to the HTTP request', inject(function($httpBackend) {
+      expect($scope.restaurant.name).toBeUndefined();
+      $httpBackend.flush();
+      expect($scope.restaurant.name).toBe('Bulgarian Chef');
+    }));
+  });
+
+  describe('RestaurantOfferListCtrl', function() {
+    var $scope;
     var restaurantId = 'someId';
 
     beforeEach(inject(function($rootScope, $controller, $httpBackend) {

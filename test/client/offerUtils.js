@@ -37,6 +37,12 @@ var offerUtils = (function() {
         }]
       }];
     },
+    getMockRestaurant: function() {
+      return {
+        'name': 'Bulgarian Chef',
+        'address': 'Some street 3, Tartu'
+      };
+    },
     getMockTags: function() {
       return [{
         'name': 'kala',
