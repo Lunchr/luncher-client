@@ -31,7 +31,7 @@ describe('OfferList cotrollers', function() {
       $scope = $rootScope.$new();
       $rootScope.restaurant = {
         _id: restaurantId
-      }
+      };
       $controller('RestaurantOfferListCtrl', {
         $scope: $scope
       });
