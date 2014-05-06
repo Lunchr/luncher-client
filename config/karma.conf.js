@@ -19,7 +19,7 @@ module.exports = function(config) {
       'public/lib/timezone-js/src/date.js',
       'config/test-main.js',
       'public/js/**/*.js',
-      'test/client/*.js',
+      'test/client/**/*.js',
       'test/client/mock/**/*.js',
       'public/partials/*.html'
     ],
