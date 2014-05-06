@@ -3,7 +3,7 @@ var offerUtils = (function() {
   return {
     getMockOffers: function() {
       return [{
-        'id': '1',
+        '_id': '1',
         'restaurant': {
           'name': 'Asian Chef'
         },
@@ -14,7 +14,7 @@ var offerUtils = (function() {
           'name': 'lind'
         }]
       }, {
-        'id': '2',
+        '_id': '2',
         'restaurant': {
           'name': 'Bulgarian Chef'
         },
@@ -25,7 +25,7 @@ var offerUtils = (function() {
           'name': 'siga'
         }]
       }, {
-        'id': '3',
+        '_id': '3',
         'restaurant': {
           'name': 'Caesar Chef'
         },
@@ -56,7 +56,7 @@ var offerUtils = (function() {
             var result = {};
 
             result.pass = actual.some(function(elem) {
-              return elem.id === expected;
+              return elem._id === expected;
             });
 
             var notText = result.pass ? ' not' : '';
@@ -72,12 +72,12 @@ var offerUtils = (function() {
 
             var sameLength = actual.length === expected.length;
             var sameIdOrder = expected.every(function(id, index) {
-              return actual[index].id === id;
+              return actual[index]._id === id;
             });
             result.pass = sameLength && sameIdOrder;
 
             var actualIds = actual.map(function(elem) {
-              return elem.id;
+              return elem._id;
             });
             var notText = result.pass ? ' not' : '';
             result.message = 'Expected offers ' + notText + ' to be ordered like: ' + expected + '. Got: ' + actualIds;
