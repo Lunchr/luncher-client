@@ -12,7 +12,7 @@
 }, {
   "id": "2",
   "restaurant": {
-    "name": "Bulgarian Chef"
+    "name": "Bulgarian Dude"
   },
   "title": "Sweet & Sour Pork",
   "description": "Seafilee aedviljadega rikkalikus magushapus kastmes.",
@@ -23,12 +23,12 @@
 }, {
   "id": "3",
   "restaurant": {
-    "name": "Caesar Chef"
+    "name": "Caesarian Kitchen"
   },
   "title": "Sweet & Sour Duck",
   "description": "Pardifilee aedviljadega rikkalikus magushapus kastmes.",
   "price": 3.6,
   "tags": [{
-    "name": "part"
+    "name": "lind"
   }]
 }]
