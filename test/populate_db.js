@@ -52,6 +52,8 @@
       },
       function(cb) {
         async.map(offersJson, function(offer, callback) {
+          offer.fromTime = new Date(offer.fromTime);
+          offer.toTime = new Date(offer.toTime);
           async.parallel([
 
             function(cb) {

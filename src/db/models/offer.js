@@ -12,6 +12,8 @@
       type: String,
       trim: true
     },
+    fromTime: Date,
+    toTime: Date,
     description: {
       type: String,
       trim: true
