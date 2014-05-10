@@ -8,9 +8,13 @@
     Offer = mongoose.model('Offer'),
     Tag = mongoose.model('Tag'),
     Restaurant = mongoose.model('Restaurant'),
-    restaurantsJson = JSON.parse(fs.readFileSync(__dirname + '/../public/api/restaurants')),
-    tagsJson = JSON.parse(fs.readFileSync(__dirname + '/../public/api/tags')),
-    offersJson = JSON.parse(fs.readFileSync(__dirname + '/../public/api/offers'));
+    restaurantsJson = readApiJson('restaurants'),
+    tagsJson = readApiJson('tags'),
+    offersJson = readApiJson('offers');
+
+  function readApiJson(fileName) {
+    return JSON.parse(fs.readFileSync(__dirname + '/../public/api/' + fileName));
+  }
 
   function loggingCallback(action, cb) {
     return function(error) {
@@ -70,7 +74,8 @@
         }, function(err, offers) {
           Offer.create(offers, loggingCallback('Creating dummy offers', cb));
         });
-      }, function(cb) {
+      },
+      function(cb) {
         mongoose.disconnect(cb)
       }
     ]);
