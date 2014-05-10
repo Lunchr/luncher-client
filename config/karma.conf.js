@@ -20,7 +20,6 @@ module.exports = function(config) {
       'config/test-main.js',
       'public/js/**/*.js',
       'test/client/**/*.js',
-      'test/client/mock/**/*.js',
       'public/partials/*.html'
     ],
 
