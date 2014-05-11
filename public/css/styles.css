@@ -165,7 +165,10 @@ input.search:-ms-input-placeholder {
     text-decoration: none;
     color: #000;
 }
-
+.sorter-icon-wrapper.ng-hide{
+    display:inline!important;
+    visibility: hidden;
+}
 /***** OFFERS *****/
 .offer {
     height: 50px;
