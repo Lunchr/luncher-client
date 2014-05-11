@@ -1,24 +1,31 @@
 <div class="header">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6" ng-controller="SearchCtrl">
-                <input class="search" type="text" placeholder="Otsi söögikohta või sööki..." ng-model="query">
+        <div class="header-wrapper">
+            <div class="row">
+                <div class="col-md-6" ng-controller="SearchCtrl">
+                    <input class="search" type="text" placeholder="Otsi söögikohta või sööki..." ng-model="query">
+                </div>
+                <div class="col-md-12">
+                    <date/>
+                </div>
+                <div class="col-md-6"></div>
             </div>
-            <div class="col-md-12">
-                <date/>
-            </div>
-            <div class="col-md-6"></div>
         </div>
     </div>
 </div>
-<div class="filter">
+<div class="controls">
     <div class="container">
-        <div class="filter-wrapper">
+        <div class="controls-wrapper">
             <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-md-6">
+                <div class="col-xs-7">
                     <offers-sorter order-by="location">
-                        <a id="order-location" href="javascript:undefined">Asukoht</a>
+                        <p class="control-label">
+                            <a href="javascript:undefined">
+                                Asukoht
+                                <span class="icon desc"><i class="fa fa-sort-alpha-desc"></i></span>
+                                <span class="icon asc"><i class="fa fa-sort-alpha-asc"></i></span>
+                            </a>
+                        </p>
                     </offers-sorter>
                 </div>
                 <div class="col-md-15" ng-controller="TagListCtrl">
@@ -31,7 +38,13 @@
                 </div>
                 <div class="col-md-2">
                     <offers-sorter order-by="price">
-                        <a id="order-price" href="javascript:undefined">Hind</a>
+                        <p id="price-sort-label" class="control-label">
+                            <a href="javascript:undefined">
+                                Hind
+                                <span class="icon desc"><i class="fa fa-sort-numeric-desc"></i></span>
+                                <span class="icon asc"><i class="fa fa-sort-numeric-asc"></i></span>
+                            </a>
+                        </p>
                     </offers-sorter>
                 </div>
             </div>
@@ -42,15 +55,13 @@
     <div class="container">
         <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}">
             <div class="row">
-                <div class="col-xs-1">
-                    <a href="javascript:undefined" class="favorite"></a>
-                </div>
-                <div class="col-xs-6">
-                    <h2>{{offer.restaurant.name}}</h2>
+                <div class="col-xs-7">
+                    <p class="icon"><a href="#"><i class="fa fa-star"></i></a></p>
+                    <p class="name">{{offer.restaurant.name}}</p>
                 </div>
                 <div class="col-xs-15">
-                    <h3>{{offer.title}}</h3>
-                    <p class="info">  -  {{offer.description}}</p>
+                    <h2>{{offer.title}}</h2>
+                    <p class="info">{{offer.description}}</p>
                 </div>
                 <div class="col-xs-2">
                     <p class="price">{{offer.price}} €</p>
