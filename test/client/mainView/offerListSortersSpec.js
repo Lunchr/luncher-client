@@ -13,18 +13,34 @@ describe('OfferList sorters', function() {
       jasmine.addMatchers(offerUtils.matchers);
     }));
 
+    describe('offer sorter directive without numeric', function() {
+      var scope;
+      beforeEach(function() {
+        var compiled = utils.compile('<offers-sorter order-by="location">{{2+2}}</offers-sorter>');
+        scope = compiled.scope;
+      });
+
+      it('should not have isNumeric set from the attribute', function() {
+        expect(scope.isNumeric).toBeFalsy();
+      });
+    });
+
     describe('offer sorter directive', function() {
       var element, scope, parentScope;
       beforeEach(function() {
-        var compiled = utils.compile('<offers-sorter order-by="location">{{2+2}}</offers-sorter>');
+        var compiled = utils.compile('<offers-sorter order-by="location" is-numeric="true">{{2+2}}</offers-sorter>');
         element = compiled.element;
         scope = compiled.scope;
         parentScope = compiled.parentScope;
         spyOn(scope, 'clicked').and.callThrough();
       });
 
+      function clickSorter() {
+        $(element.children().first()).click();
+      }
+
       it('should contain 4 in a span', function() {
-        expect(element.children().html()).toBe('4');
+        expect(element.children().children().html()).toBe('4');
       });
 
       it('should have asc/desc state on scope', function() {
@@ -43,23 +59,23 @@ describe('OfferList sorters', function() {
         expect(scope.orderBy).toBe('location');
       });
 
-      it('should have class order-asc by default', function() {
-        expect(element).toHaveClass('order-asc');
+      it('should have isNumeric set from the attribute', function() {
+        expect(scope.isNumeric).toBeTruthy();
       });
 
       it('should call scope\'s clicked method on click', function() {
-        $(element).click();
+        clickSorter();
         expect(scope.clicked).toHaveBeenCalled();
       });
 
       describe('when element clicked', function() {
         beforeEach(function() {
-          $(element).click();
+          clickSorter();
         });
 
         it('should should reverse order for this sorter', function() {
           expect(scope.isAscending).toBe(false);
-          $(element).click();
+          clickSorter();
           expect(scope.isAscending).toBe(true);
         });
 
@@ -69,15 +85,9 @@ describe('OfferList sorters', function() {
 
         it('should set the asc/desc value of the state service', inject(function(offerOrderState) {
           expect(offerOrderState.isAscending).toBe(false);
-          $(element).click();
+          clickSorter();
           expect(offerOrderState.isAscending).toBe(true);
         }));
-
-        it('should have class order-{asc/desc} swapped', function() {
-          expect(element).toHaveClass('order-desc');
-          $(element).click();
-          expect(element).toHaveClass('order-asc');
-        });
       });
 
       describe('when state ordered by current directive', function() {
@@ -89,14 +99,6 @@ describe('OfferList sorters', function() {
         it('should be marked active', function() {
           expect(scope.isActive()).toBe(true);
         });
-
-        it('should have the order-active class', function() {
-          expect(element).toHaveClass('order-active');
-        });
-
-        it('should have the default class order-asc', function() {
-          expect(element).toHaveClass('order-asc');
-        });
       });
 
       describe('when state ordered by some other directive', function() {
@@ -107,19 +109,6 @@ describe('OfferList sorters', function() {
 
         it('should not be marked active', function() {
           expect(scope.isActive()).toBe(false);
-        });
-
-        it('should not have the order-active class', function() {
-          expect(element).not.toHaveClass('order-active');
-        });
-
-        it('should turn active after a click', function() {
-          $(element).click();
-          expect(element).toHaveClass('order-active');
-        });
-
-        it('should have the default class order-asc', function() {
-          expect(element).toHaveClass('order-asc');
         });
       });
     });

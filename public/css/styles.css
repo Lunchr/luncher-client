@@ -165,25 +165,6 @@ input.search:-ms-input-placeholder {
     text-decoration: none;
     color: #000;
 }
-.asc {
-    display: none;
-}
-.desc {
-    visibility: hidden;
-}
-.order-asc.order-active .asc {
-    visibility: visible;
-    display: block;
-}
-.order-desc.order-active .desc {
-    visibility: visible;
-}
-.order-asc.order-active .desc {
-    display: none;
-}
-.order-desc.order-active .asc {
-    display: none;
-}
 
 /***** OFFERS *****/
 .offer {
@@ -197,8 +178,8 @@ input.search:-ms-input-placeholder {
 .offer p {
     font-family: 'Source Sans Pro', sans-serif;
 }
-h2, 
-.price, 
+h2,
+.price,
 .date,
 .offer .name {
     margin: 0;
