@@ -5,6 +5,8 @@
   },
   "title": "Sweet & Sour Chicken",
   "description": "Kanafilee aedviljadega rikkalikus magushapus kastmes.",
+  "fromTime": "2014-05-10T09:00:00.000Z",
+  "toTime": "2014-05-10T11:00:00.000Z",
   "price": 3.4,
   "tags": [{
     "name": "lind"
@@ -12,10 +14,12 @@
 }, {
   "id": "2",
   "restaurant": {
-    "name": "Bulgarian Chef"
+    "name": "Bulgarian Dude"
   },
   "title": "Sweet & Sour Pork",
   "description": "Seafilee aedviljadega rikkalikus magushapus kastmes.",
+  "fromTime": "2014-05-10T09:00:00.000Z",
+  "toTime": "2014-05-10T12:00:00.000Z",
   "price": 3.3,
   "tags": [{
     "name": "siga"
@@ -23,12 +27,14 @@
 }, {
   "id": "3",
   "restaurant": {
-    "name": "Caesar Chef"
+    "name": "Caesarian Kitchen"
   },
   "title": "Sweet & Sour Duck",
   "description": "Pardifilee aedviljadega rikkalikus magushapus kastmes.",
+  "fromTime": "2014-05-11T09:00:00.000Z",
+  "toTime": "2014-05-11T11:00:00.000Z",
   "price": 3.6,
   "tags": [{
-    "name": "part"
+    "name": "lind"
   }]
 }]
