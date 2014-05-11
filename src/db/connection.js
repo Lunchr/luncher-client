@@ -1,6 +1,7 @@
 module.exports = (function() {
   'use strict';
-  var mongoose = require('mongoose');
+  var mongoose = require('mongoose'),
+  dateUtils = require('./../utils/dateUtils');
   require('./models');
 
   return {
@@ -10,7 +11,12 @@ module.exports = (function() {
       return {
         get: function(callback) {
           Offer
-          .find({})
+          .find({
+            fromTime: {
+              $gte: dateUtils.getMidnightBeforeToday(),
+              $lt: dateUtils.getMidnightAfterToday()
+            }
+          })
           .populate('restaurant', 'name')
           .populate('tags', 'name')
           .exec(callback);
