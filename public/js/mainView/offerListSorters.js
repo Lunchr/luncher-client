@@ -8,7 +8,8 @@
     function(offerOrderState) {
       return {
         scope: {
-          orderBy: '@'
+          orderBy: '@',
+          isNumeric: '@'
         },
         controller: function($scope, $element, $attrs, $transclude) {
           $scope.isAscending = true;

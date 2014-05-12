@@ -1,5 +1,13 @@
-<span ng-class="{
-'order-active': isActive(),
-'order-asc': isAscending,
-'order-desc': !isAscending
-}" ng-click="clicked()" ng-transclude></span>
+<p class="control-label">
+  <a href="javascript:undefined" ng-click="clicked()" ng-transclude></a>
+  <span ng-show="isActive()" class="sorter-icon-wrapper">
+    <span ng-show="isNumeric">
+      <span class="icon" ng-show="isAscending"><i class="fa fa-sort-numeric-asc"></i></span>
+      <span class="icon" ng-show="!isAscending"><i class="fa fa-sort-numeric-desc"></i></span>
+    </span>
+    <span ng-show="!isNumeric">
+      <span class="icon" ng-show="isAscending"><i class="fa fa-sort-alpha-asc"></i></span>
+      <span class="icon" ng-show="!isAscending"><i class="fa fa-sort-alpha-desc"></i></span>
+    </span>
+  </span>
+</p>
