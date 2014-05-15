@@ -10,7 +10,8 @@
     Restaurant = mongoose.model('Restaurant'),
     restaurantsJson = readApiJson('restaurants'),
     tagsJson = readApiJson('tags'),
-    offersJson = readApiJson('offers');
+    offersJson = readApiJson('offers'),
+    config = require('./../src/config');
 
   function readApiJson(fileName) {
     return JSON.parse(fs.readFileSync(__dirname + '/../public/api/' + fileName));
@@ -32,7 +33,7 @@
     };
   }
 
-  mongoose.connect('mongodb://localhost/test', function() {
+  mongoose.connect(config.dbAdress, function() {
     async.series([
 
       function(cb) {

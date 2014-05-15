@@ -8,7 +8,8 @@
     http = require('http'),
     path = require('path'),
     api = require('./routes/api'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    config = require('./config');
 
   var app = module.exports = express();
 
@@ -20,7 +21,7 @@
         }
       }
     };
-    mongoose.connect('mongodb://localhost/test', options);
+    mongoose.connect(config.dbAdress, options);
   };
   connect();
 
@@ -42,7 +43,7 @@
   app.get('/api/offers', api.offers.get);
   app.get('/api/tags', api.tags.get);
 
-  app.set('port', process.env.PORT || 8080);
+  app.set('port', config.port);
   app.use(express.static(path.join(__dirname, '..', 'public')));
 
   /**
