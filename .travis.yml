@@ -20,3 +20,10 @@ addons:
 notifications:
   sqwiggle:
     secure: MdXm8Pu+VWs6o7rcvL65o1fTQX0HvicChCkAuddQLNpK0v64K5rtug53FTbXUUG09PIhlfKxE3lCk4TstpVolsOFDZboclg0qgfsnAKfqBVRaG5tAne6xcnFAxyh5xhthSAUIF1FBpxpOyDBeUv3Z2Yq9pG2WMetHRpSCHwFWzA=
+deploy:
+  provider: nodejitsu
+  user: deiwin
+  api_key:
+    secure: aU1x3RVu1GaD1lwnhjPxXRYV/tZxyd90JyxXiMpAWrWK6EAyaaYupqS88Z7q0u35IgGw5ArrLy/MBPqpdTbEU0loa7bCZXMCNjuI3qtj2SUUY6r3fPiRBOHGHJ0E+s5KNhqes9YZOG7Tyc38huPv8SRhabTE/GU/GJR6E/21Ow8=
+  on:
+    repo: deiwin/praad
