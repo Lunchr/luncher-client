@@ -54,6 +54,7 @@
         async.map(offersJson, function(offer, callback) {
           offer.fromTime = new Date(offer.fromTime);
           offer.toTime = new Date(offer.toTime);
+          delete offer.id;
           async.parallel([
 
             function(cb) {
@@ -74,7 +75,21 @@
             callback(null, offer);
           });
         }, function(err, offers) {
-          Offer.create(offers, loggingCallback('Creating dummy offers', cb));
+          function clone(obj) {
+            var clone = {};
+            for (var property in obj) clone[property] = obj[property];
+            return clone;
+          }
+          var newOffers = [];
+          offers.forEach(function(offer) {
+            for (var i = 1; i <= 100; i++) {
+              var newOffer = clone(offer);
+              newOffer.fromTime = new Date(offer.fromTime.getTime() + i * 24 * 60 * 60 * 1000);
+              newOffer.toTime = new Date(offer.toTime.getTime() + i * 24 * 60 * 60 * 1000);
+              newOffers.push(newOffer);
+            };
+          });
+          Offer.create(offers.concat(newOffers), loggingCallback('Creating dummy offers', cb));
         });
       },
       function(cb) {
