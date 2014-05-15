@@ -1,10 +1,11 @@
 {
   "name": "praad",
-  "version": "0.0.0",
+  "version": "0.0.0-3",
   "description": "praad",
   "main": "src/app.js",
   "scripts": {
     "test": "grunt test",
+    "predeploy": "bower install",
     "start": "node src/app.js"
   },
   "repository": {
@@ -56,5 +57,9 @@
         "src"
       ]
     }
+  },
+  "subdomain": "deiwin-praad",
+  "engines": {
+    "node": "0.10.x"
   }
 }
