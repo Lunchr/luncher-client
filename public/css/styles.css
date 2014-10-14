@@ -4,11 +4,12 @@ html, body {
     height: 100%;
 }
 body {
-    background: #fbfbfb;
+    background-image: url(../img/bg.png);
+    background-position: top center;
     height: 100%;
     color: #222;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 14px;
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 13px;
     font-weight: 400;
     margin: 0;
 }
@@ -18,7 +19,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Proxima Nova', sans-serif;
 }
 textarea, input {
     outline: none;
@@ -33,22 +34,19 @@ textarea, input {
 
 /***** HEADER *****/
 .header {
-    height: 58px;
-    background-color: #21a45b;
-    border-bottom: 1px solid #10522e;
-    background-image: url(../img/header_bg.png);
-    background-repeat: repeat-x;
-    background-position: bottom;
+    height: 50px;
+    background: #4385ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
 .header-wrapper {
-    padding: 14px 15px;
+    padding: 10px 15px;
 }
 .header .name {
     margin: 0;
     color: #fff;
     font-weight: 400;
     font-size: 20px;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Proxima Nova', sans-serif;
 }
 .header .icon  {
     margin-right: 14px;
@@ -60,20 +58,31 @@ textarea, input {
     text-shadow: 0px 0px 5px #000;
 }
 #date {
-    margin: 0;
+    margin: 2px;
     color: #fff;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Proxima Nova', sans-serif;
 }
-input.search {
-    padding: 4px 10px;
-    width: 100%;
-    border: 1px solid #fff !important;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #fff;
+#search-wrapper {
+    display: inline-block;
+    position: relative;
+    width: auto;
+}
+#search {
+    position: relative;
+    padding: 7px 29px 3px 12px;
+    margin-left: -15px;
+    width: 40px;
+    border-radius: 4px;
+    color: #222;
+    background: transparent;
+    z-index: 5;
+    font-family: 'Proxima Nova', sans-serif;
+    outline: none;
+    border: none;
+    cursor: pointer;
     -moz-transition-property: all;
     -moz-transition-duration: 0.2s;
     -moz-transition-timing-function: default;
@@ -91,104 +100,167 @@ input.search {
     transition-timing-function: default;
     transition-delay: 0s;
 }
-input.search:focus, input.search:focus:hover {
-    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.7);
-    background-color: rgba(255, 255, 255, 0.95);
-    color: #000;
+#search-submit {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    z-index: 3;
 }
-input.search:hover {
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+#search-submit:before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 10px;
+    height: 9px;
+    width: 9px;
+    border-radius: 5px;
+    border: 1px solid #fff;
 }
-input.search:focus::-webkit-input-placeholder {
-    color: #000;
+#search-submit:after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 19px;
+    height: 1px;
+    width: 4px;
+    transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    background: #fff;
 }
-input.search:focus:-moz-placeholder {
-    color: #000;
+#search-submit:focus {
+    outline: none;
 }
-input.search:focus::-moz-placeholder {
-    color: #000;
+#search:focus {
+    width: 250px;
+    background: #fff;
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.07);
+    z-index: 1;
+    cursor: text;
 }
-input.search:focus:-ms-input-placeholder {
-    color: #000;
+#search:focus + #search-submit:before {
+    border: 1px solid #4385ff;
 }
-input.search::-webkit-input-placeholder {
-    color: #fff;
+#search:focus + #search-submit:after {
+    background: #4385ff;
 }
-input.search:-moz-placeholder {
-    color: #fff;
+#search:hover {
+    background: rgba(67, 133, 255, 0.3);
 }
-input.search::-moz-placeholder {
-    color: #fff;
+#search:focus:hover {
+    background: #fff;
 }
-input.search:-ms-input-placeholder {
-    color: #fff;
+#search:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
 /***** CONTROLS BAR *****/
-.controls {
-    height: 50px;
-    background-image: url(../img/filter_bg.png);
-    background-repeat: repeat-x;
-    background-position: top;
+.top-area {
+    background: rgba(255,255,255,0.4);
     font-weight: 400;
 }
 .controls-wrapper {
-    padding: 15px 16px;
+    height: 49px;
+    padding: 15px 16px 15px 35px;
+    color: #fff;
+    font-size: 13px;
 }
 .control-label {
     margin: 0;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Proxima Nova', sans-serif;
 }
-#price-sort-label {
-    margin-left: -26px
+#price-sort-label {;
+    padding-left: 15px;
 }
 .controls .icon {
     margin-top: 1px;
 }
-.controls a, .controls label {
-    text-transform: uppercase;
-    color: #939393;
-}
-.controls label {
-    margin-right: 10px;
-    padding-left: 2px;
-    font-family: 'Source Sans Pro', sans-serif;
+.controls-wrapper label {
+    margin-right: 5px;
+    margin-left: -14px;
+    padding-left: 16px;
+    font-family: 'Proxima Nova', sans-serif;
     cursor: pointer;
 }
-.controls input[type=checkbox] {
+.controls-wrapper input[type=checkbox] {
     cursor: pointer;
 }
-.controls a:hover,
-.controls input[type=checkbox]:checked + label,
-.controls input[type=checkbox]:hover + label,
-.controls input[type=checkbox] + label:hover {
+.controls-wrapper a:hover,
+.controls-wrapper input[type=checkbox]:checked + label,
+.controls-wrapper input[type=checkbox]:hover + label,
+.controls-wrapper input[type=checkbox] + label:hover {
     text-decoration: none;
-    color: #000;
+    color: #fff;
 }
 .sorter-icon-wrapper.ng-hide{
     display:inline!important;
     visibility: hidden;
 }
+.controls-wrapper form span {
+    position: relative;
+    margin-right: 15px;
+    font-family: 'Proxima Nova', sans-serif;
+}
+.controls-wrapper input {
+    visibility: hidden;
+}
+.controls-wrapper label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: 1px solid #fff;
+}
+.controls-wrapper input[type=checkbox]:checked + label:before {
+    background: #fff;
+}
 /***** OFFERS *****/
+.bottom-area {
+    min-height: 100%;
+    padding-top: 10px;
+    background: rgba(255,255,255,0.85);
+}
 .offer {
+    position: relative;
     height: 50px;
-    border: 1px solid #8b8b8b;
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    background-color: #ececec;
+    border-radius: 4px;
+    padding: 14px 15px 14px 35px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.07);
 }
 .offer p {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Proxima Nova', sans-serif;
+}
+.offer:before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    height: 10px;
+    width: 10px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+.offer.fav:before {
+    background: #4385ff;
+    border: 1px solid #4385ff;
 }
 h2,
 .price,
 .date,
 .offer .name {
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
-    text-transform: uppercase;
 }
 .date,
 .offer h2,
@@ -200,21 +272,29 @@ h2,
 .time,
 .info {
     position: relative;
-    margin-top: 6px;
+    margin-top: 5px;
     padding-left: 12px;
+    font-size: 13px;
     height: 20px;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .time:before,
 .info:before {
     content: '';
     position: absolute;
-    top: 10px;
+    top: 9px;
     left: 0;
     height: 1px;
     width: 4px;
-    background: #000;
+    background: #222;
 }
 
 /***** FOOTER *****/
 
+/***** FONTS *****/
+@font-face {
+    font-family: Proxima Nova;
+    src: url(ProximaNova-Light-webfont.ttf);
+}

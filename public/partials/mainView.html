@@ -3,7 +3,10 @@
         <div class="header-wrapper">
             <div class="row">
                 <div class="col-md-6" ng-controller="SearchCtrl">
-                    <input class="search" type="text" placeholder="Otsi söögikohta või sööki..." ng-model="query">
+                    <div class="search-wrapper">
+                        <input id="search" type="text" ng-model="query">
+                        <button id="search-submit"></button>
+                    </div>
                 </div>
                 <div class="col-md-12">
                     <date/>
@@ -13,16 +16,16 @@
         </div>
     </div>
 </div>
-<div class="controls">
+<div class="top-area">
     <div class="container">
         <div class="controls-wrapper">
             <div class="row">
-                <div class="col-xs-7">
+                <div class="col-xs-5">
                     <offers-sorter order-by="restaurant.name">
                         Asukoht
                     </offers-sorter>
                 </div>
-                <div class="col-md-15" ng-controller="TagListCtrl">
+                <div class="col-md-17" ng-controller="TagListCtrl">
                     <form action="">
                         <span ng-repeat="tag in tagList">
                             <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
@@ -39,15 +42,15 @@
         </div>
     </div>
 </div>
-<div class="offers" ng-controller="OfferListCtrl">
+<div class="bottom-area" ng-controller="OfferListCtrl">
     <div class="container">
         <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}">
             <div class="row">
-                <div class="col-xs-7">
+                <div class="col-xs-5">
                     <p class="icon"><a href="javascript:undefined"><i class="fa fa-star"></i></a></p>
                     <p class="name">{{offer.restaurant.name}}</p>
                 </div>
-                <div class="col-xs-15">
+                <div class="col-xs-17">
                     <h2>{{offer.title}}</h2>
                     <p class="info">{{offer.description}}</p>
                 </div>
