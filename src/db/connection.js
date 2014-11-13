@@ -17,8 +17,6 @@ module.exports = (function() {
               $lt: dateUtils.getMidnightAfterToday()
             }
           })
-          .populate('restaurant', 'name')
-          .populate('tags', 'name')
           .exec(callback);
         }
       };

@@ -56,25 +56,7 @@
           offer.fromTime = new Date(offer.fromTime);
           offer.toTime = new Date(offer.toTime);
           delete offer.id;
-          async.parallel([
-
-            function(cb) {
-              Restaurant.findOne(offer.restaurant, function(err, restaurant) {
-                offer.restaurant = restaurant._id;
-                cb();
-              });
-            },
-            function(cb) {
-              async.map(offer.tags, _.bind(Tag.findOne, Tag), function(err, tags) {
-                offer.tags = tags.map(function(tag) {
-                  return tag._id;
-                });
-                cb();
-              });
-            }
-          ], function() {
-            callback(null, offer);
-          });
+          callback(null, offer);
         }, function(err, offers) {
           function clone(obj) {
             var clone = {};

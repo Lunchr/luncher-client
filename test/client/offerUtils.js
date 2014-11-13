@@ -10,9 +10,7 @@ var offerUtils = (function() {
         'title': 'Sweet & Sour Chicken',
         'description': 'Kanafilee aedviljadega rikkalikus magushapus kastmes.',
         'price': 3.4,
-        'tags': [{
-          'name': 'lind'
-        }]
+        'tags': ['lind']
       }, {
         '_id': '2',
         'restaurant': {
@@ -21,9 +19,7 @@ var offerUtils = (function() {
         'title': 'Sweet & Sour Pork',
         'description': 'Seafilee aedviljadega rikkalikus magushapus kastmes.',
         'price': 3.3,
-        'tags': [{
-          'name': 'siga'
-        }]
+        'tags': ['siga']
       }, {
         '_id': '3',
         'restaurant': {
@@ -32,9 +28,7 @@ var offerUtils = (function() {
         'title': 'Sweet & Sour Beef',
         'description': 'Veisefilee aedviljadega rikkalikus magushapus kastmes.',
         'price': 3.6,
-        'tags': [{
-          'name': 'loom'
-        }]
+        'tags': ['loom']
       }];
     },
     getMockRestaurant: function() {
