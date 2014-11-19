@@ -24,7 +24,7 @@ describe('Praad App', function() {
       element(by.model('query')).sendKeys('kana');
 
       expect(offers.count()).toBe(1);
-      var title = offers.first().findElement(by.binding('{{offer.title}}')).getText();
+      var title = offers.first().element(by.binding('{{offer.title}}')).getText();
       expect(title).toBe('SWEET & SOUR CHICKEN');
     });
   });

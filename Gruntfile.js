@@ -69,7 +69,11 @@ module.exports = function(grunt) {
       }
     };
     config.bower = {
-      install: {}
+      install: {
+        options: {
+          copy: false
+        }
+      }
     };
   })();
   (function configureTests() {
@@ -89,7 +93,7 @@ module.exports = function(grunt) {
     };
     config.shell = {
       merge_lcov: {
-        command: 'node_modules/lcov-result-merger/bin/lcov-result-merger "coverage/**/lcov.info" "coverage/lcov.info"'
+        command: 'node_modules/lcov-result-merger/bin/lcov-result-merger.js "coverage/**/lcov.info" "coverage/lcov.info"'
       }
     };
     config.coveralls = {

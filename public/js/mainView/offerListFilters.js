@@ -19,10 +19,7 @@
       return function(offers) {
         return filterFilter(offers, function(offer) {
           if (offerFilterState.selectedTags && offerFilterState.selectedTags.length > 0) {
-            var tagNames = offer.tags.map(function(tag){
-              return tag.name;
-            });
-            return doIntersect(offerFilterState.selectedTags, tagNames);
+            return doIntersect(offerFilterState.selectedTags, offer.tags);
           }
           return true;
         });
@@ -40,7 +37,7 @@
           result = result || offer.description.match(query);
           result = result || offer.restaurant.name.match(query);
           result = result || offer.tags.some(function(tag) {
-            return tag.name.match(query);
+            return tag.match(query);
           });
           return result;
         });

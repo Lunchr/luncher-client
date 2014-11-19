@@ -5,27 +5,17 @@
 
   var OfferSchema = new Schema({
     restaurant: {
-      type: Schema.ObjectId,
-      ref: 'Restaurant'
+      name: String
     },
-    title: {
-      type: String,
-      trim: true
-    },
+    title: String,
     fromTime: Date,
     toTime: Date,
-    description: {
-      type: String,
-      trim: true
-    },
+    description: String,
     price: {
       type: Number,
       min: 0
     },
-    tags: [{
-      type: Schema.ObjectId,
-      ref: 'Tag'
-    }]
+    tags: [String]
   });
 
   mongoose.model('Offer', OfferSchema);

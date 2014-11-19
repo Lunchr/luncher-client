@@ -20,17 +20,7 @@ describe('DB connection', function() {
           if (testMethods.testFind) testMethods.testFind(options);
           return findResult;
         });
-        var populateRestosResult = {};
-        gently.expect(findResult, 'populate', function(field, refFields) {
-          if (testMethods.testPopulateRestos) testMethods.testPopulateRestos(field, refFields);
-          return populateRestosResult;
-        });
-        var populateTagsResult = {};
-        gently.expect(populateRestosResult, 'populate', function(field, refFields) {
-          if (testMethods.testPopulateTags) testMethods.testPopulateTags(field, refFields);
-          return populateTagsResult;
-        });
-        gently.expect(populateTagsResult, 'exec', function(execCallback) {
+        gently.expect(findResult, 'exec', function(execCallback) {
           execCallback.should.eql(callback);
         });
 
@@ -57,26 +47,6 @@ describe('DB connection', function() {
 
             lowLimit.getTime().should.eql(midnightBeforeToday.getTime());
             highLimit.getTime().should.eql(midnightAfterToday.getTime());
-          }
-        });
-      });
-
-      it('should populate restos', function() {
-        testGet({
-          testPopulateRestos: function(field, refFields) {
-            field.should.eql('restaurant');
-            refFields.split(' ').length.should.eql('1');
-            refFields.split(' ').should.containEql('name');
-          }
-        });
-      });
-
-      it('should populate tags', function() {
-        testGet({
-          testPopulateTags: function(field, refFields) {
-            field.should.eql('tags');
-            refFields.split(' ').length.should.eql('1');
-            refFields.split(' ').should.containEql('name');
           }
         });
       });
