@@ -6,6 +6,7 @@ html, body {
 body {
     background-image: url(../img/bg.png);
     background-position: top center;
+    background-size: cover;
     height: 100%;
     color: #222;
     font-family: 'Proxima Nova', sans-serif;
@@ -65,7 +66,7 @@ textarea, input {
     text-align: center;
     font-family: 'Proxima Nova', sans-serif;
 }
-#search-wrapper {
+.search-wrapper {
     display: inline-block;
     position: relative;
     width: auto;
@@ -173,6 +174,9 @@ textarea, input {
 .control-label {
     margin: 0;
     font-family: 'Proxima Nova', sans-serif;
+}
+.control-label a {
+    color: #fff;
 }
 #price-sort-label {;
     padding-left: 15px;
