@@ -9,7 +9,8 @@
     path = require('path'),
     api = require('./routes/api'),
     mongoose = require('mongoose'),
-    config = require('./config');
+    config = require('./config'),
+    failed = false;
 
   var app = module.exports = express();
 
@@ -27,12 +28,13 @@
 
   // Error handler
   mongoose.connection.on('error', function(err) {
+    failed = true;
     console.error(err);
   });
 
   // Reconnect when closed
   mongoose.connection.on('disconnected', function() {
-    connect();
+    if (!failed) connect();
   });
 
 
@@ -40,8 +42,15 @@
    * Configuration
    */
 
-  app.get('/api/offers', api.offers.get);
-  app.get('/api/tags', api.tags.get);
+  var wrapAndCallIfNotFailed = function(f) {
+    return function(_, __, next){
+      if (!failed) f.apply(this, arguments);
+      else next();
+    }
+  }
+
+  app.get('/api/offers', wrapAndCallIfNotFailed(api.offers.get));
+  app.get('/api/tags', wrapAndCallIfNotFailed(api.tags.get));
 
   app.set('port', config.port);
   app.use(express.static(path.join(__dirname, '..', 'public')));
