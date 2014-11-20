@@ -46,8 +46,8 @@
     return function(_, __, next){
       if (!failed) f.apply(this, arguments);
       else next();
-    }
-  }
+    };
+  };
 
   app.get('/api/offers', wrapAndCallIfNotFailed(api.offers.get));
   app.get('/api/tags', wrapAndCallIfNotFailed(api.tags.get));
