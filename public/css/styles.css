@@ -3,11 +3,11 @@
 html, body {
     height: 100%;
 }
+.checkbox~.bar {}
 body {
     background-image: url(../img/bg.png);
     background-position: top center;
     background-size: cover;
-    height: 100%;
     color: #222;
     font-family: 'Proxima Nova', sans-serif;
     font-size: 13px;
@@ -27,10 +27,19 @@ textarea, input {
 }
 .icon {
     float: left;
-    margin: 4px 15px 0 0;
+    position: relative;
+    width: 22px;
+    height: 22px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+    cursor: pointer;
 }
 .icon a {
-    color: #222;
+    display: block;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
 }
 
 /***** HEADER *****/
@@ -167,7 +176,7 @@ textarea, input {
 }
 .controls-wrapper {
     height: 49px;
-    padding: 15px 16px 15px 35px;
+    padding: 15px 16px 15px 13px;
     color: #fff;
     font-size: 13px;
 }
@@ -178,11 +187,20 @@ textarea, input {
 .control-label a {
     color: #fff;
 }
-#price-sort-label {;
-    padding-left: 15px;
+#price-sort-label .icon {
+    position: absolute;
+    left: -10px;
 }
-.controls .icon {
-    margin-top: 1px;
+.control-label .icon {
+    top: -2px;
+    width: 32px;
+    font-size: 11px;
+    margin-right: 0;
+}
+.control-label .icon i {
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
 .controls-wrapper label {
     margin-right: 5px;
@@ -236,25 +254,34 @@ textarea, input {
     position: relative;
     height: 50px;
     border-radius: 4px;
-    padding: 14px 15px 14px 35px;
+    padding: 14px 15px 14px 12px;
     margin-bottom: 10px;
     background-color: #fff;
     box-shadow: 0px 0px 2px rgba(0,0,0,0.07);
 }
 .offer p {
     font-family: 'Proxima Nova', sans-serif;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.offer:before {
+.offer .icon a:before {
     content: "";
     position: absolute;
-    left: 20px;
-    top: 20px;
     height: 10px;
     width: 10px;
+    left: 6px;
+    top: 6px;
     border-radius: 6px;
     border: 1px solid #e0e0e0;
+    transition: .2s;
 }
-.offer.fav:before {
+.icon a:hover:before {
+    border: 1px solid #b3b3b3;
+}
+.offer.fav:before,
+.icon a:focus:before,
+.icon a:active:before {
     background: #4385ff;
     border: 1px solid #4385ff;
 }
@@ -267,9 +294,11 @@ h2,
     font-weight: 400;
 }
 .date,
-.offer h2,
-.offer .name {
+.offer h2 {
     float: left;
+    margin-right: 8px;
+}
+.offer .name {
     margin-right: 8px;
 }
 
@@ -301,4 +330,21 @@ h2,
 @font-face {
     font-family: Proxima Nova;
     src: url(ProximaNova-Light-webfont.ttf);
+}
+
+/***** MEDIA *****/
+@media ( max-width: 767px ) {
+    .offer .name,
+    .info {
+        display: none;
+    }
+    .offer h2 {
+        position: absolute;
+        left: 15px;
+    }
+    .offer .price {
+        position: absolute;
+        right: 15px;
+    }
+
 }

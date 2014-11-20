@@ -20,12 +20,12 @@
     <div class="container">
         <div class="controls-wrapper">
             <div class="row">
-                <div class="col-xs-5">
+                <div class="col-xs-1 col-sm-6 col-lg-5">
                     <offers-sorter order-by="restaurant.name">
                         Asukoht
                     </offers-sorter>
                 </div>
-                <div class="col-md-17" ng-controller="TagListCtrl">
+                <div class="col-xs-18 col-sm-15 col-lg-17" ng-controller="TagListCtrl">
                     <form action="">
                         <span ng-repeat="tag in tagList">
                             <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
@@ -33,7 +33,7 @@
                         </span>
                     </form>
                 </div>
-                <div class="col-md-2">
+                <div class="col-xs-3 col-lg-2">
                     <offers-sorter is-numeric="true" order-by="price" id="price-sort-label">
                         Hind
                     </offers-sorter>
@@ -46,15 +46,15 @@
     <div class="container">
         <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}">
             <div class="row">
-                <div class="col-xs-5">
-                    <p class="icon"><a href="javascript:undefined"><i class="fa fa-star"></i></a></p>
+                <div class="col-xs-1 col-sm-6 col-lg-5">
+                    <p class="icon"><a href="javascript:undefined"></a></p>
                     <p class="name">{{offer.restaurant.name}}</p>
                 </div>
-                <div class="col-xs-17">
+                <div class="col-xs-18 col-sm-15 col-lg-17">
                     <h2>{{offer.title}}</h2>
                     <p class="info">{{offer.description}}</p>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-3 col-lg-2">
                     <p class="price">{{offer.price}} €</p>
                 </div>
             </div>
