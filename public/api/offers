@@ -3,7 +3,7 @@
   "restaurant": {
     "name": "Asian Chef"
   },
-  "title": "Sweet & Sour Chicken",
+  "title": "Pekingi kana",
   "description": "Kanafilee aedviljadega rikkalikus magushapus kastmes.",
   "fromTime": "2014-11-10T09:00:00.000Z",
   "toTime": "2014-11-10T11:00:00.000Z",
@@ -14,7 +14,7 @@
   "restaurant": {
     "name": "Bulgarian Dude"
   },
-  "title": "Sweet & Sour Pork",
+  "title": "Magushapu seafilee",
   "description": "Seafilee aedviljadega rikkalikus magushapus kastmes.",
   "fromTime": "2014-11-10T09:00:00.000Z",
   "toTime": "2014-11-10T12:00:00.000Z",
@@ -23,12 +23,122 @@
 }, {
   "id": "3",
   "restaurant": {
+    "name": "Feel Good Music Cafe"
+  },
+  "title": "Veiseliha burger koduste friikartulitega",
+  "description": "Fusce eu ante ultrices, convallis eros in, egestas sem.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 3.8,
+  "tags": ["lind"]
+}, {
+  "id": "4",
+  "restaurant": {
     "name": "Caesarian Kitchen"
   },
-  "title": "Sweet & Sour Duck",
+  "title": "Magushapu pardifilee",
   "description": "Pardifilee aedviljadega rikkalikus magushapus kastmes.",
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
-  "price": 3.6,
+  "price": 3.7,
   "tags": ["lind"]
+}, {
+  "id": "5",
+  "restaurant": {
+    "name": "La Dolche Vita"
+  },
+  "title": "Lambaliha & parmesaniga pasta",
+  "description": "Donec elementum rutrum dolor, et ultrices neque hendrerit dictum.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "tags": ["lammas"]
+}, {
+  "id": "6",
+  "restaurant": {
+    "name": "La Dolche Vita"
+  },
+  "title": "Salaami & ananassi pizza",
+  "description": "Praesent vitae lorem enim. Nulla sed tellus arcu.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "tags": ["veis"]
+}, {
+  "id": "7",
+  "restaurant": {
+    "name": "Kapriis"
+  },
+  "title": "Koorene singi pasta",
+  "description": "Morbi mattis enim ut aliquet blandit.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 3.4,
+  "tags": ["veis"]
+}, {
+  "id": "8",
+  "restaurant": {
+    "name": "Pahad Poisid"
+  },
+  "title": "Kodune kotlet praekartuliga",
+  "description": "Proin ac lobortis massa. Maecenas finibus magna finibus, ultrices lectus nec, ultrices lorem.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 3.2,
+  "tags": ["siga"]
+}, {
+  "id": "9",
+  "restaurant": {
+    "name": "Suudlevad Tudengid"
+  },
+  "title": "Lambakarre punase veini kastmes",
+  "description": "Pardifilee aedviljadega rikkalikus magushapus kastmes.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 4.2,
+  "tags": ["lammas"]
+}, {
+  "id": "10",
+  "restaurant": {
+    "name": "Cookbook"
+  },
+  "title": "Mahlane part ahjuõuntega",
+  "description": "Donec elementum rutrum dolor, et ultrices neque hendrerit dictum.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 5.2,
+  "tags": ["lind"]
+}, {
+  "id": "11",
+  "restaurant": {
+    "name": "Meatmarket"
+  },
+  "title": "Minutipihv asteplaju kastmes",
+  "description": "Aenean facilisis tellus non augue interdum, quis accumsan sapien semper.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 5.9,
+  "tags": ["Veis"]
+}, {
+  "id": "12",
+  "restaurant": {
+    "name": "Ülikooli Kohvik"
+  },
+  "title": "Pikpoiss hapukapsa ja ahjukartuliga",
+  "description": "Lorem ipsum dolor sit amet, vestibulum dolor ipsum.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 3.5,
+  "tags": ["siga"]
+}, {
+  "id": "13",
+  "restaurant": {
+    "name": "Neljapäev"
+  },
+  "title": "Heigifilee sidrunise ahjukartuliga",
+  "description": "Duis aliquam ipsum arcu, in vestibulum odio iaculis eget. Aliquam erat volutpat.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 4.2,
+  "tags": ["kala"]
 }]
