@@ -3,8 +3,8 @@
         <div class="header-wrapper">
             <div class="row">
                 <div class="col-xs-6">
-                    <p class="add-new-offer">
-                        <a class="btn" href="#">
+                    <p class="new-offer-btn">
+                        <a class="btn" href="javascript:undefined">
                             Lisa uus pakkumine
                         </a>
                     </p>
@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-6">
                     <p class="settings">
-                        <a href="#">
+                        <a href="javascript:undefined">
                             <span class="icon"><i class="fa fa-wrench"></i></span>
                             <span class="name">{{restaurant.name}}</span>
                         </a>
@@ -26,13 +26,43 @@
 </div>
 <div class="content" ng-controller="RestaurantOfferListCtrl">
     <div class="container">
+        <div class="new-offer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="new-offer__name">
+                        <input type="text" placeholder="Nimetus">
+                    </p>
+                    <p class="new-offer__type">
+                        <select>
+                            <option value="" disabled selected>Tüüp</option>
+                            <option value="Praad">Praad</option>
+                            <option value="Pasta">Pasta</option>
+                            <option value="Pizza">Pizza</option>
+                            <option value="Supp">Supp</option>
+                            <option value="Salat">Salat</option>
+                            <option value="Magustoit">Magustoit</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="col-sm-10">
+                    <p class="new-offer__desc">
+                        <textarea placeholder="Kirjeldus" rows="3"></textarea>
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <p class="new-offer__price">
+                        <input type="number" placeholder="Hind">
+                    </p>
+                </div>
+            </div>
+        </div>
         <h3 class="day-sep">
             Esmaspäev,  1. detsember
         </h3>
         <div class="offer" ng-repeat="offer in offers | orderBy:'offer.date' | filter:'La Dolche Vita' ">
             <div class="row">
                 <div class="col-xs-21 col-sm-21 col-lg-22">
-                    <p class="icon edit"><a href="#"><i class="fa fa-pencil"></i></a></p>
+                    <p class="icon edit"><a href="javascript:undefined"><i class="fa fa-pencil"></i></a></p>
                     <h2>{{offer.title}}</h2>
                     <p class="info">{{offer.description}}</p>
                 </div>
