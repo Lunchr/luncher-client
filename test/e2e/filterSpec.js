@@ -8,7 +8,6 @@ describe('Praad App', function() {
   });
 
   describe('Offer list view', function() {
-
     var offers;
 
     beforeEach(function() {
@@ -17,7 +16,8 @@ describe('Praad App', function() {
     });
 
     it('should initially have 3 offers', function() {
-      expect(offers.count()).toBe(3);
+      offers.count(); // I don't know why but this fixes an issue with the count being 0
+      expect(offers.count()).toBe(13);
     });
 
     it('should filter the offer list as user types into the search box', function() {
@@ -25,7 +25,7 @@ describe('Praad App', function() {
 
       expect(offers.count()).toBe(1);
       var title = offers.first().element(by.binding('{{offer.title}}')).getText();
-      expect(title).toBe('SWEET & SOUR CHICKEN');
+      expect(title).toBe('Pekingi kana');
     });
   });
 });
