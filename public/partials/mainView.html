@@ -2,27 +2,30 @@
     <div class="container">
         <div class="header-wrapper">
             <div class="row">
-                <div class="col-md-6" ng-controller="SearchCtrl">
-                    <input class="search" type="text" placeholder="Otsi söögikohta või sööki..." ng-model="query">
+                <div class="col-md-6 xol-xs-1" ng-controller="SearchCtrl">
+                    <div class="search-wrapper">
+                        <input id="search" type="text" ng-model="query">
+                        <button id="search-submit"></button>
+                    </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-xs-22">
                     <date/>
                 </div>
-                <div class="col-md-6"></div>
+                <div class="col-md-6 col-xs-1"></div>
             </div>
         </div>
     </div>
 </div>
-<div class="controls">
+<div class="content" ng-controller="OfferListCtrl">
     <div class="container">
-        <div class="controls-wrapper">
+        <div class="controls">
             <div class="row">
-                <div class="col-xs-7">
-                    <offers-sorter order-by="restaurant.name">
+                <div class="col-xs-6 col-sm-6 col-lg-6">
+                    <offers-sorter id="location-sort-label" order-by="restaurant.name">
                         Asukoht
                     </offers-sorter>
                 </div>
-                <div class="col-md-15" ng-controller="TagListCtrl">
+                <div class="col-xs-13 col-sm-15 col-lg-16 filter" ng-controller="TagListCtrl">
                     <form action="">
                         <span ng-repeat="tag in tagList">
                             <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
@@ -30,29 +33,32 @@
                         </span>
                     </form>
                 </div>
-                <div class="col-md-2">
+                <div class="col-xs-3 col-lg-2">
                     <offers-sorter is-numeric="true" order-by="price" id="price-sort-label">
                         Hind
                     </offers-sorter>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="offers" ng-controller="OfferListCtrl">
-    <div class="container">
-        <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}">
+        <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="toggle.state = !toggle.state" ng-class="{'expand' : toggle.state}">
             <div class="row">
-                <div class="col-xs-7">
-                    <p class="icon"><a href="javascript:undefined"><i class="fa fa-star"></i></a></p>
+                <div class="col-xs-1 col-sm-6 col-lg-6">
+                    <p class="icon"><a href="javascript:undefined"></a></p>
                     <p class="name">{{offer.restaurant.name}}</p>
                 </div>
-                <div class="col-xs-15">
+                <div class="col-xs-18 col-sm-15 col-lg-16">
                     <h2>{{offer.title}}</h2>
-                    <p class="info">{{offer.description}}</p>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-3 col-lg-2">
                     <p class="price">{{offer.price}} €</p>
+                </div>
+            </div>
+            <div class="row secondary">
+                <div class="col-xs-1 col-sm-6 col-lg-6">
+                    <p class="info">{{offer.restaurant.address}}</p>
+                </div>
+                <div class="col-xs-23 col-sm-18 col-lg-18">
+                    <p class="info">{{offer.description}}</p>
                 </div>
             </div>
         </div>
