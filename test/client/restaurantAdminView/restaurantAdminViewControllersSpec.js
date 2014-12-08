@@ -6,7 +6,7 @@ describe('OfferList cotrollers', function() {
     var $scope;
 
     beforeEach(inject(function($rootScope, $controller, $httpBackend) {
-      $httpBackend.expectGET('api/restaurant').respond(offerUtils.getMockRestaurant());
+      $httpBackend.expectGET('api/v1/restaurant').respond(offerUtils.getMockRestaurant());
 
       $scope = $rootScope.$new();
       $controller('RestaurantAdminViewCtrl', {
@@ -26,7 +26,7 @@ describe('OfferList cotrollers', function() {
     var restaurantId = 'someId';
 
     beforeEach(inject(function($rootScope, $controller, $httpBackend) {
-      $httpBackend.expectGET('api/offers?restaurant=' + restaurantId).respond(offerUtils.getMockOffers());
+      $httpBackend.expectGET('api/v1/restaurant/offers').respond(offerUtils.getMockOffers());
 
       $scope = $rootScope.$new();
       $rootScope.restaurant = {

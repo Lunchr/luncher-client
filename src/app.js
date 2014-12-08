@@ -5,55 +5,21 @@
    */
 
   var express = require('express'),
+    serveStatic = require('serve-static'),
     http = require('http'),
     path = require('path'),
-    api = require('./routes/api'),
-    mongoose = require('mongoose'),
-    config = require('./config'),
-    failed = false;
+    config = require('./config');
 
   var app = module.exports = express();
 
-  var connect = function() {
-    var options = {
-      server: {
-        socketOptions: {
-          keepAlive: 1
-        }
-      }
-    };
-    mongoose.connect(config.dbAdress, options);
-  };
-  connect();
-
-  // Error handler
-  mongoose.connection.on('error', function(err) {
-    failed = true;
-    console.error(err);
-  });
-
-  // Reconnect when closed
-  mongoose.connection.on('disconnected', function() {
-    if (!failed) connect();
-  });
-
-
-  /**
-   * Configuration
-   */
-
-  var wrapAndCallIfNotFailed = function(f) {
-    return function(_, __, next){
-      if (!failed) f.apply(this, arguments);
-      else next();
-    };
-  };
-
-  app.get('/api/offers', wrapAndCallIfNotFailed(api.offers.get));
-  app.get('/api/tags', wrapAndCallIfNotFailed(api.tags.get));
-
   app.set('port', config.port);
-  app.use(express.static(path.join(__dirname, '..', 'public')));
+  var publicDir = path.join(__dirname, '..', 'public');
+  var apiDir = path.join(publicDir, 'api');
+  app.use('/api', serveStatic(apiDir, {
+    'index': 'index.json',
+    'extensions': ['json'],
+  }));
+  app.use(serveStatic(publicDir));
 
   /**
    * Start Server

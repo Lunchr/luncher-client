@@ -6,15 +6,13 @@
 
   offerListControllers.controller('RestaurantAdminViewCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.restaurant = $resource('api/restaurant').get();
+      $scope.restaurant = $resource('api/v1/restaurant').get();
     }
   ]);
 
   offerListControllers.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.offers = $resource('api/offers', {
-        restaurant: $scope.$parent.restaurant._id
-      }).query();
+      $scope.offers = $resource('api/v1/restaurant/offers').query();
     }
   ]);
 })();

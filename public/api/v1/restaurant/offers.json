@@ -1,0 +1,23 @@
+[{
+  "id": "5",
+  "restaurant": {
+    "name": "La Dolche Vita"
+  },
+  "title": "Lambaliha & parmesaniga pasta",
+  "description": "Donec elementum rutrum dolor, et ultrices neque hendrerit dictum.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "tags": ["lammas"]
+}, {
+  "id": "6",
+  "restaurant": {
+    "name": "La Dolche Vita"
+  },
+  "title": "Salaami & ananassi pizza",
+  "description": "Praesent vitae lorem enim. Nulla sed tellus arcu.",
+  "fromTime": "2014-11-11T09:00:00.000Z",
+  "toTime": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "tags": ["veis"]
+}]
