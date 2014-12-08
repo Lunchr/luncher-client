@@ -81,6 +81,14 @@ module.exports = function(grunt) {
         tasks: ['karma:dev:run']
       }
     };
+    config.sed = {
+      clean_lcov: {
+        path: 'coverage/',
+        pattern: 'SF:./',
+        replacement: 'SF:',
+        recursive: true
+      }
+    };
     config.coveralls = {
       options: {
         force: true,
@@ -165,7 +173,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('e2e', ['shell:protractor_update', 'express:dev', 'protractor:ci']);
   grunt.registerTask('once', ['jshint', 'karma:once']);
-  grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'e2e', 'coveralls']);
+  grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'sed:clean_lcov', 'e2e', 'coveralls']);
   grunt.registerTask('dev', ['express:dev', 'watch:sass']);
 
 };
