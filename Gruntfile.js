@@ -142,23 +142,30 @@ module.exports = function(grunt) {
       };
     })();
   })();
+  (function configureSass() {
+    config.sass = {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: {
+          'public/css/main.css': 'sass/main.scss'
+        }
+      }
+    };
+    config.watch.sass = {
+      files: ['sass/*.scss'],
+      tasks: ['sass:dist']
+    };
+  })();
 
   // Project configuration.
   grunt.initConfig(config);
-
-  grunt.loadNpmTasks('grunt-karma-coveralls');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-protractor-runner');
-  grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-express-server');
+  require('load-grunt-tasks')(grunt);
 
   grunt.registerTask('e2e', ['shell:protractor_update', 'express:dev', 'protractor:ci']);
   grunt.registerTask('once', ['jshint', 'karma:once']);
   grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'e2e', 'coveralls']);
-  grunt.registerTask('dev', ['karma:dev', 'watch']);
+  grunt.registerTask('dev', ['express:dev', 'watch:sass']);
 
 };
