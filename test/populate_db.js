@@ -14,7 +14,7 @@
     config = require('./../src/config');
 
   function readApiJson(fileName) {
-    return JSON.parse(fs.readFileSync(__dirname + '/../public/api/' + fileName));
+    return JSON.parse(fs.readFileSync(__dirname + '/../public/api/v1/' + fileName));
   }
 
   function loggingCallback(action, cb) {

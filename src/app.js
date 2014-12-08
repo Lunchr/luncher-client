@@ -5,6 +5,7 @@
    */
 
   var express = require('express'),
+    serveStatic = require('serve-static'),
     http = require('http'),
     path = require('path'),
     api = require('./routes/api'),
@@ -49,11 +50,17 @@
     };
   };
 
-  app.get('/api/offers', wrapAndCallIfNotFailed(api.offers.get));
-  app.get('/api/tags', wrapAndCallIfNotFailed(api.tags.get));
+  app.get('/api/v1/offers', wrapAndCallIfNotFailed(api.offers.get));
+  app.get('/api/v1/tags', wrapAndCallIfNotFailed(api.tags.get));
 
   app.set('port', config.port);
-  app.use(express.static(path.join(__dirname, '..', 'public')));
+  var publicDir = path.join(__dirname, '..', 'public');
+  var apiDir = path.join(publicDir, 'api');
+  app.use('/api', serveStatic(apiDir, {
+    'index': 'index.json',
+    'extensions': ['json'],
+  }));
+  app.use(serveStatic(publicDir));
 
   /**
    * Start Server

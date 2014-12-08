@@ -8,13 +8,13 @@
 
   offerListControllers.controller('OfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.offers = $resource('api/offers').query();
+      $scope.offers = $resource('api/v1/offers').query();
     }
   ]);
 
   offerListControllers.controller('TagListCtrl', ['$scope', 'offerFilterState', '$resource',
     function($scope, offerFilterState, $resource) {
-      $scope.tagList = $resource('api/tags').query();
+      $scope.tagList = $resource('api/v1/tags').query();
 
       $scope.$watch('tagList', function(tagList) {
         offerFilterState.selectedTags = [];
