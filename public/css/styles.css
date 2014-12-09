@@ -15,7 +15,7 @@ body {
 }
 .content {
     min-height: 100%;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.9);
     padding-bottom: 10px;
 }
 h1,
@@ -51,13 +51,13 @@ textarea, input {
     left: 5px;
 }
 .btn {
-    padding: 6px 12px;
-    border-radius: 3px;
+    padding: 8px 18px;
+    border-radius: 2px;
     background: #4385ff;
     color: #fff;
     text-decoration: none;
     transition: .2s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 .btn:hover {
     background: #1577e9;
@@ -318,14 +318,13 @@ textarea, input {
 /***** OFFERS *****/
 .offer {
     position: relative;
-    border-radius: 3px;
     padding: 11px 15px 9px 12px;
-    margin-bottom: 8px;
     background-color: #fff;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
     cursor: pointer;
 }
-.offer:hover {
+.offer:hover,
+.offer.expand {
     background-color: rgba(255, 255, 255, 0.8);
 }
 .offer p {
@@ -373,7 +372,8 @@ h2,
 .time,
 .offer .name {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 25px;
     font-weight: 400;
 }
 .date {
@@ -432,11 +432,10 @@ h2+.info:before {
 }
 .new-offer {
     position: relative;
-    border-radius: 0 0 3px 3px;
-    padding:  15px 15px 0;
-    margin-bottom: 8px;
+    padding:  20px 20px 10px;
+    margin-top: 8px;
     background-color: #fff;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
     cursor: pointer;
 }
 .new-offer p {
@@ -452,7 +451,7 @@ h2+.info:before {
     padding: 0 5px;
     -webkit-appearance: none;
     border: none;
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid #bbb;
     border-radius: 0;
     font-size: 14px;
     line-height: 22px;
@@ -474,7 +473,7 @@ h2+.info:before {
     top: 13px;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
-    border-top: 4px solid #222;
+    border-top: 4px solid #555;
 }
 .new-offer__type:before {
     position: absolute;
@@ -485,7 +484,7 @@ h2+.info:before {
     top: 7px;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
-    border-bottom: 4px solid #222;
+    border-bottom: 4px solid #555;
 }
 .new-offer textarea {
     line-height: 24px;
@@ -507,7 +506,13 @@ h2+.info:before {
     width: 100%;
     height: 1px;
     bottom: 5px;
-    background: #999;
+    background: #bbb;
+}
+.new-offer .new-offer__submit {
+    text-align: right;
+}
+.new-offer__submit .cancel {
+    padding: 3px 10px;
 }
 
 /***** FOOTER *****/
