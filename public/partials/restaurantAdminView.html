@@ -1,10 +1,10 @@
 <div class="header">
     <div class="container">
-        <div class="header-wrapper">
+        <div class="header__wrapper">
             <div class="row">
                 <div class="col-xs-6">
-                    <p class="new-offer-btn">
-                        <a class="btn" href="javascript:undefined">
+                    <p class="btn-wrapper">
+                        <a class="btn btn-light" href="javascript:undefined">
                             Lisa uus pakkumine
                         </a>
                     </p>
@@ -26,53 +26,35 @@
 </div>
 <div class="content" ng-controller="RestaurantOfferListCtrl">
     <div class="container">
-        <div class="new-offer">
-            <div class="row">
-                <div class="col-sm-7">
-                    <p class="new-offer__name">
-                        <input type="text" placeholder="Nimetus">
-                    </p>
-                    <p class="new-offer__type">
-                        <select>
-                            <option value="" disabled selected>Tüüp</option>
-                            <option value="Praad">Praad</option>
-                            <option value="Pasta">Pasta</option>
-                            <option value="Pizza">Pizza</option>
-                            <option value="Supp">Supp</option>
-                            <option value="Salat">Salat</option>
-                            <option value="Magustoit">Magustoit</option>
-                        </select>
-                    </p>
-                </div>
-                <div class="col-sm-12">
-                    <p class="new-offer__desc">
-                        <textarea placeholder="Kirjeldus" rows="3"></textarea>
-                    </p>
-                </div>
-                <div class="col-sm-5">
-                    <p class="new-offer__price">
-                        <input type="number" placeholder="Hind">
-                    </p>
-                </div>
-            </div>
+        <div class="form">
             <div class="row">
                 <div class="col-sm-7">
                     <p>
-                        <input type="text" placeholder="Nimetus">
+                        <input ng-model="newOfferName" id="new-offer-name" type="text">
+                        <label ng-class="{ 'filled': newOfferName.length }" for="new-offer-name">Nimetus</label>
+                    </p>
+                    <p>
+                        <input ng-model="newOfferTags" id="new-offer-tags" type="text">
+                        <label ng-class="{ 'filled': newOfferTags.length }" for="new-offer-teags">Tags</label>
                     </p>
                 </div>
                 <div class="col-sm-12">
                     <p>
-                        <input type="text" placeholder="Tags">
+                        <textarea ng-model="newOfferDesc" id="new-offer-desc"></textarea>
+                        <label ng-class="{ 'filled': newOfferDesc.length }" for="new-offer-desc">Kirjeldus</label>
                     </p>
                 </div>
                 <div class="col-sm-5">
-                    <p class="new-offer__submit">
-                        <a class="cancel" href="javascript:undefined">
-                            Loobu
-                        </a>
+                    <p>
+                        <input ng-model="newOfferPrice" id="new-offer-price" type="number">
+                        <label ng-class="{ 'filled': newOfferPrice.length }" for="new-offer-price">Hind</label>
+                    </p>
+                    <p>
                         <a class="btn" href="javascript:undefined">
                             Salvesta
+                        </a>
+                        <a class="btn btn-secondary" href="javascript:undefined">
+                            Loobu
                         </a>
                     </p>
                 </div>
@@ -81,15 +63,17 @@
         <h3 class="day-sep">
             Esmaspäev,  1. detsember
         </h3>
-        <div class="offer" ng-repeat="offer in offers | orderBy:'offer.date' | filter:'La Dolche Vita' ">
-            <div class="row">
-                <div class="col-xs-21 col-sm-21 col-lg-22">
-                    <p class="icon edit"><a href="javascript:undefined"><i class="fa fa-pencil"></i></a></p>
-                    <h2>{{offer.title}}</h2>
-                    <p class="info">{{offer.description}}</p>
-                </div>
-                <div class="col-xs-3 col-lg-2">
-                    <p class="price">{{offer.price}} €</p>
+        <div class="offers-wrapper">
+            <div class="offer" ng-repeat="offer in offers | orderBy:'offer.date' | filter:'La Dolche Vita' " ng-class="{first : $first, last : $last}">
+                <div class="row">
+                    <div class="col-xs-21 col-sm-21 col-lg-22">
+                        <p class="icon edit"><a href="javascript:undefined"><i class="fa fa-pencil"></i></a></p>
+                        <h2>{{offer.title}}</h2>
+                        <p class="info">{{offer.description}}</p>
+                    </div>
+                    <div class="col-xs-3 col-lg-2">
+                        <p class="price">{{offer.price}} €</p>
+                    </div>
                 </div>
             </div>
         </div>

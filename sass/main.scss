@@ -1,3 +1,556 @@
-.id {
-  height: 100px;
+
+$color: #f1a121;
+$color-h: #f5ab49;
+$color-a: #ec9420;
+
+$color-secondary: #222;
+$color-secondary-2: #bbb;
+
+$font-family: 'Roboto', sans-serif;
+$font-size: 13px;
+$font-weight: 300;
+$font: $font-weight $font-size $font-family;
+
+.material-box {
+    position: relative;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    transition: .2s;
+}
+
+/***** MAIN *****/
+html, body {
+    height: 100%;
+}
+body {
+    background-image: url(../img/bg.png);
+    background-position: top center;
+    background-size: cover;
+    font: $font;
+    color: $color-secondary;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: $color;
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-a;
+    }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family;
+}
+
+/***** FORMS *****/
+.form {
+    @extend .material-box;
+    margin-top: 8px;
+    padding-bottom: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    p {
+        position: relative;
+        margin: 0 0 25px;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=number],
+    input[type=date],
+    textarea,
+    select {
+        width: 100%;
+        padding: 3px 5px;
+        -webkit-appearance: none;
+        border: none;
+        border-bottom: 1px solid $color-secondary-2;
+        border-radius: 0;
+        line-height: 22px;
+        resize: none;
+        background: #fff;
+        outline: none;
+        font: $font;
+        transition: .2s;
+    }
+    input[type=text]:focus,
+    input[type=password]:focus,
+    input[type=email]:focus,
+    input[type=number]:focus,
+    input[type=date]:focus,
+    textarea:focus,
+    select:focus {
+        border-bottom: 1px solid $color-h;
+    }
+    textarea {
+        height: 72px;
+    }
+    label {
+        position: absolute;
+        top: 0;
+        left: 5px;
+        transition: .2s;
+    }
+    input[type=text]:focus + label,
+    input[type=password]:focus + label,
+    input[type=email]:focus + label,
+    input[type=number]:focus + label,
+    input[type=date]:focus + label,
+    textarea:focus + label,
+    label.filled
+    {
+        top: -12px;
+        font-size: 10px;
+        color: $color-h;
+    }
+    label.filled {
+        color: $color-secondary-2;
+    }
+    .btn {
+        float: right;
+    }
+}
+
+/***** ICONS *****/
+.icon {
+    float: left;
+    position: relative;
+    width: 22px;
+    height: 22px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    a {
+        display: block;
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+    }
+    i {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
+}
+
+/***** BUTTONS *****/
+.btn {
+    @extend .material-box;
+    padding: 8px 18px;
+    background: $color;
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+        background: $color-h;
+        color: #fff;
+    }
+    &:focus,
+    &:active {
+        background: $color-a;
+        color: #fff;
+    }
+    &.btn-light {
+        background: #fff;
+        color: $color-a;
+        &:hover {
+            background: rgba(255, 255, 255, 0.85);
+            color: $color-a;
+        }
+        &:focus,
+        &:active {
+            background: rgba(255, 255, 255, 0.75);
+            color: $color-a;
+        }
+    }
+    &.btn-secondary {
+        padding: 8px 18px;
+        color: $color;
+        background: transparent;
+        box-shadow: none;
+    }
+}
+.btn-wrapper {
+    display: inline-block;
+    margin: 7px 0;
+}
+
+/***** HEADER *****/
+.header {
+    position: relative;
+    height: 46px;
+    background: $color;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    color: #fff;
+    .header__wrapper {
+        padding: 8px 0;
+    }
+    #date {
+        margin: 2px;
+        font-size: 18px;
+        font-weight: $font-weight;
+        font-family: $font-family;
+        text-align: center;
+    }
+    #logo {
+        position: absolute;
+
+        width: 200px;
+        height: 30px;
+        top: 9px;
+        left: 50%;
+        margin-left: -100px;
+        background-image: url(../img/luncher-logo-typo-white.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+}
+
+/*---SASSIFY search */
+.search-wrapper {
+    display: inline-block;
+    position: relative;
+    width: auto;
+}
+#search {
+    position: relative;
+    padding: 4px 29px 3px 12px;
+    width: 40px;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #222;
+    background: transparent;
+    z-index: 5;
+    font-family: 'Proxima Nova', sans-serif;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    -moz-transition-property: all;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-timing-function: default;
+    -moz-transition-delay: 0s;
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: default;
+    -webkit-transition-delay: 0s;
+    -o-transition-property: all;
+    -o-transition-duration: 0.2s;
+    -o-transition-timing-function: default;
+    -o-transition-delay: 0s;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: default;
+    transition-delay: 0s;
+}
+#search-submit {
+    position: absolute;
+    right: 2px;
+    top: 0px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    z-index: 3;
+}
+#search-submit:before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 10px;
+    height: 9px;
+    width: 9px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+}
+#search-submit:after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 19px;
+    height: 1px;
+    width: 4px;
+    transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    background: #fff;
+}
+#search-submit:focus {
+    outline: none;
+}
+#search:focus,
+#search.filled {
+    width: 250px;
+    background: #fff;
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.07);
+    z-index: 1;
+    cursor: text;
+}
+#search:focus + #search-submit,
+#search.filled + #search-submit {
+    right: 0px;
+}
+#search:focus + #search-submit:before,
+#search.filled + #search-submit:before {
+    left: 8px;
+    top: 15px;
+    height: 1px;
+    width: 14px;
+    transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    background: $color;
+    border: none;
+}
+#search:focus + #search-submit:after,
+#search.filled + #search-submit:after {
+    background: $color;
+    width: 14px;
+    left: 8px;
+    top: 15px;
+}
+#search:focus:hover,
+#search.filled:hover {
+    background: #fff;
+}
+#search:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+/***** CONTENT *****/
+.content {
+    min-height: 100%;
+    background: rgba(255,255,255,0.9);
+    padding-bottom: 10px;
+}
+
+/***** CONTROLS BAR *****/
+.controls {
+    height: 42px;
+    padding: 13px 16px 13px 13px;
+    color: $color;
+    font-size: 13px;
+    .control-label {
+        margin: 0;
+        font: $font;
+        a {
+            color: $color;
+        }
+        .icon {
+            top: -2px;
+            width: 32px;
+            font-size: 11px;
+            margin-right: 0;
+            i {
+                position: absolute;
+                top: 5px;
+                left: 5px;
+            }
+        }
+    }
+    #price-sort-label .icon {
+        position: absolute;
+        left: -10px;
+    }
+    label {
+        margin-right: 5px;
+        margin-left: -14px;
+        padding-left: 16px;
+        font: $font;
+        cursor: pointer;
+        &:before {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 2px;
+            width: 11px;
+            height: 11px;
+            border-radius: 2px;
+            border: 1px solid $color;
+        }
+    }
+    input[type=checkbox] {
+        cursor: pointer;
+    }
+    a:hover,
+    a:focus,
+    input[type=checkbox]:checked + label,
+    input[type=checkbox]:hover + label,
+    input[type=checkbox] + label:hover {
+        text-decoration: none;
+        color: $color;
+    }
+    form span {
+        position: relative;
+        margin-right: 15px;
+        font: $font;
+    }
+    input {
+        visibility: hidden;
+    }
+    input[type=checkbox]:checked + label:before {
+        background: $color;
+    }
+}
+.sorter-icon-wrapper.ng-hide{
+    display:inline!important;
+    visibility: hidden;
+}
+
+
+/***** OFFERS *****/
+
+.offers-wrapper {
+    @extend .material-box;
+    padding: 0;
+    background-color: #fff;
+    .offer {
+        position: relative;
+        padding: 11px 15px 9px 12px;
+        cursor: pointer;
+        border-bottom: 1px solid #f0f0f0;
+        &.last {
+            border: none;
+        }
+        &:hover,
+        &.expand {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        p {
+            font-family: 'Proxima Nova', sans-serif;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .icon {
+            a:before {
+                content: "";
+                position: absolute;
+                height: 10px;
+                width: 10px;
+                left: 6px;
+                top: 7px;
+                border-radius: 6px;
+                border: 1px solid #e0e0e0;
+                transition: .2s;
+            }
+            a:hover:before {
+                border: 1px solid #b3b3b3;
+            }
+            a:focus:before,
+            a:active:before {
+                background: $color;
+                border: 1px solid $color;
+            }
+        }
+        h2,
+        .price,
+        .time,
+        .name {
+            margin: 0;
+            font-size: 16px;
+            line-height: 25px;
+            font-weight: 300;
+        }
+        .time,
+        h2 {
+            float: left;
+            margin-right: 8px;
+        }
+        .name {
+            margin-right: 8px;
+        }
+        .info {
+            position: relative;
+            margin-top: 2px;
+            margin-bottom: 0;
+            font-size: 13px;
+            height: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        h2+.info {
+            margin-top: 5px;
+            padding-left: 12px;
+        }
+        h2+.info:before {
+            content: '';
+            position: absolute;
+            top: 9px;
+            left: 0;
+            height: 1px;
+            width: 4px;
+            background: #222;
+        }
+        .secondary {
+            display: none;
+        }
+        &.expand .secondary {
+            display: block;
+        }
+    }
+}
+.day-sep {
+    margin: 12px 0 10px;
+    color: $color-a;
+    font: $font;
+}
+
+/***** MEDIA *****/
+@media ( max-width: 992px ) {
+    #date {
+        position: absolute;
+        top: -30px;
+        width: 100%;
+    }
+}
+@media ( max-width: 767px ) {
+    .offer .name {
+        display: none;
+    }
+    .offer h2 {
+        position: absolute;
+        left: 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .offer .price {
+        position: absolute;
+        right: 0px;
+    }
+    .controls {
+        display: none;
+    }
+    .content {
+        padding-top: 8px;
+    }
+}
+@media ( max-width: 620px ) {
+    .offer h2 {
+        width: 85%;
+        left: 14px;
+    }
+    .offer h2,
+    .offer .price {
+        font-size: 15px;
+        padding: 1px 0;
+    }
+    .offer .icon a:before {
+        left: 5px;
+        top: 6px;
+    }
 }
