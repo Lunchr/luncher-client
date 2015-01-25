@@ -17,3 +17,4 @@ node_modules
 
 public/lib
 coverage
+public/css/main.css*
