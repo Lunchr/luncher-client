@@ -1,7 +1,7 @@
 
-$color: #f1a121;
-$color-h: #f5ab49;
-$color-a: #ec9420;
+$color: #ee9910;
+$color-h: #ec8a0b;
+$color-a: #e07b09;
 
 $color-secondary: #222;
 $color-secondary-2: #bbb;
@@ -13,7 +13,7 @@ $font: $font-weight $font-size $font-family;
 
 .material-box {
     position: relative;
-    padding: 30px;
+    padding: 20px;
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.3);
@@ -53,8 +53,9 @@ h6 {
 /***** FORMS *****/
 .form {
     @extend .material-box;
-    margin-top: 8px;
+    margin-top: 15px;
     padding-bottom: 10px;
+    padding-top: 25px;
     background-color: #fff;
     cursor: pointer;
     p {
@@ -122,23 +123,15 @@ h6 {
 /***** ICONS *****/
 .icon {
     float: left;
+    display: block;
     position: relative;
     width: 22px;
     height: 22px;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-right: 10px;
+    margin: 0 10px 0 0;
     cursor: pointer;
     a {
-        display: block;
-        width: 22px;
-        height: 22px;
-        cursor: pointer;
-    }
-    i {
         position: absolute;
-        top: 5px;
-        left: 5px;
+        top: 3px;
     }
 }
 
@@ -161,15 +154,6 @@ h6 {
     &.btn-light {
         background: #fff;
         color: $color-a;
-        &:hover {
-            background: rgba(255, 255, 255, 0.85);
-            color: $color-a;
-        }
-        &:focus,
-        &:active {
-            background: rgba(255, 255, 255, 0.75);
-            color: $color-a;
-        }
     }
     &.btn-secondary {
         padding: 8px 18px;
@@ -182,6 +166,9 @@ h6 {
     position: absolute;
     right: 0;
     margin: 7px 0;
+}
+#add-new:before {
+    display: none;
 }
 
 /***** HEADER *****/
@@ -227,7 +214,7 @@ h6 {
 }
 #search {
     position: relative;
-    padding: 4px 29px 3px 12px;
+    padding: 4px 38px 3px 12px;
     width: 40px;
     height: 30px;
     font-size: 14px;
@@ -258,36 +245,14 @@ h6 {
 }
 #search-submit {
     position: absolute;
-    right: 2px;
-    top: 0px;
+    right: 6px;
+    top: 0;
     width: 30px;
     height: 30px;
+    padding-top: 7px;
     background: transparent;
     border: none;
     z-index: 3;
-}
-#search-submit:before {
-    content: "";
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    height: 9px;
-    width: 9px;
-    border-radius: 5px;
-    border: 1px solid #fff;
-}
-#search-submit:after {
-    content: "";
-    position: absolute;
-    left: 17px;
-    top: 19px;
-    height: 1px;
-    width: 4px;
-    transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    background: #fff;
 }
 #search-submit:focus {
     outline: none;
@@ -300,29 +265,10 @@ h6 {
     z-index: 1;
     cursor: text;
 }
-#search:focus + #search-submit,
-#search.filled + #search-submit {
-    right: 0px;
-}
-#search:focus + #search-submit:before,
-#search.filled + #search-submit:before {
-    left: 8px;
-    top: 15px;
-    height: 1px;
-    width: 14px;
-    transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    background: $color;
-    border: none;
-}
-#search:focus + #search-submit:after,
-#search.filled + #search-submit:after {
-    background: $color;
-    width: 14px;
-    left: 8px;
-    top: 15px;
+#search:focus + #search-submit.icon-7:before,
+#search.filled + #search-submit.icon-7:before {
+    content: "i" !important;
+    color: $color;
 }
 #search:focus:hover,
 #search.filled:hover {
@@ -330,6 +276,23 @@ h6 {
 }
 #search:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+/***** MENU *****/
+
+#menu-btn {
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    width: 30px;
+    height: 30px;
+    padding-top: 7px;
+    background: transparent;
+    border: none;
+    z-index: 1;
+}
+#menu-btn:focus {
+    outline: none;
 }
 
 /***** CONTENT *****/
@@ -358,8 +321,8 @@ h6 {
             margin-right: 0;
             i {
                 position: absolute;
-                top: 5px;
-                left: 5px;
+                top: 1px;
+                left: -1px;
             }
         }
     }
@@ -370,7 +333,7 @@ h6 {
     label {
         margin-right: 5px;
         margin-left: -14px;
-        padding-left: 16px;
+        padding-left: 14px;
         font: $font;
         cursor: pointer;
         &:before {
@@ -380,7 +343,7 @@ h6 {
             top: 2px;
             width: 11px;
             height: 11px;
-            border-radius: 2px;
+            border-radius: 50%;
             border: 1px solid $color;
         }
     }
@@ -438,24 +401,16 @@ h6 {
             text-overflow: ellipsis;
         }
         .icon {
-            a:before {
-                content: "";
-                position: absolute;
-                height: 10px;
-                width: 10px;
-                left: 6px;
-                top: 7px;
-                border-radius: 6px;
-                border: 1px solid #e0e0e0;
-                transition: .2s;
+            a {
+                color: #e0e0e0;
             }
-            a:hover:before {
-                border: 1px solid #b3b3b3;
+            a:hover {
+                color: #b3b3b3;
             }
             a:focus:before,
             a:active:before {
-                background: $color;
-                border: 1px solid $color;
+                content: "k";
+                color: $color;
             }
         }
         h2,
@@ -531,6 +486,12 @@ h6 {
         white-space: nowrap;
         text-overflow: ellipsis;
     }
+    .offers-wrapper .offer h2,
+    .offers-wrapper .offer .price {
+        font-size: $font-size;
+        line-height: 20px;
+        padding: 1px 0;
+    }
     .offer .price {
         position: absolute;
         right: 0px;
@@ -539,7 +500,37 @@ h6 {
         display: none;
     }
     .content {
-        padding-top: 8px;
+        padding-top: 15px;
+    }
+    .search-wrapper,
+    #search:focus,
+    #search.filled {
+        width: 100%;
+    }
+    #search {
+        float: right;
+    }
+    .form {
+        margin-top: 0;
+        padding-bottom: 20px;
+    }
+    .btn-wrapper {
+        margin: -1px 0;
+    }
+    #add-new {
+        display: block;
+        width: 0;
+        height: 0;
+        padding: 16px 17px 15px;
+        color: #fff;
+        overflow: hidden;
+        &:before {
+            position: absolute;
+            display: inline;
+            top: 8px;
+            left: 7px;
+            color: $color;
+        }
     }
 }
 @media ( max-width: 620px ) {
@@ -547,13 +538,97 @@ h6 {
         width: 85%;
         left: 14px;
     }
-    .offer h2,
-    .offer .price {
-        font-size: 15px;
-        padding: 1px 0;
+    .offer .icon a {
+        top: 2px;
     }
-    .offer .icon a:before {
-        left: 5px;
-        top: 6px;
+    .offers-wrapper .offer .price {
+        position: absolute;
+        right: 10px;
     }
+}
+
+/***** FONTS *****/
+
+@charset "UTF-8";
+
+@font-face {
+    font-family: "luncher-icons";
+    src:url("../fonts/luncher-icons.eot");
+    src:url("../fonts/luncher-icons.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/luncher-icons.woff") format("woff"),
+        url("../fonts/luncher-icons.ttf") format("truetype"),
+        url("../fonts/luncher-icons.svg#untitled-font-3") format("svg");
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+[data-icon]:before {
+    font-family: "luncher-icons" !important;
+    content: attr(data-icon);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    font-size: 20px;
+    font-family: "luncher-icons" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-1:before {
+    content: "a";
+}
+.icon-2:before {
+    content: "b";
+}
+.icon-3:before {
+    content: "c";
+}
+.icon-4:before {
+    content: "d";
+}
+.icon-5:before {
+    content: "e";
+}
+.icon-6:before {
+    content: "f";
+}
+.icon-7:before {
+    content: "g";
+}
+.icon-8:before {
+    content: "h";
+}
+.icon-9:before {
+    content: "i";
+}
+.icon-10:before {
+    content: "j";
+}
+.icon-11:before {
+    content: "k";
+}
+.icon-12:before {
+    content: "l";
+}
+.icon-13:before {
+    content: "m";
+}
+.icon-14:before {
+    content: "n";
 }
