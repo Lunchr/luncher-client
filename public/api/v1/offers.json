@@ -1,7 +1,8 @@
 [{
   "id": "1",
   "restaurant": {
-    "name": "Asian Chef"
+    "name": "Asian Chef",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Pekingi kana",
   "description": "Kanafilee aedviljadega rikkalikus magushapus kastmes.",
@@ -12,7 +13,8 @@
 }, {
   "id": "2",
   "restaurant": {
-    "name": "Bulgarian Dude"
+    "name": "Bulgarian Dude",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Magushapu seafilee",
   "description": "Seafilee aedviljadega rikkalikus magushapus kastmes.",
@@ -23,7 +25,8 @@
 }, {
   "id": "3",
   "restaurant": {
-    "name": "Feel Good Music Cafe"
+    "name": "Feel Good Music Cafe",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Veiseliha burger koduste friikartulitega",
   "description": "Fusce eu ante ultrices, convallis eros in, egestas sem.",
@@ -34,7 +37,8 @@
 }, {
   "id": "4",
   "restaurant": {
-    "name": "Caesarian Kitchen"
+    "name": "Caesarian Kitchen",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Magushapu pardifilee",
   "description": "Pardifilee aedviljadega rikkalikus magushapus kastmes.",
@@ -45,7 +49,8 @@
 }, {
   "id": "5",
   "restaurant": {
-    "name": "La Dolche Vita"
+    "name": "La Dolche Vita",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Lambaliha & parmesaniga pasta",
   "description": "Donec elementum rutrum dolor, et ultrices neque hendrerit dictum.",
@@ -56,7 +61,8 @@
 }, {
   "id": "6",
   "restaurant": {
-    "name": "La Dolche Vita"
+    "name": "La Dolche Vita",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Salaami & ananassi pizza",
   "description": "Praesent vitae lorem enim. Nulla sed tellus arcu.",
@@ -67,7 +73,8 @@
 }, {
   "id": "7",
   "restaurant": {
-    "name": "Kapriis"
+    "name": "Kapriis",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Koorene singi pasta",
   "description": "Morbi mattis enim ut aliquet blandit.",
@@ -78,7 +85,8 @@
 }, {
   "id": "8",
   "restaurant": {
-    "name": "Pahad Poisid"
+    "name": "Pahad Poisid",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Kodune kotlet praekartuliga",
   "description": "Proin ac lobortis massa. Maecenas finibus magna finibus, ultrices lectus nec, ultrices lorem.",
@@ -89,7 +97,8 @@
 }, {
   "id": "9",
   "restaurant": {
-    "name": "Suudlevad Tudengid"
+    "name": "Suudlevad Tudengid",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Lambakarre punase veini kastmes",
   "description": "Pardifilee aedviljadega rikkalikus magushapus kastmes.",
@@ -100,7 +109,8 @@
 }, {
   "id": "10",
   "restaurant": {
-    "name": "Cookbook"
+    "name": "Cookbook",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Mahlane part ahjuõuntega",
   "description": "Donec elementum rutrum dolor, et ultrices neque hendrerit dictum.",
@@ -111,7 +121,8 @@
 }, {
   "id": "11",
   "restaurant": {
-    "name": "Meatmarket"
+    "name": "Meatmarket",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Minutipihv asteplaju kastmes",
   "description": "Aenean facilisis tellus non augue interdum, quis accumsan sapien semper.",
@@ -122,7 +133,8 @@
 }, {
   "id": "12",
   "restaurant": {
-    "name": "Ülikooli Kohvik"
+    "name": "Ülikooli Kohvik",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Pikpoiss hapukapsa ja ahjukartuliga",
   "description": "Lorem ipsum dolor sit amet, vestibulum dolor ipsum.",
@@ -133,7 +145,8 @@
 }, {
   "id": "13",
   "restaurant": {
-    "name": "Neljapäev"
+    "name": "Neljapäev",
+    "address": "Kompanii 10, Tartu"
   },
   "title": "Heigifilee sidrunise ahjukartuliga",
   "description": "Duis aliquam ipsum arcu, in vestibulum odio iaculis eget. Aliquam erat volutpat.",

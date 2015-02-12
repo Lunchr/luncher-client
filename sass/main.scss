@@ -115,9 +115,6 @@ h6 {
     label.filled {
         color: $color-secondary-2;
     }
-    .btn {
-        float: right;
-    }
 }
 
 /***** ICONS *****/
@@ -145,14 +142,19 @@ h6 {
     &:hover {
         background: $color-h;
         color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
     &:focus,
     &:active {
         background: $color-a;
         color: #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     }
     &.btn-light {
         background: #fff;
+        color: $color-a;
+    }
+    &.btn-light:hover {
         color: $color-a;
     }
     &.btn-secondary {
@@ -161,6 +163,9 @@ h6 {
         background: transparent;
         box-shadow: none;
     }
+}
+.buttons {
+    text-align: right;
 }
 .btn-wrapper {
     position: absolute;
@@ -412,6 +417,9 @@ h6 {
                 content: "k";
                 color: $color;
             }
+            &.edit a {
+                color: #b3b3b3;
+            }
         }
         h2,
         .price,
@@ -453,11 +461,22 @@ h6 {
             width: 4px;
             background: #222;
         }
+        .location {
+            padding-left: 32px;
+        }
         .secondary {
-            display: none;
+            //display: none;
         }
         &.expand .secondary {
             display: block;
+        }
+    }
+}
+.favorites {
+    .icon {
+        a {
+            content: "k";
+            color: $color;
         }
     }
 }
@@ -476,21 +495,33 @@ h6 {
     }
 }
 @media ( max-width: 767px ) {
-    .offer .name {
+    .container {
+        padding: 0 8px;
+    }
+    .offer {
+        min-height: 57px;
+    }
+    .offer .secondary {
         display: none;
     }
-    .offer h2 {
+    .offers-wrapper .offer .name {
+        position: absolute;
+        left: 45px;
+        display: block;
+        line-height: 22px;
+        overflow: visible;
+    }
+    .offers-wrapper .offer h2 {
         position: absolute;
         left: 15px;
+        top: 16px;
+        font-size: 11px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
-    .offers-wrapper .offer h2,
     .offers-wrapper .offer .price {
-        font-size: $font-size;
-        line-height: 20px;
-        padding: 1px 0;
+        line-height: 22px;
     }
     .offer .price {
         position: absolute;
@@ -500,7 +531,7 @@ h6 {
         display: none;
     }
     .content {
-        padding-top: 15px;
+        padding-top: 8px;
     }
     .search-wrapper,
     #search:focus,
@@ -631,4 +662,7 @@ h6 {
 }
 .icon-14:before {
     content: "n";
+}
+.icon-15:before {
+    content: "o";
 }
