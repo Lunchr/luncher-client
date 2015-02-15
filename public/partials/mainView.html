@@ -48,13 +48,23 @@
                         <p class="price">{{offer.price}} €</p>
                     </div>
                 </div>
-                <div class="row secondary">
+                <div class="row additional">
                     <div class="col-xs-1 col-sm-7 col-lg-6">
                         <p class="info location">{{offer.restaurant.address}}</p>
                     </div>
                     <div class="col-xs-23 col-sm-17 col-lg-18">
                         <p class="info">{{offer.description}}</p>
                     </div>
+                </div>
+                <div class="row secondary">
+                        <div class="col-xs-24 col-sm-7 col-lg-6">
+                            <div class="map-wrapper">
+                                <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-24 col-sm-17 col-lg-18">
+                            <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
+                        </div>
                 </div>
             </div>
         </div>

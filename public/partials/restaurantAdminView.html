@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header__wrapper">
             <div class="row">
-                <button id="menu-btn" class="icon-12"></button>
+                <button id="menu-btn" class="icon-1"></button>
                 <div id="logo"></div>
                 <p class="btn-wrapper">
                     <a id="add-new" class="btn btn-light icon-4" href="javascript:undefined">
@@ -16,34 +16,39 @@
 <div class="content" ng-controller="RestaurantOfferListCtrl">
     <div class="container">
         <div class="form">
-            <p>
-                <input ng-model="newOfferName" id="new-offer-name" type="text">
-                <label ng-class="{ 'filled': newOfferName.length }" for="new-offer-name">Nimetus</label>
-            </p>
-            <p>
-                <input ng-model="newOfferConsist" id="new-offer-consist" type="text"></input>
-                <label ng-class="{ 'filled': newOfferConsist.length }" for="new-offer-desc">Koostisosad</label>
-            </p>
-            <p>
-                <textarea ng-model="newOfferDesc" id="new-offer-desc"></textarea>
-                <label ng-class="{ 'filled': newOfferDesc.length }" for="new-offer-desc">Lisainfo</label>
-            </p>
-            <p>
-                <input ng-model="newOfferTags" id="new-offer-tags" type="text">
-                <label ng-class="{ 'filled': newOfferTags.length }" for="new-offer-teags">Tags</label>
-            </p>
-            <p>
-                <input ng-model="newOfferPrice" id="new-offer-price" type="number">
-                <label ng-class="{ 'filled': newOfferPrice.length }" for="new-offer-price">Hind</label>
-            </p>
-            <p class="buttons">
-                <a class="btn btn-secondary" href="javascript:undefined">
-                    Loobu
-                </a>
-                <a class="btn" href="javascript:undefined">
-                    Salvesta
-                </a>
-            </p>
+            <div class="row">
+                <div class="col-md-12">
+                <p>
+                    <input ng-model="newOfferName" id="new-offer-name" type="text">
+                    <label ng-class="{ 'filled': newOfferName.length }" for="new-offer-name">Nimetus</label>
+                </p>
+                <p>
+                    <input ng-model="newOfferConsist" id="new-offer-consist" type="text"></input>
+                    <label ng-class="{ 'filled': newOfferConsist.length }" for="new-offer-desc">Koostisosad</label>
+                </p>
+                <p>
+                    <textarea ng-model="newOfferDesc" id="new-offer-desc"></textarea>
+                    <label ng-class="{ 'filled': newOfferDesc.length }" for="new-offer-desc">Lisainfo</label>
+                </p>
+                <p>
+                    <input ng-model="newOfferPrice" id="new-offer-price" type="number">
+                    <label ng-class="{ 'filled': newOfferPrice.length }" for="new-offer-price">Hind</label>
+                </p>
+
+                </div>
+                <div class="col-md-12">
+                </div>
+                <div class="col-md-24">
+                    <p class="buttons">
+                        <a class="btn btn-secondary" href="javascript:undefined">
+                            Loobu
+                        </a>
+                        <a class="btn" href="javascript:undefined">
+                            Salvesta
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
         <h3 class="day-sep">
             Esmaspäev,  1. detsember
@@ -51,7 +56,7 @@
         <div class="offers-wrapper">
             <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="toggle.state = !toggle.state"  ng-class="{'first' : $first, 'last' : $last, 'expand' : toggle.state}">
                 <div class="row">
-                    <div class="col-xs-19 col-sm-21 col-lg-24">
+                    <div class="col-xs-19 col-sm-21 col-lg-22">
                         <p class="icon edit"><a href="javascript:undefined" class="icon-15"></a></p>
                         <h2>{{offer.title}}</h2>
                         <p class="info">{{offer.description}}</p>

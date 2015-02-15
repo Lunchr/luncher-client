@@ -9,7 +9,8 @@
   "fromTime": "2014-11-10T09:00:00.000Z",
   "toTime": "2014-11-10T11:00:00.000Z",
   "price": 3.4,
-  "tags": ["lind"]
+  "tags": ["lind"],
+  "image": "meatmarket.jpg"
 }, {
   "id": "2",
   "restaurant": {
@@ -21,7 +22,8 @@
   "fromTime": "2014-11-10T09:00:00.000Z",
   "toTime": "2014-11-10T12:00:00.000Z",
   "price": 3.3,
-  "tags": ["siga"]
+  "tags": ["siga"],
+  "image": "meatmarket2.jpg"
 }, {
   "id": "3",
   "restaurant": {
@@ -33,7 +35,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 3.8,
-  "tags": ["lind"]
+  "tags": ["lind"],
+  "image": "meatmarket3.jpg"
 }, {
   "id": "4",
   "restaurant": {
@@ -45,7 +48,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 3.7,
-  "tags": ["lind"]
+  "tags": ["lind"],
+  "image": "meatmarket4.jpg"
 }, {
   "id": "5",
   "restaurant": {
@@ -57,7 +61,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["lammas"]
+  "tags": ["lammas"],
+  "image": "meatmarket5.jpg"
 }, {
   "id": "6",
   "restaurant": {
@@ -69,7 +74,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["veis"]
+  "tags": ["veis"],
+  "image": "meatmarket.jpg"
 }, {
   "id": "7",
   "restaurant": {
@@ -81,7 +87,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 3.4,
-  "tags": ["veis"]
+  "tags": ["veis"],
+  "image": "meatmarket2.jpg"
 }, {
   "id": "8",
   "restaurant": {
@@ -93,7 +100,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 3.2,
-  "tags": ["siga"]
+  "tags": ["siga"],
+  "image": "meatmarket3.jpg"
 }, {
   "id": "9",
   "restaurant": {
@@ -105,7 +113,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 4.2,
-  "tags": ["lammas"]
+  "tags": ["lammas"],
+  "image": "meatmarket4.jpg"
 }, {
   "id": "10",
   "restaurant": {
@@ -117,7 +126,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 5.2,
-  "tags": ["lind"]
+  "tags": ["lind"],
+  "image": "meatmarket5.jpg"
 }, {
   "id": "11",
   "restaurant": {
@@ -129,7 +139,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 5.9,
-  "tags": ["Veis"]
+  "tags": ["Veis"],
+  "image": "meatmarket.jpg"
 }, {
   "id": "12",
   "restaurant": {
@@ -141,7 +152,8 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 3.5,
-  "tags": ["siga"]
+  "tags": ["siga"],
+  "image": "meatmarket2.jpg"
 }, {
   "id": "13",
   "restaurant": {
@@ -153,5 +165,6 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 4.2,
-  "tags": ["kala"]
+  "tags": ["kala"],
+  "image": "meatmarket3.jpg"
 }]
