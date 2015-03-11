@@ -86,20 +86,3 @@
 #search:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
-
-/***** MENU *****/
-
-#menu-btn {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 45px;
-    height: 46px;
-    padding-top: 8px;
-    background: transparent;
-    border: none;
-    z-index: 1;
-}
-#menu-btn:focus {
-    outline: none;
-}
