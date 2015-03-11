@@ -1,70 +1,64 @@
 <div class="header">
     <div class="container">
-        <div class="header__wrapper">
-            <button id="menu-btn" class="icon-12"></button>
-            <div id="logo"></div>
-            <div class="search-wrapper" ng-controller="SearchCtrl">
+        <div class="header-wrap">
+            <p class="icon-wrap">
+                <button class="icon icon-12"></button>
+            </p>
+            <p id="logo">Luncher</p>
+            <p class="search-wrap" ng-controller="SearchCtrl">
                 <input ng-class="{ 'filled': query.length }" id="search" type="text" ng-model="query">
                 <button ng-click="query = ''" id="search-submit" class="icon-7"></button>
-            </div>
+            </p>
         </div>
     </div>
 </div>
 <div class="content" ng-controller="OfferListCtrl">
     <div class="container">
         <div class="controls">
-            <div class="row">
-                <div class="col-xs-6 col-sm-7 col-lg-6">
-                    <offers-sorter id="location-sort-label" order-by="restaurant.name">
-                        Asukoht
-                    </offers-sorter>
-                </div>
-                <div class="col-xs-13 col-sm-14 col-lg-16 filter" ng-controller="TagListCtrl">
-                    <form action="">
-                        <span ng-repeat="tag in tagList">
-                            <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
-                            <label for="checkbox-{{tag.name}}">{{tag.displayName}}</label>
-                        </span>
+            <div class="col-1">
+                <offers-sorter id="location-sort-label" order-by="restaurant.name">
+                    Asukoht
+                </offers-sorter>
+            </div>
+            <div class="col-2">
+                <div class="col-wrap">
+                    <form>
+                        <p ng-controller="TagListCtrl">
+                            <span ng-repeat="tag in tagList">
+                                <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
+                                <label for="checkbox-{{tag.name}}">{{tag.displayName}}</label>
+                            </span>
+                        </p>
                     </form>
-                </div>
-                <div class="col-xs-3 col-lg-2">
-                    <offers-sorter is-numeric="true" order-by="price" id="price-sort-label">
+                    <offers-sorter is-numeric="true" order-by="price" id="price-sort-label" class="price-sorter">
                         Hind
                     </offers-sorter>
                 </div>
             </div>
         </div>
-        <div class="offers-wrapper">
+        <div class="offers-wrap">
             <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="toggle.state = !toggle.state"  ng-class="{'first' : $first, 'last' : $last, 'expand' : toggle.state}">
-                <div class="row">
-                    <div class="col-xs-1 col-sm-7 col-lg-6">
-                        <p class="icon"><a href="javascript:undefined" class="icon-8"></a></p>
-                        <p class="name">{{offer.restaurant.name}}</p>
+                <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-8"></a></p>
+                <div class="offer-content">
+                    <div class="col-1">
+                        <p class="location">{{offer.restaurant.name}}</p>
+                        <p class="info">{{offer.restaurant.address}}</p>
                     </div>
-                    <div class="col-xs-18 col-sm-14 col-lg-16">
-                        <h2>{{offer.title}}</h2>
-                    </div>
-                    <div class="col-xs-3 col-lg-2">
-                        <p class="price">{{offer.price}} €</p>
-                    </div>
-                </div>
-                <div class="row additional">
-                    <div class="col-xs-1 col-sm-7 col-lg-6">
-                        <p class="info location">{{offer.restaurant.address}}</p>
-                    </div>
-                    <div class="col-xs-23 col-sm-17 col-lg-18">
+                    <div class="col-2">
+                        <div class="col-wrap">
+                            <h2 class="name">{{offer.title}}</h2>
+                            <p class="price">{{offer.price}} €</p>
+                        </div>
                         <p class="info">{{offer.description}}</p>
                     </div>
                 </div>
-                <div class="row secondary">
-                        <div class="col-xs-24 col-sm-7 col-lg-6">
-                            <div class="map-wrapper">
-                                <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
-                            </div>
-                        </div>
-                        <div class="col-xs-24 col-sm-17 col-lg-18">
-                            <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
-                        </div>
+                <div class="secondary">
+                    <div class="col-1">
+                        <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
+                    </div>
+                    <div class="col-2">
+                        <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
+                    </div>
                 </div>
             </div>
         </div>

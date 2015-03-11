@@ -1,0 +1,105 @@
+
+/*** HEADER, LOGO, SEARCH, MENU ***/
+
+.header {
+    position: relative;
+    height: 46px;
+    background: $color;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    color: #fff;
+    .header-wrap {
+        position: relative;
+        padding: 8px 0;
+    }
+}
+#logo {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    top: 9px;
+    left: 50%;
+    margin: 0 0 0 -50px;
+    background-image: url(../img/luncher-logo-typo-white.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    text-indent: -2000px;
+    overflow: hidden;
+}
+
+/***** SEARCH *****/
+.search-wrap {
+    position: absolute;
+    width: auto;
+    right: 0;
+    top: 8px;
+    margin: 0;
+}
+#search {
+    position: relative;
+    padding: 4px 38px 3px 12px;
+    width: 40px;
+    height: 30px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #222;
+    background: transparent;
+    z-index: 5;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    @include transition(0.2s);
+}
+#search-submit {
+    position: absolute;
+    right: -7px;
+    top: -7px;
+    width: 45px;
+    height: 45px;
+    padding-top: 7px;
+    background: transparent;
+    border: none;
+    z-index: 3;
+}
+#search-submit:focus {
+    outline: none;
+}
+#search:focus,
+#search.filled {
+    width: 250px;
+    background: #fff;
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.07);
+    z-index: 1;
+    cursor: text;
+}
+#search:focus + #search-submit.icon-7:before,
+#search.filled + #search-submit.icon-7:before {
+    content: "i" !important;
+    color: $color;
+}
+#search:focus:hover,
+#search.filled:hover {
+    background: #fff;
+}
+#search:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+/***** MENU *****/
+
+#menu-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 45px;
+    height: 46px;
+    padding-top: 8px;
+    background: transparent;
+    border: none;
+    z-index: 1;
+}
+#menu-btn:focus {
+    outline: none;
+}

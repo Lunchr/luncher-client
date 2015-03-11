@@ -1,0 +1,36 @@
+
+/*** GENERAL STYLES ***/
+
+html, body {
+    height: 100%;
+}
+body {
+    background-image: url(../img/bg.png);
+    background-position: top center;
+    background-size: cover;
+    font: $font;
+    color: $color-secondary;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: $color;
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-a;
+    }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family;
+}
+.content {
+    min-height: 100%;
+    background: rgba(255,255,255,0.9);
+    padding-bottom: 10px;
+}

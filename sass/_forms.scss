@@ -1,0 +1,109 @@
+
+/*** FORMS ***/
+
+.form {
+    @extend .material-box;
+    margin-top: 15px;
+    padding: 25px 20px 10px;
+    background-color: #fff;
+    p {
+        position: relative;
+        margin: 0 0 25px;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=number],
+    input[type=date],
+    textarea,
+    select {
+        width: 100%;
+        padding: 3px 5px;
+        -webkit-appearance: none;
+        border: none;
+        border-bottom: 1px solid $color-secondary-2;
+        border-radius: 0;
+        line-height: 22px;
+        resize: none;
+        background: #fff;
+        outline: none;
+        font: $font;
+        transition: .2s;
+    }
+    input[type=text]:focus,
+    input[type=password]:focus,
+    input[type=email]:focus,
+    input[type=number]:focus,
+    input[type=date]:focus,
+    textarea:focus,
+    select:focus {
+        border-bottom: 1px solid $color-h;
+    }
+    textarea {
+        height: 72px;
+    }
+    label {
+        position: absolute;
+        top: 0;
+        left: 5px;
+        transition: .2s;
+    }
+    input[type=text]:focus + label,
+    input[type=password]:focus + label,
+    input[type=email]:focus + label,
+    input[type=number]:focus + label,
+    input[type=date]:focus + label,
+    textarea:focus + label,
+    label.filled
+    {
+        top: -12px;
+        font-size: 10px;
+        color: $color-h;
+    }
+    label.filled {
+        color: $color-secondary-2;
+    }
+}
+
+.btn {
+    @extend .material-box;
+    padding: 8px 18px;
+    background: $color;
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+        background: $color-h;
+        color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    &:focus,
+    &:active {
+        background: $color-a;
+        color: #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+    &.btn-light {
+        background: #fff;
+        color: $color-a;
+    }
+    &.btn-light:hover {
+        color: $color-a;
+    }
+    &.btn-secondary {
+        padding: 8px 18px;
+        color: $color;
+        background: transparent;
+        box-shadow: none;
+    }
+}
+.buttons {
+    text-align: right;
+}
+.btn-wrap {
+    position: absolute;
+    right: 0;
+    margin: 7px 0;
+}
+#add-new:before {
+    display: none;
+}

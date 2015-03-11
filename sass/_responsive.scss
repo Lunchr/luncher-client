@@ -1,0 +1,115 @@
+
+/***** MEDIA *****/
+@media ( max-width: 992px ) {
+    #date {
+        position: absolute;
+        top: -30px;
+        width: 100%;
+    }
+}
+@media ( max-width: 767px ) {
+    .container {
+        padding: 0 8px;
+    }
+    .offer {
+        min-height: 57px;
+        .additional {
+            display: none;
+        }
+        &.expand .additional {
+            display: block;
+        }
+        &.expand .secondary {
+            height: 210px;
+        }
+        .name {
+            position: absolute;
+            left: 45px;
+            display: block;
+            line-height: 22px;
+            overflow: visible;
+        }
+        h2 {
+            position: absolute;
+            left: 15px;
+            top: 16px;
+            font-size: 11px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .map {
+            display: none;
+        }
+        .info {
+            position: absolute;
+            font-size: 11px;
+            left: 45px;
+            margin-top: 13px;
+        }
+        .location {
+            display: none;
+        }
+        .price {
+            line-height: 22px;
+            position: absolute;
+            right: 0;
+        }
+        .image {
+            width: 100%;
+            margin-top: 35px;
+        }
+        .map-wrap {
+            padding-left: 0;
+        }
+    }
+    .controls {
+        display: none;
+    }
+    .content {
+        padding-top: 8px;
+    }
+    .search-wrap,
+    #search:focus,
+    #search.filled {
+        width: 100%;
+    }
+    #search {
+        float: right;
+    }
+    .form {
+        margin-top: 0;
+        padding-bottom: 20px;
+    }
+    .btn-wrap {
+        margin: -1px 0;
+    }
+    #add-new {
+        display: block;
+        width: 0;
+        height: 0;
+        padding: 16px 17px 15px;
+        color: #fff;
+        overflow: hidden;
+        &:before {
+            position: absolute;
+            display: inline;
+            top: 8px;
+            left: 7px;
+            color: $color;
+        }
+    }
+}
+@media ( max-width: 620px ) {
+    .offer h2 {
+        width: 85%;
+        left: 15px;
+    }
+    .offer .icon a {
+        top: 2px;
+    }
+    .offers-wrap .offer .price {
+        position: absolute;
+        right: 10px;
+    }
+}

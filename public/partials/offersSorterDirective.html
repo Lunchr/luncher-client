@@ -1,13 +1,9 @@
-<p class="control-label">
-  <a href="javascript:undefined" ng-click="clicked()" ng-transclude></a>
-  <span ng-show="isActive()" class="sorter-icon-wrapper">
-    <span ng-show="isNumeric">
-      <span class="icon" ng-show="isAscending"><i class="icon-14"></i></span>
-      <span class="icon" ng-show="!isAscending"><i class="icon-13"></i></span>
-    </span>
-    <span ng-show="!isNumeric">
-      <span class="icon" ng-show="isAscending"><i class="icon-14"></i></span>
-      <span class="icon" ng-show="!isAscending"><i class="icon-13"></i></span>
-    </span>
-  </span>
+<p class="sorter">
+    <a href="javascript:undefined" ng-click="clicked()">
+        <span ng-show="isActive()" class="icon-wrap">
+            <i ng-show="isAscending" class="icon icon-14"></i>
+            <i ng-show="!isAscending" class="icon icon-13"></i>
+        </span>
+        <span ng-transclude></span>
+    </a>
 </p>

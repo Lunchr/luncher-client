@@ -1,0 +1,63 @@
+
+/*** CONTROLS ***/
+
+.controls {
+    height: 45px;
+    padding-left: 45px;
+    color: $color;
+    font-size: 13px;
+    a {
+        display: block;
+        padding: 15px 0;
+    }
+    label {
+        margin-right: 5px;
+        margin-left: -14px;
+        padding-left: 16px;
+        font: $font;
+        cursor: pointer;
+        &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            border: 1px solid $color;
+        }
+    }
+    input[type=checkbox] {
+        cursor: pointer;
+    }
+    a:hover,
+    a:focus,
+    input[type=checkbox]:checked + label,
+    input[type=checkbox]:hover + label,
+    input[type=checkbox] + label:hover {
+        text-decoration: none;
+        color: $color;
+    }
+    form span {
+        position: relative;
+        margin-right: 15px;
+        font: $font;
+    }
+    input {
+        visibility: hidden;
+    }
+    input[type=checkbox]:checked + label:before {
+        background: $color;
+    }
+}
+.sorter {
+    position: relative;
+    margin: 0;
+    font: $font;
+    .icon-wrap {
+        left: -45px;
+    }
+    &.price-sorter {
+        width: 40px;
+    }
+}
