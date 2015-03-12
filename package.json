@@ -1,11 +1,11 @@
 {
   "name": "praad",
-  "version": "0.0.0-6",
+  "version": "0.0.0-10",
   "description": "praad",
   "main": "src/app.js",
   "scripts": {
     "test": "grunt test",
-    "predeploy": "bower install",
+    "predeploy": "bower install && grunt predeploy",
     "start": "node src/app.js"
   },
   "repository": {

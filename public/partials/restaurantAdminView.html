@@ -28,22 +28,22 @@
 <div class="overlay"></div>
 <div class="content" ng-controller="RestaurantOfferListCtrl">
     <div class="container">
-        <div class="form">
+        <div class="form" ng-form name="newOfferForm">
             <p>
-                <input ng-model="newOfferName" id="new-offer-name" type="text">
-                <label ng-class="{ 'filled': newOfferName.length }" for="new-offer-name">Nimetus</label>
+                <input ng-model="newOffer.name" name="name" id="new-offer-name" type="text">
+                <label ng-class="{ 'filled': newOffer.name.length }" for="new-offer-name">Nimetus</label>
             </p>
             <p>
-                <input ng-model="newOfferConsist" id="new-offer-consist" type="text"></input>
-                <label ng-class="{ 'filled': newOfferConsist.length }" for="new-offer-desc">Koostisosad</label>
+                <input ng-model="newOffer.consist" name="consist" id="new-offer-consist" type="text"></input>
+                <label ng-class="{ 'filled': newOffer.consist.length }" for="new-offer-desc">Koostisosad</label>
             </p>
             <p>
-                <textarea ng-model="newOfferDesc" id="new-offer-desc"></textarea>
-                <label ng-class="{ 'filled': newOfferDesc.length }" for="new-offer-desc">Lisainfo</label>
+                <textarea ng-model="newOffer.desc" name="desc" id="new-offer-desc"></textarea>
+                <label ng-class="{ 'filled': newOffer.desc.length }" for="new-offer-desc">Lisainfo</label>
             </p>
             <p>
-                <input ng-model="newOfferPrice" id="new-offer-price" type="number">
-                <label ng-class="{ 'filled': newOfferPrice.length }" for="new-offer-price">Hind</label>
+                <input ng-model="newOfferprice" name="price" id="new-offer-price" type="number" required>
+                <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price">Hind</label>
             </p>
             <p class="buttons">
                 <a class="btn btn-secondary" href="javascript:undefined">

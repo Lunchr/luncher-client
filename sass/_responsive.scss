@@ -1,6 +1,7 @@
 
 /*** RESPONSIVE STYLES ***/
 
+// Desktop
 @media (max-width: 1212px) {
     .container {
         width: 1000px;
@@ -18,6 +19,8 @@
         visibility: hidden;
     }
 }
+
+// Mobile
 @media (max-width: 712px) {
     .header {
         position: fixed;

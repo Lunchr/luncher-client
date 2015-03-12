@@ -1,6 +1,7 @@
 
 /*** FORMS ***/
 
+// Form
 .form {
     @extend .material-box;
     margin-top: 12px;
@@ -63,8 +64,19 @@
     label.filled {
         color: $color-secondary-2;
     }
+    input[type=number].ng-invalid-number {
+        color: $color-error;
+        border-bottom: 1px solid $color-error;
+    }
+    input[type=number].ng-invalid-number + label {
+        top: -12px;
+        font-size: 10px;
+        color: $color-error;
+        font-weight: bold;
+    }
 }
 
+// Buttons
 .btn {
     @extend .material-box;
     padding: 8px 18px;
