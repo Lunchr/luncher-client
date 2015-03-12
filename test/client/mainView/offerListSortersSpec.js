@@ -39,8 +39,8 @@ describe('OfferList sorters', function() {
         $(element.children().first()).click();
       }
 
-      it('should contain 4 in a span', function() {
-        expect(element.children().children().html()).toBe('4');
+      it('should transclude', function() {
+        expect(element.find('span[ng-transclude=""]').children().html()).toBe('4');
       });
 
       it('should have asc/desc state on scope', function() {
