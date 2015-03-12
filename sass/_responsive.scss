@@ -1,2 +1,42 @@
 
 /*** RESPONSIVE STYLES ***/
+
+@media (max-width: 1212px) {
+    .container {
+        width: 1000px;
+    }
+}
+@media (max-width: 1012px) {
+    .container {
+        width: 700px;
+        padding: 0 8px;
+    }
+    .form {
+        margin-top: 8px;
+    }
+    .controls form {
+        visibility: hidden;
+    }
+}
+@media (max-width: 712px) {
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+    .content {
+        padding-top: 46px;
+    }
+    .container {
+        width: 100%;
+    }
+    .search-wrap {
+        width: 100%;
+        text-align: right;
+    }
+    #search:focus,
+    #search.filled {
+        width: 100%;
+    }
+}
