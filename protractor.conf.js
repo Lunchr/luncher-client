@@ -9,7 +9,8 @@ if (process.env.TRAVIS) {
     'username': process.env.SAUCE_USERNAME,
     'accessKey': process.env.SAUCE_ACCESS_KEY,
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-    'build': process.env.TRAVIS_BUILD_NUMBER
+    'build': process.env.TRAVIS_BUILD_NUMBER,
+    'browserName': 'chrome'
   };
   // Pass results to SauceLabs
   exports.config.onPrepare = function() {
