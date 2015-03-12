@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-wrap">
             <p class="icon-wrap">
-                <button class="icon icon-12"></button>
+                <button ng-click="menuState='active'" class="icon icon-12"></button>
             </p>
             <p id="logo">Luncher</p>
             <p class="search-wrap" ng-controller="SearchCtrl">
@@ -12,18 +12,20 @@
         </div>
     </div>
 </div>
-<div class="menu">
-    <h2>Luncher</h2>
+<div ng-class="menuState" class="menu">
+    <h2>Madis Lehtmets</h2>
     <p class="icon-wrap">
-        <button class="icon icon-9"></button>
+        <button ng-click="menuState=''" class="icon icon-9"></button>
     </p>
     <ul>
-        <li><a href="javascript:undefined"><i class="icon-10"></i>Registreeri / Logi sisse</a></li>
-        <li><a href="javascript:undefined"><i class="icon-8"></i>Lemmikud</a></li>
+        <li><a href="javascript:undefined"><i class="icon-10"></i>Kasutaja andmed</a></li>
+        <li><a href="javascript:undefined"><i class="icon-17"></i>Facebooki seaded</a></li>
         <li><a href="javascript:undefined"><i class="icon-5"></i>Asukoha seaded</a></li>
+        <li><a href="javascript:undefined"><i class="icon-16"></i>Teated</a></li>
         <li><a href="javascript:undefined"><i class="icon-3"></i>Tagasiside</a></li>
     </ul>
 </div>
+<div class="overlay"></div>
 <div class="content" ng-controller="OfferListCtrl">
     <div class="container">
         <div class="controls">
@@ -76,4 +78,3 @@
         </div>
     </div>
 </div>
-<div class="overlay"></div>

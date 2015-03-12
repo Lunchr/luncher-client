@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-wrap">
             <p class="icon-wrap">
-                <button class="icon icon-1"></button>
+                <button ng-click="menuState='active'" class="icon icon-12"></button>
             </p>
             <p id="logo">Luncher</p>
             <p class="btn-wrap">
@@ -13,6 +13,19 @@
         </div>
     </div>
 </div>
+<div ng-class="menuState" class="menu">
+    <h2>La Dolche Vita</h2>
+    <p class="icon-wrap">
+        <button ng-click="menuState=''" class="icon icon-9"></button>
+    </p>
+    <ul>
+        <li><a href="javascript:undefined"><i class="icon-1"></i>Restorani andmed</a></li>
+        <li><a href="javascript:undefined"><i class="icon-17"></i>Facebooki seaded</a></li>
+        <li><a href="javascript:undefined"><i class="icon-5"></i>Asukoha seaded</a></li>
+        <li><a href="javascript:undefined"><i class="icon-3"></i>Tagasiside</a></li>
+    </ul>
+</div>
+<div class="overlay"></div>
 <div class="content" ng-controller="RestaurantOfferListCtrl">
     <div class="container">
         <div class="form">

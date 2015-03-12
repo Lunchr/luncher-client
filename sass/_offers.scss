@@ -90,8 +90,8 @@
 }
 .secondary {
     height: 0;
-    transition: .2s ease;
     overflow: hidden;
+    @include transition(0.2s);
 }
 &.expand .secondary {
     height: 180px;
