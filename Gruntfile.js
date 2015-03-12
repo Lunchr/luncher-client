@@ -92,7 +92,7 @@ module.exports = function(grunt) {
     config.coveralls = {
       options: {
         force: true,
-        coverage_dir: 'coverage',
+        coverageDir: 'coverage',
         recursive: true
       }
     };
