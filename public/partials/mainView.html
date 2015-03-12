@@ -60,10 +60,12 @@
                     </div>
                     <div class="col-2">
                         <div class="col-wrap">
-                            <h2 class="name">{{offer.title}}</h2>
+                            <p class="location mobile">{{offer.restaurant.name}}</p>
+                            <h2 class="name desktop">{{offer.title}}</h2>
                             <p class="price">{{offer.price}} €</p>
                         </div>
-                        <p class="info">{{offer.description}}</p>
+                        <h2 class="name mobile">{{offer.title}}</h2>
+                        <p class="info desktop">{{offer.description}}</p>
                     </div>
                 </div>
                 <div class="secondary">
@@ -71,6 +73,7 @@
                         <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
                     </div>
                     <div class="col-2">
+                        <p class="info mobile">{{offer.description}}</p>
                         <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
                     </div>
                 </div>

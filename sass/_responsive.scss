@@ -1,7 +1,6 @@
 
 /*** RESPONSIVE STYLES ***/
 
-// Desktop
 @media (max-width: 1212px) {
     .container {
         width: 1000px;
@@ -19,20 +18,38 @@
         visibility: hidden;
     }
 }
+@media (min-width: 713px) {
+    .mobile {
+        display: none;
+    }
+}
 
-// Mobile
+// mobile
 @media (max-width: 712px) {
+
+    // grid
+    .container {
+        width: 100%;
+    }
+    .offer .col-1 {
+        display: none;
+    }
+    .offer .col-2 {
+        width: 100%;
+        padding: 0;
+    }
+
     .header {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
     }
+    .header .btn-wrap {
+        margin: 0;
+    }
     .content {
         padding-top: 46px;
-    }
-    .container {
-        width: 100%;
     }
     .search-wrap {
         width: 100%;
@@ -41,5 +58,60 @@
     #search:focus,
     #search.filled {
         width: 100%;
+    }
+    #add-new {
+        display: block;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        overflow: hidden;
+        color: #fff;
+    }
+    #add-new:before {
+        display: block;
+        position: absolute;
+        top: 7px;
+        left: 4px;
+        color: $color;
+        font-size: 20px;
+        font-family: "luncher-icons" !important;
+        font-style: normal !important;
+        font-weight: normal !important;
+        font-variant: normal !important;
+        text-transform: none !important;
+        speak: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: "d";
+    }
+
+    //offer
+    .name {
+        height: 25px;
+        margin-top: 2px;
+        margin-bottom: 0;
+        font-size: 13px;
+        line-height: 1;
+    }
+    .secondary {
+        margin: 0 0 -11px -45px;
+        padding-top: 0;
+        .info {
+            margin-top: 0;
+            padding-left: 45px;
+        }
+    }
+    .image {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    //desktop or mobile only
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: block;
     }
 }
