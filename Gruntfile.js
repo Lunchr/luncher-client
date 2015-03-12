@@ -171,7 +171,7 @@ module.exports = function(grunt) {
   grunt.initConfig(config);
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('e2e', ['shell:protractor_update', 'express:dev', 'protractor:ci']);
+  grunt.registerTask('e2e', ['shell:protractor_update', 'sass:dist', 'express:dev', 'protractor:ci']);
   grunt.registerTask('once', ['jshint', 'karma:once']);
   grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'sed:clean_lcov', 'e2e', 'coveralls']);
   grunt.registerTask('predeploy', ['sass:dist']);
