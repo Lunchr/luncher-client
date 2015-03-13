@@ -1,9 +1,7 @@
 <div class="header">
     <div class="container">
         <div class="header-wrap">
-            <p class="icon-wrap">
-                <button ng-click="menuState='active'" class="icon icon-12"></button>
-            </p>
+            <p id="location"><span class="icon-wrap"><span class="icon icon-5"></span></span>Tartu</p>
             <p id="logo">Luncher</p>
             <p class="search-wrap" ng-controller="SearchCtrl">
                 <input ng-class="{ 'filled': query.length }" id="search" type="text" ng-model="query">
@@ -12,20 +10,6 @@
         </div>
     </div>
 </div>
-<div ng-class="menuState" class="menu">
-    <h2>Madis Lehtmets</h2>
-    <p class="icon-wrap">
-        <button ng-click="menuState=''" class="icon icon-9"></button>
-    </p>
-    <ul>
-        <li><a href="javascript:undefined"><span class="icon-10"></span>Kasutaja andmed</a></li>
-        <li><a href="javascript:undefined"><span class="icon-17"></span>Facebooki seaded</a></li>
-        <li><a href="javascript:undefined"><span class="icon-5"></span>Asukoha seaded</a></li>
-        <li><a href="javascript:undefined"><span class="icon-16"></span>Teated</a></li>
-        <li><a href="javascript:undefined"><span class="icon-3"></span>Tagasiside</a></li>
-    </ul>
-</div>
-<div class="overlay"></div>
 <div class="content" ng-controller="OfferListCtrl">
     <div class="container">
         <div class="controls">

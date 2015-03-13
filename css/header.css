@@ -33,6 +33,13 @@
     text-indent: -2000px;
     overflow: hidden;
 }
+#location {
+    position: absolute;
+    left: 0;
+    top: 0px;
+    margin: 0;
+    padding: 16px 0 15px 45px;
+}
 
 /***** SEARCH *****/
 .search-wrap {
