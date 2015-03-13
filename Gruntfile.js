@@ -152,35 +152,59 @@ module.exports = function(grunt) {
   })();
   (function configurePostcss() {
     var browsers = ['ie >= 10, > 1%, last 2 versions'];
+    var ignoredDoiuseFeatures = ['box-sizing'];
+    var files = { 'public/css/main.css': 'css/main.css' }
     config.postcss = {
-      options: {
-        map: true,
-        processors: [
-          require('postcss-import')(),
-          require('postcss-simple-extend').postcss,
-          require('postcss-mixins').postcss,
-          require('postcss-simple-vars').postcss,
-          require('postcss-nested').postcss,
-          require('postcss-media-minmax')(),
-          require('autoprefixer-core')({ browsers: browsers }).postcss,
-          require('csswring').postcss,
-          require('doiuse')({
-            browsers: browsers,
-            onFeatureUsage: function(usageInfo) {
-              grunt.log.error(usageInfo.message);
-            }
-          }).postcss,
-        ]
+      dev: {
+        options: {
+          map: true,
+          processors: [
+            require('postcss-import')(),
+            require('postcss-simple-extend').postcss,
+            require('postcss-mixins').postcss,
+            require('postcss-simple-vars').postcss,
+            require('postcss-nested').postcss,
+            require('postcss-media-minmax')(),
+            // require('autoprefixer-core')({ browsers: browsers }).postcss,
+          ]
+        }
       },
       dist: {
-        files: {
-          'public/css/main.css': 'css/main.css'
-        }
+        options: {
+          map: false,
+          processors: [
+            require('postcss-import')(),
+            require('postcss-simple-extend').postcss,
+            require('postcss-mixins').postcss,
+            require('postcss-simple-vars').postcss,
+            require('postcss-nested').postcss,
+            require('postcss-media-minmax')(),
+            require('autoprefixer-core')({ browsers: browsers }).postcss,
+            require('csswring').postcss,
+            require('doiuse')({
+              browsers: browsers,
+              onFeatureUsage: function(usageInfo) {
+                var browsers = usageInfo.featureData.missingData;
+                var noSupport = Object.keys(browsers).some(function (browser) {
+                  var versions = browsers[browser];
+                  return Object.keys(versions).some(function (version){
+                    var support = versions[version];
+                    return support.indexOf('n') > -1;
+                  });
+                });
+                if (noSupport) {
+                  grunt.log.error(usageInfo.message);
+                }
+              }
+            }).postcss,
+          ]
+        },
+        files: files
       }
     };
     config.watch.postcss = {
       files: ['css/*.css'],
-      tasks: ['postcss:dist']
+      tasks: ['postcss:dev']
     };
   })();
 
