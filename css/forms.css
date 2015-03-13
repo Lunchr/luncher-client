@@ -9,61 +9,76 @@
     p {
         position: relative;
         margin: 0 0 30px;
-        &:last-child {
+        &.buttons:last-child {
             margin: 0;
         }
     }
-    input,
-    textarea,
-    select {
+    input {
         width: 100%;
+        height: 25px;
         padding: 3px 5px;
         box-sizing: border-box;
-        -webkit-appearance: none;
         border: none;
         border-bottom: 1px solid $color-secondary-2;
         border-radius: 0;
         line-height: 22px;
-        resize: none;
         background: #fff;
         outline: none;
         font: $font;
         @mixin transition 0.2s;
-    }
-    input:focus,
-    textarea:focus,
-    select:focus {
-        border-bottom: 1px solid $color-h;
-    }
-    textarea {
-        height: 72px;
+        &:focus {
+            border-bottom: 1px solid $color-h;
+            & + label
+            {
+                top: -12px;
+                font-size: 10px;
+                color: $color-h;
+            }
+        }
+        &.ng-invalid-number {
+            color: $color-error;
+            border-bottom: 1px solid $color-error;
+            & + label {
+                top: -12px;
+                font-size: 10px;
+                color: $color-error;
+                font-weight: bold;
+            }
+        }
     }
     label {
         position: absolute;
         top: 0;
         left: 5px;
         @mixin transition 0.2s;
+        &.filled
+        {
+            top: -12px;
+            font-size: 10px;
+            color: $color-secondary-2;
+        }
     }
-    input:focus + label,
-    textarea:focus + label,
-    label.filled
-    {
-        top: -12px;
-        font-size: 10px;
-        color: $color-h;
-    }
-    label.filled {
-        color: $color-secondary-2;
-    }
-    input[type=number].ng-invalid-number {
-        color: $color-error;
-        border-bottom: 1px solid $color-error;
-    }
-    input[type=number].ng-invalid-number + label {
-        top: -12px;
-        font-size: 10px;
-        color: $color-error;
-        font-weight: bold;
+}
+
+.double-input {
+    display: table;
+    width: 100%;
+    & > span {
+        display: table-cell;
+        position: relative;
+        box-sizing: border-box;
+        &:first-child {
+            padding-right: 22px;
+            &:after {
+                position: absolute;
+                top: 12px;
+                right: 8px;
+                width: 7px;
+                height: 1px;
+                background: $color-secondary-2;
+                content: "";
+            }
+        }
     }
 }
 
