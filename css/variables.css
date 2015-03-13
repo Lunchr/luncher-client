@@ -23,19 +23,7 @@ $font: $font-weight $font-size $font-family;
     transition: .2s;
 }
 
-@mixin transition($duration) {
-    -moz-transition-property: all;
-    -moz-transition-duration: $duration;
-    -moz-transition-timing-function: default;
-    -moz-transition-delay: 0s;
-    -webkit-transition-property: all;
-    -webkit-transition-duration: $duration;
-    -webkit-transition-timing-function: default;
-    -webkit-transition-delay: 0s;
-    -o-transition-property: all;
-    -o-transition-duration: $duration;
-    -o-transition-timing-function: default;
-    -o-transition-delay: 0s;
+@define-mixin transition $duration {
     transition-property: all;
     transition-duration: $duration;
     transition-timing-function: default;

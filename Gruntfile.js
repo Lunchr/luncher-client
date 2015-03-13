@@ -150,20 +150,37 @@ module.exports = function(grunt) {
       };
     })();
   })();
-  (function configureSass() {
-    config.sass = {
+  (function configurePostcss() {
+    var browsers = ['ie >= 10, > 1%, last 2 versions'];
+    config.postcss = {
       options: {
-        sourceMap: true
+        map: true,
+        processors: [
+          require('postcss-import')(),
+          require('postcss-mixins').postcss,
+          require('postcss-simple-vars').postcss,
+          require('postcss-nested').postcss,
+          require('postcss-simple-extend').postcss,
+          require('postcss-media-minmax')(),
+          require('autoprefixer-core')({ browsers: browsers }).postcss,
+          require('csswring').postcss,
+          require('doiuse')({
+            browsers: browsers,
+            onFeatureUsage: function(usageInfo) {
+              grunt.log.error(usageInfo.message);
+            }
+          }).postcss,
+        ]
       },
       dist: {
         files: {
-          'public/css/main.css': 'sass/main.scss'
+          'public/css/main.css': 'css/main.css'
         }
       }
     };
-    config.watch.sass = {
-      files: ['sass/*.scss'],
-      tasks: ['sass:dist']
+    config.watch.postcss = {
+      files: ['css/*.css'],
+      tasks: ['postcss:dist']
     };
   })();
 
@@ -171,10 +188,10 @@ module.exports = function(grunt) {
   grunt.initConfig(config);
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('e2e', ['shell:protractor_update', 'sass:dist', 'express:dev', 'protractor:ci']);
+  grunt.registerTask('e2e', ['shell:protractor_update', 'postcss:dist', 'express:dev', 'protractor:ci']);
   grunt.registerTask('once', ['jshint', 'karma:once']);
   grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'sed:clean_lcov', 'e2e', 'coveralls']);
-  grunt.registerTask('predeploy', ['sass:dist']);
-  grunt.registerTask('dev', ['express:dev', 'watch:sass']);
+  grunt.registerTask('predeploy', ['postcss:dist']);
+  grunt.registerTask('dev', ['express:dev', 'watch:postcss']);
 
 };

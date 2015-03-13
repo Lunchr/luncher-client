@@ -1,7 +1,6 @@
 
 /*** FORMS ***/
 
-// Form
 .form {
     @extend .material-box;
     margin-top: 12px;
@@ -76,7 +75,7 @@
     }
 }
 
-// Buttons
+/* buttons */
 .btn {
     @extend .material-box;
     padding: 8px 18px;

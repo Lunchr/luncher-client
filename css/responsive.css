@@ -1,7 +1,7 @@
 
 /*** RESPONSIVE STYLES ***/
 
-// Desktop
+/* Desktop */
 @media (max-width: 1212px) {
     .container {
         width: 1000px;
@@ -20,7 +20,7 @@
     }
 }
 
-// Mobile
+/* Mobile */
 @media (max-width: 712px) {
     .header {
         position: fixed;
