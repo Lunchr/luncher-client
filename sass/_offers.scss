@@ -22,11 +22,11 @@
     .offer-content {
         width: 100%;
         box-sizing: border-box;
-    }
-    .offer-content:after {
-        display: block;
-        content: "";
-        clear: both;
+        &:after {
+            display: block;
+            content: "";
+            clear: both;
+        }
     }
     p {
         overflow: hidden;
@@ -36,14 +36,14 @@
     .icon-wrap {
         .icon {
             color: #e0e0e0;
-        }
-        .icon:hover {
-            color: #b3b3b3;
-        }
-        .icon:focus:before,
-        .icon:active:before {
-            content: "k";
-            color: $color;
+            &:hover {
+                color: #b3b3b3;
+            }
+            &.icon-8:focus:before,
+            &.icon-8:active:before {
+                content: "k";
+                color: $color;
+            }
         }
         &.edit .icon {
             color: #b3b3b3;
@@ -52,7 +52,7 @@
 }
 .image {
     width: 50%;
-    height: 190px;
+    height: 200px;
     margin: 10px 0 0;
     border-radius: 2px;
     background-size: cover;
@@ -60,7 +60,7 @@
 }
 .map {
     width: 100%;
-    height: 190px;
+    height: 200px;
     margin: 10px 0 0;
     border-radius: 2px;
     background-size: cover;
@@ -79,10 +79,11 @@
     height: 0;
     overflow: hidden;
     @include transition(0.2s);
+    .expand & {
+        height: 210px;
+    }
 }
-&.expand .secondary {
-    height: 200px;
-}
+
 .location,
 .price,
 .time,
@@ -94,9 +95,4 @@
 }
 .price {
     width: 40px;
-}
-.day-sep {
-    margin: 12px 0 10px;
-    color: $color-a;
-    font: $font;
 }

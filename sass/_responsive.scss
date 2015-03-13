@@ -11,9 +11,6 @@
         width: 700px;
         padding: 0 8px;
     }
-    .form {
-        margin-top: 8px;
-    }
     .controls form {
         visibility: hidden;
     }
@@ -24,29 +21,19 @@
     }
 }
 
-// mobile
+/* mobile */
 @media (max-width: 712px) {
-
-    // grid
     .container {
         width: 100%;
     }
-    .offer .col-1 {
-        display: none;
-    }
-    .offer .col-2 {
-        width: 100%;
-        padding: 0;
-    }
-
     .header {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-    }
-    .header .btn-wrap {
-        margin: 0;
+        .btn-wrap {
+            margin: 0;
+        }
     }
     .content {
         padding-top: 46px;
@@ -59,46 +46,36 @@
     #search.filled {
         width: 100%;
     }
-    #add-new {
-        display: block;
-        width: 30px;
-        height: 30px;
-        padding: 0;
-        overflow: hidden;
-        color: #fff;
-    }
-    #add-new:before {
-        display: block;
-        position: absolute;
-        top: 7px;
-        left: 4px;
-        color: $color;
-        font-size: 20px;
-        font-family: "luncher-icons" !important;
-        font-style: normal !important;
-        font-weight: normal !important;
-        font-variant: normal !important;
-        text-transform: none !important;
-        speak: none;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        content: "d";
-    }
 
-    //offer
+    /* offer */
+    .offer {
+        .col-1 {
+            display: none;
+        }
+    }
+    .col-2 {
+        .secondary & {
+            padding: 0;
+        }
+        .offer & {
+            width: 100%;
+        }
+    }
     .name {
-        height: 25px;
+        height: 15px;
         margin-top: 2px;
         margin-bottom: 0;
         font-size: 13px;
         line-height: 1;
     }
     .secondary {
-        margin: 0 0 -11px -45px;
-        padding-top: 0;
+        margin-left: -45px;
+        .expand & {
+            height: 229px;
+            margin-bottom: -11px;
+        }
         .info {
-            margin-top: 0;
+            margin-top: 4px;
             padding-left: 45px;
         }
     }
@@ -107,7 +84,7 @@
         border-radius: 0;
     }
 
-    //desktop or mobile only
+    /* desktop or mobile only */
     .desktop {
         display: none;
     }

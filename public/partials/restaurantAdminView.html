@@ -5,11 +5,6 @@
                 <button ng-click="menuState='active'" class="icon icon-12"></button>
             </p>
             <p id="logo">Luncher</p>
-            <p class="btn-wrap">
-                <a id="add-new" class="btn btn-light icon-4" href="javascript:undefined">
-                    Lisa uus pakkumine
-                </a>
-            </p>
         </div>
     </div>
 </div>
@@ -19,46 +14,52 @@
         <button ng-click="menuState=''" class="icon icon-9"></button>
     </p>
     <ul>
-        <li><a href="javascript:undefined"><i class="icon-1"></i>Restorani andmed</a></li>
-        <li><a href="javascript:undefined"><i class="icon-17"></i>Facebooki seaded</a></li>
-        <li><a href="javascript:undefined"><i class="icon-5"></i>Asukoha seaded</a></li>
-        <li><a href="javascript:undefined"><i class="icon-3"></i>Tagasiside</a></li>
+        <li><a href="javascript:undefined"><span class="icon-1"></span>Restorani andmed</a></li>
+        <li><a href="javascript:undefined"><span class="icon-17"></span>Facebooki seaded</a></li>
+        <li><a href="javascript:undefined"><span class="icon-5"></span>Asukoha seaded</a></li>
+        <li><a href="javascript:undefined"><span class="icon-3"></span>Tagasiside</a></li>
     </ul>
 </div>
 <div class="overlay"></div>
 <div class="content" ng-controller="RestaurantOfferListCtrl">
     <div class="container">
-        <div class="form" ng-form name="newOfferForm">
-            <p>
-                <input ng-model="newOffer.name" name="name" id="new-offer-name" type="text">
-                <label ng-class="{ 'filled': newOffer.name.length }" for="new-offer-name">Nimetus</label>
+        <div class="form new-offer-form" ng-form name="newOfferForm" ng-class="newOfferFormState">
+            <p class="new-offer-btn">
+                <a href="javascript:undefined" ng-click="newOfferFormState='active'"><span class="icon-4"></span>Lisa uus pakkumine</a>
             </p>
-            <p>
-                <input ng-model="newOffer.consist" name="consist" id="new-offer-consist" type="text"></input>
-                <label ng-class="{ 'filled': newOffer.consist.length }" for="new-offer-desc">Koostisosad</label>
-            </p>
-            <p>
-                <textarea ng-model="newOffer.desc" name="desc" id="new-offer-desc"></textarea>
-                <label ng-class="{ 'filled': newOffer.desc.length }" for="new-offer-desc">Lisainfo</label>
-            </p>
-            <p>
-                <input ng-model="newOfferprice" name="price" id="new-offer-price" type="number" required>
-                <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price">Hind</label>
-            </p>
-            <p class="buttons">
-                <a class="btn btn-secondary" href="javascript:undefined">
-                    Loobu
-                </a>
-                <a class="btn" href="javascript:undefined">
-                    Salvesta
-                </a>
-            </p>
+            <div class="form-wrap">
+                <p>
+                    <input ng-model="newOffer.name" name="name" id="new-offer-name" type="text">
+                    <label ng-class="{ 'filled': newOffer.name.length }" for="new-offer-name">Nimetus</label>
+                </p>
+                <p>
+                    <input ng-model="newOffer.consist" name="consist" id="new-offer-consist" type="text"></input>
+                    <label ng-class="{ 'filled': newOffer.consist.length }" for="new-offer-desc">Koostisosad</label>
+                </p>
+                <p>
+                    <input ng-model="newOfferprice" name="price" id="new-offer-price" type="number" required>
+                    <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price">Hind</label>
+                </p>
+                <p>
+                    <input ng-model="newOffer.time" name="time" id="new-offer-time" type="date-time" required>
+                    <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price">Aeg</label>
+                </p>
+                <p>
+                    <input ng-model="newOffer.image" name="image" id="new-offer-image" type="file" accept="image/*" required>
+                    <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price"></label>
+                </p>
+                <p class="buttons">
+                    <a class="btn btn-secondary" href="javascript:undefined" ng-click="newOfferFormState=''">
+                        Loobu
+                    </a>
+                    <a class="btn" href="javascript:undefined">
+                        Salvesta
+                    </a>
+                </p>
+            </div>
         </div>
-        <h3 class="day-sep">
-            Esmaspäev,  1. detsember
-        </h3>
         <div class="offers-wrap">
-            <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="toggle.state = !toggle.state"  ng-class="{'first' : $first, 'last' : $last, 'expand' : toggle.state}">
+            <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="offerToggleState = !toggle.state"  ng-class="{'first' : $first, 'last' : $last, 'expand' : offerToggleState}">
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-15"></a></p>
                 <div class="offer-content">
                     <div class="col-1">
@@ -66,10 +67,15 @@
                     </div>
                     <div class="col-2">
                         <div class="col-wrap">
-                            <p class="info">{{offer.description}}</p>
+                            <h2 class="name mobile">{{offer.title}}</h2>
+                            <p class="info desktop">{{offer.description}}</p>
                             <p class="price">{{offer.price}} €</p>
                         </div>
+                        <p class="info mobile">{{offer.description}}</p>
                     </div>
+                </div>
+                <div class="secondary">
+                    <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
                 </div>
             </div>
         </div>
