@@ -2,7 +2,7 @@
 
 A client
 =====
-[![Code Climate](https://codeclimate.com/github/deiwin/praad.png)](https://codeclimate.com/github/deiwin/praad) [![Build Status](https://travis-ci.org/deiwin/praad.svg)](https://travis-ci.org/deiwin/praad) [![Coverage Status](https://coveralls.io/repos/deiwin/praad/badge.png)](https://coveralls.io/r/deiwin/praad) [![Selenium Test Status](https://saucelabs.com/buildstatus/deiwin)](https://saucelabs.com/u/deiwin)
+[![Code Climate](https://codeclimate.com/github/deiwin/luncher-client.png)](https://codeclimate.com/github/deiwin/luncher-client) [![Build Status](https://travis-ci.org/deiwin/luncher-client.svg)](https://travis-ci.org/deiwin/luncher-client) [![Coverage Status](https://coveralls.io/repos/deiwin/luncher-client/badge.png)](https://coveralls.io/r/deiwin/luncher-client) [![Selenium Test Status](https://saucelabs.com/buildstatus/deiwin)](https://saucelabs.com/u/deiwin)
 
 
 ## Development setup ##
