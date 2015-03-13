@@ -6,6 +6,7 @@
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
+  box-sizing: border-box;
 }
 @media (min-width: 768px) {
   .container {
@@ -27,6 +28,7 @@
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
+  box-sizing: border-box;
 }
 .row {
   margin-left: -15px;
