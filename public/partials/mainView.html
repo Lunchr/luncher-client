@@ -18,11 +18,11 @@
         <button ng-click="menuState=''" class="icon icon-9"></button>
     </p>
     <ul>
-        <li><a href="javascript:undefined"><i class="icon-10"></i>Kasutaja andmed</a></li>
-        <li><a href="javascript:undefined"><i class="icon-17"></i>Facebooki seaded</a></li>
-        <li><a href="javascript:undefined"><i class="icon-5"></i>Asukoha seaded</a></li>
-        <li><a href="javascript:undefined"><i class="icon-16"></i>Teated</a></li>
-        <li><a href="javascript:undefined"><i class="icon-3"></i>Tagasiside</a></li>
+        <li><a href="javascript:undefined"><span class="icon-10"></span>Kasutaja andmed</a></li>
+        <li><a href="javascript:undefined"><span class="icon-17"></span>Facebooki seaded</a></li>
+        <li><a href="javascript:undefined"><span class="icon-5"></span>Asukoha seaded</a></li>
+        <li><a href="javascript:undefined"><span class="icon-16"></span>Teated</a></li>
+        <li><a href="javascript:undefined"><span class="icon-3"></span>Tagasiside</a></li>
     </ul>
 </div>
 <div class="overlay"></div>
@@ -60,10 +60,12 @@
                     </div>
                     <div class="col-2">
                         <div class="col-wrap">
-                            <h2 class="name">{{offer.title}}</h2>
+                            <p class="location mobile">{{offer.restaurant.name}}</p>
+                            <h2 class="name desktop">{{offer.title}}</h2>
                             <p class="price">{{offer.price}} €</p>
                         </div>
-                        <p class="info">{{offer.description}}</p>
+                        <h2 class="name mobile">{{offer.title}}</h2>
+                        <p class="info desktop">{{offer.description}}</p>
                     </div>
                 </div>
                 <div class="secondary">
@@ -71,6 +73,7 @@
                         <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
                     </div>
                     <div class="col-2">
+                        <p class="info mobile">{{offer.description}}</p>
                         <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
                     </div>
                 </div>

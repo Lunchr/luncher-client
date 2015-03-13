@@ -13,6 +13,7 @@
         height: 45px;
         width: 45px;
         padding: 14px 13px;
+        box-sizing: border-box;
         background: transparent;
         border: none;
         outline: none;
@@ -30,7 +31,6 @@
         url("../fonts/luncher-icons.svg#untitled-font-3") format("svg");
     font-weight: normal;
     font-style: normal;
-
 }
 
 [data-icon]:before {
