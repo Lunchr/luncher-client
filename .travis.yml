@@ -1,12 +1,12 @@
 language: node_js
 node_js:
-- '0.10'
+- '0.12'
 before_script:
 - npm install -g grunt-cli
 - npm install -g codeclimate-test-reporter
 - npm install -g bower
 after_script:
-- cat coverage/lcov.info | codeclimate
+- cat coverage/*/lcov.info | codeclimate
 env:
   global:
   - secure: TqPeV/7WDU01qn8jjYJkzJGnwREdjgkZCu5JW5HUnuh5Dfk89iEB8P2+hD6DnGdDQlrzBrPyvUuYRIF/cFsZIucbFTcbJXIm2YuHrSTP37UU+9N+hZd/sFNmQYjKhVhxSBysDfiCvIVgfLoxm93bWBMYCx37NRiT8WD9qCAKp1w=
@@ -28,4 +28,4 @@ deploy:
   api_key:
     secure: aU1x3RVu1GaD1lwnhjPxXRYV/tZxyd90JyxXiMpAWrWK6EAyaaYupqS88Z7q0u35IgGw5ArrLy/MBPqpdTbEU0loa7bCZXMCNjuI3qtj2SUUY6r3fPiRBOHGHJ0E+s5KNhqes9YZOG7Tyc38huPv8SRhabTE/GU/GJR6E/21Ow8=
   on:
-    repo: deiwin/praad
+    repo: deiwin/luncher-client

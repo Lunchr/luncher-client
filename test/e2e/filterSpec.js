@@ -1,12 +1,6 @@
 describe('Praad App', function() {
   'use strict';
 
-  beforeEach(function() {
-    var ptor = protractor.getInstance();
-    ptor.ignoreSynchronization = true;
-    ptor.sleep(2000);
-  });
-
   describe('Offer list view', function() {
     var offers;
 
@@ -24,7 +18,7 @@ describe('Praad App', function() {
       element(by.model('query')).sendKeys('kana');
 
       expect(offers.count()).toBe(1);
-      var title = offers.first().element(by.binding('{{offer.title}}')).getText();
+      var title = offers.first().element(by.binding('offer.title')).getText();
       expect(title).toBe('Pekingi kana');
     });
   });
