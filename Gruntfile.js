@@ -167,7 +167,8 @@ module.exports = function(grunt) {
             require('postcss-media-minmax')(),
             // require('autoprefixer-core')({ browsers: browsers }).postcss,
           ]
-        }
+        },
+        files: files
       },
       dist: {
         options: {
