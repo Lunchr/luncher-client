@@ -2,7 +2,7 @@
 /*** OFFERS ***/
 
 .offers-wrap {
-    @extend .material-box;
+    @simple-extend-addto material-box;
     padding: 0;
     background-color: #fff;
 }
@@ -78,7 +78,7 @@
 .secondary {
     height: 0;
     overflow: hidden;
-    @include transition(0.2s);
+    @mixin transition 0.2s;
     .expand & {
         height: 210px;
     }

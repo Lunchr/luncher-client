@@ -3,7 +3,7 @@
 
 /* Form */
 .form {
-    @extend .material-box;
+    @simple-extend-addto material-box;
     margin: 15px 0;
     background-color: #fff;
     p {
@@ -28,7 +28,7 @@
         background: #fff;
         outline: none;
         font: $font;
-        @include transition(0.2s);
+        @mixin transition 0.2s;
     }
     input:focus,
     textarea:focus,
@@ -42,7 +42,7 @@
         position: absolute;
         top: 0;
         left: 5px;
-        @include transition(0.2s);
+        @mixin transition 0.2s;
     }
     input:focus + label,
     textarea:focus + label,
@@ -107,7 +107,7 @@
 
 /* Buttons */
 .btn {
-    @extend .material-box;
+    @simple-extend-addto material-box;
     display: inline-block;
     padding: 8px 18px;
     background: $color;

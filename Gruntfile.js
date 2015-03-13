@@ -157,10 +157,10 @@ module.exports = function(grunt) {
         map: true,
         processors: [
           require('postcss-import')(),
+          require('postcss-simple-extend').postcss,
           require('postcss-mixins').postcss,
           require('postcss-simple-vars').postcss,
           require('postcss-nested').postcss,
-          require('postcss-simple-extend').postcss,
           require('postcss-media-minmax')(),
           require('autoprefixer-core')({ browsers: browsers }).postcss,
           require('csswring').postcss,

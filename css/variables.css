@@ -13,9 +13,9 @@ $color-error: #dc1818;
 $font-family: 'Roboto', sans-serif;
 $font-size: 13px;
 $font-weight: 300;
-$font: $font-weight $font-size $font-family;
+$font: 300 13px 'Roboto', sans-serif;
 
-.material-box {
+@simple-extend-define material-box {
     position: relative;
     background-color: #fff;
     border-radius: 2px;
