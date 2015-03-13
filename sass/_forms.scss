@@ -86,7 +86,12 @@
         }
     }
     .form-wrap {
+        box-sizing: border-box;
         display: none;
+    }
+    .col {
+        width: 50%;
+        box-sizing: border-box;
     }
     &.active {
         width: 100%;
