@@ -10,12 +10,19 @@
         position: relative;
         margin: 0 0 30px;
         &.buttons:last-child {
-            margin: 0;
+            margin: -10px 0 0;
         }
         &.image-preview {
             height: 165px;
             margin-top: -33px;
-            background: #F7F7F7;
+            background: #F7F7F7 url(../img/img-icon.svg) center no-repeat;
+            background-size: 50% 50%;
+            label {
+                left: 0;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
         }
     }
     input {
@@ -50,6 +57,12 @@
                 font-size: 10px;
                 color: $color-error;
                 font-weight: bold;
+            }
+        }
+        &[type=file] {
+            cursor: pointer;
+            & + label {
+                cursor: pointer;
             }
         }
     }
