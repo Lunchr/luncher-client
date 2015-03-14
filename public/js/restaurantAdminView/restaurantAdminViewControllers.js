@@ -18,6 +18,8 @@
 
   module.controller('RestaurantAddOfferCtrl', ['$scope', 'fileReader',
     function($scope, fileReader) {
+      $scope.postOffer = function() {
+      };
       $scope.setAsPreview = function(file) {
         if (file) {
           fileReader.readAsDataUrl(file, $scope).then(function(result) {

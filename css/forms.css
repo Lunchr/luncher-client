@@ -31,7 +31,7 @@
             }
         }
     }
-    input {
+    input:not([type="submit"]) {
         width: 100%;
         height: 25px;
         padding: 3px 5px;
@@ -196,7 +196,7 @@
         background: transparent;
         box-shadow: none;
     }
-    button& {
+    input[type="submit"]& {
       border: none;
     }
 }
