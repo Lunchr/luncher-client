@@ -31,11 +31,11 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <p>
-                            <input ng-model="newOffer.name" name="name" id="new-offer-name" type="text">
+                            <input ng-model="newOffer.name" name="name" id="new-offer-name" type="text" required>
                             <label ng-class="{ 'filled': newOffer.name.length }" for="new-offer-name">Nimetus</label>
                         </p>
                         <p>
-                            <input ng-model="newOffer.consist" name="consist" id="new-offer-consist" type="text"></input>
+                            <input ng-model="newOffer.consist" name="consist" id="new-offer-consist" type="text" required></input>
                             <label ng-class="{ 'filled': newOffer.consist.length }" for="new-offer-desc">Koostisosad</label>
                         </p>
                         <p>
@@ -53,13 +53,13 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <p class="input-sep">
-                                            <input ng-model="newOffer.startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time"></input>
+                                            <input ng-model="newOffer.startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time" required></input>
                                             <label ng-class="{ 'filled': newOffer.startTime.length }" for="new-offer-startTime">Kellaaeg</label>
                                         </p>
                                     </div>
                                     <div class="col-xs-3">
                                         <p>
-                                            <input ng-model="newOffer.endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time">
+                                            <input ng-model="newOffer.endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time" required>
                                         </p>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-sm-3">
                         <p>
-                            <input ng-model="newOffer.image" name="image" id="new-offer-image" type="file" accept="image/*" value="" required>
+                            <input ng-model="newOffer.image" name="image" id="new-offer-image" type="file" accept="image/*" value="">
                             <label for="new-offer-image">Pilt</label>
                         </p>
                         <p class="image-preview">
