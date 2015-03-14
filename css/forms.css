@@ -12,6 +12,11 @@
         &.buttons:last-child {
             margin: 0;
         }
+        &.image-preview {
+            height: 165px;
+            margin-top: -33px;
+            background: #F7F7F7;
+        }
     }
     input {
         width: 100%;

@@ -67,12 +67,12 @@
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="image-preview">
-                            <span></span>
-                        </div>
                         <p>
                             <input ng-model="newOffer.image" name="image" id="new-offer-image" type="file" accept="image/*" value="" required>
-                            <label ng-class="{ 'filled': !newOfferForm.image.length}" for="new-offer-image">Pilt</label>
+                            <label for="new-offer-image">Pilt</label>
+                        </p>
+                        <p class="image-preview">
+                            <img src="" alt="">
                         </p>
                     </div>
                 </div>
