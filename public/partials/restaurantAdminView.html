@@ -39,21 +39,40 @@
                             <label ng-class="{ 'filled': newOffer.consist.length }" for="new-offer-desc">Koostisosad</label>
                         </p>
                         <p>
-                            <input ng-model="newOffer.price" name="price" id="new-offer-price" type="number" required>
+                            <input ng-model="newOffer.price" name="price" id="new-offer-price" value="4.50" type="number" required>
                             <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price">Hind</label>
                         </p>
-                        <p>
-                            <input ng-model="newOffer.time" name="time" id="new-offer-time" type="date-time" required>
-                            <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price">Aeg</label>
-                        </p>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <p>
+                                    <input ng-model="newOffer.date" name="date" id="new-offer-date" type="date" required>
+                                    <label ng-class="{ 'filled': !newOfferForm.date}" for="new-offer-date">Kuupäev</label>
+                                </p>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <p class="input-sep">
+                                            <input ng-model="newOffer.startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time"></input>
+                                            <label ng-class="{ 'filled': newOffer.startTime.length }" for="new-offer-startTime">Kellaaeg</label>
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <p>
+                                            <input ng-model="newOffer.endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="imgage-preview">
-                            <span></span>
-                        </div>
                         <p>
-                            <input ng-model="newOffer.image" name="image" id="new-offer-image" type="file" accept="image/*" required>
-                            <label ng-class="{ 'filled': !newOfferForm.image.length}" for="new-offer-price"></label>
+                            <input ng-model="newOffer.image" name="image" id="new-offer-image" type="file" accept="image/*" value="" required>
+                            <label for="new-offer-image">Pilt</label>
+                        </p>
+                        <p class="image-preview">
+                            <label for="new-offer-image"><img src="" alt=""></label>
                         </p>
                     </div>
                 </div>
@@ -72,15 +91,15 @@
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-15"></a></p>
                 <div class="offer-content">
                     <div class="col-1">
-                        <h2 class="name">{{offer.title}}</h2>
+                        <p>{{offer.title}}</p>
                     </div>
                     <div class="col-2">
                         <div class="col-wrap">
-                            <h2 class="name mobile">{{offer.title}}</h2>
-                            <p class="info desktop">{{offer.description}}</p>
+                            <p class="mobile">{{offer.title}}</p>
+                            <p class="additional desktop">{{offer.description}}</p>
                             <p class="price">{{offer.price}} €</p>
                         </div>
-                        <p class="info mobile">{{offer.description}}</p>
+                        <p class="additional mobile">{{offer.description}}</p>
                     </div>
                 </div>
                 <div class="secondary">

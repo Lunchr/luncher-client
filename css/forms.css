@@ -9,61 +9,114 @@
     p {
         position: relative;
         margin: 0 0 30px;
-        &:last-child {
-            margin: 0;
+        &.buttons:last-child {
+            margin: -10px 0 0;
+        }
+        &.image-preview {
+            height: 165px;
+            margin-top: -33px;
+            background: #F7F7F7 url(../img/img-icon.svg) center no-repeat;
+            background-size: 50% 50%;
+            label {
+                left: 0;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
         }
     }
-    input,
-    textarea,
-    select {
+    input {
         width: 100%;
+        height: 25px;
         padding: 3px 5px;
         box-sizing: border-box;
-        -webkit-appearance: none;
         border: none;
         border-bottom: 1px solid $color-secondary-2;
         border-radius: 0;
         line-height: 22px;
-        resize: none;
         background: #fff;
         outline: none;
         font: $font;
+        cursor: text;
+        -webkit-appearance: none;
         @mixin transition 0.2s;
-    }
-    input:focus,
-    textarea:focus,
-    select:focus {
-        border-bottom: 1px solid $color-h;
-    }
-    textarea {
-        height: 72px;
+        &:focus {
+            border-bottom: 1px solid $color-h;
+            & + label
+            {
+                top: -12px;
+                font-size: 10px;
+                color: $color-h;
+            }
+        }
+        &.ng-invalid-number {
+            color: $color-error;
+            border-bottom: 1px solid $color-error;
+            & + label {
+                top: -12px;
+                font-size: 10px;
+                color: $color-error;
+                font-weight: bold;
+            }
+        }
+        &[type=file] {
+            cursor: pointer;
+            & + label {
+                cursor: pointer;
+            }
+        }
     }
     label {
         position: absolute;
         top: 0;
         left: 5px;
+        cursor: text;
         @mixin transition 0.2s;
+        &.filled
+        {
+            top: -12px;
+            font-size: 10px;
+            color: $color-secondary-2;
+        }
     }
-    input:focus + label,
-    textarea:focus + label,
-    label.filled
-    {
-        top: -12px;
-        font-size: 10px;
-        color: $color-h;
-    }
-    label.filled {
-        color: $color-secondary-2;
-    }
-    input[type=number].ng-invalid-number {
-        color: $color-error;
-        border-bottom: 1px solid $color-error;
-    }
-    input[type=number].ng-invalid-number + label {
-        top: -12px;
-        font-size: 10px;
-        color: $color-error;
-        font-weight: bold;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-clear-button,
+::-webkit-calendar-picker-indicator,
+::-webkit-file-upload-button {
+    display: none;
+}
+::-webkit-file-upload-text {
+    color: transparent;
+}
+::-webkit-datetime-edit:not([aria-valuenow]) {
+    color: transparent;
+}
+:focus::-webkit-datetime-edit:not([aria-valuenow]),
+.ng-valid-date::-webkit-datetime-edit:not([aria-valuenow]),
+.ng-valid-time::-webkit-datetime-edit:not([aria-valuenow]),
+.ng-valid-file::-webkit-datetime-edit:not([aria-valuenow]) {
+    color: $color-secondary;
+}
+.ng-valid-date + label,
+.ng-valid-time + label,
+.ng-valid-file + label
+{
+    top: -12px;
+    font-size: 10px;
+    color: $color-secondary-2;
+}
+.input-sep {
+    position: relative;
+    &:after {
+        position: absolute;
+        top: 12px;
+        right: -15px;
+        width: 6px;
+        height: 1px;
+        background: $color-secondary-2;
+        content: "";
     }
 }
 

@@ -1,9 +1,7 @@
 <div class="header">
     <div class="container">
         <div class="header-wrap">
-            <p class="icon-wrap">
-                <button ng-click="menuState='active'" class="icon icon-12"></button>
-            </p>
+            <p id="location"><span class="icon-wrap"><span class="icon icon-5"></span></span>Tartu</p>
             <p id="logo">Luncher</p>
             <p class="search-wrap" ng-controller="SearchCtrl">
                 <input ng-class="{ 'filled': query.length }" id="search" type="text" ng-model="query">
@@ -12,20 +10,6 @@
         </div>
     </div>
 </div>
-<div ng-class="menuState" class="menu">
-    <h2>Madis Lehtmets</h2>
-    <p class="icon-wrap">
-        <button ng-click="menuState=''" class="icon icon-9"></button>
-    </p>
-    <ul>
-        <li><a href="javascript:undefined"><span class="icon-10"></span>Kasutaja andmed</a></li>
-        <li><a href="javascript:undefined"><span class="icon-17"></span>Facebooki seaded</a></li>
-        <li><a href="javascript:undefined"><span class="icon-5"></span>Asukoha seaded</a></li>
-        <li><a href="javascript:undefined"><span class="icon-16"></span>Teated</a></li>
-        <li><a href="javascript:undefined"><span class="icon-3"></span>Tagasiside</a></li>
-    </ul>
-</div>
-<div class="overlay"></div>
 <div class="content" ng-controller="OfferListCtrl">
     <div class="container">
         <div class="controls">
@@ -55,17 +39,17 @@
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-8"></a></p>
                 <div class="offer-content">
                     <div class="col-1">
-                        <p class="location">{{offer.restaurant.name}}</p>
-                        <p class="info">{{offer.restaurant.address}}</p>
+                        <p>{{offer.restaurant.name}}</p>
+                        <p class="additional">{{offer.restaurant.address}}</p>
                     </div>
                     <div class="col-2">
                         <div class="col-wrap">
-                            <p class="location mobile">{{offer.restaurant.name}}</p>
-                            <h2 class="name desktop">{{offer.title}}</h2>
+                            <p class="mobile">{{offer.restaurant.name}}</p>
+                            <p class="desktop">{{offer.title}}</p>
                             <p class="price">{{offer.price}} €</p>
                         </div>
-                        <h2 class="name mobile">{{offer.title}}</h2>
-                        <p class="info desktop">{{offer.description}}</p>
+                        <p class="additional mobile">{{offer.title}}</p>
+                        <p class="additional desktop">{{offer.description}}</p>
                     </div>
                 </div>
                 <div class="secondary">
@@ -73,7 +57,7 @@
                         <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
                     </div>
                     <div class="col-2">
-                        <p class="info mobile">{{offer.description}}</p>
+                        <p class="additional mobile">{{offer.description}}</p>
                         <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
                     </div>
                 </div>
