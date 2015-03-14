@@ -25,6 +25,8 @@
         background: #fff;
         outline: none;
         font: $font;
+        cursor: text;
+        -webkit-appearance: none;
         @mixin transition 0.2s;
         &:focus {
             border-bottom: 1px solid $color-h;
@@ -50,6 +52,7 @@
         position: absolute;
         top: 0;
         left: 5px;
+        cursor: text;
         @mixin transition 0.2s;
         &.filled
         {
@@ -60,20 +63,48 @@
     }
 }
 
+::-webkit-inner-spin-button,
+::-webkit-clear-button,
+::-webkit-calendar-picker-indicator,
+::-webkit-file-upload-button {
+    display: none;
+}
+::-webkit-file-upload-text {
+    color: transparent;
+}
+::-webkit-datetime-edit:not([aria-valuenow]) {
+    color: transparent;
+}
+:focus::-webkit-datetime-edit:not([aria-valuenow]),
+.ng-valid-date::-webkit-datetime-edit:not([aria-valuenow]),
+.ng-valid-time::-webkit-datetime-edit:not([aria-valuenow]),
+.ng-valid-file::-webkit-datetime-edit:not([aria-valuenow]) {
+    color: $color-secondary;
+}
+.ng-valid-date + label,
+.ng-valid-time + label,
+.ng-valid-file + label
+{
+    top: -12px;
+    font-size: 10px;
+    color: $color-secondary-2;
+}
+
+/* double input */
 .double-input {
     display: table;
     width: 100%;
     & > span {
         display: table-cell;
         position: relative;
-        box-sizing: border-box;
+        width: 50%;
         &:first-child {
-            padding-right: 22px;
+            padding-right: 24px;
             &:after {
                 position: absolute;
                 top: 12px;
-                right: 8px;
-                width: 7px;
+                right: 9px;
+                width: 6px;
                 height: 1px;
                 background: $color-secondary-2;
                 content: "";

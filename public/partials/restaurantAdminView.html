@@ -42,19 +42,25 @@
                             <input ng-model="newOffer.price" name="price" id="new-offer-price" value="4.50" type="number" required>
                             <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price">Hind</label>
                         </p>
-                        <p>
-                            <input ng-model="newOffer.date" name="date" id="new-offer-date" type="number" required>
-                            <label ng-class="{ 'filled': !newOfferForm.date}" for="new-offer-date">Kuupäev</label>
-                        </p>
-                        <p class="double-input">
-                            <span>
-                                <input ng-model="newOffer.startTime" name="startTime" id="new-offer-startTime" value="11:30" type="datetime"></input>
-                                <label ng-class="{ 'filled': newOffer.startTime.length }" for="new-offer-startTime">Kellaaeg</label>
-                            </span>
-                            <span>
-                                <input ng-model="newOffer.endTime" name="endTime" id="new-offer-endTime" value="15:00" type="datetime">
-                            </span>
-                        </p>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <p>
+                                    <input ng-model="newOffer.date" name="date" id="new-offer-date" type="date" required>
+                                    <label ng-class="{ 'filled': !newOfferForm.date}" for="new-offer-date">Kuupäev</label>
+                                </p>
+                            </div>
+                            <div class="col-xs-3">
+                                <p class="double-input">
+                                    <span>
+                                        <input ng-model="newOffer.startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time"></input>
+                                        <label ng-class="{ 'filled': newOffer.startTime.length }" for="new-offer-startTime">Kellaaeg</label>
+                                    </span>
+                                    <span>
+                                        <input ng-model="newOffer.endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time">
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="image-preview">
