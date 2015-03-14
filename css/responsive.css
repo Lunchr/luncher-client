@@ -55,21 +55,15 @@
             width: 100%;
         }
     }
-    .name {
-        height: 15px;
-        margin-top: 2px;
-        margin-bottom: 0;
-        font-size: 13px;
-        line-height: 1;
-    }
     .secondary {
         margin-left: -45px;
         .expand & {
             height: 229px;
             margin-bottom: -11px;
         }
-        .info {
+        .additional {
             margin-top: 4px;
+            margin-bottom: 0;
             padding-left: 45px;
         }
     }

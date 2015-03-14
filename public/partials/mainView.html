@@ -39,17 +39,17 @@
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-8"></a></p>
                 <div class="offer-content">
                     <div class="col-1">
-                        <p class="location">{{offer.restaurant.name}}</p>
-                        <p class="info">{{offer.restaurant.address}}</p>
+                        <p>{{offer.restaurant.name}}</p>
+                        <p class="additional">{{offer.restaurant.address}}</p>
                     </div>
                     <div class="col-2">
                         <div class="col-wrap">
-                            <p class="location mobile">{{offer.restaurant.name}}</p>
-                            <h2 class="name desktop">{{offer.title}}</h2>
+                            <p class="mobile">{{offer.restaurant.name}}</p>
+                            <p class="desktop">{{offer.title}}</p>
                             <p class="price">{{offer.price}} €</p>
                         </div>
-                        <h2 class="name mobile">{{offer.title}}</h2>
-                        <p class="info desktop">{{offer.description}}</p>
+                        <p class="additional mobile">{{offer.title}}</p>
+                        <p class="additional desktop">{{offer.description}}</p>
                     </div>
                 </div>
                 <div class="secondary">
@@ -57,7 +57,7 @@
                         <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
                     </div>
                     <div class="col-2">
-                        <p class="info mobile">{{offer.description}}</p>
+                        <p class="additional mobile">{{offer.description}}</p>
                         <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
                     </div>
                 </div>

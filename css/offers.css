@@ -19,20 +19,6 @@
     &.expand {
         background-color: rgba(0, 0, 0, 0.02);
     }
-    .offer-content {
-        width: 100%;
-        box-sizing: border-box;
-        &:after {
-            display: block;
-            content: "";
-            clear: both;
-        }
-    }
-    p {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
     .icon-wrap {
         .icon {
             color: #e0e0e0;
@@ -47,6 +33,36 @@
         }
         &.edit .icon {
             color: #b3b3b3;
+        }
+    }
+}
+.offer-content {
+    width: 100%;
+    box-sizing: border-box;
+    &:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+    p {
+        margin: 0;
+        padding: 2px 0;
+        font-size: 16px;
+        line-height: 1.2;
+        font-weight: 300;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        &.additional {
+            position: relative;
+            padding: 0;
+            font-size: 13px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        &.price {
+            width: 40px;
         }
     }
 }
@@ -65,16 +81,6 @@
     border-radius: 2px;
     background-size: cover;
 }
-.info {
-    position: relative;
-    margin-top: 2px;
-    margin-bottom: 0;
-    font-size: 13px;
-    height: 15px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
 .secondary {
     height: 0;
     overflow: hidden;
@@ -82,19 +88,6 @@
     .expand & {
         height: 210px;
     }
-}
-
-.location,
-.price,
-.time,
-.name {
-    margin: 0;
-    font-size: 16px;
-    line-height: 25px;
-    font-weight: 300;
-}
-.price {
-    width: 40px;
 }
 
 .col-1,
