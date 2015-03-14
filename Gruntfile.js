@@ -153,7 +153,7 @@ module.exports = function(grunt) {
   (function configurePostcss() {
     var browsers = ['ie >= 10, > 1%, last 2 versions'];
     var ignoredDoiuseFeatures = ['box-sizing'];
-    var files = { 'public/css/main.css': 'css/main.css' }
+    var files = { 'public/css/main.css': 'css/main.css' };
     config.postcss = {
       dev: {
         options: {
