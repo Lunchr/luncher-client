@@ -89,27 +89,16 @@
     font-size: 10px;
     color: $color-secondary-2;
 }
-
-/* double input */
-.double-input {
-    display: table;
-    width: 100%;
-    & > span {
-        display: table-cell;
-        position: relative;
-        width: 50%;
-        &:first-child {
-            padding-right: 24px;
-            &:after {
-                position: absolute;
-                top: 12px;
-                right: 9px;
-                width: 6px;
-                height: 1px;
-                background: $color-secondary-2;
-                content: "";
-            }
-        }
+.input-sep {
+    position: relative;
+    &:after {
+        position: absolute;
+        top: 12px;
+        right: -15px;
+        width: 6px;
+        height: 1px;
+        background: $color-secondary-2;
+        content: "";
     }
 }
 

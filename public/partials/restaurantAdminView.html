@@ -50,15 +50,19 @@
                                 </p>
                             </div>
                             <div class="col-xs-3">
-                                <p class="double-input">
-                                    <span>
-                                        <input ng-model="newOffer.startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time"></input>
-                                        <label ng-class="{ 'filled': newOffer.startTime.length }" for="new-offer-startTime">Kellaaeg</label>
-                                    </span>
-                                    <span>
-                                        <input ng-model="newOffer.endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time">
-                                    </span>
-                                </p>
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <p class="input-sep">
+                                            <input ng-model="newOffer.startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time"></input>
+                                            <label ng-class="{ 'filled': newOffer.startTime.length }" for="new-offer-startTime">Kellaaeg</label>
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <p>
+                                            <input ng-model="newOffer.endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time">
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
