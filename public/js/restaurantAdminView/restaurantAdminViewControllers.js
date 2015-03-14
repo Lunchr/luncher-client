@@ -26,7 +26,7 @@
             $scope.previewImageSrc = result;
           });
         } else {
-          $scope.$apply(function(){
+          $scope.$apply(function() {
             $scope.previewImageSrc = '';
           });
         }
@@ -38,8 +38,8 @@
     function() {
       return {
         restrict: 'A',
-        link: function($scope, element){
-          element.bind('change', function(event){
+        link: function($scope, element) {
+          element.bind('change', function(event) {
             var file = (event.srcElement || event.target).files[0];
             $scope.setAsPreview(file);
           });
