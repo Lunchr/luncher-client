@@ -29,23 +29,23 @@
             </p>
             <div class="form-wrap">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-md-4 col-sm-3">
                         <p>
-                            <input ng-model="name" name="name" id="new-offer-name" type="text" required>
+                            <input ng-class="{ 'filled': name.length }" ng-model="name" name="name" id="new-offer-name" type="text" required>
                             <label ng-class="{ 'filled': name.length }" for="new-offer-name">Nimetus</label>
                         </p>
                         <p>
-                            <input ng-model="consist" name="consist" id="new-offer-consist" type="text" required></input>
+                            <input ng-class="{ 'filled': consist.length }" ng-model="consist" name="consist" id="new-offer-consist" type="text" required></input>
                             <label ng-class="{ 'filled': consist.length }" for="new-offer-desc">Koostisosad</label>
                         </p>
                         <p>
-                            <input ng-model="price" name="price" id="new-offer-price" value="4.50" type="number" required>
+                            <input ng-class="{ 'filled': !newOfferForm.price.$error.required}" ng-model="price" name="price" id="new-offer-price" value="4.50" type="number" required>
                             <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price">Hind</label>
                         </p>
                         <div class="row">
                             <div class="col-xs-3">
                                 <p>
-                                    <input ng-model="date" name="date" id="new-offer-date" type="date" required>
+                                    <input ng-class="{ 'filled': !newOfferForm.date}" ng-model="date" name="date" id="new-offer-date" type="date" required>
                                     <label ng-class="{ 'filled': !newOfferForm.date}" for="new-offer-date">Kuupäev</label>
                                 </p>
                             </div>
@@ -53,25 +53,25 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <p class="input-sep">
-                                            <input ng-model="startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time" required></input>
+                                            <input ng-class="{ 'filled': startTime.length }" ng-model="startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time" required></input>
                                             <label ng-class="{ 'filled': startTime.length }" for="new-offer-startTime">Kellaaeg</label>
                                         </p>
                                     </div>
                                     <div class="col-xs-3">
                                         <p>
-                                            <input ng-model="endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time" required>
+                                            <input ng-class="{ 'filled': endTime.length }" ng-model="endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time" required>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-md-2 col-sm-3">
                         <p>
-                            <input ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
-                            <label for="new-offer-image">Pilt</label>
+                            <input ng-class="{ 'filled': previewImageSrc.length }" ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
+                            <label ng-class="{ 'filled': previewImageSrc.length }" for="new-offer-image">Pilt</label>
                         </p>
-                        <p class="image-preview">
+                        <p ng-class="{ 'filled': previewImageSrc.length }" class="image-preview">
                             <label for="new-offer-image"><img ng-show="previewImageSrc" ng-src="{{previewImageSrc}}" alt=""></label>
                         </p>
                     </div>

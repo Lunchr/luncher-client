@@ -17,16 +17,22 @@
             margin-top: -33px;
             background: #F7F7F7 url(../img/img-icon.svg) center no-repeat;
             background-size: 50% 50%;
+            &.filled {
+                margin-top: -30px;
+            }
             label {
                 left: 0;
                 width: 100%;
                 height: 100%;
                 cursor: pointer;
                 img {
-                  height: 100%;
-                  display: block;
-                  margin-left: auto;
-                  margin-right: auto;
+                    display: block;
+                    height: 100%;
+                    max-width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    border: 10px solid #F7F7F7;
+                    box-sizing: border-box;
                 }
             }
         }
@@ -89,12 +95,16 @@
 
 ::-webkit-inner-spin-button,
 ::-webkit-clear-button,
-::-webkit-calendar-picker-indicator,
-::-webkit-file-upload-button {
+::-webkit-calendar-picker-indicator {
     display: none;
 }
-::-webkit-file-upload-text {
-    color: transparent;
+::-webkit-file-upload-button {
+    display: none;
+    visibility: hidden;
+    width: 0;
+}
+.filled::-webkit-file-upload-button {
+    display: block;
 }
 ::-webkit-datetime-edit:not([aria-valuenow]) {
     color: transparent;
