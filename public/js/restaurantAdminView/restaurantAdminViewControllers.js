@@ -6,13 +6,13 @@
 
   module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.restaurant = $resource('api/v1/restaurant').get();
+      $scope.restaurant = $resource('api/v1/restaurants/me').get();
     }
   ]);
 
   module.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.offers = $resource('api/v1/restaurant/offers').query();
+      $scope.offers = $resource('api/v1/restaurants/me/offers').query();
     }
   ]);
 
