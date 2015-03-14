@@ -1,18 +1,48 @@
 (function() {
   'use strict';
-  var offerListControllers = angular.module('restaurantAdminViewControllers', [
+  var module = angular.module('restaurantAdminViewControllers', [
     'ngResource'
   ]);
 
-  offerListControllers.controller('RestaurantAdminViewCtrl', ['$scope', '$resource',
+  module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource',
     function($scope, $resource) {
       $scope.restaurant = $resource('api/v1/restaurant').get();
     }
   ]);
 
-  offerListControllers.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
+  module.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
       $scope.offers = $resource('api/v1/restaurant/offers').query();
+    }
+  ]);
+
+  module.controller('RestaurantAddOfferCtrl', ['$scope', 'fileReader',
+    function($scope, fileReader) {
+      $scope.setAsPreview = function(file) {
+        if (file) {
+          fileReader.readAsDataUrl(file, $scope).then(function(result) {
+            $scope.previewImageSrc = result;
+          });
+        } else {
+          $scope.$apply(function(){
+            $scope.previewImageSrc = '';
+          });
+        }
+      };
+    }
+  ]);
+
+  module.directive('previewImage', [
+    function() {
+      return {
+        restrict: 'A',
+        link: function($scope, element){
+          element.bind('change', function(event){
+            var file = (event.srcElement || event.target).files[0];
+            $scope.setAsPreview(file);
+          });
+        }
+      };
     }
   ]);
 })();

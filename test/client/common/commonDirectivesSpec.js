@@ -107,6 +107,5 @@ describe('Common directives', function() {
         expect(scope.date).toBe(currentDate);
       }));
     });
-
   });
 });

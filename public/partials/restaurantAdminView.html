@@ -21,9 +21,9 @@
     </ul>
 </div>
 <div class="overlay"></div>
-<div class="content" ng-controller="RestaurantOfferListCtrl">
+<div class="content">
     <div class="container">
-        <div class="form new-offer-form" ng-form name="newOfferForm" ng-class="newOfferFormState">
+        <div class="form new-offer-form" ng-form ng-controller="RestaurantAddOfferCtrl" name="newOfferForm" ng-class="newOfferFormState">
             <p class="new-offer-btn">
                 <a href="javascript:undefined" ng-click="newOfferFormState='active'"><span class="icon-4"></span>Lisa uus pakkumine</a>
             </p>
@@ -31,21 +31,21 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <p>
-                            <input ng-model="newOffer.name" name="name" id="new-offer-name" type="text" required>
-                            <label ng-class="{ 'filled': newOffer.name.length }" for="new-offer-name">Nimetus</label>
+                            <input ng-model="name" name="name" id="new-offer-name" type="text" required>
+                            <label ng-class="{ 'filled': name.length }" for="new-offer-name">Nimetus</label>
                         </p>
                         <p>
-                            <input ng-model="newOffer.consist" name="consist" id="new-offer-consist" type="text" required></input>
-                            <label ng-class="{ 'filled': newOffer.consist.length }" for="new-offer-desc">Koostisosad</label>
+                            <input ng-model="consist" name="consist" id="new-offer-consist" type="text" required></input>
+                            <label ng-class="{ 'filled': consist.length }" for="new-offer-desc">Koostisosad</label>
                         </p>
                         <p>
-                            <input ng-model="newOffer.price" name="price" id="new-offer-price" value="4.50" type="number" required>
+                            <input ng-model="price" name="price" id="new-offer-price" value="4.50" type="number" required>
                             <label ng-class="{ 'filled': !newOfferForm.price.$error.required}" for="new-offer-price">Hind</label>
                         </p>
                         <div class="row">
                             <div class="col-xs-3">
                                 <p>
-                                    <input ng-model="newOffer.date" name="date" id="new-offer-date" type="date" required>
+                                    <input ng-model="date" name="date" id="new-offer-date" type="date" required>
                                     <label ng-class="{ 'filled': !newOfferForm.date}" for="new-offer-date">Kuupäev</label>
                                 </p>
                             </div>
@@ -53,13 +53,13 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <p class="input-sep">
-                                            <input ng-model="newOffer.startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time" required></input>
-                                            <label ng-class="{ 'filled': newOffer.startTime.length }" for="new-offer-startTime">Kellaaeg</label>
+                                            <input ng-model="startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time" required></input>
+                                            <label ng-class="{ 'filled': startTime.length }" for="new-offer-startTime">Kellaaeg</label>
                                         </p>
                                     </div>
                                     <div class="col-xs-3">
                                         <p>
-                                            <input ng-model="newOffer.endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time" required>
+                                            <input ng-model="endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time" required>
                                         </p>
                                     </div>
                                 </div>
@@ -68,11 +68,11 @@
                     </div>
                     <div class="col-sm-3">
                         <p>
-                            <input ng-model="newOffer.image" name="image" id="new-offer-image" type="file" accept="image/*" value="">
+                            <input ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
                             <label for="new-offer-image">Pilt</label>
                         </p>
                         <p class="image-preview">
-                            <label for="new-offer-image"><img src="" alt=""></label>
+                            <label for="new-offer-image"><img ng-show="previewImageSrc" ng-src="{{previewImageSrc}}" alt=""></label>
                         </p>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                 </p>
             </div>
         </div>
-        <div class="offers-wrap">
+        <div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
             <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="offerToggleState = !toggle.state"  ng-class="{'first' : $first, 'last' : $last, 'expand' : offerToggleState}">
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-15"></a></p>
                 <div class="offer-content">

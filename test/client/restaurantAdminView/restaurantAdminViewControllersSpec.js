@@ -43,4 +43,75 @@ describe('OfferList cotrollers', function() {
       expect($scope.offers.length).toBe(3);
     }));
   });
+
+  describe('RestaurantAddOfferCtrl', function(){
+    describe('previewImage directive', function() {
+      var element, scope, parentScope;
+      beforeEach(function() {
+        var compiled = utils.compile('<a preview-image />');
+        element = compiled.element;
+        scope = compiled.parentScope;
+
+        scope.setAsPreview = jasmine.createSpy();
+      });
+
+      it('should call setAsPreview method on scope with file data from change event', function(){
+        var file = 'a mock file object';
+        element.prop('files', [file]);
+
+        element.triggerHandler('change');
+
+        expect(scope.setAsPreview).toHaveBeenCalledWith(file);
+      });
+    });
+
+    describe('the controller', function(){
+      var $scope, mockFileReader;
+
+      beforeEach(inject(function(_$rootScope_, $controller){
+        $scope = _$rootScope_.$new();
+        mockFileReader = {};
+        $controller('RestaurantAddOfferCtrl', {
+          $scope: $scope,
+          fileReader: mockFileReader
+        });
+      }));
+
+      describe('setAsPreview', function(){
+        var result, file;
+        beforeEach(inject(function($q){
+          var deferred = $q.defer();
+          result = 'result data';
+          deferred.resolve(result);
+          mockFileReader.readAsDataUrl = jasmine.createSpy().and.returnValue(deferred.promise);
+        }));
+
+        describe('with file', function(){
+          beforeEach(function(){
+            file = 'a mock file';
+          });
+
+          it('should set previewImageSrc to the result', function(){
+            $scope.setAsPreview(file);
+
+            $scope.$apply();
+            expect($scope.previewImageSrc).toBe(result);
+          });
+        });
+
+        describe('without file', function(){
+          beforeEach(function(){
+            file = undefined;
+          });
+
+          it('should set previewImageSrc to the result', function(){
+            $scope.setAsPreview(file);
+
+            $scope.$apply();
+            expect($scope.previewImageSrc).toBe('');
+          });
+        });
+      });
+    });
+  });
 });
