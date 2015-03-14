@@ -190,6 +190,9 @@
         background: transparent;
         box-shadow: none;
     }
+    button& {
+      border: none;
+    }
 }
 .buttons {
     text-align: right;
