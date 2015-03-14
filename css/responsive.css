@@ -1,28 +1,22 @@
 
 /*** RESPONSIVE STYLES ***/
 
-@media (max-width: 1212px) {
+@media (max-width: 991px) {
     .container {
-        width: 1000px;
-    }
-}
-@media (max-width: 1012px) {
-    .container {
-        width: 700px;
         padding: 0 8px;
     }
     .controls form {
         visibility: hidden;
     }
 }
-@media (min-width: 713px) {
+@media (min-width: 768px) {
     .mobile {
         display: none;
     }
 }
 
 /* mobile */
-@media (max-width: 712px) {
+@media (max-width: 767px) {
     .container {
         width: 100%;
     }
@@ -70,6 +64,9 @@
     .image {
         width: 100%;
         border-radius: 0;
+    }
+    .form p.image-preview {
+        height: 240px;
     }
 
     /* desktop or mobile only */
