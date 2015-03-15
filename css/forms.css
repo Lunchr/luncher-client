@@ -13,17 +13,16 @@
             margin: -10px 0 0;
         }
         &.image-preview {
-            height: 155px;
-            margin-top: -20px;
+            height: 163px;
+            margin-top: -30px;
             background: #F7F7F7 url(../img/img-icon.svg) center no-repeat;
             background-size: 50% 50%;
             border: 2px dashed #eee;
+            border-top: none;
             label {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                margin-top: -12px;
-                padding-top: 12px;
                 cursor: pointer;
                 img {
                     display: block;
