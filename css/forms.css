@@ -52,6 +52,22 @@
         cursor: text;
         -webkit-appearance: none;
         @mixin transition 0.2s;
+        &[type=file] {
+            position: relative;
+            -webkit-box-sizing: border-box;
+            color: transparent;
+            padding-left: 1px;
+            &.filled {
+                color: $color-secondary;
+            }
+            &::-webkit-file-upload-button {
+                width: 0;
+                padding: 0;
+                margin: 0;
+                -webkit-appearance: none;
+                border: none;
+            }
+        }
         &:focus {
             border-bottom: 1px solid $color-h;
             & + label
@@ -91,23 +107,6 @@
             color: $color-secondary-2;
         }
     }
-}
-
-input[type=file] {
-    position: relative;
-    -webkit-box-sizing: border-box;
-    color: transparent;
-    padding-left: 1px;
-}
-input[type=file].filled {
-    color: $color-secondary;
-}
-input[type=file]::-webkit-file-upload-button {
-    width: 0;
-    padding: 0;
-    margin: 0;
-    -webkit-appearance: none;
-    border: none;
 }
 
 ::-webkit-inner-spin-button,
