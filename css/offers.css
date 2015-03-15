@@ -39,6 +39,7 @@
     &.pending {
         opacity: 0.3;
         background-color: rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid #ddd;
     }
 }
 .offer-content {
