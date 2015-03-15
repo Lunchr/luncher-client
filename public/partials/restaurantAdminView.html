@@ -24,26 +24,56 @@
 <div class="content">
     <div class="container">
         <div class="offer-form-wrap">
-            <form class="offer-form" ng-submit="postOffer()" ng-controller="RestaurantAddOfferCtrl" name="newOfferForm" ng-class="newOfferFormState">
+            <form class="offer-form" novalidate ng-submit="postOffer()" ng-controller="RestaurantAddOfferCtrl" name="form" ng-class="newOfferFormState">
                 <div class="row">
                     <div class="col-md-4 col-sm-3">
                         <p>
-                            <input ng-model="title" name="title" id="new-offer-title" type="text" required>
-                            <label ng-class="{filled: title}" for="new-offer-title">Nimetus</label>
+                            <input ng-model="title" name="title" id="new-offer-title" type="text" ng-minlength="5" ng-maxlength="20" required>
+                            <label ng-class="{filled: form.title.$viewValue}" for="new-offer-title">
+                              <span ng-show="!(form.title.$dirty && form.title.$touched && form.title.$invalid)">
+                                Nimetus
+                              </span>
+                              <span class="error-container" ng-show="form.title.$dirty && form.title.$touched && form.title.$invalid">
+                                <span ng-show="form.title.$error.required">
+                                  Nimetus on kohustuslik.
+                                </span>
+                                <span ng-show="form.title.$error.minlength">
+                                  Nimetus peab olema vähemalt 5 tähte.
+                                </span>
+                                <span ng-show="form.title.$error.maxlength">
+                                  Nimetus võib olla kuni 20 tähte. ({{20-form.title.$viewValue.length}})
+                                </span>
+                              </span>
+                            </label>
                         </p>
                         <p>
-                            <tags-input ng-model="tags" name="tags" id="new-offer-tags" type="text" min-tags="3">
-                            <label ng-class="{filled: tags.length}" for="new-offer-tags">Koostisosad</label>
+                            <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
+                                 because of this we have to mark it manually for now-->
+                            <tags-input ng-model="tags" name="tags" id="new-offer-tags" min-tags="3"
+                             on-tag-added="form.tags.$dirty=true" on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
+                            <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="new-offer-tags">
+                              <span ng-show="!(form.tags.$dirty && form.tags.$touched && form.tags.$invalid)">
+                                Koostisosad
+                              </span>
+                              <span class="error-container" ng-show="form.tags.$dirty && form.tags.$touched && form.tags.$invalid">
+                                <span ng-show="!tags.length">
+                                  Koostisosad on kohustuslikud.
+                                </span>
+                                <span ng-show="form.tags.$error.minTags && tags.length">
+                                  Pakkumine peab sisaldama vähemalt 3 koostisosa.
+                                </span>
+                              </span>
+                            </label>
                         </p>
                         <p>
-                            <input ng-model="price" name="price" id="new-offer-price" value="4.50" type="number" required>
-                            <label ng-class="{filled: !newOfferForm.price.$error.required}" for="new-offer-price">Hind</label>
+                            <input ng-model="price" name="price" id="new-offer-price" type="number" min="0" required>
+                            <label ng-class="{filled: form.price.$viewValue}" for="new-offer-price">Hind</label>
                         </p>
                         <div class="row">
                             <div class="col-xs-3">
                                 <p>
                                     <input ng-model="date" name="date" id="new-offer-date" type="date" required>
-                                    <label ng-class="{filled: !newOfferForm.date}" for="new-offer-date">Kuupäev</label>
+                                    <label ng-class="{filled: !form.date}" for="new-offer-date">Kuupäev</label>
                                 </p>
                             </div>
                             <div class="col-xs-3">
@@ -79,7 +109,7 @@
                     <a class="btn btn-secondary" href="javascript:undefined" ng-click="newOfferFormState=''">
                         Loobu
                     </a>
-                    <input class="btn" type="submit" value="Salvesta">
+                    <input class="btn" type="submit" ng-disabled="form.$invalid" value="Salvesta">
                 </p>
             </form>
             <p class="new-offer-btn">

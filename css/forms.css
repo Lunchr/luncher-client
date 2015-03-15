@@ -76,12 +76,10 @@
                 color: $color-h;
             }
         }
-        &.ng-invalid-number {
+        &.ng-invalid.ng-dirty.ng-touched {
             color: $color-error;
             border-bottom: 1px solid $color-error;
             & + label {
-                top: -12px;
-                font-size: 10px;
                 color: $color-error;
                 font-weight: bold;
             }
@@ -110,6 +108,14 @@
     tags-input {
         &.ng-invalid .tags {
             box-shadow: none;
+        }
+        &.ng-invalid.ng-dirty.ng-touched .tags {
+            color: $color-error;
+            border-bottom: 1px solid $color-error;
+            & + label {
+                color: $color-error;
+                font-weight: bold;
+            }
         }
         .tags {
             padding: 0;
