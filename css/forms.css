@@ -13,20 +13,26 @@
             margin: -10px 0 0;
         }
         &.image-preview {
-            height: 165px;
-            margin-top: -33px;
+            height: 164px;
+            margin-top: -30px;
+            margin-bottom: 20px;
             background: #F7F7F7 url(../img/img-icon.svg) center no-repeat;
             background-size: 50% 50%;
+            border: 1px dashed $color-secondary-2;
+            border-top: none;
             label {
                 left: 0;
                 width: 100%;
                 height: 100%;
                 cursor: pointer;
                 img {
-                  height: 100%;
-                  display: block;
-                  margin-left: auto;
-                  margin-right: auto;
+                    display: block;
+                    height: 100%;
+                    max-width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    border: 10px solid #F7F7F7;
+                    box-sizing: border-box;
                 }
             }
         }
@@ -46,6 +52,22 @@
         cursor: text;
         -webkit-appearance: none;
         @mixin transition 0.2s;
+        &[type=file] {
+            position: relative;
+            -webkit-box-sizing: border-box;
+            color: transparent;
+            padding-left: 1px;
+            &.filled {
+                color: $color-secondary;
+            }
+            &::-webkit-file-upload-button {
+                width: 0;
+                padding: 0;
+                margin: 0;
+                -webkit-appearance: none;
+                border: none;
+            }
+        }
         &:focus {
             border-bottom: 1px solid $color-h;
             & + label
@@ -89,13 +111,10 @@
 
 ::-webkit-inner-spin-button,
 ::-webkit-clear-button,
-::-webkit-calendar-picker-indicator,
-::-webkit-file-upload-button {
+::-webkit-calendar-picker-indicator {
     display: none;
 }
-::-webkit-file-upload-text {
-    color: transparent;
-}
+
 ::-webkit-datetime-edit:not([aria-valuenow]) {
     color: transparent;
 }
