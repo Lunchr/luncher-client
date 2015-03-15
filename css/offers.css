@@ -19,21 +19,21 @@
     &.expand {
         background-color: rgba(0, 0, 0, 0.02);
     }
-    .icon-wrap {
-        .icon {
-            color: #e0e0e0;
-            &:hover {
-                color: #b3b3b3;
-            }
-            &.icon-8:focus:before,
-            &.icon-8:active:before {
-                content: "k";
-                color: $color;
-            }
-        }
-        &.edit .icon {
+    .icon {
+        color: #e0e0e0;
+        &:hover {
             color: #b3b3b3;
         }
+    }
+    .icon-8:focus:before,
+    .icon-8:active:before {
+        content: "k";
+        color: $color;
+    }
+    &:hover .icon-15:before,
+    .icon-15:hover:before {
+        content: "r";
+        color: $color;
     }
 }
 .offer-content {
