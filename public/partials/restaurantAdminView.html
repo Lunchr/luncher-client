@@ -9,7 +9,7 @@
     </div>
 </div>
 <div ng-class="menuState" class="menu">
-    <h2>La Dolche Vita</h2>
+    <h2>{{restaurant.name}}</h2>
     <p class="icon-wrap">
         <button ng-click="menuState=''" class="icon icon-9"></button>
     </p>
@@ -23,7 +23,7 @@
 <div class="overlay"></div>
 <div class="content">
     <div class="container">
-        <div class="form new-offer-form" ng-form ng-controller="RestaurantAddOfferCtrl" name="newOfferForm" ng-class="newOfferFormState">
+        <form class="form new-offer-form" ng-submit="postOffer()" ng-controller="RestaurantAddOfferCtrl" name="newOfferForm" ng-class="newOfferFormState">
             <p class="new-offer-btn">
                 <a href="javascript:undefined" ng-click="newOfferFormState='active'"><span class="icon-4"></span>Lisa uus pakkumine</a>
             </p>
@@ -71,8 +71,10 @@
                             <input ng-class="{ 'filled': previewImageSrc.length }" ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
                             <label ng-class="{ 'filled': previewImageSrc.length }" for="new-offer-image">Pilt</label>
                         </p>
-                        <p ng-class="{ 'filled': previewImageSrc.length }" class="image-preview">
-                            <label for="new-offer-image"><img ng-show="previewImageSrc" ng-src="{{previewImageSrc}}" alt=""></label>
+                        <p class="image-preview">
+                            <label for="new-offer-image">
+                              <img ng-show="previewImageSrc" ng-src="{{previewImageSrc}}" alt="">
+                            </label>
                         </p>
                     </div>
                 </div>
@@ -80,12 +82,10 @@
                     <a class="btn btn-secondary" href="javascript:undefined" ng-click="newOfferFormState=''">
                         Loobu
                     </a>
-                    <button class="btn" type="submit">
-                        Salvesta
-                    </button>
+                    <input class="btn" type="submit" value="Salvesta">
                 </p>
             </div>
-        </div>
+        </form>
         <div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
             <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="offerToggleState = !toggle.state"  ng-class="{'first' : $first, 'last' : $last, 'expand' : offerToggleState}">
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-15"></a></p>
