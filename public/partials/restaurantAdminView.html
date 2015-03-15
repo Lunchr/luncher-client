@@ -32,8 +32,8 @@
                             <label ng-class="{ 'filled': title }" for="new-offer-title">Nimetus</label>
                         </p>
                         <p>
-                            <tags-input placeholder="Lisa koostis" ng-model="tags" name="tags" id="new-offer-tags" type="text" required>
-                            <label class="filled" for="new-offer-tags">Koostisosad</label>
+                            <tags-input placeholder="Please remove this placeholder" ng-model="tags" name="tags" id="new-offer-tags" type="text" required>
+                            <label for="new-offer-tags">Koostisosad</label>
                         </p>
                         <p>
                             <input ng-class="{ 'filled': !newOfferForm.price.$error.required}" ng-model="price" name="price" id="new-offer-price" value="4.50" type="number" required>
