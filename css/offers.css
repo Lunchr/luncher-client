@@ -12,6 +12,7 @@
     cursor: pointer;
     border-bottom: 1px solid #f0f0f0;
     box-sizing: border-box;
+    @mixin transition 0.2s;
     &:last-of-type {
         border: none;
     }
@@ -36,7 +37,8 @@
         color: $color;
     }
     &.pending {
-      background-color: red;
+        opacity: 0.3;
+        background-color: rgba(0, 0, 0, 0.06);
     }
 }
 .offer-content {
