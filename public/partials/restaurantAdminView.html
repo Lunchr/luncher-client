@@ -31,12 +31,12 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-3">
                         <p>
-                            <input ng-class="{ 'filled': title.length }" ng-model="title" name="title" id="new-offer-title" type="text" required>
-                            <label ng-class="{ 'filled': title.length }" for="new-offer-title">Nimetus</label>
+                            <input ng-class="{ 'filled': title }" ng-model="title" name="title" id="new-offer-title" type="text" required>
+                            <label ng-class="{ 'filled': title }" for="new-offer-title">Nimetus</label>
                         </p>
                         <p>
-                            <input ng-class="{ 'filled': tags.length }" ng-model="tags" name="tags" id="new-offer-tags" type="text" required>
-                            <label ng-class="{ 'filled': tags.length }" for="new-offer-tags">Koostisosad</label>
+                            <input ng-class="{ 'filled': tags }" ng-model="tags" name="tags" id="new-offer-tags" type="text" required>
+                            <label ng-class="{ 'filled': tags }" for="new-offer-tags">Koostisosad</label>
                         </p>
                         <p>
                             <input ng-class="{ 'filled': !newOfferForm.price.$error.required}" ng-model="price" name="price" id="new-offer-price" value="4.50" type="number" required>
@@ -53,13 +53,13 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <p class="input-sep">
-                                            <input ng-class="{ 'filled': fromTime.length }" ng-model="fromTime" name="fromTime" id="new-offer-fromTime" value="11:30" type="time" required>
-                                            <label ng-class="{ 'filled': fromTime.length }" for="new-offer-fromTime">Kellaaeg</label>
+                                            <input ng-class="{ 'filled': fromTime }" ng-model="fromTime" name="fromTime" id="new-offer-fromTime" value="11:30" type="time" required>
+                                            <label ng-class="{ 'filled': fromTime }" for="new-offer-fromTime">Kellaaeg</label>
                                         </p>
                                     </div>
                                     <div class="col-xs-3">
                                         <p>
-                                            <input ng-class="{ 'filled': toTime.length }" ng-model="toTime" name="toTime" id="new-offer-toTime" value="15:00" type="time" required>
+                                            <input ng-class="{ 'filled': toTime }" ng-model="toTime" name="toTime" id="new-offer-toTime" value="15:00" type="time" required>
                                         </p>
                                     </div>
                                 </div>
@@ -68,8 +68,8 @@
                     </div>
                     <div class="col-md-2 col-sm-3">
                         <p>
-                            <input ng-class="{ 'filled': previewImageSrc.length }" ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
-                            <label ng-class="{ 'filled': previewImageSrc.length }" for="new-offer-image">Pilt</label>
+                            <input ng-class="{ 'filled': previewImageSrc }" ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
+                            <label ng-class="{ 'filled': previewImageSrc }" for="new-offer-image">Pilt</label>
                         </p>
                         <p class="image-preview">
                             <label for="new-offer-image">
