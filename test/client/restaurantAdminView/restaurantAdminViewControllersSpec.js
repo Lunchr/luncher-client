@@ -53,13 +53,52 @@ describe('OfferList cotrollers', function() {
         $httpBackend.flush();
       }));
 
-      it('should prepend a broadcasted offer into the list of offers', function() {
-        var mockOffer = 'mock offer';
-        var nrOfOffers = $scope.offers.length;
+      describe('$on(\'offer-posted\') listener', function() {
+        var mockOffer, deferred;
 
-        $scope.$broadcast('offer-posted', mockOffer);
-        expect($scope.offers.length).toEqual(nrOfOffers + 1);
-        expect($scope.offers[0]).toEqual(mockOffer);
+        beforeEach(inject(function($q) {
+          deferred = $q.defer();
+          mockOffer = {
+            $promise: deferred.promise,
+          };
+        }));
+
+        it('should prepend a broadcasted offer into the list of offers', function() {
+          var nrOfOffers = $scope.offers.length;
+
+          $scope.$broadcast('offer-posted', mockOffer);
+
+          expect($scope.offers.length).toEqual(nrOfOffers + 1);
+          expect($scope.offers[0]).toBe(mockOffer);
+        });
+
+        describe('with the offer prepended to the list of offers', function() {
+          beforeEach(function() {
+            $scope.$broadcast('offer-posted', mockOffer);
+          });
+
+          it('should mark the offer as confirmed when promise is resolved', function() {
+            expect(mockOffer.confirmationPending).toBeTruthy();
+
+            $scope.$apply(function(){
+              deferred.resolve();
+            });
+
+            expect(mockOffer.confirmationPending).toBeFalsy();
+          });
+
+          it('should remove the offer from the list if promise is rejected', function() {
+            var nrOfOffers = $scope.offers.length;
+            expect($scope.offers[0]).toBe(mockOffer);
+
+            $scope.$apply(function(){
+              deferred.reject();
+            });
+
+            expect($scope.offers.length).toEqual(nrOfOffers - 1);
+            expect($scope.offers[0]).not.toBe(mockOffer);
+          });
+        });
       });
     });
   });

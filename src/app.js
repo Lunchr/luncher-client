@@ -8,11 +8,20 @@
     serveStatic = require('serve-static'),
     http = require('http'),
     path = require('path'),
-    config = require('./config');
+    config = require('./config'),
+    bodyParser = require('body-parser');
 
   var app = module.exports = express();
 
   app.set('port', config.port);
+
+  app.use(bodyParser.json());
+  app.post('/api/v1/offers', function(req, res) {
+    setTimeout(function() {
+      res.send(req.body);
+    }, 1000);
+  });
+
   var publicDir = path.join(__dirname, '..', 'public');
   var apiDir = path.join(publicDir, 'api');
   app.use('/api', serveStatic(apiDir, {

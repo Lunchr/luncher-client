@@ -12,7 +12,7 @@
     cursor: pointer;
     border-bottom: 1px solid #f0f0f0;
     box-sizing: border-box;
-    &.last {
+    &:last-of-type {
         border: none;
     }
     &:hover,
@@ -34,6 +34,9 @@
     .icon-15:hover:before {
         content: "r";
         color: $color;
+    }
+    &.pending {
+      background-color: red;
     }
 }
 .offer-content {
