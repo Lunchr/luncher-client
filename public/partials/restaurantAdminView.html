@@ -31,12 +31,12 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <p>
-                            <input ng-model="name" name="name" id="new-offer-name" type="text" required>
-                            <label ng-class="{ 'filled': name.length }" for="new-offer-name">Nimetus</label>
+                            <input ng-model="title" name="title" id="new-offer-title" type="text" required>
+                            <label ng-class="{ 'filled': title.length }" for="new-offer-title">Nimetus</label>
                         </p>
                         <p>
-                            <input ng-model="consist" name="consist" id="new-offer-consist" type="text" required></input>
-                            <label ng-class="{ 'filled': consist.length }" for="new-offer-desc">Koostisosad</label>
+                            <input ng-model="tags" name="tags" id="new-offer-tags" type="text" required></input>
+                            <label ng-class="{ 'filled': tags.length }" for="new-offer-tags">Koostisosad</label>
                         </p>
                         <p>
                             <input ng-model="price" name="price" id="new-offer-price" value="4.50" type="number" required>
@@ -53,13 +53,13 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <p class="input-sep">
-                                            <input ng-model="startTime" name="startTime" id="new-offer-startTime" value="11:30" type="time" required></input>
-                                            <label ng-class="{ 'filled': startTime.length }" for="new-offer-startTime">Kellaaeg</label>
+                                            <input ng-model="fromTime" name="fromTime" id="new-offer-fromTime" value="11:30" type="time" required></input>
+                                            <label ng-class="{ 'filled': fromTime.length }" for="new-offer-fromTime">Kellaaeg</label>
                                         </p>
                                     </div>
                                     <div class="col-xs-3">
                                         <p>
-                                            <input ng-model="endTime" name="endTime" id="new-offer-endTime" value="15:00" type="time" required>
+                                            <input ng-model="toTime" name="toTime" id="new-offer-toTime" value="15:00" type="time" required>
                                         </p>
                                     </div>
                                 </div>

@@ -5,6 +5,11 @@ describe('OfferList cotrollers', function() {
   describe('RestaurantOfferListCtrl', function() {
     var $scope;
 
+    afterEach(inject(function($httpBackend) {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    }));
+
     beforeEach(inject(function($rootScope, $controller, $httpBackend) {
       $httpBackend.expectGET('api/v1/restaurants/me').respond(offerUtils.getMockRestaurant());
 
@@ -42,6 +47,21 @@ describe('OfferList cotrollers', function() {
       $httpBackend.flush();
       expect($scope.offers.length).toBe(3);
     }));
+
+    describe('with the original offers fetched from the backend', function() {
+      beforeEach(inject(function($httpBackend) {
+        $httpBackend.flush();
+      }));
+
+      it('should prepend a broadcasted offer into the list of offers', function() {
+        var mockOffer = 'mock offer';
+        var nrOfOffers = $scope.offers.length;
+
+        $scope.$broadcast('offer-posted', mockOffer);
+        expect($scope.offers.length).toEqual(nrOfOffers + 1);
+        expect($scope.offers[0]).toEqual(mockOffer);
+      });
+    });
   });
 
   describe('RestaurantAddOfferCtrl', function(){
@@ -110,6 +130,58 @@ describe('OfferList cotrollers', function() {
             $scope.$apply();
             expect($scope.previewImageSrc).toBe('');
           });
+        });
+      });
+
+      describe('postOffer', function() {
+        var postedOffer;
+
+        beforeEach(inject(function($httpBackend) {
+          spyOn($parentScope, '$broadcast');
+          postedOffer = {
+            id: 'mocked response from the backend'
+          };
+          $httpBackend.whenPOST('api/v1/offers').respond(postedOffer);
+        }));
+
+        describe('with the form filled', function() {
+          beforeEach(function() {
+            $scope.title = 'a title';
+            $scope.tags = ['tag1', 'tag2'];
+            $scope.price = 2.5;
+            $scope.date = new Date(2015, 3, 15);
+            $scope.fromTime = new Date(1970, 0, 1, 10, 0, 0);
+            $scope.toTime = new Date(1970, 0, 1, 15, 0, 0);
+            $scope.image = 'image data';
+          });
+
+          it('should broadcast the data returned from the POST', inject(function($httpBackend) {
+            $scope.postOffer();
+
+            expect($parentScope.$broadcast).toHaveBeenCalled();
+            var args = $parentScope.$broadcast.calls.mostRecent().args;
+            var channelName = args[0];
+            var data = args[1];
+            expect(channelName).toEqual('offer-posted');
+
+            expect(data.id).toBeUndefined();
+            $httpBackend.flush();
+            expect(data.id).toEqual(postedOffer.id);
+          }));
+
+          it('should post the combined offer', inject(function($httpBackend) {
+            $httpBackend.expectPOST('api/v1/offers', {
+              title: 'a title',
+              tags: ['tag1', 'tag2'],
+              price: 2.5,
+              from_time: new Date(2015, 3, 15, 10, 0, 0),
+              to_time: new Date(2015, 3, 15, 15, 0, 0),
+              image: 'image data',
+            });
+
+            $scope.postOffer();
+            $httpBackend.flush();
+          }));
         });
       });
     });

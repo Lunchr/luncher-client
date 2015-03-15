@@ -3,6 +3,7 @@
   var module = angular.module('restaurantAdminViewControllers', [
     'ngResource'
   ]);
+  var offerPostedEventChannel = 'offer-posted';
 
   module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource',
     function($scope, $resource) {
@@ -13,12 +14,26 @@
   module.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
       $scope.offers = $resource('api/v1/restaurants/me/offers').query();
+      $scope.$on(offerPostedEventChannel, function(event, offer) {
+        $scope.offers.unshift(offer);
+      });
     }
   ]);
 
-  module.controller('RestaurantAddOfferCtrl', ['$scope', 'fileReader',
-    function($scope, fileReader) {
+  module.controller('RestaurantAddOfferCtrl', ['$scope', 'fileReader', '$resource',
+    function($scope, fileReader, $resource) {
       $scope.postOffer = function() {
+        var offer = $resource('api/v1/offers').save({
+          title: $scope.title,
+          tags: $scope.tags,
+          price: $scope.price,
+          // both getTime()s return the time with added timezone offset, so one offset has to be subtracted
+          from_time: new Date($scope.date.getTime() + $scope.fromTime.getTime() - $scope.fromTime.getTimezoneOffset() * 60 * 1000),
+          to_time: new Date($scope.date.getTime() + $scope.toTime.getTime() - $scope.toTime.getTimezoneOffset() * 60 * 1000),
+          image: $scope.image,
+          restaurant: $scope.$parent.restaurant
+        });
+        $scope.$parent.$broadcast(offerPostedEventChannel, offer);
       };
       $scope.setAsPreview = function(file) {
         if (file) {
