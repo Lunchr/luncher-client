@@ -13,17 +13,17 @@
             margin: -10px 0 0;
         }
         &.image-preview {
-            height: 165px;
-            margin-top: -33px;
+            height: 155px;
+            margin-top: -20px;
             background: #F7F7F7 url(../img/img-icon.svg) center no-repeat;
             background-size: 50% 50%;
-            &.filled {
-                margin-top: -30px;
-            }
+            border: 2px dashed #eee;
             label {
                 left: 0;
                 width: 100%;
                 height: 100%;
+                margin-top: -12px;
+                padding-top: 12px;
                 cursor: pointer;
                 img {
                     display: block;
@@ -93,19 +93,29 @@
     }
 }
 
+input[type=file] {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    color: transparent;
+    padding-left: 1px;
+}
+input[type=file].filled {
+    color: $color-secondary;
+}
+input[type=file]::-webkit-file-upload-button {
+    width: 0;
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    border: none;
+}
+
 ::-webkit-inner-spin-button,
 ::-webkit-clear-button,
 ::-webkit-calendar-picker-indicator {
     display: none;
 }
-::-webkit-file-upload-button {
-    display: none;
-    visibility: hidden;
-    width: 0;
-}
-.filled::-webkit-file-upload-button {
-    display: block;
-}
+
 ::-webkit-datetime-edit:not([aria-valuenow]) {
     color: transparent;
 }
