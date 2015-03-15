@@ -33,7 +33,7 @@
                               <span ng-show="!(form.title.$dirty && form.title.$touched && form.title.$invalid)">
                                 Nimetus
                               </span>
-                              <span class="error-container" ng-show="form.title.$dirty && form.title.$touched && form.title.$invalid">
+                              <span ng-show="form.title.$dirty && form.title.$touched && form.title.$invalid" class="errors">
                                 <span ng-show="form.title.$error.required">
                                   Nimetus on kohustuslik.
                                 </span>
@@ -55,7 +55,7 @@
                               <span ng-show="!(form.tags.$dirty && form.tags.$touched && form.tags.$invalid)">
                                 Koostisosad
                               </span>
-                              <span class="error-container" ng-show="form.tags.$dirty && form.tags.$touched && form.tags.$invalid">
+                              <span ng-show="form.tags.$dirty && form.tags.$touched && form.tags.$invalid" class="errors" >
                                 <span ng-show="!tags.length">
                                   Koostisosad on kohustuslikud.
                                 </span>
@@ -67,7 +67,22 @@
                         </p>
                         <p>
                             <input ng-model="price" name="price" id="new-offer-price" type="number" min="0" required>
-                            <label ng-class="{filled: form.price.$viewValue}" for="new-offer-price">Hind</label>
+                            <label ng-class="{filled: !form.price.$error.required}" for="new-offer-price">
+                              <span ng-show="!(form.price.$dirty && form.price.$touched && form.price.$invalid)">
+                                Hind
+                              </span>
+                              <span ng-show="form.price.$dirty && form.price.$touched && form.price.$invalid" class="errors">
+                                <span ng-show="form.price.$error.required">
+                                  Hind on kohustuslik.
+                                </span>
+                                <span ng-show="form.price.$error.min">
+                                  Hind ei tohi olla negatiivne.
+                                </span>
+                                <span ng-show="form.price.$error.number">
+                                  Hind peab olema korrektne number.
+                                </span>
+                              </span>
+                            </label>
                         </p>
                         <div class="row">
                             <div class="col-xs-3">
