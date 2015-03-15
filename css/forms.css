@@ -70,8 +70,7 @@
         }
         &:focus {
             border-bottom: 1px solid $color-h;
-            & + label
-            {
+            & + label {
                 top: -12px;
                 font-size: 10px;
                 color: $color-h;
