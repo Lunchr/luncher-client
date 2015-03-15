@@ -23,11 +23,8 @@
 <div class="overlay"></div>
 <div class="content">
     <div class="container">
-        <form class="form new-offer-form" ng-submit="postOffer()" ng-controller="RestaurantAddOfferCtrl" name="newOfferForm" ng-class="newOfferFormState">
-            <p class="new-offer-btn">
-                <a href="javascript:undefined" ng-click="newOfferFormState='active'"><span class="icon-4"></span>Lisa uus pakkumine</a>
-            </p>
-            <div class="form-wrap">
+        <div class="offer-form-wrap">
+            <form class="offer-form" ng-submit="postOffer()" ng-controller="RestaurantAddOfferCtrl" name="newOfferForm" ng-class="newOfferFormState">
                 <div class="row">
                     <div class="col-md-4 col-sm-3">
                         <p>
@@ -84,8 +81,11 @@
                     </a>
                     <input class="btn" type="submit" value="Salvesta">
                 </p>
-            </div>
-        </form>
+            </form>
+            <p class="new-offer-btn">
+                <a href="javascript:undefined" ng-click="newOfferFormState='active'"><span class="icon-4"></span>Lisa uus pakkumine</a>
+            </p>
+        </div>
         <div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
             <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="offerToggleState = !toggle.state"  ng-class="{'first' : $first, 'last' : $last}">
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-15"></a></p>

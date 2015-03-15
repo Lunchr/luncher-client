@@ -2,10 +2,11 @@
 /*** FORMS ***/
 
 /* Form */
-.form {
-    @simple-extend-addto material-box;
-    margin: 15px 0;
-    background-color: #fff;
+.offer-form {
+    display: none;
+    width: 100%;
+    padding: 30px 20px 20px;
+    box-sizing: border-box;
     p {
         position: relative;
         margin: 0 0 30px;
@@ -144,42 +145,44 @@
         content: "";
     }
 }
-
-/* Add new offer */
-.new-offer-form {
-    display: inline-block;
-    box-sizing: border-box;
-    .new-offer-btn {
+.new-offer-btn {
+    display: block;
+    margin: 0;
+    a {
         display: block;
-        margin: 0;
-        a {
-            display: block;
-            position: relative;
-            padding: 15px 18px 15px 45px;
-        }
-        span {
-            position: absolute;
-            left: 13px;
-            top: 14px;
-        }
+        position: relative;
+        padding: 15px 18px 15px 45px;
     }
-    .form-wrap {
-        box-sizing: border-box;
-        display: none;
+    span {
+        position: absolute;
+        left: 13px;
+        top: 14px;
     }
-    .col {
-        width: 50%;
-        box-sizing: border-box;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.02);
     }
-    &.active {
-        width: 100%;
-        padding: 30px 20px 20px;
-        .new-offer-btn {
+}
+.offer-form-wrap {
+    @simple-extend-addto material-box;
+    display: inline-block;
+    width: 100%;
+    margin: 15px 0;
+    background-color: #fff;
+    box-sizing: border-box;
+    .offer-form.active {
+        display: block;
+        & + .new-offer-btn {
             display: none;
         }
-        .form-wrap {
-            display: block;
-        }
+    }
+}
+.offer.edit {
+    padding: 0;
+    &:hover {
+        background: transparent;
+    }
+    .offer-form {
+        display: block;
     }
 }
 
@@ -202,18 +205,14 @@
         color: #fff;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     }
-    &.btn-light {
-        background: #fff;
-        color: $color-a;
-    }
-    &.btn-light:hover {
-        color: $color-a;
-    }
     &.btn-secondary {
         padding: 8px 18px;
         color: $color;
         background: transparent;
         box-shadow: none;
+        &:hover {
+            color: $color-a;
+        }
     }
     input[type="submit"]& {
       border: none;
