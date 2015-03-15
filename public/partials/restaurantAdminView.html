@@ -23,16 +23,13 @@
 <div class="overlay"></div>
 <div class="content">
     <div class="container">
-        <form class="form new-offer-form" ng-submit="postOffer()" ng-controller="RestaurantAddOfferCtrl" name="newOfferForm" ng-class="newOfferFormState">
-            <p class="new-offer-btn">
-                <a href="javascript:undefined" ng-click="newOfferFormState='active'"><span class="icon-4"></span>Lisa uus pakkumine</a>
-            </p>
-            <div class="form-wrap">
+        <div class="offer-form-wrap">
+            <form class="offer-form" ng-submit="postOffer()" ng-controller="RestaurantAddOfferCtrl" name="newOfferForm" ng-class="newOfferFormState">
                 <div class="row">
                     <div class="col-md-4 col-sm-3">
                         <p>
-                            <input ng-class="{ 'filled': title.length }" ng-model="title" name="title" id="new-offer-title" type="text" required>
-                            <label ng-class="{ 'filled': title.length }" for="new-offer-title">Nimetus</label>
+                            <input ng-class="{ 'filled': title }" ng-model="title" name="title" id="new-offer-title" type="text" required>
+                            <label ng-class="{ 'filled': title }" for="new-offer-title">Nimetus</label>
                         </p>
                         <p>
                             <tags-input placeholder="Lisa koostis" ng-model="tags" name="tags" id="new-offer-tags" type="text" required>
@@ -53,13 +50,13 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <p class="input-sep">
-                                            <input ng-class="{ 'filled': fromTime.length }" ng-model="fromTime" name="fromTime" id="new-offer-fromTime" value="11:30" type="time" required>
-                                            <label ng-class="{ 'filled': fromTime.length }" for="new-offer-fromTime">Kellaaeg</label>
+                                            <input ng-class="{ 'filled': fromTime }" ng-model="fromTime" name="fromTime" id="new-offer-fromTime" value="11:30" type="time" required>
+                                            <label ng-class="{ 'filled': fromTime }" for="new-offer-fromTime">Kellaaeg</label>
                                         </p>
                                     </div>
                                     <div class="col-xs-3">
                                         <p>
-                                            <input ng-class="{ 'filled': toTime.length }" ng-model="toTime" name="toTime" id="new-offer-toTime" value="15:00" type="time" required>
+                                            <input ng-class="{ 'filled': toTime }" ng-model="toTime" name="toTime" id="new-offer-toTime" value="15:00" type="time" required>
                                         </p>
                                     </div>
                                 </div>
@@ -68,8 +65,8 @@
                     </div>
                     <div class="col-md-2 col-sm-3">
                         <p>
-                            <input ng-class="{ 'filled': previewImageSrc.length }" ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
-                            <label ng-class="{ 'filled': previewImageSrc.length }" for="new-offer-image">Pilt</label>
+                            <input ng-class="{ 'filled': previewImageSrc }" ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
+                            <label ng-class="{ 'filled': previewImageSrc }" for="new-offer-image">Pilt</label>
                         </p>
                         <p class="image-preview">
                             <label for="new-offer-image">
@@ -84,8 +81,11 @@
                     </a>
                     <input class="btn" type="submit" value="Salvesta">
                 </p>
-            </div>
-        </form>
+            </form>
+            <p class="new-offer-btn">
+                <a href="javascript:undefined" ng-click="newOfferFormState='active'"><span class="icon-4"></span>Lisa uus pakkumine</a>
+            </p>
+        </div>
         <div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
             <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="offerToggleState = !toggle.state"  ng-class="{'first' : $first, 'last' : $last}">
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-15"></a></p>
