@@ -64,7 +64,7 @@ describe('OfferList cotrollers', function() {
     });
   });
 
-  describe('RestaurantAddOfferCtrl', function(){
+  describe('RestaurantAddOfferCtrl', function() {
     describe('previewImage directive', function() {
       var element, scope, parentScope;
       beforeEach(function() {
@@ -75,7 +75,7 @@ describe('OfferList cotrollers', function() {
         scope.setAsPreview = jasmine.createSpy();
       });
 
-      it('should call setAsPreview method on scope with file data from change event', function(){
+      it('should call setAsPreview method on scope with file data from change event', function() {
         var file = 'a mock file object';
         element.prop('files', [file]);
 
@@ -85,11 +85,12 @@ describe('OfferList cotrollers', function() {
       });
     });
 
-    describe('the controller', function(){
-      var $scope, mockFileReader;
+    describe('the controller', function() {
+      var $scope, $parentScope, mockFileReader;
 
-      beforeEach(inject(function(_$rootScope_, $controller){
-        $scope = _$rootScope_.$new();
+      beforeEach(inject(function($rootScope, $controller) {
+        $parentScope = $rootScope;
+        $scope = $parentScope.$new();
         mockFileReader = {};
         $controller('RestaurantAddOfferCtrl', {
           $scope: $scope,
@@ -97,21 +98,21 @@ describe('OfferList cotrollers', function() {
         });
       }));
 
-      describe('setAsPreview', function(){
+      describe('setAsPreview', function() {
         var result, file;
-        beforeEach(inject(function($q){
+        beforeEach(inject(function($q) {
           var deferred = $q.defer();
           result = 'result data';
           deferred.resolve(result);
           mockFileReader.readAsDataUrl = jasmine.createSpy().and.returnValue(deferred.promise);
         }));
 
-        describe('with file', function(){
-          beforeEach(function(){
+        describe('with file', function() {
+          beforeEach(function() {
             file = 'a mock file';
           });
 
-          it('should set previewImageSrc to the result', function(){
+          it('should set previewImageSrc to the result', function() {
             $scope.setAsPreview(file);
 
             $scope.$apply();
@@ -119,12 +120,12 @@ describe('OfferList cotrollers', function() {
           });
         });
 
-        describe('without file', function(){
-          beforeEach(function(){
+        describe('without file', function() {
+          beforeEach(function() {
             file = undefined;
           });
 
-          it('should set previewImageSrc to the result', function(){
+          it('should set previewImageSrc to the result', function() {
             $scope.setAsPreview(file);
 
             $scope.$apply();
