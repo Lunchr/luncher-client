@@ -16,6 +16,7 @@ module.exports = function(config) {
       'public/lib/jquery/dist/*.js',
       'public/lib/angular/angular.js',
       'public/lib/angular-*/angular-*.js',
+      'public/lib/ng-*/ng-*.js',
       'public/lib/timezone-js/src/date.js',
       'public/js/**/*.js',
       'test/client/**/*.js',
