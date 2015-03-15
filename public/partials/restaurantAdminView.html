@@ -87,7 +87,7 @@
             </p>
         </div>
         <div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
-            <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="offerToggleState = !toggle.state" ng-class="{pending: offer.confirmationPending}">
+            <div class="offer" ng-repeat="offer in offers" id="{{offer._id}}" ng-class="{pending: offer.confirmationPending}">
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-15"></a></p>
                 <div class="offer-content">
                     <div class="col-1">
