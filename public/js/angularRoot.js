@@ -3,7 +3,8 @@
   var praadApp = angular.module('praadApp', [
     'mainView',
     'restaurantAdminView',
-    'ngRoute'
+    'ngRoute',
+    'ngTagsInput'
   ]).config(['$routeProvider',
     function($routeProvider) {
       $routeProvider.

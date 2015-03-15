@@ -35,8 +35,8 @@
                             <label ng-class="{ 'filled': title.length }" for="new-offer-title">Nimetus</label>
                         </p>
                         <p>
-                            <input ng-class="{ 'filled': tags.length }" ng-model="tags" name="tags" id="new-offer-tags" type="text" required>
-                            <label ng-class="{ 'filled': tags.length }" for="new-offer-tags">Koostisosad</label>
+                            <tags-input placeholder="Lisa koostis" ng-model="tags" name="tags" id="new-offer-tags" type="text" required>
+                            <label class="filled" for="new-offer-tags">Koostisosad</label>
                         </p>
                         <p>
                             <input ng-class="{ 'filled': !newOfferForm.price.$error.required}" ng-model="price" name="price" id="new-offer-price" value="4.50" type="number" required>
