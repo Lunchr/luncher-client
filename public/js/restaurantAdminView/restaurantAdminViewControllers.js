@@ -1,7 +1,8 @@
 (function() {
   'use strict';
   var module = angular.module('restaurantAdminViewControllers', [
-    'ngResource'
+    'ngResource',
+    'ngTagsInput',
   ]);
   var offerPostedEventChannel = 'offer-posted';
 
@@ -32,6 +33,13 @@
     }
   ]);
 
+  module.config(['tagsInputConfigProvider',
+    function(tagsInputConfigProvider) {
+      tagsInputConfigProvider.setDefaults('tagsInput', {
+        placeholder: '',
+      });
+    }
+  ]);
   module.controller('RestaurantAddOfferCtrl', ['$scope', 'fileReader', '$resource',
     function($scope, fileReader, $resource) {
       $scope.postOffer = function() {

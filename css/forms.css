@@ -107,6 +107,67 @@
             color: $color-secondary-2;
         }
     }
+    /* Tags */
+    tags-input {
+        &.ng-invalid .tags {
+            box-shadow: none;
+        }
+        .tags {
+            padding: 0;
+            border: none;
+            border-bottom: 1px solid $color-secondary-2;
+            box-shadow: none;
+            outline: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            &.focused {
+                box-shadow: none;
+                & + label {
+                    top: -12px;
+                    font-size: 10px;
+                    color: $color-secondary-2;
+                }
+            }
+            .tag-item {
+                margin: 0;
+                padding: 0 5px;
+                font: $font;
+                height: 25px;
+                line-height: 25px;
+                border: none;
+                border-radius: 0;
+                background: transparent;
+                .remove-button {
+                    margin: 0;
+                    &:hover {
+                        color: $color;
+                    }
+                    &:focus,
+                    &:active {
+                        color: $color-a;
+                    }
+                }
+                &.selected {
+                    background: transparent;
+                    color: $color-error;
+                }
+            }
+            input {
+                width: auto;
+                min-width: 25px;
+                margin: 0;
+                border: none;
+                &:focus {
+                  border: none;
+                }
+                &.input {
+                    .invalid-tag {
+                        color: $color-error;
+                    }
+                }
+            }
+        }
+    }
 }
 
 ::-webkit-inner-spin-button,
@@ -182,64 +243,6 @@
     }
     .offer-form {
         display: block;
-    }
-}
-
-/* Tags */
-tags-input {
-    &.ng-invalid .tags {
-        box-shadow: none;
-    }
-    .tags {
-        padding: 0;
-        border: none;
-        border-bottom: 1px solid $color-secondary-2;
-        box-shadow: none;
-        outline: none;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        &.focused {
-            box-shadow: none;
-            & + label {
-                top: -12px;
-                font-size: 10px;
-                color: $color-secondary-2;
-            }
-        }
-        .tag-item {
-            margin: 0;
-            padding: 0 5px;
-            font: $font;
-            height: 25px;
-            line-height: 25px;
-            border: none;
-            border-radius: 0;
-            background: transparent;
-            .remove-button {
-                margin: 0;
-                &:hover {
-                    color: $color;
-                }
-                &:focus,
-                &:active {
-                    color: $color-a;
-                }
-            }
-            &.selected {
-                background: transparent;
-                color: $color-error;
-            }
-        }
-        input {
-            min-width: 25px;
-            margin: 0 !important;
-            border: none !important;
-            &.input{
-                .invalid-tag {
-                    color: $color-error;
-                }
-            }
-        }
     }
 }
 

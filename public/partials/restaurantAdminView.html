@@ -32,7 +32,7 @@
                             <label ng-class="{ 'filled': title }" for="new-offer-title">Nimetus</label>
                         </p>
                         <p>
-                            <tags-input placeholder="Please remove this placeholder" ng-model="tags" name="tags" id="new-offer-tags" type="text" required>
+                            <tags-input ng-model="tags" name="tags" id="new-offer-tags" type="text" min-tags="3">
                             <label for="new-offer-tags">Koostisosad</label>
                         </p>
                         <p>
