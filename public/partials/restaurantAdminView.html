@@ -87,8 +87,23 @@
                         <div class="row">
                             <div class="col-xs-3">
                                 <p>
-                                    <input ng-model="date" name="date" id="new-offer-date" type="date" required>
-                                    <label ng-class="{filled: !form.date}" for="new-offer-date">Kuupäev</label>
+                                    <input ng-model="date" name="date" id="new-offer-date" type="date" min="{{today}}" required>
+                                    <label ng-class="{filled: !form.date}" for="new-offer-date">
+                                      <span ng-show="!(form.date.$dirty && form.date.$touched && form.date.$invalid)">
+                                        Kuupäev
+                                      </span>
+                                      <span ng-show="form.date.$dirty && form.date.$touched && form.date.$invalid" class="errors">
+                                        <span ng-show="form.date.$error.required">
+                                          Kuupäev on kohustuslik.
+                                        </span>
+                                        <span ng-show="form.date.$error.date">
+                                          Kuupäev on vigane.
+                                        </span>
+                                        <span ng-show="form.date.$error.min">
+                                          Kuupäev ei tohi olla minevikus.
+                                        </span>
+                                      </span>
+                                    </label>
                                 </p>
                             </div>
                             <div class="col-xs-3">

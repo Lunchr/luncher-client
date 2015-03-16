@@ -42,6 +42,11 @@
   ]);
   module.controller('RestaurantAddOfferCtrl', ['$scope', 'fileReader', '$resource',
     function($scope, fileReader, $resource) {
+      var now = new Date();
+      // this is basically when the clock in UTC will show what it shows here now
+      var currentTimeInUTC = new Date(now.getTime() - now.getTimezoneOffset() * 60 * 1000);
+      // because the toISOString method uses UTC but we want the date in the current timezone
+      $scope.today = currentTimeInUTC.toISOString().split('T')[0];
       $scope.postOffer = function() {
         var offer = $resource('api/v1/offers').save({
           title: $scope.title,

@@ -137,6 +137,14 @@ describe('OfferList cotrollers', function() {
         });
       }));
 
+      it('should have a date string representing today', function() {
+        var now = new Date();
+        var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        var todayInUTC = Date.parse($scope.today);
+        expect(todayInUTC).toEqual(today.getTime() - today.getTimezoneOffset() * 60 * 1000);
+      });
+
       describe('setAsPreview', function() {
         var result, file;
         beforeEach(inject(function($q) {
