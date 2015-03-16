@@ -111,12 +111,28 @@
                                     <div class="col-xs-3">
                                         <p class="input-sep">
                                             <input ng-model="fromTime" name="fromTime" id="new-offer-fromTime" value="11:30" type="time" required>
-                                            <label ng-class="{filled: fromTime}" for="new-offer-fromTime">Kellaaeg</label>
+                                            <label ng-class="{filled: fromTime}" for="new-offer-fromTime">
+                                              <span ng-show="!isReadyForError(form.fromTime, form.toTime)">
+                                                Kellaaeg
+                                              </span>
+                                              <span ng-show="isReadyForError(form.fromTime, form.toTime)" class="errors">
+                                                <span ng-show="form.fromTime.$error.required || form.toTime.$error.required">
+                                                  Kellaajad on kohustuslikud.
+                                                </span>
+                                                <span ng-show="form.fromTime.$error.time || form.toTime.$error.time">
+                                                  Kellaajad on vigased.
+                                                </span>
+                                                <span ng-show="form.toTime.$error.min">
+                                                  Algusaeg peab olema enne lõpuaega.
+                                                </span>
+                                              </span>
+                                            </label>
                                         </p>
                                     </div>
                                     <div class="col-xs-3">
                                         <p>
-                                            <input ng-model="toTime" name="toTime" id="new-offer-toTime" value="15:00" type="time" required>
+                                            <input ng-model="toTime" name="toTime" id="new-offer-toTime" value="15:00" type="time"
+                                            min="{{form.fromTime.$valid ? form.fromTime.$viewValue : '00:00'}}" required>
                                         </p>
                                     </div>
                                 </div>

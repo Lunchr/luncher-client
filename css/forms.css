@@ -79,10 +79,6 @@
         &.ng-invalid.ng-dirty.ng-touched {
             color: $color-error;
             border-bottom: 1px solid $color-error;
-            & + label {
-                color: $color-error;
-                font-weight: bold;
-            }
         }
         &[type=file] {
             cursor: pointer;
@@ -93,6 +89,7 @@
     }
     label {
         position: absolute;
+        white-space: nowrap;
         top: 0;
         left: 5px;
         cursor: text;
@@ -103,6 +100,10 @@
             font-size: 10px;
             color: $color-secondary-2;
         }
+        .errors {
+          color: $color-error;
+          font-weight: bold;
+        }
     }
     /* Tags */
     tags-input {
@@ -112,10 +113,6 @@
         &.ng-invalid.ng-dirty.ng-touched .tags {
             color: $color-error;
             border-bottom: 1px solid $color-error;
-            & + label {
-                color: $color-error;
-                font-weight: bold;
-            }
         }
         .tags {
             padding: 0;
