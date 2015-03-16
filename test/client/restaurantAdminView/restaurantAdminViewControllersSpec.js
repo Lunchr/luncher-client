@@ -145,6 +145,40 @@ describe('OfferList cotrollers', function() {
         expect(todayInUTC).toEqual(today.getTime() - today.getTimezoneOffset() * 60 * 1000);
       });
 
+      describe('isReadyForError', function() {
+        it('should return true when dirty, touched and invalid', function() {
+          var input = {
+            $dirty: true,
+            $touched: true,
+            $invalid: true,
+          };
+          expect($scope.isReadyForError(input)).toBe(true);
+        });
+
+        it('should return false when not dirty, but touched and invalid', function() {
+          var input = {
+            $dirty: false,
+            $touched: true,
+            $invalid: true,
+          };
+          expect($scope.isReadyForError(input)).toBe(false);
+        });
+
+        it('should return true when when first input is false, second true', function() {
+          var input1 = {
+            $dirty: false,
+            $touched: true,
+            $invalid: true,
+          };
+          var input2 = {
+            $dirty: true,
+            $touched: true,
+            $invalid: true,
+          };
+          expect($scope.isReadyForError(input1, input2)).toBe(true);
+        });
+      });
+
       describe('setAsPreview', function() {
         var result, file;
         beforeEach(inject(function($q) {

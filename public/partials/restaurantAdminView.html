@@ -30,10 +30,10 @@
                         <p>
                             <input ng-model="title" name="title" id="new-offer-title" type="text" ng-minlength="5" ng-maxlength="20" required>
                             <label ng-class="{filled: form.title.$viewValue}" for="new-offer-title">
-                              <span ng-show="!(form.title.$dirty && form.title.$touched && form.title.$invalid)">
+                              <span ng-show="!isReadyForError(form.title)">
                                 Nimetus
                               </span>
-                              <span ng-show="form.title.$dirty && form.title.$touched && form.title.$invalid" class="errors">
+                              <span ng-show="isReadyForError(form.title)" class="errors">
                                 <span ng-show="form.title.$error.required">
                                   Nimetus on kohustuslik.
                                 </span>
@@ -52,10 +52,10 @@
                             <tags-input ng-model="tags" name="tags" id="new-offer-tags" min-tags="3"
                              on-tag-added="form.tags.$dirty=true" on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
                             <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="new-offer-tags">
-                              <span ng-show="!(form.tags.$dirty && form.tags.$touched && form.tags.$invalid)">
+                              <span ng-show="!isReadyForError(form.tags)">
                                 Koostisosad
                               </span>
-                              <span ng-show="form.tags.$dirty && form.tags.$touched && form.tags.$invalid" class="errors" >
+                              <span ng-show="isReadyForError(form.tags)" class="errors" >
                                 <span ng-show="!tags.length">
                                   Koostisosad on kohustuslikud.
                                 </span>
@@ -68,10 +68,10 @@
                         <p>
                             <input ng-model="price" name="price" id="new-offer-price" type="number" min="0" required>
                             <label ng-class="{filled: !form.price.$error.required}" for="new-offer-price">
-                              <span ng-show="!(form.price.$dirty && form.price.$touched && form.price.$invalid)">
+                              <span ng-show="!isReadyForError(form.price)">
                                 Hind
                               </span>
-                              <span ng-show="form.price.$dirty && form.price.$touched && form.price.$invalid" class="errors">
+                              <span ng-show="isReadyForError(form.price)" class="errors">
                                 <span ng-show="form.price.$error.required">
                                   Hind on kohustuslik.
                                 </span>
@@ -89,10 +89,10 @@
                                 <p>
                                     <input ng-model="date" name="date" id="new-offer-date" type="date" min="{{today}}" required>
                                     <label ng-class="{filled: !form.date}" for="new-offer-date">
-                                      <span ng-show="!(form.date.$dirty && form.date.$touched && form.date.$invalid)">
+                                      <span ng-show="!isReadyForError(form.date)">
                                         Kuupäev
                                       </span>
-                                      <span ng-show="form.date.$dirty && form.date.$touched && form.date.$invalid" class="errors">
+                                      <span ng-show="isReadyForError(form.date)" class="errors">
                                         <span ng-show="form.date.$error.required">
                                           Kuupäev on kohustuslik.
                                         </span>
