@@ -8,7 +8,7 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["lammas"],
+  "tags": ["Lambaliha, farfalled, paremesan"],
   "image": "meatmarket.jpg"
 }, {
   "id": "6",
@@ -20,6 +20,6 @@
   "fromTime": "2014-11-11T09:00:00.000Z",
   "toTime": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["veis"],
+  "tags": ["Salaami, ananass, pitsakaste, pitsapõhi"],
   "image": "meatmarket2.jpg"
 }]
