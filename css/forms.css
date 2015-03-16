@@ -3,7 +3,7 @@
 
 /* Form */
 .offer-form {
-    display: none;
+    display: block;
     width: 100%;
     padding: 30px 20px 20px;
     box-sizing: border-box;
@@ -231,12 +231,6 @@
     margin: 15px 0;
     background-color: #fff;
     box-sizing: border-box;
-    .offer-form.active {
-        display: block;
-        & + .new-offer-btn {
-            display: none;
-        }
-    }
 }
 .offer.edit {
     padding: 0;
