@@ -23,20 +23,21 @@
       <p>
         <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
                      because of this we have to mark it manually for now-->
-        <tags-input ng-model="tags" name="tags" id="new-offer-tags" min-tags="3" on-tag-added="form.tags.$dirty=true" on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
-          <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="new-offer-tags">
-            <span ng-show="!isReadyForError(form.tags)">
-              Koostisosad
+        <tags-input ng-model="tags" name="tags" id="new-offer-tags" min-tags="3" on-tag-added="form.tags.$dirty=true"
+                    on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}"></tags-input>
+        <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="new-offer-tags">
+          <span ng-show="!isReadyForError(form.tags)">
+            Koostisosad
+          </span>
+          <span ng-show="isReadyForError(form.tags)" class="errors">
+            <span ng-show="!tags.length">
+              Koostisosad on kohustuslikud.
             </span>
-            <span ng-show="isReadyForError(form.tags)" class="errors">
-              <span ng-show="!tags.length">
-                Koostisosad on kohustuslikud.
-              </span>
-              <span ng-show="form.tags.$error.minTags && tags.length">
-                Pakkumine peab sisaldama vähemalt 3 koostisosa.
-              </span>
+            <span ng-show="form.tags.$error.minTags && tags.length">
+              Pakkumine peab sisaldama vähemalt 3 koostisosa.
             </span>
-          </label>
+          </span>
+        </label>
       </p>
       <p>
         <input ng-model="price" name="price" id="new-offer-price" type="number" min="0" required>
