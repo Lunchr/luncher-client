@@ -19,9 +19,9 @@
         $scope.offers.unshift(offer);
 
         offer.confirmationPending = true;
-        offer.$promise.then(function(){
+        offer.$promise.then(function() {
           offer.confirmationPending = false;
-        }, function(){
+        }, function() {
           // we could, in theory, use shift(), but I don't think we can guarantee at
           // this point that this offer is still the first one
           var index = $scope.offers.indexOf(offer);

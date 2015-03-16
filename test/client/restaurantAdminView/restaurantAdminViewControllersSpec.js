@@ -80,7 +80,7 @@ describe('OfferList cotrollers', function() {
           it('should mark the offer as confirmed when promise is resolved', function() {
             expect(mockOffer.confirmationPending).toBeTruthy();
 
-            $scope.$apply(function(){
+            $scope.$apply(function() {
               deferred.resolve();
             });
 
@@ -91,7 +91,7 @@ describe('OfferList cotrollers', function() {
             var nrOfOffers = $scope.offers.length;
             expect($scope.offers[0]).toBe(mockOffer);
 
-            $scope.$apply(function(){
+            $scope.$apply(function() {
               deferred.reject();
             });
 
