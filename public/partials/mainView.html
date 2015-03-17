@@ -49,7 +49,7 @@
                             <p class="price">{{offer.price}} €</p>
                         </div>
                         <p class="additional mobile">{{offer.title}}</p>
-                        <p class="additional desktop">{{offer.tags}}</p>
+                        <p class="additional desktop">{{offer.tags | joinTags}}</p>
                     </div>
                 </div>
                 <div class="secondary">
@@ -57,7 +57,7 @@
                         <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
                     </div>
                     <div class="col-2">
-                        <p class="additional mobile">{{offer.tags}}</p>
+                        <p class="additional mobile">{{offer.tags | joinTags}}</p>
                         <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
                     </div>
                 </div>
