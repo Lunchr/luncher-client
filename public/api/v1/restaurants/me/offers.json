@@ -4,11 +4,10 @@
     "name": "La Dolche Vita"
   },
   "title": "Lambaliha & parmesaniga pasta",
-  "description": "Donec elementum rutrum dolor, et ultrices neque hendrerit dictum.",
-  "from_time": "2014-11-11T09:00:00.000Z",
-  "to_time": "2014-11-11T11:00:00.000Z",
+  "from_time": "2016-11-11T09:00:00.000Z",
+  "to_time": "2016-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["lammas"],
+  "tags": ["lammas", "parmesan", "pasta"],
   "image": "meatmarket.jpg"
 }, {
   "id": "6",
@@ -16,10 +15,9 @@
     "name": "La Dolche Vita"
   },
   "title": "Salaami & ananassi pizza",
-  "description": "Praesent vitae lorem enim. Nulla sed tellus arcu.",
-  "from_time": "2014-11-11T09:00:00.000Z",
-  "to_time": "2014-11-11T11:00:00.000Z",
+  "from_time": "2016-11-11T09:00:00.000Z",
+  "to_time": "2016-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["veis"],
+  "tags": ["veis", "pizza", "ananass"],
   "image": "meatmarket2.jpg"
 }]
