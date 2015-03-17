@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="offers-wrap">
-            <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="toggle.state = !toggle.state"  ng-class="{'first' : $first, 'last' : $last, 'expand' : toggle.state}">
+            <div class="offer" ng-repeat="offer in offers | search | tag | order" id="{{offer._id}}" ng-click="toggle.state = !toggle.state"  ng-class="{expand' : toggle.state}">
                 <p class="icon-wrap"><a href="javascript:undefined" class="icon icon-8"></a></p>
                 <div class="offer-content">
                     <div class="col-1">
@@ -49,7 +49,7 @@
                             <p class="price">{{offer.price}} €</p>
                         </div>
                         <p class="additional mobile">{{offer.title}}</p>
-                        <p class="additional desktop">{{offer.description}}</p>
+                        <p class="additional desktop">{{offer.tags}}</p>
                     </div>
                 </div>
                 <div class="secondary">
@@ -57,7 +57,7 @@
                         <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
                     </div>
                     <div class="col-2">
-                        <p class="additional mobile">{{offer.description}}</p>
+                        <p class="additional mobile">{{offer.tags}}</p>
                         <p class="image" ng-style="{'background-image':'url(../img/offers/{{offer.image}})'}"></p>
                     </div>
                 </div>

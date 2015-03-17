@@ -7,7 +7,7 @@
   "from_time": "2016-11-11T09:00:00.000Z",
   "to_time": "2016-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["lammas", "parmesan", "pasta"],
+  "tags": ["Lambaliha", "farfalled", "paremesan"],
   "image": "meatmarket.jpg"
 }, {
   "id": "6",
@@ -18,6 +18,6 @@
   "from_time": "2016-11-11T09:00:00.000Z",
   "to_time": "2016-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["veis", "pizza", "ananass"],
+  "tags": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
   "image": "meatmarket2.jpg"
 }]
