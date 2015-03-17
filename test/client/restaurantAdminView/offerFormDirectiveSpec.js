@@ -125,7 +125,7 @@ describe('Offer Form', function() {
       describe('with the form filled', function() {
         beforeEach(function() {
           $scope.title = 'a title';
-          $scope.tags = ['tag1', 'tag2'];
+          $scope.tags = [{text: 'tag1'}, {text: 'tag2'}];
           $scope.price = 2.5;
           $scope.date = new Date(2015, 3, 15);
           $scope.fromTime = new Date(1970, 0, 1, 10, 0, 0);
@@ -158,6 +158,36 @@ describe('Offer Form', function() {
 
         expect($parentScope.cancelClicked).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe('pre-filled offer-form directive', function() {
+    var element, $scope, $parentScope;
+
+    beforeEach(function() {
+      var compiled = utils.compile('<offer-form prefill-with="prefillOffer"></offer-form>', function(parentScope) {
+        parentScope.prefillOffer = {
+          title: 'a title',
+          tags: ['tag1', 'tag2'],
+          price: 2.5,
+          from_time: new Date(2015, 3, 15, 10, 0, 0),
+          to_time: new Date(2015, 3, 15, 15, 0, 0),
+          image: 'image data',
+        };
+      });
+      element = compiled.element;
+      $scope = compiled.scope;
+      $parentScope = compiled.parentScope;
+    });
+
+    it('should prefill the inner scope variables', function() {
+      expect($scope.title).toBe('a title');
+      expect($scope.tags).toEqual([{text: 'tag1'}, {text:'tag2'}]);
+      expect($scope.price).toEqual(2.5);
+      expect($scope.date).toEqual(new Date(2015, 3, 15, 10, 0, 0));
+      expect($scope.fromTime).toEqual(new Date(2015, 3, 15, 10, 0, 0));
+      expect($scope.toTime).toEqual(new Date(2015, 3, 15, 15, 0, 0));
+      expect($scope.image).toEqual('image data');
     });
   });
 });

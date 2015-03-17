@@ -30,10 +30,15 @@ var utils = (function() {
         }
       }
     },
-    compile: function(html) {
+    compile: function(html, prepareParentFunction) {
       var element, scope, parentScope;
       inject(function($compile, $rootScope, $timeout) {
         parentScope = $rootScope.$new();
+        if (prepareParentFunction) {
+          parentScope.$apply(function() {
+            prepareParentFunction(parentScope);
+          });
+        }
         element = angular.element(html);
         $compile(element)(parentScope);
         $timeout(function() {
