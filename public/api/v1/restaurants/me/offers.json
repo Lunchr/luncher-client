@@ -4,8 +4,9 @@
     "name": "La Dolche Vita"
   },
   "title": "Lambaliha & parmesaniga pasta",
-  "from_time": "2016-11-11T09:00:00.000Z",
-  "to_time": "2016-11-11T11:00:00.000Z",
+  "date": "Teisipäev, 17. märts",
+  "fromTime": "11:30",
+  "toTime": "15:00",
   "price": 4.5,
   "tags": ["Lambaliha", "farfalled", "paremesan"],
   "image": "meatmarket.jpg"
@@ -15,8 +16,9 @@
     "name": "La Dolche Vita"
   },
   "title": "Salaami & ananassi pizza",
-  "from_time": "2016-11-11T09:00:00.000Z",
-  "to_time": "2016-11-11T11:00:00.000Z",
+  "date": "Teisipäev, 17. märts",
+  "fromTime": "11:30",
+  "toTime": "15:00",
   "price": 4.5,
   "tags": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
   "image": "meatmarket2.jpg"

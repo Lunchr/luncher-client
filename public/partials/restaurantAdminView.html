@@ -38,15 +38,17 @@
                   </p>
                   <div class="offer-content">
                       <div class="col-1">
-                          <p>{{offer.title}}</p>
+                          <p>{{offer.date}}</p>
+                          <p class="additional">{{offer.fromTime}} - {{offer.toTime}}</p>
                       </div>
                       <div class="col-2">
                           <div class="col-wrap">
-                              <p class="mobile">{{offer.title}}</p>
-                              <p class="additional desktop">{{offer.tags | joinTags}}</p>
+                              <p class="mobile">{{offer.date}}</p>
+                              <p class="desktop">{{offer.title}}</p>
                               <p class="price">{{offer.price}} €</p>
                           </div>
-                          <p class="additional mobile">{{offer.tags | joinTags}}</p>
+                          <p class="additional mobile">{{offer.title}}</p>
+                          <p class="additional desktop">{{offer.tags | joinTags}}</p>
                       </div>
                   </div>
                 </div>
