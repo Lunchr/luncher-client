@@ -20,9 +20,9 @@
         background-color: rgba(0, 0, 0, 0.02);
     }
     &.edit {
-        padding-bottom: 0;
+        padding: 0;
         &:hover {
-            background-color: transparent;
+            background: transparent;
             cursor: default;
         }
     }
@@ -62,15 +62,6 @@
             animation: spin 1s linear infinite;
         }
     }
-}
-@-webkit-keyframes spin {
-    0%   { transform: rotate(0deg);}
-    100%   { transform: rotate(360deg);}
-}
-@keyframes spin
-{
-    0% { transform: rotate(0deg);}
-    100%   { transform: rotate(360deg);}
 }
 .offer-content {
     width: 100%;

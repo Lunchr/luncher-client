@@ -29,3 +29,13 @@ $font: 300 13px 'Roboto', sans-serif;
     transition-timing-function: default;
     transition-delay: 0s;
 }
+
+@-webkit-keyframes spin {
+    0%   { transform: rotate(0deg);}
+    100%   { transform: rotate(360deg);}
+}
+@keyframes spin
+{
+    0% { transform: rotate(0deg);}
+    100%   { transform: rotate(360deg);}
+}

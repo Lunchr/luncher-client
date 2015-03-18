@@ -5,7 +5,7 @@
 .offer-form {
     display: block;
     width: 100%;
-    padding: 30px 20px 20px;
+    padding: 35px 20px 20px;
     box-sizing: border-box;
     p {
         position: relative;
@@ -231,15 +231,6 @@
     margin: 15px 0;
     background-color: #fff;
     box-sizing: border-box;
-}
-.offer.edit {
-    padding: 0;
-    &:hover {
-        background: transparent;
-    }
-    .offer-form {
-        display: block;
-    }
 }
 
 /* Buttons */
