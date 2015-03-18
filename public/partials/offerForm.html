@@ -114,7 +114,7 @@
     </div>
     <div class="col-md-2 col-sm-3">
       <p>
-        <input ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
+        <input ng-class="{filled: previewImageSrc}" ng-model="image" name="image" id="new-offer-image" type="file" accept="image/*" value="" preview-image>
         <label ng-class="{filled: previewImageSrc}" for="new-offer-image">Pilt</label>
       </p>
       <p class="image-preview">
