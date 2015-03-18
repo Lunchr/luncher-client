@@ -46,7 +46,31 @@
         opacity: 0.3;
         background-color: rgba(0, 0, 0, 0.06);
         border-bottom: 1px solid #ddd;
+        & .icon:before {
+            content: "";
+            position: absolute;
+            left: 16px;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #999;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -webkit-animation: spin 1s linear infinite;
+            -moz-animation: spin 1s linear infinite;
+            -o-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+        }
     }
+}
+@-webkit-keyframes spin {
+    0%   { transform: rotate(0deg);}
+    100%   { transform: rotate(360deg);}
+}
+@keyframes spin
+{
+    0% { transform: rotate(0deg);}
+    100%   { transform: rotate(360deg);}
 }
 .offer-content {
     width: 100%;
