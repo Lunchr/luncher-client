@@ -17,7 +17,6 @@ module.exports = function(config) {
       'public/lib/angular/angular.js',
       'public/lib/angular-*/angular-*.js',
       'public/lib/ng-*/ng-*.js',
-      'public/lib/timezone-js/src/date.js',
       'public/js/**/*.js',
       'test/client/**/*.js',
       'public/partials/*.html'
