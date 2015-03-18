@@ -46,7 +46,7 @@
                         <div class="col-wrap">
                             <p class="mobile">{{offer.restaurant.name}}</p>
                             <p class="desktop">{{offer.title}}</p>
-                            <p class="price">{{offer.price | currency}}</p>
+                            <p class="price">{{offer.price | currency:'€'}}</p>
                         </div>
                         <p class="additional mobile">{{offer.title}}</p>
                         <p class="additional desktop">{{offer.tags | joinTags}}</p>
