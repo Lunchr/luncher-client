@@ -5,6 +5,7 @@
     'restaurantAdminView',
     'commonFilters',
     'ngRoute',
+    'i18nCustomizations',
   ]).config(['$routeProvider',
     function($routeProvider) {
       $routeProvider.

@@ -141,3 +141,7 @@
 .col-wrap>:first-child {
     margin-right: 12px;
 }
+
+.date {
+  text-transform: capitalize;
+}
