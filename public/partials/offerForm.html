@@ -25,38 +25,44 @@
                      because of this we have to mark it manually for now-->
         <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="3" on-tag-added="form.ingredients.$dirty=true"
                     on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}">
-        <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
-          <span ng-show="!isReadyForError(form.ingredients)">
-            Koostisosad
-          </span>
-          <span ng-show="isReadyForError(form.ingredients)" class="errors">
-            <span ng-show="!ingredients.length">
-              Koostisosad on kohustuslikud.
+          <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
+            <span ng-show="!isReadyForError(form.ingredients)">
+              Koostisosad
             </span>
-            <span ng-show="form.ingredients.$error.minTags && ingredients.length">
-              Pakkumine peab sisaldama vähemalt 3 koostisosa.
+            <span ng-show="isReadyForError(form.ingredients)" class="errors">
+              <span ng-show="!ingredients.length">
+                Koostisosad on kohustuslikud.
+              </span>
+              <span ng-show="form.ingredients.$error.minTags && ingredients.length">
+                Pakkumine peab sisaldama vähemalt 3 koostisosa.
+              </span>
             </span>
-          </span>
-        </label>
+          </label>
+        </tags-input>
       </p>
       <p>
         <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
                      because of this we have to mark it manually for now-->
-        <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="1" on-tag-added="form.tags.$dirty=true"
-                    on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
-        <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="{{idPrefix}}tags">
-          <span ng-show="!isReadyForError(form.tags)">
-            Märksõnad
-          </span>
-          <span ng-show="isReadyForError(form.tags)" class="errors">
-            <span ng-show="!tags.length">
-              Märksõnad on kohustuslikud.
+        <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="1" add-from-autocomplete-only="true" display-property="name"
+                    on-tag-added="form.tags.$dirty=true" on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
+          <auto-complete source="getFilteredTags($query)" min-length="1"></auto-complete>
+          <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="{{idPrefix}}tags">
+            <span ng-show="!isReadyForError(form.tags)">
+              Märksõnad
             </span>
-            <span ng-show="form.tags.$error.minTags && tags.length">
-              Pakkumine peab sisaldama vähemalt 1 märksõna.
+            <span ng-show="isReadyForError(form.tags)" class="errors">
+              <span ng-show="!tags.length">
+                Märksõnad on kohustuslikud.
+              </span>
+              <span ng-show="form.tags.$error.minTags && tags.length">
+                Pakkumine peab sisaldama vähemalt 1 märksõna.
+              </span>
+              <span ng-show="form.tags.$error.leftoverText && tags.length">
+                Märksõna peab kuuluma ette pakutud hulka.
+              </span>
             </span>
-          </span>
-        </label>
+          </label>
+        </tags-input>
       </p>
       <p>
         <input ng-model="price" name="price" id="{{idPrefix}}price" type="number" min="0" required>

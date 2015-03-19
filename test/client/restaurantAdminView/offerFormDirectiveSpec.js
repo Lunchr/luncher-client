@@ -30,10 +30,11 @@ describe('Offer Form', function() {
   });
 
   describe('offer-form directive', function() {
-    var element, $scope, $parentScope;
+    var element, $scope, $parentScope, mockTags;
 
     beforeEach(inject(function($httpBackend) {
-      $httpBackend.expectGET('api/v1/tags').respond(offerUtils.getMockTags());
+      mockTags = offerUtils.getMockTags();
+      $httpBackend.expectGET('api/v1/tags').respond(mockTags);
       var compiled = utils.compile('<offer-form on-submit="submitClicked($offer)" on-cancel="cancelClicked()"></offer-form>');
       element = compiled.element;
       $scope = compiled.scope;
@@ -67,6 +68,27 @@ describe('Offer Form', function() {
 
       it('should have a new offer ID prefix', function() {
         expect($scope.idPrefix).toEqual('new-offer-');
+      });
+
+      describe('getFilteredTags', function() {
+        it('should return (mocked) tags that match the query', function() {
+          var result = $scope.getFilteredTags('a');
+          expect(result.length).toBe(2);
+          expect(result[0].name).toBe('kala');
+          expect(result[1].name).toBe('siga');
+        });
+
+        it('should return (mocked) tags that match the query', function() {
+          var result = $scope.getFilteredTags('l');
+          expect(result.length).toBe(2);
+          expect(result[0].name).toBe('kala');
+          expect(result[1].name).toBe('lind');
+        });
+
+        it('should return no tags if bad query', function() {
+          var result = $scope.getFilteredTags('blablabla');
+          expect(result.length).toBe(0);
+        });
       });
 
       describe('isReadyForError', function() {
@@ -148,7 +170,7 @@ describe('Offer Form', function() {
           beforeEach(function() {
             $scope.title = 'a title';
             $scope.ingredients = [{text: 'ingredient1'}, {text: 'ingredient2'}];
-            $scope.tags = [{text: 'tag1'}, {text: 'tag2'}];
+            $scope.tags = [{name: 'tag1', a: 'a'}, {name: 'tag2', a: 'b'}];
             $scope.price = 2.5;
             $scope.date = new Date(2015, 3, 15);
             $scope.fromTime = new Date(1970, 0, 1, 10, 0, 0);
@@ -162,7 +184,7 @@ describe('Offer Form', function() {
             expect($parentScope.submitClicked).toHaveBeenCalledWith({
               title: 'a title',
               ingredients: ['ingredient1', 'ingredient2'],
-              tags: ['tag1', 'tag2'],
+              tags: [{name: 'tag1', a: 'a'}, {name: 'tag2', a: 'b'}],
               price: 2.5,
               from_time: new Date(2015, 3, 15, 10, 0, 0),
               to_time: new Date(2015, 3, 15, 15, 0, 0),
@@ -196,7 +218,7 @@ describe('Offer Form', function() {
           _id: '11',
           title: 'a title',
           ingredients: ['ingredient1', 'ingredient2'],
-          tags: ['tag1', 'tag2'],
+          tags: [{name: 'tag1', a: 'a'}, {name: 'tag2', a: 'b'}],
           price: 2.5,
           from_time: new Date(2015, 3, 15, 10, 0, 0),
           to_time: new Date(2015, 3, 15, 15, 0, 0),
@@ -216,7 +238,7 @@ describe('Offer Form', function() {
     it('should prefill the inner scope variables', function() {
       expect($scope.title).toBe('a title');
       expect($scope.ingredients).toEqual([{text: 'ingredient1'}, {text:'ingredient2'}]);
-      expect($scope.tags).toEqual([{text: 'tag1'}, {text:'tag2'}]);
+      expect($scope.tags).toEqual([{name: 'tag1', a: 'a'}, {name:'tag2', a: 'b'}]);
       expect($scope.price).toEqual(2.5);
       expect($scope.date).toEqual(new Date(2015, 3, 15, 10, 0, 0));
       expect($scope.fromTime).toEqual(new Date(2015, 3, 15, 10, 0, 0));
