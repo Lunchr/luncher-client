@@ -47,6 +47,10 @@ describe('Offer Form', function() {
       expect(todayInUTC).toEqual(today.getTime() - today.getTimezoneOffset() * 60 * 1000);
     });
 
+    it('should have a new offer ID prefix', function() {
+      expect($scope.idPrefix).toEqual('new-offer-');
+    });
+
     describe('isReadyForError', function() {
       it('should return true when dirty, touched and invalid', function() {
         var input = {
@@ -167,6 +171,7 @@ describe('Offer Form', function() {
     beforeEach(function() {
       var compiled = utils.compile('<offer-form prefill-with="prefillOffer"></offer-form>', function(parentScope) {
         parentScope.prefillOffer = {
+          _id: '11',
           title: 'a title',
           tags: ['tag1', 'tag2'],
           price: 2.5,
@@ -178,6 +183,10 @@ describe('Offer Form', function() {
       element = compiled.element;
       $scope = compiled.scope;
       $parentScope = compiled.parentScope;
+    });
+
+    it('should have an edit offer ID prefix', function() {
+      expect($scope.idPrefix).toEqual('edit-offer-11-');
     });
 
     it('should prefill the inner scope variables', function() {

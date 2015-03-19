@@ -22,7 +22,7 @@
           cancelFunction: '&onCancel',
         },
         controller: function($scope, $element, $attrs, $transclude) {
-          (function prefillWith(offer){
+          (function prefillWith(offer) {
             if (offer) {
               $scope.title = offer.title;
               $scope.tags = offer.tags;
@@ -32,6 +32,12 @@
               $scope.toTime = new Date(offer.to_time);
               $scope.image = offer.image; // XXX this needs attention prolly
             }
+          })($scope.prefillOffer);
+          $scope.idPrefix = (function(prefillOffer) {
+            if (prefillOffer)
+              return 'edit-offer-' + prefillOffer._id + '-';
+            else
+              return 'new-offer-';
           })($scope.prefillOffer);
           $scope.today = (function() {
             var now = new Date();
@@ -51,7 +57,9 @@
           $scope.submitOffer = function() {
             var offer = {
               title: $scope.title,
-              tags: $scope.tags.map(function(tag) {return tag.text;}),
+              tags: $scope.tags.map(function(tag) {
+                return tag.text;
+              }),
               price: $scope.price,
               // both getTime()s return the time with added timezone offset, so one offset has to be subtracted
               from_time: new Date($scope.date.getTime() + $scope.fromTime.getTime() - $scope.fromTime.getTimezoneOffset() * 60 * 1000),

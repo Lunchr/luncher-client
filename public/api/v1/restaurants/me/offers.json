@@ -1,5 +1,5 @@
 [{
-  "id": "5",
+  "_id": "5",
   "restaurant": {
     "name": "La Dolche Vita"
   },
@@ -10,7 +10,7 @@
   "tags": ["Lambaliha", "farfalled", "paremesan"],
   "image": "meatmarket.jpg"
 }, {
-  "id": "6",
+  "_id": "6",
   "restaurant": {
     "name": "La Dolche Vita"
   },
