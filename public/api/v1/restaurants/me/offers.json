@@ -7,7 +7,8 @@
   "from_time": "2016-11-11T09:00:00.000Z",
   "to_time": "2016-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["Lambaliha", "farfalled", "paremesan"],
+  "ingredients": ["Lambaliha", "farfalled", "paremesan"],
+  "tags": ["lammas", "pasta"],
   "image": "meatmarket.jpg"
 }, {
   "_id": "6",
@@ -18,6 +19,7 @@
   "from_time": "2016-11-11T09:00:00.000Z",
   "to_time": "2016-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
+  "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
+  "tags": ["pizza"],
   "image": "meatmarket2.jpg"
 }]

@@ -25,6 +25,7 @@
           (function prefillWith(offer) {
             if (offer) {
               $scope.title = offer.title;
+              $scope.ingredients = offer.ingredients;
               $scope.tags = offer.tags;
               $scope.price = offer.price;
               $scope.date = new Date(offer.from_time);
@@ -57,6 +58,9 @@
           $scope.submitOffer = function() {
             var offer = {
               title: $scope.title,
+              ingredients: $scope.ingredients.map(function(ingredient) {
+                return ingredient.text;
+              }),
               tags: $scope.tags.map(function(tag) {
                 return tag.text;
               }),

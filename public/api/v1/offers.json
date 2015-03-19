@@ -9,7 +9,8 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 3.4,
-  "tags": ["Kana", "aedviljad", "tsillikaste"],
+  "ingredients": ["Kana", "aedviljad", "tsillikaste"],
+  "tags": ["lind", "kana"],
   "image": "meatmarket.jpg"
 }, {
   "_id": "2",
@@ -22,7 +23,8 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T12:00:00.000Z",
   "price": 3.3,
-  "tags": ["Seafilee", "aedviljad", "mahushapu kaste"],
+  "ingredients": ["Seafilee", "aedviljad", "mahushapu kaste"],
+  "tags": ["siga"],
   "image": "meatmarket2.jpg"
 }, {
   "_id": "3",
@@ -35,7 +37,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.8,
-  "tags": ["Veiseliha pihv", "burgerisai", "kodused friikartulid", "kaste", "salat"],
+  "ingredients": ["Veiseliha pihv", "burgerisai", "kodused friikartulid", "kaste", "salat"],
+  "tags": ["loom", "veis"],
   "image": "meatmarket3.jpg"
 }, {
   "_id": "4",
@@ -48,7 +51,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.7,
-  "tags": ["Pardifilee", "aedviljad", "magushapu kaste"],
+  "ingredients": ["Pardifilee", "aedviljad", "magushapu kaste"],
+  "tags": ["lind", "part"],
   "image": "meatmarket4.jpg"
 }, {
   "_id": "5",
@@ -61,7 +65,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["Lambaliha", "parmesan", "farfalle"],
+  "ingredients": ["Lambaliha", "parmesan", "farfalle"],
+  "tags": ["lammas", "pasta"],
   "image": "meatmarket5.jpg"
 }, {
   "_id": "6",
@@ -74,7 +79,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "tags": ["Salaami", "ananass", "juust", "pitsakaste", "pitsapõhi"],
+  "ingredients": ["Salaami", "ananass", "juust", "pitsakaste", "pitsapõhi"],
+  "tags": ["pizza"],
   "image": "meatmarket.jpg"
 }, {
   "_id": "7",
@@ -87,7 +93,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.4,
-  "tags": ["Farfalled", "sink", "koor"],
+  "ingredients": ["Farfalled", "sink", "koor"],
+  "tags": ["pasta"],
   "image": "meatmarket2.jpg"
 }, {
   "_id": "8",
@@ -100,7 +107,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.2,
-  "tags": ["Kodune kotlet", "praekartulid", "salat", "kaste"],
+  "ingredients": ["Kodune kotlet", "praekartulid", "salat", "kaste"],
+  "tags": ["loom"],
   "image": "meatmarket3.jpg"
 }, {
   "_id": "9",
@@ -113,7 +121,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.2,
-  "tags": ["Lambakarree", "ahjukartul", "salat", "kaste"],
+  "ingredients": ["Lambakarree", "ahjukartul", "salat", "kaste"],
+  "tags": ["lammas"],
   "image": "meatmarket4.jpg"
 }, {
   "_id": "10",
@@ -126,7 +135,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 5.2,
-  "tags": ["Pardifilee", "ahuõunad", "friikartulid", "värske salat", "kaste"],
+  "ingredients": ["Pardifilee", "ahuõunad", "friikartulid", "värske salat", "kaste"],
+  "tags": ["lind", "part"],
   "image": "meatmarket5.jpg"
 }, {
   "_id": "11",
@@ -139,7 +149,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 5.9,
-  "tags": ["Minutihv", "kodune ahjukartul", "astelpaju kaste", "värske salat"],
+  "ingredients": ["Minutihv", "kodune ahjukartul", "astelpaju kaste", "värske salat"],
+  "tags": ["loom"],
   "image": "meatmarket.jpg"
 }, {
   "_id": "12",
@@ -152,7 +163,8 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.5,
-  "tags": ["Pikpoiss", "ahjukartul", "hapukapsas", "külm kaste"],
+  "ingredients": ["Pikpoiss", "ahjukartul", "hapukapsas", "külm kaste"],
+  "tags": ["loom"],
   "image": "meatmarket2.jpg"
 }, {
   "_id": "13",
@@ -165,6 +177,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.2,
-  "tags": ["Heigifilee", "ahjukartul", "salat", "kaste"],
+  "ingredients": ["Heigifilee", "ahjukartul", "salat", "kaste"],
+  "tags": ["kala"],
   "image": "meatmarket3.jpg"
 }]

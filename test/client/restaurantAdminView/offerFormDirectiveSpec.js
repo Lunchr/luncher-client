@@ -129,6 +129,7 @@ describe('Offer Form', function() {
       describe('with the form filled', function() {
         beforeEach(function() {
           $scope.title = 'a title';
+          $scope.ingredients = [{text: 'ingredient1'}, {text: 'ingredient2'}];
           $scope.tags = [{text: 'tag1'}, {text: 'tag2'}];
           $scope.price = 2.5;
           $scope.date = new Date(2015, 3, 15);
@@ -142,6 +143,7 @@ describe('Offer Form', function() {
 
           expect($parentScope.submitClicked).toHaveBeenCalledWith({
             title: 'a title',
+            ingredients: ['ingredient1', 'ingredient2'],
             tags: ['tag1', 'tag2'],
             price: 2.5,
             from_time: new Date(2015, 3, 15, 10, 0, 0),
@@ -173,6 +175,7 @@ describe('Offer Form', function() {
         parentScope.prefillOffer = {
           _id: '11',
           title: 'a title',
+          ingredients: ['ingredient1', 'ingredient2'],
           tags: ['tag1', 'tag2'],
           price: 2.5,
           from_time: new Date(2015, 3, 15, 10, 0, 0),
@@ -191,6 +194,7 @@ describe('Offer Form', function() {
 
     it('should prefill the inner scope variables', function() {
       expect($scope.title).toBe('a title');
+      expect($scope.ingredients).toEqual([{text: 'ingredient1'}, {text:'ingredient2'}]);
       expect($scope.tags).toEqual([{text: 'tag1'}, {text:'tag2'}]);
       expect($scope.price).toEqual(2.5);
       expect($scope.date).toEqual(new Date(2015, 3, 15, 10, 0, 0));

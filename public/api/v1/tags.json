@@ -8,9 +8,15 @@
   "name": "siga",
   "displayName": "Seast"
 }, {
+  "name": "loom",
+  "displayName": "Loomalihast"
+}, {
   "name": "veis",
   "displayName": "Veisest"
 }, {
   "name": "lammas",
   "displayName": "Lambast"
+}, {
+  "name": "pizza",
+  "displayName": "Pizza"
 }]
