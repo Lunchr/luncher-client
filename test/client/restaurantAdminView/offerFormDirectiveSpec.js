@@ -32,137 +32,156 @@ describe('Offer Form', function() {
   describe('offer-form directive', function() {
     var element, $scope, $parentScope;
 
-    beforeEach(function() {
+    beforeEach(inject(function($httpBackend) {
+      $httpBackend.expectGET('api/v1/tags').respond(offerUtils.getMockTags());
       var compiled = utils.compile('<offer-form on-submit="submitClicked($offer)" on-cancel="cancelClicked()"></offer-form>');
       element = compiled.element;
       $scope = compiled.scope;
       $parentScope = compiled.parentScope;
-    });
+    }));
 
-    it('should have a date string representing today', function() {
-      var now = new Date();
-      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    it('should have tags data after we mock-respond to the HTTP request', inject(function($httpBackend) {
+      expect($scope.allTags.length).toBe(0);
+      $httpBackend.flush();
+      expect($scope.allTags.length).toBe(3);
+    }));
 
-      var todayInUTC = Date.parse($scope.today);
-      expect(todayInUTC).toEqual(today.getTime() - today.getTimezoneOffset() * 60 * 1000);
-    });
-
-    it('should have a new offer ID prefix', function() {
-      expect($scope.idPrefix).toEqual('new-offer-');
-    });
-
-    describe('isReadyForError', function() {
-      it('should return true when dirty, touched and invalid', function() {
-        var input = {
-          $dirty: true,
-          $touched: true,
-          $invalid: true,
-        };
-        expect($scope.isReadyForError(input)).toBe(true);
-      });
-
-      it('should return false when not dirty, but touched and invalid', function() {
-        var input = {
-          $dirty: false,
-          $touched: true,
-          $invalid: true,
-        };
-        expect($scope.isReadyForError(input)).toBe(false);
-      });
-
-      it('should return true when when first input is false, second true', function() {
-        var input1 = {
-          $dirty: false,
-          $touched: true,
-          $invalid: true,
-        };
-        var input2 = {
-          $dirty: true,
-          $touched: true,
-          $invalid: true,
-        };
-        expect($scope.isReadyForError(input1, input2)).toBe(true);
-      });
-    });
-
-    describe('setAsPreview', function() {
-      var result, file;
-      beforeEach(inject(function($q, fileReader) {
-        var deferred = $q.defer();
-        result = 'result data';
-        deferred.resolve(result);
-        fileReader.readAsDataUrl = jasmine.createSpy().and.returnValue(deferred.promise);
+    describe('with the http requests mock-responded', function() {
+      beforeEach(inject(function($httpBackend) {
+        $httpBackend.flush();
       }));
 
-      describe('with file', function() {
-        beforeEach(function() {
-          file = 'a mock file';
+      it('should cache the tags request', inject(function($httpBackend) {
+        // we'll create another directive and without flushing expect the tags to be resolved
+        var compiled = utils.compile('<offer-form></offer-form>');
+        expect(compiled.scope.allTags.length).toBe(3);
+      }));
+
+      it('should have a date string representing today', function() {
+        var now = new Date();
+        var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        var todayInUTC = Date.parse($scope.today);
+        expect(todayInUTC).toEqual(today.getTime() - today.getTimezoneOffset() * 60 * 1000);
+      });
+
+      it('should have a new offer ID prefix', function() {
+        expect($scope.idPrefix).toEqual('new-offer-');
+      });
+
+      describe('isReadyForError', function() {
+        it('should return true when dirty, touched and invalid', function() {
+          var input = {
+            $dirty: true,
+            $touched: true,
+            $invalid: true,
+          };
+          expect($scope.isReadyForError(input)).toBe(true);
         });
 
-        it('should set previewImageSrc to the result', function() {
-          $scope.setAsPreview(file);
+        it('should return false when not dirty, but touched and invalid', function() {
+          var input = {
+            $dirty: false,
+            $touched: true,
+            $invalid: true,
+          };
+          expect($scope.isReadyForError(input)).toBe(false);
+        });
 
-          $scope.$apply();
-          expect($scope.previewImageSrc).toBe(result);
+        it('should return true when when first input is false, second true', function() {
+          var input1 = {
+            $dirty: false,
+            $touched: true,
+            $invalid: true,
+          };
+          var input2 = {
+            $dirty: true,
+            $touched: true,
+            $invalid: true,
+          };
+          expect($scope.isReadyForError(input1, input2)).toBe(true);
         });
       });
 
-      describe('without file', function() {
-        beforeEach(function() {
-          file = undefined;
+      describe('setAsPreview', function() {
+        var result, file;
+        beforeEach(inject(function($q, fileReader) {
+          var deferred = $q.defer();
+          result = 'result data';
+          deferred.resolve(result);
+          fileReader.readAsDataUrl = jasmine.createSpy().and.returnValue(deferred.promise);
+        }));
+
+        describe('with file', function() {
+          beforeEach(function() {
+            file = 'a mock file';
+          });
+
+          it('should set previewImageSrc to the result', function() {
+            $scope.setAsPreview(file);
+
+            $scope.$apply();
+            expect($scope.previewImageSrc).toBe(result);
+          });
         });
 
-        it('should set previewImageSrc to the result', function() {
-          $scope.setAsPreview(file);
+        describe('without file', function() {
+          beforeEach(function() {
+            file = undefined;
+          });
 
-          $scope.$apply();
-          expect($scope.previewImageSrc).toBe('');
-        });
-      });
-    });
+          it('should set previewImageSrc to the result', function() {
+            $scope.setAsPreview(file);
 
-    describe('submitOffer', function() {
-      beforeEach(function() {
-        $parentScope.submitClicked = jasmine.createSpy();
-      });
-
-      describe('with the form filled', function() {
-        beforeEach(function() {
-          $scope.title = 'a title';
-          $scope.ingredients = [{text: 'ingredient1'}, {text: 'ingredient2'}];
-          $scope.tags = [{text: 'tag1'}, {text: 'tag2'}];
-          $scope.price = 2.5;
-          $scope.date = new Date(2015, 3, 15);
-          $scope.fromTime = new Date(1970, 0, 1, 10, 0, 0);
-          $scope.toTime = new Date(1970, 0, 1, 15, 0, 0);
-          $scope.image = 'image data';
-        });
-
-        it('should call the specified function with $offer as the argument', function() {
-          $scope.submitOffer();
-
-          expect($parentScope.submitClicked).toHaveBeenCalledWith({
-            title: 'a title',
-            ingredients: ['ingredient1', 'ingredient2'],
-            tags: ['tag1', 'tag2'],
-            price: 2.5,
-            from_time: new Date(2015, 3, 15, 10, 0, 0),
-            to_time: new Date(2015, 3, 15, 15, 0, 0),
-            image: 'image data',
+            $scope.$apply();
+            expect($scope.previewImageSrc).toBe('');
           });
         });
       });
-    });
 
-    describe('cancelOffer', function() {
-      beforeEach(function() {
-        $parentScope.cancelClicked = jasmine.createSpy();
+      describe('submitOffer', function() {
+        beforeEach(function() {
+          $parentScope.submitClicked = jasmine.createSpy();
+        });
+
+        describe('with the form filled', function() {
+          beforeEach(function() {
+            $scope.title = 'a title';
+            $scope.ingredients = [{text: 'ingredient1'}, {text: 'ingredient2'}];
+            $scope.tags = [{text: 'tag1'}, {text: 'tag2'}];
+            $scope.price = 2.5;
+            $scope.date = new Date(2015, 3, 15);
+            $scope.fromTime = new Date(1970, 0, 1, 10, 0, 0);
+            $scope.toTime = new Date(1970, 0, 1, 15, 0, 0);
+            $scope.image = 'image data';
+          });
+
+          it('should call the specified function with $offer as the argument', function() {
+            $scope.submitOffer();
+
+            expect($parentScope.submitClicked).toHaveBeenCalledWith({
+              title: 'a title',
+              ingredients: ['ingredient1', 'ingredient2'],
+              tags: ['tag1', 'tag2'],
+              price: 2.5,
+              from_time: new Date(2015, 3, 15, 10, 0, 0),
+              to_time: new Date(2015, 3, 15, 15, 0, 0),
+              image: 'image data',
+            });
+          });
+        });
       });
 
-      it('should call the specified function with $offer as the argument', function() {
-        $scope.cancelFunction();
+      describe('cancelOffer', function() {
+        beforeEach(function() {
+          $parentScope.cancelClicked = jasmine.createSpy();
+        });
 
-        expect($parentScope.cancelClicked).toHaveBeenCalled();
+        it('should call the specified function with $offer as the argument', function() {
+          $scope.cancelFunction();
+
+          expect($parentScope.cancelClicked).toHaveBeenCalled();
+        });
       });
     });
   });
@@ -170,7 +189,8 @@ describe('Offer Form', function() {
   describe('pre-filled offer-form directive', function() {
     var element, $scope, $parentScope;
 
-    beforeEach(function() {
+    beforeEach(inject(function($httpBackend) {
+      $httpBackend.whenGET('api/v1/tags').respond(offerUtils.getMockTags());
       var compiled = utils.compile('<offer-form prefill-with="prefillOffer"></offer-form>', function(parentScope) {
         parentScope.prefillOffer = {
           _id: '11',
@@ -186,7 +206,8 @@ describe('Offer Form', function() {
       element = compiled.element;
       $scope = compiled.scope;
       $parentScope = compiled.parentScope;
-    });
+      $httpBackend.flush();
+    }));
 
     it('should have an edit offer ID prefix', function() {
       expect($scope.idPrefix).toEqual('edit-offer-11-');

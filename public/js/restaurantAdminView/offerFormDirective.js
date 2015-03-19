@@ -3,6 +3,7 @@
   var module = angular.module('offerFormDirective', [
     'ngTagsInput',
     'fileReaderService',
+    'ngResource',
   ]);
 
   module.config(['tagsInputConfigProvider',
@@ -13,8 +14,8 @@
     }
   ]);
 
-  module.directive('offerForm', ['fileReader',
-    function(fileReader) {
+  module.directive('offerForm', ['fileReader', '$resource',
+    function(fileReader, $resource) {
       return {
         scope: {
           prefillOffer: '=prefillWith',
@@ -22,6 +23,13 @@
           cancelFunction: '&onCancel',
         },
         controller: function($scope, $element, $attrs, $transclude) {
+          $scope.allTags = $resource('api/v1/tags', {}, {
+            'queryCached': {
+                method: 'GET',
+                isArray: true,
+                cache: true,
+              }
+          }).queryCached();
           (function prefillWith(offer) {
             if (offer) {
               $scope.title = offer.title;
