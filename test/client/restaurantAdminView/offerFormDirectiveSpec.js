@@ -208,12 +208,12 @@ describe('Offer Form', function() {
     });
   });
 
-  describe('pre-filled offer-form directive', function() {
+  describe('edit an offer with offer-form directive', function() {
     var element, $scope, $parentScope;
 
     beforeEach(inject(function($httpBackend) {
       $httpBackend.whenGET('api/v1/tags').respond(offerUtils.getMockTags());
-      var compiled = utils.compile('<offer-form prefill-with="prefillOffer"></offer-form>', function(parentScope) {
+      var compiled = utils.compile('<offer-form edit="prefillOffer" on-submit="submitClicked($offer)"></offer-form>', function(parentScope) {
         parentScope.prefillOffer = {
           _id: '11',
           title: 'a title',
@@ -223,11 +223,13 @@ describe('Offer Form', function() {
           from_time: new Date(2015, 3, 15, 10, 0, 0),
           to_time: new Date(2015, 3, 15, 15, 0, 0),
           image: 'image data',
+          additionalData: 'just something extra',
         };
       });
       element = compiled.element;
       $scope = compiled.scope;
       $parentScope = compiled.parentScope;
+      $parentScope.submitClicked = jasmine.createSpy();
       $httpBackend.flush();
     }));
 
@@ -240,10 +242,29 @@ describe('Offer Form', function() {
       expect($scope.ingredients).toEqual([{text: 'ingredient1'}, {text:'ingredient2'}]);
       expect($scope.tags).toEqual([{name: 'tag1', a: 'a'}, {name:'tag2', a: 'b'}]);
       expect($scope.price).toEqual(2.5);
-      expect($scope.date).toEqual(new Date(2015, 3, 15, 10, 0, 0));
-      expect($scope.fromTime).toEqual(new Date(2015, 3, 15, 10, 0, 0));
-      expect($scope.toTime).toEqual(new Date(2015, 3, 15, 15, 0, 0));
+      expect($scope.date).toEqual(new Date(2015, 3, 15));
+      expect($scope.fromTime).toEqual(new Date(1970, 0, 1, 10, 0, 0));
+      expect($scope.toTime).toEqual(new Date(1970, 0, 1, 15, 0, 0));
       expect($scope.image).toEqual('image data');
+    });
+
+    describe('submit', function() {
+      it('should copy and extend the the original offer', function() {
+        $scope.title = 'a changed title';
+        $scope.submitOffer();
+
+        expect($parentScope.submitClicked).toHaveBeenCalledWith({
+          _id: '11',
+          title: 'a changed title',
+          ingredients: ['ingredient1', 'ingredient2'],
+          tags: [{name: 'tag1', a: 'a'}, {name: 'tag2', a: 'b'}],
+          price: 2.5,
+          from_time: new Date(2015, 3, 15, 10, 0, 0),
+          to_time: new Date(2015, 3, 15, 15, 0, 0),
+          image: 'image data',
+          additionalData: 'just something extra',
+        });
+      });
     });
   });
 });

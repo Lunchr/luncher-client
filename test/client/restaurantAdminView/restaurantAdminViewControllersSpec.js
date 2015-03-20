@@ -95,6 +95,56 @@ describe('OfferList cotrollers', function() {
         $httpBackend.flush();
       }));
 
+
+      describe('$update an offer', function() {
+        var originalOffer, changedOffer, response;
+
+        beforeEach(inject(function($httpBackend) {
+          originalOffer = $scope.offers[2];
+          changedOffer = angular.copy(originalOffer);
+          changedOffer.changed = true;
+          response = $httpBackend.expectPUT('api/v1/offers/3').respond({});
+        }));
+
+        it('should update with data added by the server', inject(function($httpBackend) {
+          expect($scope.offers).toContain(originalOffer);
+          $scope.updateOffer(originalOffer, changedOffer);
+
+          expect(originalOffer.changed).toBeUndefined();
+          expect($scope.offers).toContain(changedOffer);
+
+          $httpBackend.flush();
+          expect(originalOffer.changed).toBeUndefined();
+          expect($scope.offers).toContain(changedOffer);
+          expect($scope.offers).not.toContain(originalOffer);
+        }));
+
+        it('should set the offer as confirmationPending while waiting for the backend', inject(function($httpBackend) {
+          expect(originalOffer.confirmationPending).toBeFalsy();
+          expect(changedOffer.confirmationPending).toBeFalsy();
+
+          $scope.updateOffer(originalOffer, changedOffer);
+          expect(originalOffer.confirmationPending).toBeFalsy();
+          expect(changedOffer.confirmationPending).toBeTruthy();
+
+          $httpBackend.flush();
+          expect(originalOffer.confirmationPending).toBeFalsy();
+          expect(changedOffer.confirmationPending).toBeFalsy();
+        }));
+
+        it('should return the original offer in case of an error', inject(function($httpBackend) {
+          expect($scope.offers).toContain(originalOffer);
+          $scope.updateOffer(originalOffer, changedOffer);
+
+          expect($scope.offers).toContain(changedOffer);
+
+          response.respond(500, {});
+          $httpBackend.flush();
+          expect($scope.offers).toContain(originalOffer);
+          expect($scope.offers).not.toContain(changedOffer);
+        }));
+      });
+
       describe('$on(\'offer-posted\') listener', function() {
         var mockOffer, deferred;
 

@@ -18,17 +18,18 @@
     function(fileReader, $resource, filterFilter) {
       return {
         scope: {
-          prefillOffer: '=prefillWith',
+          offerToEdit: '=edit',
           submitFunction: '&onSubmit',
           cancelFunction: '&onCancel',
         },
         controller: function($scope, $element, $attrs, $transclude) {
+          var isEdit = !!$scope.offerToEdit;
           $scope.allTags = $resource('api/v1/tags', {}, {
             'queryCached': {
-                method: 'GET',
-                isArray: true,
-                cache: true,
-              }
+              method: 'GET',
+              isArray: true,
+              cache: true,
+            }
           }).queryCached();
           $scope.getFilteredTags = function($query) {
             return filterFilter($scope.allTags, $query);
@@ -40,17 +41,24 @@
               $scope.tags = offer.tags;
               $scope.price = offer.price;
               $scope.date = new Date(offer.from_time);
+              $scope.date.setHours(0, 0, 0, 0);
               $scope.fromTime = new Date(offer.from_time);
+              $scope.fromTime.setFullYear(1970);
+              $scope.fromTime.setMonth(0);
+              $scope.fromTime.setDate(1);
               $scope.toTime = new Date(offer.to_time);
+              $scope.toTime.setFullYear(1970);
+              $scope.toTime.setMonth(0);
+              $scope.toTime.setDate(1);
               $scope.image = offer.image; // XXX this needs attention prolly
             }
-          })($scope.prefillOffer);
-          $scope.idPrefix = (function(prefillOffer) {
-            if (prefillOffer)
-              return 'edit-offer-' + prefillOffer._id + '-';
+          })($scope.offerToEdit);
+          $scope.idPrefix = (function() {
+            if (isEdit)
+              return 'edit-offer-' + $scope.offerToEdit._id + '-';
             else
               return 'new-offer-';
-          })($scope.prefillOffer);
+          })();
           $scope.today = (function() {
             var now = new Date();
             // this is basically when the clock in UTC will show what it shows here now
@@ -79,9 +87,18 @@
               to_time: new Date($scope.date.getTime() + $scope.toTime.getTime() - $scope.toTime.getTimezoneOffset() * 60 * 1000),
               image: $scope.image,
             };
-            $scope.submitFunction({
-              $offer: offer,
-            });
+            if (isEdit) {
+              var offerCopy = angular.copy($scope.offerToEdit);
+              angular.extend(offerCopy, offer);
+              $scope.submitFunction({
+                $currentOffer: $scope.offerToEdit,
+                $offer: offerCopy,
+              });
+            } else {
+              $scope.submitFunction({
+                $offer: offer,
+              });
+            }
           };
           $scope.setAsPreview = function(file) {
             if (file) {

@@ -18,7 +18,30 @@
 
   module.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.offers = $resource('api/v1/restaurants/me/offers').query();
+      $scope.offers = $resource('api/v1/restaurants/me/offers', {}, {
+        'update': {
+          method: 'PUT',
+          url: 'api/v1/offers/:id',
+          params: {id: '@_id'},
+        }
+      }).query();
+      $scope.updateOffer = function(currentOffer, offer){
+        offer.confirmationPending = true;
+        var index = $scope.offers.indexOf(currentOffer);
+        if (index > -1) {
+          $scope.offers[index] = offer;
+        }
+        offer.$update({}, function success() {
+          offer.confirmationPending = false;
+        }, function error() {
+          // Put back the previous version if the update fails
+          var index = $scope.offers.indexOf(offer);
+          if (index > -1) {
+            $scope.offers[index] = currentOffer;
+          }
+        });
+
+      };
       $scope.$on(offerPostedEventChannel, function(event, offer) {
         $scope.offers.unshift(offer);
 

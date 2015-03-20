@@ -16,11 +16,14 @@
   app.set('port', config.port);
 
   app.use(bodyParser.json());
-  app.post('/api/v1/offers', function(req, res) {
+  var delayedReflector = function(req, res) {
     setTimeout(function() {
       res.send(req.body);
+      // res.status(500).send('uh oh');
     }, 1000);
-  });
+  };
+  app.post('/api/v1/offers', delayedReflector);
+  app.put('/api/v1/offers/:id', delayedReflector);
 
   var publicDir = path.join(__dirname, '..', 'public');
   var apiDir = path.join(publicDir, 'api');
