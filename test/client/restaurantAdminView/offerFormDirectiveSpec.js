@@ -184,7 +184,7 @@ describe('Offer Form', function() {
             expect($parentScope.submitClicked).toHaveBeenCalledWith({
               title: 'a title',
               ingredients: ['ingredient1', 'ingredient2'],
-              tags: [{name: 'tag1', a: 'a'}, {name: 'tag2', a: 'b'}],
+              tags: ['tag1', 'tag2'],
               price: 2.5,
               from_time: new Date(2015, 3, 15, 10, 0, 0),
               to_time: new Date(2015, 3, 15, 15, 0, 0),
@@ -218,7 +218,7 @@ describe('Offer Form', function() {
           _id: '11',
           title: 'a title',
           ingredients: ['ingredient1', 'ingredient2'],
-          tags: [{name: 'tag1', a: 'a'}, {name: 'tag2', a: 'b'}],
+          tags: ['tag1', 'tag2'],
           price: 2.5,
           from_time: new Date(2015, 3, 15, 10, 0, 0),
           to_time: new Date(2015, 3, 15, 15, 0, 0),
@@ -240,7 +240,7 @@ describe('Offer Form', function() {
     it('should prefill the inner scope variables', function() {
       expect($scope.title).toBe('a title');
       expect($scope.ingredients).toEqual([{text: 'ingredient1'}, {text:'ingredient2'}]);
-      expect($scope.tags).toEqual([{name: 'tag1', a: 'a'}, {name:'tag2', a: 'b'}]);
+      expect($scope.tags).toEqual([{name: 'tag1'}, {name:'tag2'}]);
       expect($scope.price).toEqual(2.5);
       expect($scope.date).toEqual(new Date(2015, 3, 15));
       expect($scope.fromTime).toEqual(new Date(1970, 0, 1, 10, 0, 0));
@@ -257,7 +257,7 @@ describe('Offer Form', function() {
           _id: '11',
           title: 'a changed title',
           ingredients: ['ingredient1', 'ingredient2'],
-          tags: [{name: 'tag1', a: 'a'}, {name: 'tag2', a: 'b'}],
+          tags: ['tag1', 'tag2'],
           price: 2.5,
           from_time: new Date(2015, 3, 15, 10, 0, 0),
           to_time: new Date(2015, 3, 15, 15, 0, 0),

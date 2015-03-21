@@ -80,7 +80,9 @@
               ingredients: $scope.ingredients.map(function(ingredient) {
                 return ingredient.text;
               }),
-              tags: $scope.tags,
+              tags: $scope.tags.map(function(tag) {
+                return tag.name;
+              }),
               price: $scope.price,
               // both getTime()s return the time with added timezone offset, so one offset has to be subtracted
               from_time: new Date($scope.date.getTime() + $scope.fromTime.getTime() - $scope.fromTime.getTimezoneOffset() * 60 * 1000),
