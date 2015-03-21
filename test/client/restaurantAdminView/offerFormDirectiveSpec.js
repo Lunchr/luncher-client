@@ -9,23 +9,95 @@ describe('Offer Form', function() {
       });
     });
   });
-  describe('previewImage directive', function() {
-    var element, parentScope;
-    beforeEach(function() {
-      var compiled = utils.compile('<a preview-image />');
-      element = compiled.element;
-      parentScope = compiled.parentScope;
 
-      parentScope.setAsPreview = jasmine.createSpy();
+  describe('previewImage directive', function() {
+    var element, $parentScope;
+    beforeEach(function() {
+      var compiled = utils.compile('<a image-with-preview ng-model="aFile" preview-image-src="dataUrl"/>');
+      element = compiled.element;
+      $parentScope = compiled.parentScope;
     });
 
-    it('should call setAsPreview method on parent scope with file data from change event', function() {
-      var file = 'a mock file object';
-      element.prop('files', [file]);
+    describe('image selection canceled', function() {
+      beforeEach(function() {
+        element.prop('files', [undefined]);
+        element.triggerHandler('change');
+      });
 
-      element.triggerHandler('change');
+      it('should not set the data url', function() {
+        expect($parentScope.aFile).toBeUndefined();
+        expect($parentScope.dataUrl).toBeUndefined();
+      });
+    });
 
-      expect(parentScope.setAsPreview).toHaveBeenCalledWith(file);
+    describe('image selected', function() {
+      var result, file;
+      beforeEach(inject(function($q, fileReader) {
+        var deferred = $q.defer();
+        result = 'result data';
+        deferred.resolve(result);
+        fileReader.readAsDataUrl = jasmine.createSpy().and.returnValue(deferred.promise);
+
+        file = {
+          type: 'image/png',
+        };
+        element.prop('files', [file]);
+        element.triggerHandler('change');
+      }));
+
+      it('should set the data url the result', function() {
+        expect($parentScope.aFile).toEqual(file);
+        expect($parentScope.dataUrl).toEqual(result);
+      });
+
+      describe('and then unselected', function() {
+        beforeEach(function() {
+          element.prop('files', [undefined]);
+          element.triggerHandler('change');
+        });
+
+        it('should set the data url to an empty string', function() {
+          expect($parentScope.aFile).toBeUndefined();
+          expect($parentScope.dataUrl).toEqual('');
+        });
+      });
+    });
+
+    describe('a non-image file selected', function() {
+      var file, ngModel;
+      beforeEach(function() {
+        file = {
+          type: 'text/plain',
+        };
+        element.prop('files', [file]);
+        element.triggerHandler('change');
+        ngModel = element.data('$ngModelController');
+      });
+
+      it('should not set the data url', function() {
+        expect($parentScope.aFile).toBeUndefined();
+        expect($parentScope.dataUrl).toBeUndefined();
+      });
+
+      it('should have an error', function() {
+        expect(ngModel.$error.image).toBe(true);
+      });
+
+      describe('and then unselected', function() {
+        beforeEach(function() {
+          element.prop('files', [undefined]);
+          element.triggerHandler('change');
+        });
+
+        it('should not set the data url', function() {
+          expect($parentScope.aFile).toBeUndefined();
+          expect($parentScope.dataUrl).toBeUndefined();
+        });
+
+        it('should not have an error', function() {
+          expect(ngModel.$error.image).toBeFalsy();
+        });
+      });
     });
   });
 
@@ -125,41 +197,7 @@ describe('Offer Form', function() {
         });
       });
 
-      describe('setAsPreview', function() {
-        var result, file;
-        beforeEach(inject(function($q, fileReader) {
-          var deferred = $q.defer();
-          result = 'result data';
-          deferred.resolve(result);
-          fileReader.readAsDataUrl = jasmine.createSpy().and.returnValue(deferred.promise);
-        }));
 
-        describe('with file', function() {
-          beforeEach(function() {
-            file = 'a mock file';
-          });
-
-          it('should set previewImageSrc to the result', function() {
-            $scope.setAsPreview(file);
-
-            $scope.$apply();
-            expect($scope.previewImageSrc).toBe(result);
-          });
-        });
-
-        describe('without file', function() {
-          beforeEach(function() {
-            file = undefined;
-          });
-
-          it('should set previewImageSrc to the result', function() {
-            $scope.setAsPreview(file);
-
-            $scope.$apply();
-            expect($scope.previewImageSrc).toBe('');
-          });
-        });
-      });
 
       describe('submitOffer', function() {
         beforeEach(function() {

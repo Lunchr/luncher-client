@@ -14,8 +14,8 @@
     }
   ]);
 
-  module.directive('offerForm', ['fileReader', '$resource', 'filterFilter',
-    function(fileReader, $resource, filterFilter) {
+  module.directive('offerForm', ['$resource', 'filterFilter',
+    function($resource, filterFilter) {
       return {
         scope: {
           offerToEdit: '=edit',
@@ -102,17 +102,6 @@
               });
             }
           };
-          $scope.setAsPreview = function(file) {
-            if (file) {
-              fileReader.readAsDataUrl(file, $scope).then(function(result) {
-                $scope.previewImageSrc = result;
-              });
-            } else {
-              $scope.$apply(function() {
-                $scope.previewImageSrc = '';
-              });
-            }
-          };
         },
         restrict: 'E',
         templateUrl: 'partials/offerForm.html'
@@ -120,14 +109,36 @@
     }
   ]);
 
-  module.directive('previewImage', [
-    function() {
+  module.directive('imageWithPreview', ['fileReader',
+    function(fileReader) {
+      var isAnAllowedImage = function(file) {
+        return ['image/png', 'image/jpeg'].indexOf(file.type) > -1;
+      };
       return {
         restrict: 'A',
-        link: function($scope, element) {
+        scope: {
+          previewImageSrc: '=',
+        },
+        require: 'ngModel',
+        link: function($scope, element, attrs, ngModel) {
+          ngModel.$validators.image = function(modelValue, viewValue) {
+            return viewValue && isAnAllowedImage(viewValue);
+          };
+          ngModel.$viewChangeListeners.push(function() {
+            if (ngModel.$viewValue && !ngModel.$error.image) {
+              fileReader.readAsDataUrl(ngModel.$viewValue, $scope).then(function(result) {
+                $scope.previewImageSrc = result;
+              });
+            } else {
+              $scope.previewImageSrc = '';
+            }
+          });
           element.bind('change', function(event) {
             var file = (event.srcElement || event.target).files[0];
-            $scope.setAsPreview(file);
+            // the following link recommends making a copy of the object, but as the value will only be changed
+            // from the view, we don't have to worry about making a copy
+            // https://docs.angularjs.org/api/ng/type/ngModel.NgModelController#$setViewValue
+            ngModel.$setViewValue(file, 'change');
           });
         }
       };
