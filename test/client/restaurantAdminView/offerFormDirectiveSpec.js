@@ -18,6 +18,18 @@ describe('Offer Form', function() {
       $parentScope = compiled.parentScope;
     });
 
+    describe('with an image path set on model', function() {
+      beforeEach(function() {
+        $parentScope.$apply(function() {
+          $parentScope.image = 'some/image/path.jpg';
+        });
+      });
+
+      it('should set the path as source', function() {
+        expect($parentScope.image.src).toEqual('some/image/path.jpg');
+      });
+    });
+
     describe('image selection canceled', function() {
       beforeEach(function() {
         element.prop('files', [undefined]);
@@ -29,7 +41,7 @@ describe('Offer Form', function() {
       });
     });
 
-    describe('image selected', function() {
+    describe('with an image selected', function() {
       var result, file;
       beforeEach(inject(function($q, fileReader) {
         var deferred = $q.defer();
@@ -60,7 +72,7 @@ describe('Offer Form', function() {
       });
     });
 
-    describe('a non-image file selected', function() {
+    describe('with a non-image file selected', function() {
       var file, ngModel;
       beforeEach(function() {
         file = {
@@ -218,7 +230,7 @@ describe('Offer Form', function() {
             $scope.date = new Date(2015, 3, 15);
             $scope.fromTime = new Date(1970, 0, 1, 10, 0, 0);
             $scope.toTime = new Date(1970, 0, 1, 15, 0, 0);
-            $scope.image = 'image data';
+            $scope.image = {src: 'image data'};
           });
 
           it('should call the specified function with $offer as the argument', function() {
@@ -265,7 +277,7 @@ describe('Offer Form', function() {
           price: 2.5,
           from_time: new Date(2015, 3, 15, 10, 0, 0),
           to_time: new Date(2015, 3, 15, 15, 0, 0),
-          image: 'image data',
+          image: 'image path',
           additionalData: 'just something extra',
         };
       });
@@ -296,7 +308,7 @@ describe('Offer Form', function() {
       expect($scope.date).toEqual(new Date(2015, 3, 15));
       expect($scope.fromTime).toEqual(new Date(1970, 0, 1, 10, 0, 0));
       expect($scope.toTime).toEqual(new Date(1970, 0, 1, 15, 0, 0));
-      expect($scope.image).toEqual('image data');
+      expect($scope.image.src).toEqual('image path');
     });
 
     describe('submit', function() {
@@ -312,7 +324,7 @@ describe('Offer Form', function() {
           price: 2.5,
           from_time: new Date(2015, 3, 15, 10, 0, 0),
           to_time: new Date(2015, 3, 15, 15, 0, 0),
-          image: 'image data',
+          image: 'image path',
           additionalData: 'just something extra',
         });
       });

@@ -50,7 +50,7 @@
               $scope.toTime.setFullYear(1970);
               $scope.toTime.setMonth(0);
               $scope.toTime.setDate(1);
-              $scope.image = offer.image; // XXX this needs attention prolly
+              $scope.image = offer.image;
             }
           })($scope.offerToEdit);
           $scope.idPrefix = (function() {
@@ -87,7 +87,7 @@
               // both getTime()s return the time with added timezone offset, so one offset has to be subtracted
               from_time: new Date($scope.date.getTime() + $scope.fromTime.getTime() - $scope.fromTime.getTimezoneOffset() * 60 * 1000),
               to_time: new Date($scope.date.getTime() + $scope.toTime.getTime() - $scope.toTime.getTimezoneOffset() * 60 * 1000),
-              image: $scope.image,
+              image: $scope.image.src,
             };
             if (isEdit) {
               var offerCopy = angular.copy($scope.offerToEdit);
@@ -120,8 +120,10 @@
       };
       return {
         restrict: 'A',
-        scope: {},
         require: 'ngModel',
+        scope: {
+          image: '=ngModel',
+        },
         link: function($scope, element, attrs, ngModel) {
           element.bind('change', function(event) {
             var file = (event.srcElement || event.target).files[0];
@@ -138,6 +140,13 @@
             return {
               fileReaderPromise: fileReader.readAsDataUrl(file, $scope),
             };
+          });
+          $scope.$watch('image', function(value) {
+            if(value && typeof value === 'string') {
+              $scope.image = {
+                src: value,
+              };
+            }
           });
           ngModel.$validators.image = function(modelValue, viewValue) {
             var value = modelValue || viewValue;
