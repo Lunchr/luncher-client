@@ -18,6 +18,7 @@ module.exports = function(config) {
       'public/lib/angular-*/angular-*.js',
       'public/lib/angular-i18n/angular-locale_et-ee.js',
       'public/lib/ng-*/ng-*.js',
+      'public/lib/ng-*/dist/ng-*.js',
       'public/js/**/*.js',
       'test/client/**/*.js',
       'public/partials/*.html'
