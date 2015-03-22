@@ -145,6 +145,7 @@
             if(value && typeof value === 'string') {
               $scope.image = {
                 src: value,
+                isPath: true,
               };
             }
           });

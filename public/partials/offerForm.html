@@ -139,9 +139,9 @@
     </div>
     <div class="col-md-2 col-sm-3">
       <p>
-        <input ng-class="{filled: form.image.$viewValue}" name="image" id="{{idPrefix}}image" type="file" accept="image/jpeg,image/png"
+        <input ng-class="{filled: form.image.$viewValue && !image.isPath}" name="image" id="{{idPrefix}}image" type="file" accept="image/jpeg,image/png"
                value="" image-with-preview ng-model="image">
-        <label ng-class="{filled: form.image.$viewValue}" for="{{idPrefix}}image">
+        <label ng-class="{filled: form.image.$viewValue && !image.isPath}" for="{{idPrefix}}image">
           <span ng-show="!isReadyForError(form.image)">
             Pilt
           </span>
