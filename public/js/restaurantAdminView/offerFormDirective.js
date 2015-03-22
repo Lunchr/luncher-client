@@ -109,30 +109,20 @@
     }
   ]);
 
-  module.directive('imageWithPreview', ['fileReader',
-    function(fileReader) {
+  module.directive('imageWithPreview', ['fileReader', '$q',
+    function(fileReader, $q) {
+      var NOT_AN_IMAGE = 'this-is-not-an-image';
       var isAnAllowedImage = function(file) {
         return ['image/png', 'image/jpeg'].indexOf(file.type) > -1;
       };
+      var isAPromise = function(obj) {
+        return obj && !!obj.then && typeof obj.then === 'function';
+      };
       return {
         restrict: 'A',
-        scope: {
-          previewImageSrc: '=',
-        },
+        scope: {},
         require: 'ngModel',
         link: function($scope, element, attrs, ngModel) {
-          ngModel.$validators.image = function(modelValue, viewValue) {
-            return viewValue && isAnAllowedImage(viewValue);
-          };
-          ngModel.$viewChangeListeners.push(function() {
-            if (ngModel.$viewValue && !ngModel.$error.image) {
-              fileReader.readAsDataUrl(ngModel.$viewValue, $scope).then(function(result) {
-                $scope.previewImageSrc = result;
-              });
-            } else {
-              $scope.previewImageSrc = '';
-            }
-          });
           element.bind('change', function(event) {
             var file = (event.srcElement || event.target).files[0];
             // the following link recommends making a copy of the object, but as the value will only be changed
@@ -140,6 +130,36 @@
             // https://docs.angularjs.org/api/ng/type/ngModel.NgModelController#$setViewValue
             ngModel.$setViewValue(file, 'change');
           });
+          ngModel.$parsers.push(function(file) {
+            if (!file)
+              return file;
+            if (!isAnAllowedImage(file))
+              return NOT_AN_IMAGE;
+            return {
+              fileReaderPromise: fileReader.readAsDataUrl(file, $scope),
+            };
+          });
+          ngModel.$validators.image = function(modelValue, viewValue) {
+            var value = modelValue || viewValue;
+            return value !== NOT_AN_IMAGE;
+          };
+          ngModel.$asyncValidators.parsing = function(modelValue, viewValue) {
+            var value = modelValue || viewValue;
+            var deferred = $q.defer();
+            if (value && value.fileReaderPromise) {
+              var promise = value.fileReaderPromise;
+              delete value.fileReaderPromise;
+              promise.then(function(dataUrl) {
+                value.src = dataUrl;
+                deferred.resolve(true);
+              }, function() {
+                deferred.resolve(false);
+              });
+            } else {
+              deferred.resolve(true);
+            }
+            return deferred.promise;
+          };
         }
       };
     }

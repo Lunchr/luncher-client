@@ -13,7 +13,7 @@ describe('Offer Form', function() {
   describe('previewImage directive', function() {
     var element, $parentScope;
     beforeEach(function() {
-      var compiled = utils.compile('<a image-with-preview ng-model="aFile" preview-image-src="dataUrl"/>');
+      var compiled = utils.compile('<a image-with-preview ng-model="image"/>');
       element = compiled.element;
       $parentScope = compiled.parentScope;
     });
@@ -25,8 +25,7 @@ describe('Offer Form', function() {
       });
 
       it('should not set the data url', function() {
-        expect($parentScope.aFile).toBeUndefined();
-        expect($parentScope.dataUrl).toBeUndefined();
+        expect($parentScope.image).toBeUndefined();
       });
     });
 
@@ -46,8 +45,7 @@ describe('Offer Form', function() {
       }));
 
       it('should set the data url the result', function() {
-        expect($parentScope.aFile).toEqual(file);
-        expect($parentScope.dataUrl).toEqual(result);
+        expect($parentScope.image.src).toEqual(result);
       });
 
       describe('and then unselected', function() {
@@ -57,8 +55,7 @@ describe('Offer Form', function() {
         });
 
         it('should set the data url to an empty string', function() {
-          expect($parentScope.aFile).toBeUndefined();
-          expect($parentScope.dataUrl).toEqual('');
+          expect($parentScope.image).toBeUndefined();
         });
       });
     });
@@ -75,8 +72,7 @@ describe('Offer Form', function() {
       });
 
       it('should not set the data url', function() {
-        expect($parentScope.aFile).toBeUndefined();
-        expect($parentScope.dataUrl).toBeUndefined();
+        expect($parentScope.image).toBeUndefined();
       });
 
       it('should have an error', function() {
@@ -90,8 +86,7 @@ describe('Offer Form', function() {
         });
 
         it('should not set the data url', function() {
-          expect($parentScope.aFile).toBeUndefined();
-          expect($parentScope.dataUrl).toBeUndefined();
+          expect($parentScope.image).toBeUndefined();
         });
 
         it('should not have an error', function() {

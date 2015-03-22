@@ -140,7 +140,7 @@
     <div class="col-md-2 col-sm-3">
       <p>
         <input ng-class="{filled: form.image.$viewValue}" name="image" id="{{idPrefix}}image" type="file" accept="image/jpeg,image/png"
-               value="" image-with-preview ng-model="file" preview-image-src="previewImageSrc">
+               value="" image-with-preview ng-model="image">
         <label ng-class="{filled: form.image.$viewValue}" for="{{idPrefix}}image">
           <span ng-show="!isReadyForError(form.image)">
             Pilt
@@ -154,7 +154,7 @@
       </p>
       <p class="image-preview">
         <label for="{{idPrefix}}image">
-          <img ng-show="previewImageSrc" ng-src="{{previewImageSrc}}" alt="">
+          <img ng-show="image.src" ng-src="{{image.src}}" alt="">
         </label>
       </p>
     </div>

@@ -9,7 +9,7 @@
   "price": 4.5,
   "ingredients": ["Lambaliha", "farfalled", "paremesan"],
   "tags": ["lammas", "pasta"],
-  "image": "meatmarket.jpg"
+  "image": "img/offers/meatmarket.jpg"
 }, {
   "_id": "6",
   "restaurant": {
@@ -21,5 +21,5 @@
   "price": 4.5,
   "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
   "tags": ["pizza"],
-  "image": "meatmarket2.jpg"
+  "image": "img/offers/meatmarket2.jpg"
 }]
