@@ -32,12 +32,17 @@
             color: #b3b3b3;
         }
     }
+    .edit-btn,
+    .edit-btn a {
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+    }
     .icon-8:focus:before,
     .icon-8:active:before {
         content: "k";
         color: $color;
     }
-    &:hover .icon-15:before,
     .icon-15:hover:before {
         content: "r";
         color: $color;
