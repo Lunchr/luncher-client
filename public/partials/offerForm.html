@@ -24,7 +24,8 @@
         <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
                      because of this we have to mark it manually for now-->
         <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="3" on-tag-added="form.ingredients.$dirty=true"
-                    on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}">
+                    on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}"
+                    replace-spaces-with-dashes="false">
           <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
             <span ng-show="!isReadyForError(form.ingredients)">
               Koostisosad
