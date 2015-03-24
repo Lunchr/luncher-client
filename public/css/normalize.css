@@ -425,3 +425,10 @@ td,
 th {
   padding: 0;
 }
+
+/**
+ * Remove outline
+ */
+* {
+    outline: none;
+}
