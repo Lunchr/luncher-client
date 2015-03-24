@@ -1,15 +1,12 @@
 [{
-  "name": "kala",
-  "displayName": "Kalast"
+  "name": "siga",
+  "displayName": "Seast"
 }, {
   "name": "lind",
   "displayName": "Linnust"
 }, {
-  "name": "siga",
-  "displayName": "Seast"
-}, {
-  "name": "loom",
-  "displayName": "Loomalihast"
+  "name": "kala",
+  "displayName": "Kalast"
 }, {
   "name": "veis",
   "displayName": "Veisest"
