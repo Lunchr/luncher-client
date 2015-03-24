@@ -131,7 +131,7 @@
             </div>
             <div class="col-xs-3">
               <p>
-                <input ng-class="{filled: toTime}" ng-model="toTime" name="toTime" id="{{idPrefix}}toTime" value="15:00" type="time" min="{{form.fromTime.$valid ? form.fromTime.$viewValue : '00:00'}}" required>
+                <input ng-class="{filled: form.toTime.$viewValue}" ng-model="toTime" name="toTime" id="{{idPrefix}}toTime" value="15:00" type="time" min="{{form.fromTime.$valid ? form.fromTime.$viewValue : '00:00'}}" required>
               </p>
             </div>
           </div>
