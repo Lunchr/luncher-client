@@ -264,6 +264,17 @@
     input[type="submit"]& {
       border: none;
     }
+    &:disabled {
+        background: $color-secondary-2;
+        color: #fff;
+        box-shadow: none;
+        opacity: 0.5;
+        &:hover {
+            background: $color-secondary-2;
+            color: #fff;
+            box-shadow: none;
+        }
+    }
 }
 .buttons {
     text-align: right;
