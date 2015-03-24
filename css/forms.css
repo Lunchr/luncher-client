@@ -252,6 +252,7 @@
         background: $color-a;
         color: #fff;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        outline: none;
     }
     &.btn-secondary {
         padding: 8px 18px;
