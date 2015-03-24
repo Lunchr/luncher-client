@@ -184,7 +184,8 @@
 :focus::-webkit-datetime-edit:not([aria-valuenow]),
 .ng-valid-date::-webkit-datetime-edit:not([aria-valuenow]),
 .ng-valid-time::-webkit-datetime-edit:not([aria-valuenow]),
-.ng-valid-file::-webkit-datetime-edit:not([aria-valuenow]) {
+.ng-valid-file::-webkit-datetime-edit:not([aria-valuenow]),
+.filled::-webkit-datetime-edit:not([aria-valuenow]) {
     color: $color-secondary;
 }
 .ng-valid-date + label,
