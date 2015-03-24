@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4 col-sm-3">
       <p>
-        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="5" ng-maxlength="20" required>
+        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="5" ng-maxlength="40" required>
         <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
           <span ng-show="!isReadyForError(form.title)">
             Nimetus
@@ -15,7 +15,7 @@
               Nimetus peab olema vähemalt 5 tähte.
             </span>
             <span ng-show="form.title.$error.maxlength">
-              Nimetus võib olla kuni 20 tähte. ({{20-form.title.$viewValue.length}})
+              Nimetus võib olla kuni 40 tähte. ({{40-form.title.$viewValue.length}})
             </span>
           </span>
         </label>
