@@ -7,7 +7,7 @@
 
   module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.restaurant = $resource('api/v1/restaurants/me').get();
+      $scope.restaurant = $resource('api/v1/restaurant').get();
       $scope.postOffer = function(offer) {
         offer.restaurant = $scope.restaurant;
         var postedOffer = $resource('api/v1/offers').save(offer);
@@ -18,7 +18,7 @@
 
   module.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.offers = $resource('api/v1/restaurants/me/offers', {}, {
+      $scope.offers = $resource('api/v1/restaurant/offers', {}, {
         'update': {
           method: 'PUT',
           url: 'api/v1/offers/:id',
