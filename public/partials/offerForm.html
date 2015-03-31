@@ -26,11 +26,14 @@
         <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="3" on-tag-added="form.ingredients.$dirty=true"
                     on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}">
           <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
-            <span ng-show="!isReadyForError(form.ingredients)">
+            <span ng-show="!isReadyForError(form.ingredients) && !(form.ingredients.$touched && form.ingredients.$error.leftoverText)">
               Koostisosad
             </span>
-            <span ng-show="isReadyForError(form.ingredients)" class="errors">
-              <span ng-show="!ingredients.length">
+            <span ng-show="isReadyForError(form.ingredients) || form.ingredients.$touched && form.ingredients.$error.leftoverText" class="errors">
+              <span ng-show="form.ingredients.$error.leftoverText">
+                Viimane koostisosa ei ole sobiv.
+              </span>
+              <span ng-show="!ingredients.length && !form.ingredients.$error.leftoverText">
                 Koostisosad on kohustuslikud.
               </span>
               <span ng-show="form.ingredients.$error.minTags && ingredients.length">
@@ -38,6 +41,7 @@
               </span>
             </span>
           </label>
+          {{form.ingredients}}
         </tags-input>
       </p>
       <p>
@@ -47,18 +51,18 @@
                     on-tag-added="form.tags.$dirty=true" on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
           <auto-complete source="getFilteredTags($query)" min-length="1"></auto-complete>
           <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="{{idPrefix}}tags">
-            <span ng-show="!isReadyForError(form.tags)">
+            <span ng-show="!isReadyForError(form.tags) && !(form.tags.$touched && form.tags.$error.leftoverText)">
               Märksõnad
             </span>
-            <span ng-show="isReadyForError(form.tags)" class="errors">
-              <span ng-show="!tags.length">
+            <span ng-show="isReadyForError(form.tags) || form.tags.$touched && form.tags.$error.leftoverText" class="errors">
+              <span ng-show="form.tags.$error.leftoverText">
+                Märksõna peab kuuluma ette pakutud hulka.
+              </span>
+              <span ng-show="!tags.length && !form.tags.$error.leftoverText">
                 Märksõnad on kohustuslikud.
               </span>
               <span ng-show="form.tags.$error.minTags && tags.length">
                 Pakkumine peab sisaldama vähemalt 1 märksõna.
-              </span>
-              <span ng-show="form.tags.$error.leftoverText && tags.length">
-                Märksõna peab kuuluma ette pakutud hulka.
               </span>
             </span>
           </label>
