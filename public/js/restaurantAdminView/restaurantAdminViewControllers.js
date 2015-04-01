@@ -4,13 +4,18 @@
     'ngResource',
   ]);
   var offerPostedEventChannel = 'offer-posted';
+  var offerUpdateOperation = {
+    method: 'PUT',
+    url: 'api/v1/offers/:id',
+    params: {id: '@_id'},
+  };
 
   module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource',
     function($scope, $resource) {
       $scope.restaurant = $resource('api/v1/restaurant').get();
       $scope.postOffer = function(offer) {
         offer.restaurant = $scope.restaurant;
-        var postedOffer = $resource('api/v1/offers').save(offer);
+        var postedOffer = $resource('api/v1/offers', {}, {update: offerUpdateOperation}).save(offer);
         $scope.$broadcast(offerPostedEventChannel, postedOffer);
       };
     }
@@ -18,13 +23,7 @@
 
   module.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.offers = $resource('api/v1/restaurant/offers', {}, {
-        'update': {
-          method: 'PUT',
-          url: 'api/v1/offers/:id',
-          params: {id: '@_id'},
-        }
-      }).query();
+      $scope.offers = $resource('api/v1/restaurant/offers', {}, {update: offerUpdateOperation}).query();
       $scope.updateOffer = function(currentOffer, offer){
         offer.confirmationPending = true;
         var index = $scope.offers.indexOf(currentOffer);
