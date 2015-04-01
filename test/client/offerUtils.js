@@ -40,13 +40,13 @@ var offerUtils = (function() {
     getMockTags: function() {
       return [{
         'name': 'kala',
-        'displayName': 'Kalast'
+        'display_name': 'Kalast'
       }, {
         'name': 'lind',
-        'displayName': 'Linnust'
+        'display_name': 'Linnust'
       }, {
         'name': 'siga',
-        'displayName': 'Seast'
+        'display_name': 'Seast'
       }];
     },
     matchers: {

@@ -1,22 +1,22 @@
 [{
   "name": "kala",
-  "displayName": "Kalast"
+  "display_name": "Kalast"
 }, {
   "name": "lind",
-  "displayName": "Linnust"
+  "display_name": "Linnust"
 }, {
   "name": "siga",
-  "displayName": "Seast"
+  "display_name": "Seast"
 }, {
   "name": "loom",
-  "displayName": "Loomalihast"
+  "display_name": "Loomalihast"
 }, {
   "name": "veis",
-  "displayName": "Veisest"
+  "display_name": "Veisest"
 }, {
   "name": "lammas",
-  "displayName": "Lambast"
+  "display_name": "Lambast"
 }, {
   "name": "pizza",
-  "displayName": "Pizza"
+  "display_name": "Pizza"
 }]

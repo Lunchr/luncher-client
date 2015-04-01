@@ -24,7 +24,7 @@
                         <p ng-controller="TagListCtrl">
                             <span ng-repeat="tag in tagList">
                                 <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
-                                <label for="checkbox-{{tag.name}}">{{tag.displayName}}</label>
+                                <label for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
                             </span>
                         </p>
                     </form>
