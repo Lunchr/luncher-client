@@ -142,8 +142,8 @@
     </div>
     <div class="col-md-2 col-sm-3">
       <p>
-        <input ng-class="{filled: form.image.$viewValue && !image.isPath}" name="image" id="{{idPrefix}}image" type="file" accept="image/jpeg,image/png"
-               value="" image-with-preview ng-model="image">
+        <input ng-class="{filled: form.image.$viewValue && !image.isPath}" name="image" id="{{idPrefix}}image" type="file" value=""
+               image-with-preview ng-model="image" accept="image/jpeg,image/png" dimensions="height > 400 && width >= height">
         <label ng-class="{filled: form.image.$viewValue && !image.isPath}" for="{{idPrefix}}image">
           <span ng-show="!isReadyForError(form.image)">
             Pilt
@@ -151,6 +151,9 @@
           <span ng-show="isReadyForError(form.image)" class="errors">
             <span ng-show="form.image.$error.image">
               Pilt peab olema PNG või JPEG formaadis.
+            </span>
+            <span ng-show="form.image.$error.dimensions">
+              Pilt peab olema landscape formaadis ning kõrgusega vähemalt 400.
             </span>
           </span>
         </label>
