@@ -8,7 +8,7 @@ var offerUtils = (function() {
           'name': 'Asian Chef'
         },
         'title': 'Sweet & Sour Chicken',
-        'description': 'Kanafilee aedviljadega rikkalikus magushapus kastmes.',
+        'ingredients': ['Kana', 'aedviljad', 'tsillikaste'],
         'price': 3.4,
         'tags': ['lind']
       }, {
@@ -17,7 +17,7 @@ var offerUtils = (function() {
           'name': 'Bulgarian Chef'
         },
         'title': 'Sweet & Sour Pork',
-        'description': 'Seafilee aedviljadega rikkalikus magushapus kastmes.',
+        'ingredients': ['Seafilee', 'aedviljad', 'mahushapu kaste'],
         'price': 3.3,
         'tags': ['siga']
       }, {
@@ -26,7 +26,7 @@ var offerUtils = (function() {
           'name': 'Caesar Chef'
         },
         'title': 'Sweet & Sour Beef',
-        'description': 'Veisefilee aedviljadega rikkalikus magushapus kastmes.',
+        'ingredients': ['Veiseliha pihv', 'burgerisai', 'kodused friikartulid', 'kaste', 'salat'],
         'price': 3.6,
         'tags': ['loom']
       }];
