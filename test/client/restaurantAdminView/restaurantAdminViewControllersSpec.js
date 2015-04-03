@@ -1,4 +1,4 @@
-describe('OfferList cotrollers', function() {
+describe('Restaurant admin view', function() {
   'use strict';
   beforeEach(module('restaurantAdminViewControllers'));
 
