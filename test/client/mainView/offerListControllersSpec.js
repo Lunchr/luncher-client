@@ -1,6 +1,17 @@
 describe('OfferList cotrollers', function() {
   'use strict';
-  beforeEach(module('offerListControllers'));
+  beforeEach(module('offerListControllers', function($provide) {
+    // mock the favorites service
+    $provide.provider('favorites', {
+      $get: function() {
+        return {
+          // have to add this method, otherwise we get an error when the
+          // favorites module tries to execute the run block
+          refreshCookieExpirations: jasmine.createSpy(),
+        };
+      }
+    });
+  }));
 
   describe('Search controller', function() {
     var $scope;
@@ -97,13 +108,16 @@ describe('OfferList cotrollers', function() {
   describe('OfferListCtrl', function() {
     var $scope;
 
-    beforeEach(inject(function($rootScope, $controller, $httpBackend) {
+    beforeEach(inject(function($rootScope, $controller, $httpBackend, favorites) {
       $httpBackend.expectGET('api/v1/offers').respond(offerUtils.getMockOffers());
 
       $scope = $rootScope.$new();
       $controller('OfferListCtrl', {
         $scope: $scope
       });
+
+      favorites.decorateOffers = jasmine.createSpy();
+      favorites.toggleInclusion = jasmine.createSpy();
     }));
 
     it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
@@ -111,5 +125,30 @@ describe('OfferList cotrollers', function() {
       $httpBackend.flush();
       expect($scope.offers.length).toBe(4);
     }));
+
+    describe('favorites', function() {
+      it('should call the decorator after the offers are returned', inject(function($httpBackend, favorites) {
+        expect(favorites.decorateOffers).not.toHaveBeenCalled();
+        $httpBackend.flush();
+        expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+      }));
+
+      describe('toggle restaurant as favorite', function() {
+        beforeEach(inject(function(favorites, $httpBackend) {
+          $httpBackend.flush();
+          favorites.decorateOffers.calls.reset();
+        }));
+
+        it('should call the toggle function with the provided restaurant name', inject(function(favorites) {
+          var restaurantName = 'mock name';
+          expect(favorites.toggleInclusion).not.toHaveBeenCalled();
+
+          $scope.toggleFavorite(restaurantName);
+
+          expect(favorites.toggleInclusion).toHaveBeenCalledWith(restaurantName);
+          expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+        }));
+      });
+    });
   });
 });
