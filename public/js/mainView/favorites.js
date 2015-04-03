@@ -42,6 +42,9 @@
         decorateOffers: function(offers) {
           var favorites = ipCookie(FAVORITES_COOKIE);
           if (!favorites) {
+            offers.forEach(function(offer) {
+              offer.isFavorite = false;
+            });
             return;
           }
           offers.forEach(function(offer) {

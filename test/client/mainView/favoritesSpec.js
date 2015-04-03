@@ -99,19 +99,19 @@ describe('Favorites module', function() {
     });
 
     describe('decorate offers', function() {
-      var originalOffers, offers;
+      var offers;
       beforeEach(function() {
-        originalOffers = [{
+        offers = [{
           restaurant: {name: 'a restaurant'},
         }, {
           restaurant: {name: 'another restaurant'},
         }];
-        offers = angular.copy(originalOffers);
       });
 
-      it('shouldn\'t change the offers when no cookie set', function() {
+      it('should set isFavorite to false for all offers if no cookie set', function() {
         favorites.decorateOffers(offers);
-        expect(offers).toEqual(originalOffers);
+        expect(offers[0].isFavorite).toBe(false);
+        expect(offers[1].isFavorite).toBe(false);
       });
 
       describe('with none of the offers having a favorite restaurant', function() {
@@ -147,6 +147,18 @@ describe('Favorites module', function() {
           favorites.decorateOffers(offers);
           expect(offers[0].isFavorite).toBe(true);
           expect(offers[1].isFavorite).toBe(true);
+        });
+      });
+
+      describe('with one offer being marked as favorite but without a cookie', function() {
+        beforeEach(function() {
+          offers[0].isFavorite = true;
+        });
+
+        it('should set isFavorite false for all offers', function() {
+          favorites.decorateOffers(offers);
+          expect(offers[0].isFavorite).toBe(false);
+          expect(offers[1].isFavorite).toBe(false);
         });
       });
     });
