@@ -120,44 +120,44 @@ describe('OfferList sorters', function() {
         sort = orderFilter;
       }));
 
-      it('should return same data if offer order state empty', function() {
+      it('should return same data ordered by favorites if offer order state empty', function() {
         var orderedOffers = sort(offers);
 
-        expect(orderedOffers).toHaveIdOrder(['1', '2', '3']);
+        expect(orderedOffers).toHaveIdOrder(['2', '4', '1', '3']);
       });
 
-      it('should return same data if offer order state\'s orderBy field empty', inject(function(offerOrderState) {
+      it('should return same data ordered by favorites if offer order state\'s orderBy field empty', inject(function(offerOrderState) {
         offerOrderState.isAscending = false;
 
         var orderedOffers = sort(offers);
 
-        expect(orderedOffers).toHaveIdOrder(['1', '2', '3']);
+        expect(orderedOffers).toHaveIdOrder(['2', '4', '1', '3']);
       }));
 
-      it('should order by price ascendingly', inject(function(offerOrderState) {
+      it('should order by price ascendingly after ordering by favorites', inject(function(offerOrderState) {
         offerOrderState.orderBy = 'price';
         offerOrderState.isAscending = true;
 
         var orderedOffers = sort(offers);
 
-        expect(orderedOffers).toHaveIdOrder(['2', '1', '3']);
+        expect(orderedOffers).toHaveIdOrder(['4', '2', '1', '3']);
       }));
 
-      it('order ascendingly by default', inject(function(offerOrderState) {
+      it('order ascendingly by default after ordering by favorites', inject(function(offerOrderState) {
         offerOrderState.orderBy = 'price';
 
         var orderedOffers = sort(offers);
 
-        expect(orderedOffers).toHaveIdOrder(['2', '1', '3']);
+        expect(orderedOffers).toHaveIdOrder(['4', '2', '1', '3']);
       }));
 
-      it('should order by price descendingly', inject(function(offerOrderState) {
+      it('should order by price descendingly after ordering by favorites', inject(function(offerOrderState) {
         offerOrderState.orderBy = 'price';
         offerOrderState.isAscending = false;
 
         var orderedOffers = sort(offers);
 
-        expect(orderedOffers).toHaveIdOrder(['3', '1', '2']);
+        expect(orderedOffers).toHaveIdOrder(['2', '4', '3', '1']);
       }));
     });
   });

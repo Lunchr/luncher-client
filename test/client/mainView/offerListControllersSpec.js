@@ -109,7 +109,7 @@ describe('OfferList cotrollers', function() {
     it('should have model with 3 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
       expect($scope.offers.length).toBe(0);
       $httpBackend.flush();
-      expect($scope.offers.length).toBe(3);
+      expect($scope.offers.length).toBe(4);
     }));
   });
 });

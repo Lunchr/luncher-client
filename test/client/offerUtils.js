@@ -19,6 +19,7 @@ var offerUtils = (function() {
         'title': 'Sweet & Sour Pork',
         'ingredients': ['Seafilee', 'aedviljad', 'mahushapu kaste'],
         'price': 3.3,
+        isFavorite: true,
         'tags': ['siga']
       }, {
         '_id': '3',
@@ -29,6 +30,16 @@ var offerUtils = (function() {
         'ingredients': ['Veiseliha pihv', 'burgerisai', 'kodused friikartulid', 'kaste', 'salat'],
         'price': 3.6,
         'tags': ['loom']
+      }, {
+        '_id': '4',
+        'restaurant': {
+          'name': 'Dutch Dishes'
+        },
+        'title': 'Sweet & Sour Duck',
+        'ingredients': ['Part', 'aedviljad', 'magushapu kaste'],
+        'price': 3.2,
+        isFavorite: true,
+        'tags': ['lind']
       }];
     },
     getMockRestaurant: function() {

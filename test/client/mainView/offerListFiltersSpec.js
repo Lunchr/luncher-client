@@ -40,10 +40,11 @@ describe('OfferList filters', function() {
       it('should return same array if no tags selected', inject(function(tagFilter) {
         var filteredOffers = tagFilter(offers);
 
-        expect(filteredOffers.length).toBe(3);
+        expect(filteredOffers.length).toBe(4);
         expect(filteredOffers).toContainId('1');
         expect(filteredOffers).toContainId('2');
         expect(filteredOffers).toContainId('3');
+        expect(filteredOffers).toContainId('4');
       }));
 
 
@@ -51,10 +52,11 @@ describe('OfferList filters', function() {
         inject(function(tagFilter, offerFilterState) {
           offerFilterState.selectedTags = [];
           var filteredOffers = tagFilter(offers);
-          expect(filteredOffers.length).toBe(3);
+          expect(filteredOffers.length).toBe(4);
           expect(filteredOffers).toContainId('1');
           expect(filteredOffers).toContainId('2');
           expect(filteredOffers).toContainId('3');
+          expect(filteredOffers).toContainId('4');
         }));
 
       describe('with one tag selected', function() {
@@ -64,8 +66,9 @@ describe('OfferList filters', function() {
 
         it('should return array of offers with selected tags', inject(function(tagFilter) {
           var filteredOffers = tagFilter(offers);
-          expect(filteredOffers.length).toBe(1);
+          expect(filteredOffers.length).toBe(2);
           expect(filteredOffers).toContainId('1');
+          expect(filteredOffers).toContainId('4');
         }));
       });
 
@@ -76,10 +79,11 @@ describe('OfferList filters', function() {
 
         it('should return array of offers with selected tags', inject(function(tagFilter) {
           var filteredOffers = tagFilter(offers);
-          expect(filteredOffers.length).toBe(3);
+          expect(filteredOffers.length).toBe(4);
           expect(filteredOffers).toContainId('1');
           expect(filteredOffers).toContainId('2');
           expect(filteredOffers).toContainId('3');
+          expect(filteredOffers).toContainId('4');
         }));
       });
     });
@@ -88,10 +92,11 @@ describe('OfferList filters', function() {
       it('should return same array for undefined query', inject(function(searchFilter) {
         var filteredOffers = searchFilter(offers);
 
-        expect(filteredOffers.length).toBe(3);
+        expect(filteredOffers.length).toBe(4);
         expect(filteredOffers).toContainId('1');
         expect(filteredOffers).toContainId('2');
         expect(filteredOffers).toContainId('3');
+        expect(filteredOffers).toContainId('4');
       }));
 
       it('should return same array for empty query', inject(function(searchFilter, offerFilterState) {
@@ -99,10 +104,11 @@ describe('OfferList filters', function() {
 
         var filteredOffers = searchFilter(offers);
 
-        expect(filteredOffers.length).toBe(3);
+        expect(filteredOffers.length).toBe(4);
         expect(filteredOffers).toContainId('1');
         expect(filteredOffers).toContainId('2');
         expect(filteredOffers).toContainId('3');
+        expect(filteredOffers).toContainId('4');
       }));
 
       it('should filter on the description', inject(function(searchFilter, offerFilterState) {
@@ -115,7 +121,7 @@ describe('OfferList filters', function() {
       }));
 
       it('should be case insensitive', inject(function(searchFilter, offerFilterState) {
-        offerFilterState.query = 'kana';
+        offerFilterState.query = 'kanA';
 
         var filteredOffers = searchFilter(offers);
 
@@ -137,8 +143,9 @@ describe('OfferList filters', function() {
 
         var filteredOffers = searchFilter(offers);
 
-        expect(filteredOffers.length).toBe(1);
+        expect(filteredOffers.length).toBe(2);
         expect(filteredOffers).toContainId('1');
+        expect(filteredOffers).toContainId('4');
       }));
 
       it('should filter on location', inject(function(searchFilter, offerFilterState) {

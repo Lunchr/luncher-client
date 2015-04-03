@@ -35,7 +35,8 @@
       return function(offers) {
         var asc = offerOrderState.isAscending;
         var reverse = typeof asc === 'undefined' ? false : !asc;
-        return orderByFilter(offers, offerOrderState.orderBy, reverse);
+        var reversePrefix = reverse ? '-' : '';
+        return orderByFilter(offers, ['isFavorite', reversePrefix+offerOrderState.orderBy]);
       };
     }
   ]);
