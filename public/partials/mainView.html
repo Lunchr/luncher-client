@@ -39,7 +39,7 @@
                  ng-click="toggle.state = !toggle.state" ng-class="{expand: toggle.state, favorite: offer.isFavorite}">
                 <p class="icon-wrap">
                   <!-- stop event propagation to avoid expanding the offer when the user just wants to favorite -->
-                  <a href="javascript:undefined" class="icon icon-8" ng-click="offer.isFavorite = !offer.isFavorite; $event.stopPropagation()"></a>
+                  <a href="javascript:undefined" class="icon icon-8" ng-click="toggleFavorite(offer.restaurant.name); $event.stopPropagation()"></a>
                 </p>
                 <div class="offer-content">
                     <div class="col-1">
