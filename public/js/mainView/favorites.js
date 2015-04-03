@@ -33,6 +33,10 @@
           // In the current version, however, there is no good way to set the expiry time
           var favorites = ipCookie(FAVORITES_COOKIE);
           var newFavorites = toggleArrayInclusion(favorites, restaurantName);
+          if (newFavorites.length === 0) {
+            ipCookie.remove(FAVORITES_COOKIE);
+            return;
+          }
           ipCookie(FAVORITES_COOKIE, newFavorites, {expires: COOKIE_EXPIRES_DAYS});
         },
         decorateOffers: function(offers) {
