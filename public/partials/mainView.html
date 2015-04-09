@@ -58,7 +58,8 @@
                 </div>
                 <div class="secondary">
                     <div class="col-1">
-                        <div class="map" ng-style="{'background-image':'url(../img/map.png)'}"></div>
+                        <div class="map" ng-style="{'background-image': 'url(https://maps.googleapis.com/maps/api/staticmap?center={{getLatLng(offer)}}&zoom=17&size=400x200&scale=2&markers=color:red%7C{{getLatLng(offer)}}&key=AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8)'}">
+                        </div>
                     </div>
                     <div class="col-2">
                         <p class="additional mobile">{{offer.ingredients | joinTags}}</p>

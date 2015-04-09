@@ -108,6 +108,7 @@
     margin: 10px 0 0;
     border-radius: 2px;
     background-size: cover;
+    background-position: center;
 }
 .secondary {
     height: 0;

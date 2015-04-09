@@ -16,6 +16,14 @@
         favorites.toggleInclusion(restaurantName);
         favorites.decorateOffers($scope.offers);
       };
+      $scope.getLatLng = function(offer) {
+        // offer.restaurant.location is a GeoJSON object. This means coordinates
+        // is an array of [lng,lat]
+        var coords = offer.restaurant.location.coordinates;
+        var lng = coords[0];
+        var lat = coords[1];
+        return lat+","+lng;
+      };
     }
   ]);
 
