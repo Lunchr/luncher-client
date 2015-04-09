@@ -13,7 +13,7 @@
     "url": "git://github.com/deiwin/luncher-client.git"
   },
   "author": "Deiwin Sarjas, Madis Lehtmets",
-  "license": "Apache License (v2)",
+  "license": "BSD 3-Clause License",
   "bugs": {
     "url": "https://github.com/deiwin/luncher-client/issues"
   },
