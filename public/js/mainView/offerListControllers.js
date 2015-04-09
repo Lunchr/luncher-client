@@ -9,7 +9,7 @@
 
   module.controller('OfferListCtrl', ['$scope', '$resource', 'favorites',
     function($scope, $resource, favorites) {
-      $scope.offers = $resource('api/v1/offers').query({}, function success() {
+      $scope.offers = $resource('api/v1/regions/tartu/offers').query({}, function success() {
         favorites.decorateOffers($scope.offers);
       });
       $scope.toggleFavorite = function(restaurantName) {

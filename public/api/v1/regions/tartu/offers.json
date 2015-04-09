@@ -2,7 +2,11 @@
   "_id": "1",
   "restaurant": {
     "name": "Asian Chef",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Pekingi kana",
   "from_time": "2014-11-10T09:00:00.000Z",
@@ -15,7 +19,11 @@
   "_id": "2",
   "restaurant": {
     "name": "Bulgarian Dude",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Magushapu seafilee",
   "from_time": "2014-11-10T09:00:00.000Z",
@@ -28,7 +36,11 @@
   "_id": "3",
   "restaurant": {
     "name": "Feel Good Music Cafe",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Veiseliha burger koduste friikartulitega",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -41,7 +53,11 @@
   "_id": "4",
   "restaurant": {
     "name": "Caesarian Kitchen",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Magushapu pardifilee",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -54,7 +70,11 @@
   "_id": "5",
   "restaurant": {
     "name": "La Dolche Vita",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Lambaliha & parmesaniga pasta",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -67,7 +87,11 @@
   "_id": "6",
   "restaurant": {
     "name": "La Dolche Vita",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Salaami & ananassi pizza",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -80,7 +104,11 @@
   "_id": "7",
   "restaurant": {
     "name": "Kapriis",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Koorene singi pasta",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -93,7 +121,11 @@
   "_id": "8",
   "restaurant": {
     "name": "Pahad Poisid",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Kodune kotlet praekartuliga",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -106,7 +138,11 @@
   "_id": "9",
   "restaurant": {
     "name": "Suudlevad Tudengid",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Lambakarre punase veini kastmes",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -119,7 +155,11 @@
   "_id": "10",
   "restaurant": {
     "name": "Cookbook",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Mahlane part ahjuõuntega",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -132,7 +172,11 @@
   "_id": "11",
   "restaurant": {
     "name": "Meatmarket",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Minutipihv asteplaju kastmes",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -145,7 +189,11 @@
   "_id": "12",
   "restaurant": {
     "name": "Ülikooli Kohvik",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Pikpoiss hapukapsa ja ahjukartuliga",
   "from_time": "2014-11-11T09:00:00.000Z",
@@ -158,7 +206,11 @@
   "_id": "13",
   "restaurant": {
     "name": "Neljapäev",
-    "address": "Kompanii 10, Tartu"
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
   },
   "title": "Heigifilee sidrunise ahjukartuliga",
   "from_time": "2014-11-11T09:00:00.000Z",

@@ -109,7 +109,7 @@ describe('OfferList cotrollers', function() {
     var $scope;
 
     beforeEach(inject(function($rootScope, $controller, $httpBackend, favorites) {
-      $httpBackend.expectGET('api/v1/offers').respond(offerUtils.getMockOffers());
+      $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(offerUtils.getMockOffers());
 
       $scope = $rootScope.$new();
       $controller('OfferListCtrl', {
