@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
   'use strict';
 
-  var karmaSource = ['public/js/**/*.js'];
+  var karmaSource = ['public/src/**/*.js'];
   var sourceFiles = karmaSource;
 
   var configFiles = ['*.js', 'config/**/*.js'];
@@ -101,7 +101,7 @@ module.exports = function(grunt) {
         options: {
           configFile: 'config/karma.conf.js',
           preprocessors: {
-            'public/partials/*.html': 'ng-html2js'
+            'public/src/**/*.html': 'ng-html2js'
           }
         },
         once: {
@@ -110,8 +110,8 @@ module.exports = function(grunt) {
         ci: {
           singleRun: true,
           preprocessors: {
-            'public/partials/*.html': 'ng-html2js',
-            'public/js/**/*.js': ['coverage']
+            'public/src/**/*.html': 'ng-html2js',
+            'public/src/**/*.js': ['coverage']
           },
           reporters: ['progress', 'coverage'],
           coverageReporter: {

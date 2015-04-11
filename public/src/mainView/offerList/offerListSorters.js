@@ -23,7 +23,7 @@
           };
         },
         restrict: 'E',
-        templateUrl: 'partials/offersSorterDirective.html',
+        templateUrl: 'src/mainView/offerList/offersSorterDirective.html',
         replace: true,
         transclude: true
       };

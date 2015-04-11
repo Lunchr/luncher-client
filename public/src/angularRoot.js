@@ -10,10 +10,10 @@
     function($routeProvider) {
       $routeProvider.
       when('/offers', {
-        templateUrl: 'partials/mainView.html'
+        templateUrl: 'src/mainView/mainView.html'
       }).
       when('/admin', {
-        templateUrl: 'partials/restaurantAdminView.html',
+        templateUrl: 'src/restaurantAdminView/restaurantAdminView.html',
         controller: 'RestaurantAdminViewCtrl'
       }).
       otherwise({

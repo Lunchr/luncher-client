@@ -105,7 +105,7 @@
           };
         },
         restrict: 'E',
-        templateUrl: 'partials/offerForm.html'
+        templateUrl: 'src/restaurantAdminView/offerForm/offerForm.html'
       };
     }
   ]);
