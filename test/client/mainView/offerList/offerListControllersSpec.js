@@ -120,51 +120,60 @@ describe('OfferList cotrollers', function() {
       favorites.toggleInclusion = jasmine.createSpy();
     }));
 
-    it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
-      expect($scope.offers.length).toBe(0);
-      $httpBackend.flush();
-      expect($scope.offers.length).toBe(4);
-    }));
-
-    describe('favorites', function() {
-      it('should call the decorator after the offers are returned', inject(function($httpBackend, favorites) {
-        expect(favorites.decorateOffers).not.toHaveBeenCalled();
+    describe('loadOffersForRegion', function() {
+      it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
+        expect($scope.offers).toBeUndefined();
+        $scope.loadOffersForRegion({name: 'tartu'});
         $httpBackend.flush();
-        expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+        expect($scope.offers.length).toBe(4);
       }));
-
-      describe('toggle restaurant as favorite', function() {
-        beforeEach(inject(function(favorites, $httpBackend) {
-          $httpBackend.flush();
-          favorites.decorateOffers.calls.reset();
-        }));
-
-        it('should call the toggle function with the provided restaurant name', inject(function(favorites) {
-          var restaurantName = 'mock name';
-          expect(favorites.toggleInclusion).not.toHaveBeenCalled();
-
-          $scope.toggleFavorite(restaurantName);
-
-          expect(favorites.toggleInclusion).toHaveBeenCalledWith(restaurantName);
-          expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
-        }));
-      });
     });
 
-    describe('getLatLng', function() {
-      beforeEach(inject(function($httpBackend) {
-        $httpBackend.flush();
-      }));
+    describe('with load offers for region invoked', function() {
+      beforeEach(function() {
+        $scope.loadOffersForRegion({name: 'tartu'});
+      });
 
-      it('should return a string with "lat,lng"', function() {
-        var latlng = $scope.getLatLng({
-          restaurant: {
-            location: {
-              coordinates: [1.2, 2.1],
-            },
-          },
+      describe('favorites', function() {
+        it('should call the decorator after the offers are returned', inject(function($httpBackend, favorites) {
+          expect(favorites.decorateOffers).not.toHaveBeenCalled();
+          $httpBackend.flush();
+          expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+        }));
+
+        describe('toggle restaurant as favorite', function() {
+          beforeEach(inject(function(favorites, $httpBackend) {
+            $httpBackend.flush();
+            favorites.decorateOffers.calls.reset();
+          }));
+
+          it('should call the toggle function with the provided restaurant name', inject(function(favorites) {
+            var restaurantName = 'mock name';
+            expect(favorites.toggleInclusion).not.toHaveBeenCalled();
+
+            $scope.toggleFavorite(restaurantName);
+
+            expect(favorites.toggleInclusion).toHaveBeenCalledWith(restaurantName);
+            expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+          }));
         });
-        expect(latlng).toEqual('2.1,1.2');
+      });
+
+      describe('getLatLng', function() {
+        beforeEach(inject(function($httpBackend) {
+          $httpBackend.flush();
+        }));
+
+        it('should return a string with "lat,lng"', function() {
+          var latlng = $scope.getLatLng({
+            restaurant: {
+              location: {
+                coordinates: [1.2, 2.1],
+              },
+            },
+          });
+          expect(latlng).toEqual('2.1,1.2');
+        });
       });
     });
   });
