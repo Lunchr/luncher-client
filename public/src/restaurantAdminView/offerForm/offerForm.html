@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4 col-sm-3">
       <p>
-        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="5" ng-maxlength="20" required>
+        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="5" ng-maxlength="40" required>
         <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
           <span ng-show="!isReadyForError(form.title)">
             Nimetus
@@ -15,7 +15,7 @@
               Nimetus peab olema vähemalt 5 tähte.
             </span>
             <span ng-show="form.title.$error.maxlength">
-              Nimetus võib olla kuni 20 tähte. ({{20-form.title.$viewValue.length}})
+              Nimetus võib olla kuni 40 tähte. ({{40-form.title.$viewValue.length}})
             </span>
           </span>
         </label>
@@ -24,7 +24,8 @@
         <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
                      because of this we have to mark it manually for now-->
         <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="3" on-tag-added="form.ingredients.$dirty=true"
-                    on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}">
+                    on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}"
+                    replace-spaces-with-dashes="false">
           <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
             <span ng-show="!isReadyForError(form.ingredients) && !(form.ingredients.$touched && form.ingredients.$error.leftoverText)">
               Koostisosad
@@ -89,8 +90,8 @@
       <div class="row">
         <div class="col-xs-3">
           <p>
-            <input ng-model="date" name="date" id="{{idPrefix}}date" type="date" min="{{today}}" required>
-            <label ng-class="{filled: !form.date}" for="{{idPrefix}}date">
+            <input ng-class="{filled: date}" ng-model="date" name="date" id="{{idPrefix}}date" type="date" min="{{today}}" required>
+            <label ng-class="{filled: date}" for="{{idPrefix}}date">
               <span ng-show="!isReadyForError(form.date)">
                 Kuupäev
               </span>
@@ -112,7 +113,7 @@
           <div class="row">
             <div class="col-xs-3">
               <p class="input-sep">
-                <input ng-model="fromTime" name="fromTime" id="{{idPrefix}}fromTime" value="11:30" type="time" required>
+                <input ng-class="{filled: fromTime}" ng-model="fromTime" name="fromTime" id="{{idPrefix}}fromTime" value="11:30" type="time" required>
                 <label ng-class="{filled: fromTime}" for="{{idPrefix}}fromTime">
                   <span ng-show="!isReadyForError(form.fromTime, form.toTime)">
                     Kellaaeg
@@ -133,7 +134,7 @@
             </div>
             <div class="col-xs-3">
               <p>
-                <input ng-model="toTime" name="toTime" id="{{idPrefix}}toTime" value="15:00" type="time" min="{{form.fromTime.$valid ? form.fromTime.$viewValue : '00:00'}}" required>
+                <input ng-class="{filled: form.toTime.$viewValue}" ng-model="toTime" name="toTime" id="{{idPrefix}}toTime" value="15:00" type="time" min="{{form.fromTime.$valid ? form.fromTime.$viewValue : '00:00'}}" required>
               </p>
             </div>
           </div>
