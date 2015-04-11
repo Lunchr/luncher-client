@@ -13,7 +13,7 @@
         link: function($scope, $element, $attrs) {
           $scope.regionSelected = function(region) {
             $scope.onRegionSelected({
-              region: region,
+              $region: region,
             });
           };
         },
