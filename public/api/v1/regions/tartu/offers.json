@@ -14,7 +14,7 @@
   "price": 3.4,
   "ingredients": ["Kana", "aedviljad", "tsillikaste"],
   "tags": ["lind", "kana"],
-  "image": "img/offers/meatmarket.jpg"
+  "image": "mock-images/meatmarket.jpg"
 }, {
   "_id": "2",
   "restaurant": {
@@ -31,7 +31,7 @@
   "price": 3.3,
   "ingredients": ["Seafilee", "aedviljad", "mahushapu kaste"],
   "tags": ["siga"],
-  "image": "img/offers/meatmarket2.jpg"
+  "image": "mock-images/meatmarket2.jpg"
 }, {
   "_id": "3",
   "restaurant": {
@@ -48,7 +48,7 @@
   "price": 3.8,
   "ingredients": ["Veiseliha pihv", "burgerisai", "kodused friikartulid", "kaste", "salat"],
   "tags": ["loom", "veis"],
-  "image": "img/offers/meatmarket3.jpg"
+  "image": "mock-images/meatmarket3.jpg"
 }, {
   "_id": "4",
   "restaurant": {
@@ -65,7 +65,7 @@
   "price": 3.7,
   "ingredients": ["Pardifilee", "aedviljad", "magushapu kaste"],
   "tags": ["lind", "part"],
-  "image": "img/offers/meatmarket4.jpg"
+  "image": "mock-images/meatmarket4.jpg"
 }, {
   "_id": "5",
   "restaurant": {
@@ -82,7 +82,7 @@
   "price": 4.5,
   "ingredients": ["Lambaliha", "parmesan", "farfalle"],
   "tags": ["lammas", "pasta"],
-  "image": "img/offers/meatmarket5.jpg"
+  "image": "mock-images/meatmarket5.jpg"
 }, {
   "_id": "6",
   "restaurant": {
@@ -99,7 +99,7 @@
   "price": 4.5,
   "ingredients": ["Salaami", "ananass", "juust", "pitsakaste", "pitsapõhi"],
   "tags": ["pizza"],
-  "image": "img/offers/meatmarket.jpg"
+  "image": "mock-images/meatmarket.jpg"
 }, {
   "_id": "7",
   "restaurant": {
@@ -116,7 +116,7 @@
   "price": 3.4,
   "ingredients": ["Farfalled", "sink", "koor"],
   "tags": ["pasta"],
-  "image": "img/offers/meatmarket2.jpg"
+  "image": "mock-images/meatmarket2.jpg"
 }, {
   "_id": "8",
   "restaurant": {
@@ -133,7 +133,7 @@
   "price": 3.2,
   "ingredients": ["Kodune kotlet", "praekartulid", "salat", "kaste"],
   "tags": ["loom"],
-  "image": "img/offers/meatmarket3.jpg"
+  "image": "mock-images/meatmarket3.jpg"
 }, {
   "_id": "9",
   "restaurant": {
@@ -150,7 +150,7 @@
   "price": 4.2,
   "ingredients": ["Lambakarree", "ahjukartul", "salat", "kaste"],
   "tags": ["lammas"],
-  "image": "img/offers/meatmarket4.jpg"
+  "image": "mock-images/meatmarket4.jpg"
 }, {
   "_id": "10",
   "restaurant": {
@@ -167,7 +167,7 @@
   "price": 5.2,
   "ingredients": ["Pardifilee", "ahuõunad", "friikartulid", "värske salat", "kaste"],
   "tags": ["lind", "part"],
-  "image": "img/offers/meatmarket5.jpg"
+  "image": "mock-images/meatmarket5.jpg"
 }, {
   "_id": "11",
   "restaurant": {
@@ -184,7 +184,7 @@
   "price": 5.9,
   "ingredients": ["Minutihv", "kodune ahjukartul", "astelpaju kaste", "värske salat"],
   "tags": ["loom"],
-  "image": "img/offers/meatmarket.jpg"
+  "image": "mock-images/meatmarket.jpg"
 }, {
   "_id": "12",
   "restaurant": {
@@ -201,7 +201,7 @@
   "price": 3.5,
   "ingredients": ["Pikpoiss", "ahjukartul", "hapukapsas", "külm kaste"],
   "tags": ["loom"],
-  "image": "img/offers/meatmarket2.jpg"
+  "image": "mock-images/meatmarket2.jpg"
 }, {
   "_id": "13",
   "restaurant": {
@@ -218,5 +218,5 @@
   "price": 4.2,
   "ingredients": ["Heigifilee", "ahjukartul", "salat", "kaste"],
   "tags": ["kala"],
-  "image": "img/offers/meatmarket3.jpg"
+  "image": "mock-images/meatmarket3.jpg"
 }]
