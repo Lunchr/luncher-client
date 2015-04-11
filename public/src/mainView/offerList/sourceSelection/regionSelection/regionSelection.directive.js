@@ -16,17 +16,10 @@
               cache: true,
             }
           }).queryCached();
-          $scope.$watch('selectedRegion', function(newVal, oldVal) {
-            if (newVal === oldVal) {
-              return;
-            }
-            $scope.onRegionSelected({
-              region: newVal,
-            });
-          });
         },
         restrict: 'E',
         templateUrl: 'src/mainView/offerList/sourceSelection/regionSelection/regionSelection.template.html',
+        replace: true,
       };
     }
   ]);
