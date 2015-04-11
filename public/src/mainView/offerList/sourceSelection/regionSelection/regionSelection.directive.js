@@ -1,6 +1,8 @@
 (function() {
   'use strict';
-  var module = angular.module('regionSelection', []);
+  var module = angular.module('regionSelection', [
+    'ngResource',
+  ]);
 
   module.directive('regionSelection', ['$resource',
     function($resource) {

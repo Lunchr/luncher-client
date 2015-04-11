@@ -60,6 +60,21 @@ var offerUtils = (function() {
         'display_name': 'Seast'
       }];
     },
+    getMockRegions: function() {
+      return [{
+        'name':     'Tartu',
+        'location': 'Europe/Tallinn',
+        'cctld':    'ee',
+      },{
+        'name':     'Tallinn',
+        'location': 'Europe/Tallinn',
+        'cctld':    'ee',
+      },{
+        'name':     'London',
+        'location': 'Europe/London',
+        'cctld':    'uk',
+      }];
+    },
     matchers: {
       toContainId: function(util, customEqualityTesters) {
         return {
