@@ -150,5 +150,22 @@ describe('OfferList cotrollers', function() {
         }));
       });
     });
+
+    describe('getLatLng', function() {
+      beforeEach(inject(function($httpBackend) {
+        $httpBackend.flush();
+      }));
+
+      it('should return a string with "lat,lng"', function() {
+        var latlng = $scope.getLatLng({
+          restaurant: {
+            location: {
+              coordinates: [1.2, 2.1],
+            },
+          },
+        });
+        expect(latlng).toEqual('2.1,1.2');
+      });
+    });
   });
 });
