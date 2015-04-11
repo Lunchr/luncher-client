@@ -1,0 +1,9 @@
+<div>
+  <input type="radio" ng-model="userWantsProximal" ng-value="false"> Vali regioon <br>
+  <input type="radio" ng-model="userWantsProximal" ng-value="true"> Näita lähimaid pakkumisi <br>
+  <!-- not using !userWantsProximal, because it should be hidden when nothin has been selected yet -->
+  <region-selection on-region-selected="regionSelected(region)" ng-if="userWantsProximal === false"></region-selection>
+  <div ng-show="userWantsProximal">
+    kaart
+  </div>
+</div>

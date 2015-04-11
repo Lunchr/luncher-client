@@ -5,13 +5,16 @@
     'offerListFilters',
     'offerListSorters',
     'favorites',
+    'sourceSelection',
   ]);
 
   module.controller('OfferListCtrl', ['$scope', '$resource', 'favorites',
     function($scope, $resource, favorites) {
-      $scope.offers = $resource('api/v1/regions/tartu/offers').query({}, function success() {
-        favorites.decorateOffers($scope.offers);
-      });
+      $scope.loadOffersForRegion = function(region) {
+        $scope.offers = $resource('api/v1/regions/'+region.name+'/offers').query({}, function success() {
+          favorites.decorateOffers($scope.offers);
+        });
+      };
       $scope.toggleFavorite = function(restaurantName) {
         favorites.toggleInclusion(restaurantName);
         favorites.decorateOffers($scope.offers);
