@@ -6,7 +6,7 @@ describe('Praad App', function() {
 
     beforeEach(function() {
       browser.get('/');
-      offers = element.all(by.repeater('offer in offers'));
+      offers = element.all(by.repeater('offer in offerList'));
       clickPromise = element(by.css('.icon-5')).click().then(function(){
         return element(by.model('selectedRegion')).click().then(function() {
           return element(by.css('option[label=Tartu]')).click();
