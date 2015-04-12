@@ -108,9 +108,7 @@ describe('OfferList cotrollers', function() {
   describe('OfferListCtrl', function() {
     var $scope;
 
-    beforeEach(inject(function($rootScope, $controller, $httpBackend, favorites) {
-      $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(offerUtils.getMockOffers());
-
+    beforeEach(inject(function($rootScope, $controller, favorites) {
       $scope = $rootScope.$new();
       $controller('OfferListCtrl', {
         $scope: $scope
@@ -122,6 +120,7 @@ describe('OfferList cotrollers', function() {
 
     describe('loadOffersForRegion', function() {
       it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
+        $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(offerUtils.getMockOffers());
         expect($scope.offers).toBeUndefined();
         $scope.loadOffersForRegion({name: 'tartu'});
         $httpBackend.flush();
@@ -129,10 +128,36 @@ describe('OfferList cotrollers', function() {
       }));
     });
 
-    describe('with load offers for region invoked', function() {
-      beforeEach(function() {
-        $scope.loadOffersForRegion({name: 'tartu'});
+    describe('loadOffersNearLocation', function() {
+      it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
+        $httpBackend.expectGET('api/v1/offers?lat=1.1&lng=2.2').respond(offerUtils.getMockOffers());
+        expect($scope.offers).toBeUndefined();
+        $scope.loadOffersNearLocation(1.1, 2.2);
+        $httpBackend.flush();
+        expect($scope.offers.length).toBe(4);
+      }));
+
+      describe('with load offers for region invoked', function() {
+        beforeEach(inject(function($httpBackend) {
+          $httpBackend.expectGET('api/v1/offers?lat=1.1&lng=2.2').respond(offerUtils.getMockOffers());
+          $scope.loadOffersNearLocation(1.1, 2.2);
+        }));
+
+        describe('favorites', function() {
+          it('should call the decorator after the offers are returned', inject(function($httpBackend, favorites) {
+            expect(favorites.decorateOffers).not.toHaveBeenCalled();
+            $httpBackend.flush();
+            expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+          }));
+        });
       });
+    });
+
+    describe('with load offers for region invoked', function() {
+      beforeEach(inject(function($httpBackend) {
+        $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(offerUtils.getMockOffers());
+        $scope.loadOffersForRegion({name: 'tartu'});
+      }));
 
       describe('favorites', function() {
         it('should call the decorator after the offers are returned', inject(function($httpBackend, favorites) {

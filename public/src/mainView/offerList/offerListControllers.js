@@ -15,6 +15,14 @@
           favorites.decorateOffers($scope.offers);
         });
       };
+      $scope.loadOffersNearLocation = function(lat, lng) {
+        $scope.offers = $resource('api/v1/offers').query({
+          lat: lat,
+          lng: lng,
+        }, function success() {
+          favorites.decorateOffers($scope.offers);
+        });
+      };
       $scope.toggleFavorite = function(restaurantName) {
         favorites.toggleInclusion(restaurantName);
         favorites.decorateOffers($scope.offers);

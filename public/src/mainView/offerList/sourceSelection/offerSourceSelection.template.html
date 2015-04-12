@@ -1,9 +1,6 @@
 <form>
     <ul>
       <li>
-          <!--input type="radio" ng-model="userWantsProximal" ng-value="false" id="radio-region">
-          <label for="radio-region">Vali regioon</label-->
-          <!-- not using !userWantsProximal, because it should be hidden when nothin has been selected yet -->
           <region-selection on-region-selected="regionSelected($region)"></region-selection>
           <span class="select-icon"></span>
       </li>
@@ -12,7 +9,5 @@
           <label for="radio-closest">Näita lähimaid pakkumisi</label>
       </li>
     </ul>
-    <div ng-show="userWantsProximal">
-      kaart
-    </div>
+    <geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="userWantsProximal" key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8"></geolocator>
 </form>
