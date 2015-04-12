@@ -2,7 +2,9 @@
     <div class="container">
         <div class="header-wrap">
             <p class="icon-wrap">
-                <button ng-click="menuState='active'" class="icon icon-12"></button>
+                <button ng-click="menuState1='active'" class="icon icon-5">
+                    <span class="icon-label">Tartu</span>
+                </button>
             </p>
             <p id="logo">Luncher</p>
             <p class="search-wrap" ng-controller="SearchCtrl">
@@ -13,10 +15,18 @@
     </div>
 </div>
 <div class="content" ng-controller="OfferListCtrl">
-    <div ng-class="menuState" class="menu">
+    <div ng-class="menuState1" class="menu">
+        <h2>Asukoha seaded</h2>
+        <p class="icon-wrap">
+            <button ng-click="menuState1=''" class="icon icon-9"></button>
+        </p>
+        <offer-source-selection on-region-selected="loadOffersForRegion($region)"></offer-source-selection>
+    </div>
+    <div class="overlay"></div>
+    <div ng-class="menuState2" class="menu">
         <h2>Filtreeri</h2>
         <p class="icon-wrap">
-            <button ng-click="menuState=''" class="icon icon-9"></button>
+            <button ng-click="menuState2=''" class="icon icon-9"></button>
         </p>
         <form>
             <ul ng-controller="TagListCtrl">
@@ -26,8 +36,6 @@
                 </li>
             </ul>
         </form>
-        <h2>Asukoha seaded</h2>
-        <offer-source-selection on-region-selected="loadOffersForRegion($region)"></offer-source-selection>
     </div>
     <div class="overlay"></div>
     <div class="container">
@@ -39,6 +47,9 @@
             </div>
             <div class="col-2">
                 <div class="col-wrap">
+                    <p>
+                        <a href="javascript:undefined" ng-click="menuState2='active'">Filtreeri</a>
+                    </p>
                     <offers-sorter is-numeric="true" order-by="price" id="price-sort-label" class="price-sorter">
                         Hind
                     </offers-sorter>
