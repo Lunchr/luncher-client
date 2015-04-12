@@ -7,8 +7,10 @@ describe('Praad App', function() {
     beforeEach(function() {
       browser.get('/');
       offers = element.all(by.repeater('offer in offers'));
-      clickPromise = element(by.model('userWantsProximal')).click().then(function() {
-        return element(by.css('option[label=Tartu]')).click();
+      clickPromise = element(by.css('.icon-5')).click().then(function(){
+        return element(by.model('selectedRegion')).click().then(function() {
+          return element(by.css('option[label=Tartu]')).click();
+        });
       });
     });
 
