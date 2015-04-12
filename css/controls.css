@@ -53,7 +53,7 @@
 .dropdown {
     display: none;
     position: absolute;
-    left: -17px;
+    left: -19px;
     top: 35px;
     z-index: 900;
     &.active {
@@ -81,9 +81,6 @@
             &:before {
                 top: 5px;
                 left: 20px;
-            }
-            &:hover:before {
-                background: $color;
             }
         }
     }
