@@ -125,6 +125,7 @@ describe('OfferList cotrollers', function() {
         $scope.loadOffersForRegion('tartu');
         $httpBackend.flush();
         expect($scope.offers.length).toBe(4);
+        expect($scope.region).toBe('tartu');
       }));
     });
 

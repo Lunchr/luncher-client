@@ -11,6 +11,7 @@
   module.controller('OfferListCtrl', ['$scope', '$resource', 'favorites',
     function($scope, $resource, favorites) {
       $scope.loadOffersForRegion = function(region) {
+        $scope.region = region;
         $scope.offers = $resource('api/v1/regions/'+region+'/offers').query({}, function success() {
           favorites.decorateOffers($scope.offers);
         });
