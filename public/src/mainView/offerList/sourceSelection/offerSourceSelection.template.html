@@ -5,8 +5,8 @@
           <span class="select-icon"></span>
       </li>
       <li>
-          <input type="radio" ng-model="userWantsProximal" ng-value="true" id="radio-closest">
-          <label for="radio-closest">Näita lähimaid pakkumisi</label>
+          <input type="checkbox" ng-model="userWantsProximal" ng-value="true" id="checkbox-closest">
+          <label for="checkbox-closest">Näita lähimaid pakkumisi</label>
       </li>
     </ul>
     <geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="userWantsProximal" key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8"></geolocator>
