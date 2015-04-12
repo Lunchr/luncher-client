@@ -1,7 +1,9 @@
 <div class="header">
     <div class="container">
         <div class="header-wrap">
-            <p id="location"><span class="icon-wrap"><span class="icon icon-5"></span></span>Tartu</p>
+            <p class="icon-wrap">
+                <button ng-click="menuState='active'" class="icon icon-12"></button>
+            </p>
             <p id="logo">Luncher</p>
             <p class="search-wrap" ng-controller="SearchCtrl">
                 <input ng-class="{ 'filled': query.length }" id="search" type="text" ng-model="query">
@@ -11,7 +13,23 @@
     </div>
 </div>
 <div class="content" ng-controller="OfferListCtrl">
-    <offer-source-selection on-region-selected="loadOffersForRegion($region)"></offer-source-selection>
+    <div ng-class="menuState" class="menu">
+        <h2>Filtreeri</h2>
+        <p class="icon-wrap">
+            <button ng-click="menuState=''" class="icon icon-9"></button>
+        </p>
+        <form>
+            <ul ng-controller="TagListCtrl">
+                <li ng-repeat="tag in tagList">
+                    <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
+                    <label for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
+                </li>
+            </ul>
+        </form>
+        <h2>Asukoha seaded</h2>
+        <offer-source-selection on-region-selected="loadOffersForRegion($region)"></offer-source-selection>
+    </div>
+    <div class="overlay"></div>
     <div class="container">
         <div class="controls">
             <div class="col-1">
@@ -21,14 +39,6 @@
             </div>
             <div class="col-2">
                 <div class="col-wrap">
-                    <form>
-                        <p ng-controller="TagListCtrl">
-                            <span ng-repeat="tag in tagList">
-                                <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
-                                <label for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
-                            </span>
-                        </p>
-                    </form>
                     <offers-sorter is-numeric="true" order-by="price" id="price-sort-label" class="price-sorter">
                         Hind
                     </offers-sorter>
