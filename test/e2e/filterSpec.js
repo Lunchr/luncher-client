@@ -5,12 +5,11 @@ describe('Praad App', function() {
     var offers, clickPromise;
 
     beforeEach(function() {
+      browser.manage().deleteAllCookies();
       browser.get('/');
       offers = element.all(by.repeater('offer in offerList'));
-      clickPromise = element(by.css('.icon-5')).click().then(function(){
-        return element(by.model('selectedRegion')).click().then(function() {
-          return element(by.css('option[label=Tartu]')).click();
-        });
+      clickPromise = element(by.model('selectedRegion')).click().then(function() {
+        return element(by.css('option[label=Tartu]')).click();
       });
     });
 
