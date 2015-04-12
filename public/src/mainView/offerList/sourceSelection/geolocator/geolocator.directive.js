@@ -4,6 +4,7 @@
 
   module.directive('geolocator', ['$window', '$q',
     function($window, $q) {
+      var map;
       function loadMapScript(key) {
         var script = document.createElement('script');
         var mapsDefer = $q.defer();
@@ -13,16 +14,49 @@
           script.src += '&key=' + key;
         }
         $window.googleMapsInitialized = mapsDefer.resolve;
-        document.body.appendChild(script);
+        $window.document.body.appendChild(script);
         mapsDefer.promise.then(initMap);
+      };
+      function handleNoGeolocation(errorFlag) {
+        if (errorFlag) {
+          var content = 'Error: The Geolocation service failed.';
+        } else {
+          var content = 'Error: Your browser doesn\'t support geolocation.';
+        }
+
+        var options = {
+          map: map,
+          position: new $window.google.maps.LatLng(60, 105),
+          content: content,
+        };
+
+        var infowindow = new $window.google.maps.InfoWindow(options);
+        map.setCenter(options.position);
       };
       function initMap() {
         var mapOptions = {
           zoom: 17,
-          center: new $window.google.maps.LatLng(58.38, 26.72),
         };
+        map = new $window.google.maps.Map($window.document.getElementById('geolocator-canvas'), mapOptions);
 
-        var map = new $window.google.maps.Map(document.getElementById('geolocator-canvas'), mapOptions);
+        if($window.navigator.geolocation) {
+          $window.navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = new $window.google.maps.LatLng(position.coords.latitude,
+                                             position.coords.longitude);
+
+            var infowindow = new $window.google.maps.InfoWindow({
+              map: map,
+              position: pos,
+              content: 'Location found using HTML5.'
+            });
+
+            map.setCenter(pos);
+          }, function() {
+            handleNoGeolocation(true);
+          });
+        } else {
+          handleNoGeolocation(false);
+        }
       };
 
       return {
