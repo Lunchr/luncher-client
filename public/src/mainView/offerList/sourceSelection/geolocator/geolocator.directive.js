@@ -16,12 +16,13 @@
         $window.googleMapsInitialized = mapsDefer.resolve;
         $window.document.body.appendChild(script);
         mapsDefer.promise.then(initMap);
-      };
+      }
       function handleNoGeolocation(errorFlag) {
+        var contnet;
         if (errorFlag) {
-          var content = 'Error: The Geolocation service failed.';
+          content = 'Error: The Geolocation service failed.';
         } else {
-          var content = 'Error: Your browser doesn\'t support geolocation.';
+          content = 'Error: Your browser doesn\'t support geolocation.';
         }
 
         var options = {
@@ -32,7 +33,7 @@
 
         var infowindow = new $window.google.maps.InfoWindow(options);
         map.setCenter(options.position);
-      };
+      }
       function initMap() {
         var mapOptions = {
           zoom: 17,
@@ -57,7 +58,7 @@
         } else {
           handleNoGeolocation(false);
         }
-      };
+      }
 
       return {
         scope: {
