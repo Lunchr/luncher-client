@@ -36,10 +36,7 @@
         var asc = offerOrderState.isAscending;
         var reverse = typeof asc === 'undefined' ? false : !asc;
         var reversePrefix = reverse ? '-' : '';
-        // The ! apparently makes truthy values be first and falsy ones second,
-        // which is exactly what we want. It worked similarly without the !, but
-        // behaved a bit strangely when the value was actually false not, say, undefined.
-        return orderByFilter(offers, ['!isFavorite', reversePrefix+offerOrderState.orderBy]);
+        return orderByFilter(offers, reversePrefix+offerOrderState.orderBy);
       };
     }
   ]);

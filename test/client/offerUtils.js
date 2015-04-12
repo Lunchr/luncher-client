@@ -19,7 +19,6 @@ var offerUtils = (function() {
         'title': 'Sweet & Sour Pork',
         'ingredients': ['Seafilee', 'aedviljad', 'mahushapu kaste'],
         'price': 3.3,
-        isFavorite: true,
         'tags': ['siga']
       }, {
         '_id': '3',
@@ -38,7 +37,6 @@ var offerUtils = (function() {
         'title': 'Sweet & Sour Duck',
         'ingredients': ['Part', 'aedviljad', 'magushapu kaste'],
         'price': 3.2,
-        isFavorite: true,
         'tags': ['lind']
       }];
     },
