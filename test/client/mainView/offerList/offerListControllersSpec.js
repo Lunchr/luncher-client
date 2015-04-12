@@ -113,6 +113,7 @@ describe('OfferList cotrollers', function() {
       $controller('OfferListCtrl', {
         $scope: $scope
       });
+      $scope.region = 'to-test-that-this-is-removed-for-load-near-location';
 
       favorites.decorateOffers = jasmine.createSpy();
       favorites.toggleInclusion = jasmine.createSpy();
@@ -136,6 +137,7 @@ describe('OfferList cotrollers', function() {
         $scope.loadOffersNearLocation(1.1, 2.2);
         $httpBackend.flush();
         expect($scope.offers.length).toBe(4);
+        expect($scope.region).toBeUndefined();
       }));
 
       describe('with load offers for region invoked', function() {

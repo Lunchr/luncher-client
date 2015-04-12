@@ -17,6 +17,7 @@
         });
       };
       $scope.loadOffersNearLocation = function(lat, lng) {
+        delete $scope.region;
         $scope.offers = $resource('api/v1/offers').query({
           lat: lat,
           lng: lng,
