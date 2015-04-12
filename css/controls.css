@@ -6,7 +6,6 @@
     padding-left: 45px;
     color: $color;
     font-size: 13px;
-    overflow: hidden;
     a {
         display: block;
         padding: 15px 0;
@@ -27,17 +26,6 @@
             border-radius: 50%;
             border: 1px solid $color;
         }
-    }
-    input[type=checkbox] {
-        cursor: pointer;
-    }
-    a:hover,
-    a:focus,
-    input[type=checkbox]:checked + label,
-    input[type=checkbox]:hover + label,
-    input[type=checkbox] + label:hover {
-        text-decoration: none;
-        color: $color;
     }
     form span {
         position: relative;
@@ -60,5 +48,47 @@
     }
     &.price-sorter {
         width: 40px;
+    }
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    left: -17px;
+    top: 35px;
+    z-index: 900;
+    &.active {
+        display: block;
+    }
+    ul {
+        margin: 0;
+        padding: 10px 0;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        li {
+            list-style: none;
+        }
+        input {
+            position: absolute;
+        }
+        label {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            margin: 0;
+            padding: 5px 80px 5px 41px;
+            box-sizing: border-box;
+            &:before {
+                top: 5px;
+                left: 20px;
+            }
+            &:hover:before {
+                background: $color;
+            }
+        }
+    }
+    .icon-wrap {
+        right: 0;
+        left: auto;
     }
 }

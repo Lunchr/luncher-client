@@ -47,9 +47,19 @@
             </div>
             <div class="col-2">
                 <div class="col-wrap">
-                    <p>
-                        <a href="javascript:undefined" ng-click="menuState2='active'">Filtreeri</a>
-                    </p>
+                    <a class="mobile" href="javascript:undefined" ng-click="menuState2='active'">Filtreeri</a>
+                    <a class="desktop" href="javascript:undefined" ng-click="filtersState='active'">Filtreeri</a>
+                    <form class="dropdown" ng-class="filtersState">
+                        <ul ng-controller="TagListCtrl" off-click="filtersState=''" >
+                            <li ng-repeat="tag in tagList">
+                                <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
+                                <label for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
+                            </li>
+                        </ul>
+                        <p class="icon-wrap">
+                            <button ng-click="filtersState=''" class="icon icon-9"></button>
+                        </p>
+                    </form>
                     <offers-sorter is-numeric="true" order-by="price" id="price-sort-label" class="price-sorter">
                         Hind
                     </offers-sorter>
