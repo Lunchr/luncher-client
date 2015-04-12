@@ -8,7 +8,11 @@
     favorites: {
       name: 'luncher_favorites',
       expiry: 28, //days
-    }
+    },
+    offerSource: {
+      name: 'luncher_offer_source',
+      expiry: 28,
+    },
   });
 
   module.factory('cookies', ['ipCookie', 'allCookies',

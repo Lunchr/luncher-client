@@ -24,7 +24,8 @@ describe('cookies service', function() {
       it('should not set anything if cookie currently not set', function() {
         cookies.refreshExpirations();
         expect(ipCookie).toHaveBeenCalledWith('luncher_favorites');
-        expect(ipCookie.calls.count()).toEqual(1);
+        expect(ipCookie).toHaveBeenCalledWith('luncher_offer_source');
+        expect(ipCookie.calls.count()).toEqual(2);
       });
 
       describe('with a cookie currently set', function() {
@@ -36,9 +37,13 @@ describe('cookies service', function() {
 
         it('should set the value again with the expiry field specified', function() {
           cookies.refreshExpirations();
-          expect(ipCookie.calls.count()).toEqual(2);
+          expect(ipCookie.calls.count()).toEqual(4);
           expect(ipCookie).toHaveBeenCalledWith('luncher_favorites');
           expect(ipCookie).toHaveBeenCalledWith('luncher_favorites', value, {
+            expires: 28
+          });
+          expect(ipCookie).toHaveBeenCalledWith('luncher_offer_source');
+          expect(ipCookie).toHaveBeenCalledWith('luncher_offer_source', value, {
             expires: 28
           });
         });
