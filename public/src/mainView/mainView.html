@@ -20,8 +20,8 @@
         <p class="icon-wrap">
             <button ng-click="menuState1=''" class="icon icon-9"></button>
         </p>
-        <offer-source-selection on-region-selected="loadOffersForRegion($region)"
-                                on-location-selected="loadOffersNearLocation($lat, $lng)">
+        <offer-source-selection on-region-selected="loadOffersForRegion($region); menuState1=''"
+                                on-location-selected="loadOffersNearLocation($lat, $lng); menuState1=''">
         </offer-source-selection>
     </div>
     <div class="overlay" ng-click="menuState1=''"></div>
