@@ -157,16 +157,52 @@ describe('OfferList cotrollers', function() {
     });
 
     describe('with load offers for region invoked', function() {
+      var mockOffers;
       beforeEach(inject(function($httpBackend) {
-        $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(offerUtils.getMockOffers());
+        mockOffers = offerUtils.getMockOffers();
+        $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(mockOffers);
         $scope.loadOffersForRegion('tartu');
       }));
 
       describe('favorites', function() {
+        beforeEach(function() {
+          jasmine.addMatchers(offerUtils.matchers);
+        });
+
         it('should call the decorator after the offers are returned', inject(function($httpBackend, favorites) {
           expect(favorites.decorateOffers).not.toHaveBeenCalled();
           $httpBackend.flush();
           expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+        }));
+
+        it('should call separate the offers into groups by favorites after offers are returned', inject(function($httpBackend) {
+          mockOffers[1].isFavorite = true;
+          mockOffers[3].isFavorite = true;
+          $httpBackend.flush();
+
+          expect($scope.offersGroupedByIsFavorite.length).toBe(2);
+          expect($scope.offersGroupedByIsFavorite[0]).toContainId('2');
+          expect($scope.offersGroupedByIsFavorite[0]).toContainId('4');
+          expect($scope.offersGroupedByIsFavorite[1]).toContainId('1');
+          expect($scope.offersGroupedByIsFavorite[1]).toContainId('3');
+        }));
+
+        it('should group all into one with no favorites', inject(function($httpBackend) {
+          $httpBackend.flush();
+
+          expect($scope.offersGroupedByIsFavorite.length).toBe(1);
+          expect($scope.offersGroupedByIsFavorite[0].length).toBe(4);
+        }));
+
+        it('should group all into one with all being favorites', inject(function($httpBackend) {
+          mockOffers[0].isFavorite = true;
+          mockOffers[1].isFavorite = true;
+          mockOffers[2].isFavorite = true;
+          mockOffers[3].isFavorite = true;
+          $httpBackend.flush();
+
+          expect($scope.offersGroupedByIsFavorite.length).toBe(1);
+          expect($scope.offersGroupedByIsFavorite[0].length).toBe(4);
         }));
 
         describe('toggle restaurant as favorite', function() {

@@ -13,7 +13,7 @@
       $scope.loadOffersForRegion = function(region) {
         $scope.region = region;
         $scope.offers = $resource('api/v1/regions/'+region+'/offers').query({}, function success() {
-          favorites.decorateOffers($scope.offers);
+          updateFavorites();
         });
       };
       $scope.loadOffersNearLocation = function(lat, lng) {
@@ -22,12 +22,12 @@
           lat: lat,
           lng: lng,
         }, function success() {
-          favorites.decorateOffers($scope.offers);
+          updateFavorites();
         });
       };
       $scope.toggleFavorite = function(restaurantName) {
         favorites.toggleInclusion(restaurantName);
-        favorites.decorateOffers($scope.offers);
+        updateFavorites();
       };
       $scope.getLatLng = function(offer) {
         // offer.restaurant.location is a GeoJSON object. This means coordinates
@@ -37,6 +37,22 @@
         var lat = coords[1];
         return lat+","+lng;
       };
+      function updateFavorites() {
+        favorites.decorateOffers($scope.offers);
+        var favoriteOffers = $scope.offers.filter(function(offer) {
+          return offer.isFavorite;
+        });
+        var otherOffers = $scope.offers.filter(function(offer) {
+          return !offer.isFavorite;
+        });
+        $scope.offersGroupedByIsFavorite = [];
+        if (favoriteOffers.length > 0) {
+          $scope.offersGroupedByIsFavorite.push(favoriteOffers);
+        }
+        if (otherOffers.length > 0) {
+          $scope.offersGroupedByIsFavorite.push(otherOffers);
+        }
+      }
     }
   ]);
 

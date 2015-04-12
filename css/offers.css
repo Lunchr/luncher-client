@@ -5,6 +5,9 @@
     @simple-extend-addto material-box;
     padding: 0;
     background-color: #fff;
+    & + .offers-wrap {
+      margin-top: 15px;
+    }
 }
 .offer {
     position: relative;
