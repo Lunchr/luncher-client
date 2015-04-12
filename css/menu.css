@@ -105,6 +105,9 @@
             border: 1px solid #fff;
         }
     }
+    input[type=checkbox] + label:before {
+        border-radius: 2px;
+    }
     input[type=checkbox]:checked + label:before,
     input[type=radio]:checked + label:before {
         background: #fff;
