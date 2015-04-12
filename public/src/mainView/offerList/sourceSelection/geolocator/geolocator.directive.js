@@ -121,7 +121,7 @@
             });
           };
           var deregister = $scope.$watch('ngShow', function(newVal, oldVal) {
-            if (newVal === oldVal || !newVal) {
+            if (!newVal) {
               return;
             }
             locatorMap.loadMapScript('geolocator-canvas', $scope.key);

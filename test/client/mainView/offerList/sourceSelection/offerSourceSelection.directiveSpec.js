@@ -42,6 +42,25 @@ describe('RegionSelection', function() {
       });
     });
 
+    describe('with offer source cookie set for location', function() {
+      beforeEach(function() {
+        var compiled = utils.compile('<offer-source-selection on-boot-with-locator="bootAction()"></offer-source-selection>',
+          function(parentScope) {
+            cookies.getOfferSource.and.returnValue({location: true});
+            parentScope.bootAction = jasmine.createSpy('bootAction');
+          }
+        );
+        element = compiled.element;
+        $scope = compiled.scope;
+        $parentScope = compiled.parentScope;
+      });
+
+      it('should have called region selected on parent on createion', function() {
+        expect($scope.userWantsProximal).toBe(true);
+        expect($parentScope.bootAction).toHaveBeenCalled();
+      });
+    });
+
     describe('with no cookie set', function() {
       beforeEach(function() {
         var compiled = utils.compile('<offer-source-selection on-region-selected="regionSelected($region)"'+

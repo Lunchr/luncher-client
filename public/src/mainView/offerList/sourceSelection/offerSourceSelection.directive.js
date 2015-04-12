@@ -12,6 +12,7 @@
         scope: {
           onRegionSelected: '&',
           onLocationSelected: '&',
+          onBootWithLocator: '&',
         },
         link: function($scope, $element, $attrs) {
           $scope.canSelectProximal = function() {
@@ -41,6 +42,9 @@
           }
           if (offerSource.region){
             $scope.regionSelected(offerSource.region);
+          } else if (offerSource.location) {
+            $scope.userWantsProximal = true;
+            $scope.onBootWithLocator();
           }
         },
         restrict: 'E',
