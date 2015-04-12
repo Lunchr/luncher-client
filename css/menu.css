@@ -58,6 +58,9 @@
         padding: 0;
         margin: 0;
     }
+    li {
+        position: relative;
+    }
     a {
         display: block;
         position: relative;
@@ -74,6 +77,80 @@
         left: 17px;
         top: 14px;
     }
+    input[type=checkbox] {
+        display: none;
+    }
+    input[type=radio] {
+        display: none;
+    }
+    label {
+        display: block;
+        position: relative;
+        padding: 15px 45px 15px 43px;
+        color: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0);
+        }
+        &:before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+    }
+    input[type=checkbox]:checked + label:before,
+    input[type=radio]:checked + label:before {
+        background: #fff;
+    }
+    select {
+        display: block;
+        position: relative;
+        width: 100%;
+        padding: 15px 45px 15px 43px;
+        color: #fff;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0;
+        background: transparent;
+        outline: none;
+        font: $font;
+        cursor: pointer;
+        -webkit-appearance: none;
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0);
+        }
+    }
+    .select-icon {
+        position: absolute;
+        top: 7px;
+        left: 6px;
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            width: 9.5px;
+            height: 1px;
+            background: #fff;
+        }
+        &:before {
+            -webkit-transform: rotate(45deg);
+            left: 13px;
+        }
+        &:after {
+            -webkit-transform: rotate(-45deg);
+            left: 19.5px;
+        }
+    }
+
 }
 
 .overlay {
