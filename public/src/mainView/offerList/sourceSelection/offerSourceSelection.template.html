@@ -1,7 +1,13 @@
-<div>
-  <input type="radio" ng-model="userWantsProximal" ng-value="false"> Vali regioon <br>
-  <input type="radio" ng-model="userWantsProximal" ng-value="true" ng-disabled="canSelectProximal()"> Näita lähimaid pakkumisi <br>
-  <!-- not using !userWantsProximal, because it should be hidden when nothin has been selected yet -->
-  <region-selection on-region-selected="regionSelected($region)" ng-if="userWantsProximal === false"></region-selection>
-  <geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="userWantsProximal" key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8"></geolocator>
-</div>
+<form>
+    <ul>
+      <li>
+          <region-selection on-region-selected="regionSelected($region)"></region-selection>
+          <span class="select-icon"></span>
+      </li>
+      <li>
+          <input type="checkbox" ng-model="userWantsProximal" ng-value="true" id="checkbox-closest">
+          <label for="checkbox-closest">Näita lähimaid pakkumisi</label>
+      </li>
+    </ul>
+    <geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="userWantsProximal" key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8"></geolocator>
+</form>
