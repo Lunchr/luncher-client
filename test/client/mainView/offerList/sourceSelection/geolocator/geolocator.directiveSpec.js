@@ -1,4 +1,4 @@
-describe('Favorites module', function() {
+describe('geolocator module', function() {
   'use strict';
   var locatorMap;
   beforeEach(function() {
