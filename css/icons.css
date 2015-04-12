@@ -19,6 +19,13 @@
         outline: none;
     }
 }
+.icon-label {
+    position: absolute;
+    left: 0;
+    top: 1px;
+    margin: 0;
+    padding: 15px 0 15px 45px;
+}
 
 /*@charset "UTF-8";*/
 
