@@ -2,10 +2,10 @@
   'use strict';
   var module = angular.module('geolocator', []);
 
-  module.directive('geolocator', ['$window', '$q',
+  module.factory('locatorMap', ['$window', '$q',
     function($window, $q) {
       var map, locator;
-      function loadMapScript(key) {
+      function loadMapScript(canvasID, key) {
         var script = document.createElement('script');
         var mapsDefer = $q.defer();
         script.type = 'text/javascript';
@@ -15,7 +15,9 @@
         }
         $window.googleMapsInitialized = mapsDefer.resolve;
         $window.document.body.appendChild(script);
-        mapsDefer.promise.then(initMap);
+        mapsDefer.promise.then(function(){
+          initMap(canvasID);
+        });
       }
       function handleNoGeolocation(errorFlag) {
         var content;
@@ -82,14 +84,28 @@
           handleNoGeolocation(true);
         });
       }
-      function initMap() {
+      function initMap(canvasID) {
         var mapOptions = {
           zoom: 17,
         };
-        map = new $window.google.maps.Map($window.document.getElementById('geolocator-canvas'), mapOptions);
+        map = new $window.google.maps.Map($window.document.getElementById(canvasID), mapOptions);
         centerOnUsersLocation();
       }
+      return {
+        loadMapScript: loadMapScript,
+        getLocation: function() {
+          var location = locator.getPosition();
+          return {
+            lat: location.lat(),
+            lng: location.lng(),
+          };
+        },
+      };
+    }
+  ]);
 
+  module.directive('geolocator', ['locatorMap',
+    function(locatorMap) {
       return {
         scope: {
           key: '@',
@@ -98,17 +114,17 @@
         },
         link: function($scope, $element, $attrs) {
           $scope.locationSelected = function() {
-            var location = locator.getPosition();
+            var location = locatorMap.getLocation();
             $scope.onLocationSelected({
-              $lat: location.lat(),
-              $lng: location.lng(),
+              $lat: location.lat,
+              $lng: location.lng,
             });
           };
           var deregister = $scope.$watch('ngShow', function(newVal, oldVal) {
             if (newVal === oldVal || !newVal) {
               return;
             }
-            loadMapScript($scope.key);
+            locatorMap.loadMapScript('geolocator-canvas', $scope.key);
             // only init the map the first time this directive is made visible
             deregister();
           });
@@ -118,4 +134,6 @@
       };
     }
   ]);
+
+
 })();
