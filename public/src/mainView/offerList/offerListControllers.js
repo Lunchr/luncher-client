@@ -12,18 +12,15 @@
     function($scope, $resource, favorites) {
       $scope.loadOffersForRegion = function(region) {
         $scope.region = region;
-        $scope.offers = $resource('api/v1/regions/'+region+'/offers').query({}, function success() {
-          updateFavorites();
-        });
+        $scope.offers = $resource('api/v1/regions/'+region+'/offers').query({},
+          offerLoadSuccess, offerLoadError);
       };
       $scope.loadOffersNearLocation = function(lat, lng) {
         delete $scope.region;
         $scope.offers = $resource('api/v1/offers').query({
           lat: lat,
           lng: lng,
-        }, function success() {
-          updateFavorites();
-        });
+        }, offerLoadSuccess, offerLoadError);
       };
       $scope.toggleFavorite = function(restaurantName) {
         favorites.toggleInclusion(restaurantName);
@@ -37,6 +34,12 @@
         var lat = coords[1];
         return lat+","+lng;
       };
+      function offerLoadSuccess() {
+        updateFavorites();
+      }
+      function offerLoadError() {
+        $scope.offersGroupedByIsFavorite = [];
+      }
       function updateFavorites() {
         favorites.decorateOffers($scope.offers);
         var favoriteOffers = $scope.offers.filter(function(offer) {
