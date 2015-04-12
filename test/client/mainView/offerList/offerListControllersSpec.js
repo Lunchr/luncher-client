@@ -122,7 +122,7 @@ describe('OfferList cotrollers', function() {
       it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
         $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(offerUtils.getMockOffers());
         expect($scope.offers).toBeUndefined();
-        $scope.loadOffersForRegion({name: 'tartu'});
+        $scope.loadOffersForRegion('tartu');
         $httpBackend.flush();
         expect($scope.offers.length).toBe(4);
       }));
@@ -156,7 +156,7 @@ describe('OfferList cotrollers', function() {
     describe('with load offers for region invoked', function() {
       beforeEach(inject(function($httpBackend) {
         $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(offerUtils.getMockOffers());
-        $scope.loadOffersForRegion({name: 'tartu'});
+        $scope.loadOffersForRegion('tartu');
       }));
 
       describe('favorites', function() {

@@ -44,7 +44,7 @@ describe('RegionSelection', function() {
           element.trigger('change');
 
           expect($parentScope.regionSelected).toHaveBeenCalled();
-          expect($parentScope.regionSelected.calls.mostRecent().args[0].name).toEqual(mockRegions[2].name);
+          expect($parentScope.regionSelected.calls.mostRecent().args[0]).toEqual(mockRegions[2].name);
         });
       });
     });
