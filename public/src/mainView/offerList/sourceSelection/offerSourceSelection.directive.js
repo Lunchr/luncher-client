@@ -10,6 +10,7 @@
       return {
         scope: {
           onRegionSelected: '&',
+          onLocationSelected: '&',
         },
         link: function($scope, $element, $attrs) {
           $scope.canSelectProximal = function() {
@@ -18,6 +19,12 @@
           $scope.regionSelected = function(region) {
             $scope.onRegionSelected({
               $region: region,
+            });
+          };
+          $scope.locationSelected = function(lat, lng) {
+            $scope.onLocationSelected({
+              $lat: lat,
+              $lng: lng,
             });
           };
         },

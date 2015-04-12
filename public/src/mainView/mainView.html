@@ -11,7 +11,9 @@
     </div>
 </div>
 <div class="content" ng-controller="OfferListCtrl">
-    <offer-source-selection on-region-selected="loadOffersForRegion($region)"></offer-source-selection>
+    <offer-source-selection on-region-selected="loadOffersForRegion($region)"
+                            on-location-selected="loadOffersNearLocation($lat, $lng)">
+    </offer-source-selection>
     <div class="container">
         <div class="controls">
             <div class="col-1">

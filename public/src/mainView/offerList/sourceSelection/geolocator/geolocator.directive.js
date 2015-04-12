@@ -4,7 +4,7 @@
 
   module.directive('geolocator', ['$window', '$q',
     function($window, $q) {
-      var map;
+      var map, locator;
       function loadMapScript(key) {
         var script = document.createElement('script');
         var mapsDefer = $q.defer();
@@ -18,7 +18,7 @@
         mapsDefer.promise.then(initMap);
       }
       function handleNoGeolocation(errorFlag) {
-        var contnet;
+        var content;
         if (errorFlag) {
           content = 'Error: The Geolocation service failed.';
         } else {
@@ -34,30 +34,60 @@
         var infowindow = new $window.google.maps.InfoWindow(options);
         map.setCenter(options.position);
       }
+      function centerOnUsersLocation() {
+        if(!$window.navigator.geolocation) {
+          handleNoGeolocation(false);
+          return;
+        }
+        $window.navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = new $window.google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          var marker = new $window.google.maps.Marker({
+            clickable: false,
+            cursor: 'pointer',
+            draggable: false,
+            flat: true,
+            icon: {
+                url: 'http://chadkillingsworth.github.io/geolocation-marker/images/gpsloc.png',
+                size: new $window.google.maps.Size(34, 34),
+                scaledSize: new $window.google.maps.Size(17, 17),
+                origin: new $window.google.maps.Point(0, 0),
+                anchor: new $window.google.maps.Point(8, 8)
+            },
+            title: 'Current location',
+            zIndex: 2,
+            position: pos,
+            map: map,
+          });
+          var circle = new $window.google.maps.Circle({
+            clickable: false,
+            radius: position.coords.accuracy,
+            strokeColor: '1bb6ff',
+            strokeOpacity: .4,
+            fillColor: '61a0bf',
+            fillOpacity: .4,
+            strokeWeight: 1,
+            zIndex: 1,
+            center: pos,
+            map: map,
+          });
+          locator = new $window.google.maps.Marker({
+            draggable: true,
+            zIndex: 3,
+            position: pos,
+            map: map,
+          });
+
+          map.setCenter(pos);
+        }, function() {
+          handleNoGeolocation(true);
+        });
+      }
       function initMap() {
         var mapOptions = {
           zoom: 17,
         };
         map = new $window.google.maps.Map($window.document.getElementById('geolocator-canvas'), mapOptions);
-
-        if($window.navigator.geolocation) {
-          $window.navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = new $window.google.maps.LatLng(position.coords.latitude,
-                                             position.coords.longitude);
-
-            var infowindow = new $window.google.maps.InfoWindow({
-              map: map,
-              position: pos,
-              content: 'Location found using HTML5.'
-            });
-
-            map.setCenter(pos);
-          }, function() {
-            handleNoGeolocation(true);
-          });
-        } else {
-          handleNoGeolocation(false);
-        }
+        centerOnUsersLocation();
       }
 
       return {
@@ -67,6 +97,13 @@
           ngShow: '=',
         },
         link: function($scope, $element, $attrs) {
+          $scope.locationSelected = function() {
+            var location = locator.getPosition();
+            $scope.onLocationSelected({
+              $lat: location.lat(),
+              $lng: location.lng(),
+            });
+          };
           var deregister = $scope.$watch('ngShow', function(newVal, oldVal) {
             if (newVal === oldVal || !newVal) {
               return;
