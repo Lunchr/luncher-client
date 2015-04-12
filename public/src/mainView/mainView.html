@@ -22,7 +22,8 @@
         </p>
         <offer-source-selection on-region-selected="loadOffersForRegion($region); menuState1=''"
                                 on-location-selected="loadOffersNearLocation($lat, $lng); menuState1=''"
-                                on-boot-with-locator="menuState1='active'">
+                                on-boot-with-locator="menuState1='active'"
+                                on-boot-without-default="menuState1='active'">
         </offer-source-selection>
     </div>
     <div class="overlay" ng-click="menuState1=''"></div>

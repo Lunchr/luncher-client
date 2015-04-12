@@ -64,10 +64,19 @@ describe('RegionSelection', function() {
     describe('with no cookie set', function() {
       beforeEach(function() {
         var compiled = utils.compile('<offer-source-selection on-region-selected="regionSelected($region)"'+
-        'on-location-selected="locationSelected($lat, $lng)"></offer-source-selection>');
+        'on-location-selected="locationSelected($lat, $lng)" on-boot-without-default="bootAction()"></offer-source-selection>',
+          function(parentScope){
+            cookies.getOfferSource.and.stub();
+            parentScope.bootAction = jasmine.createSpy('bootAction');
+          }
+        );
         element = compiled.element;
         $scope = compiled.scope;
         $parentScope = compiled.parentScope;
+      });
+
+      it('should call the boot without default method', function() {
+        expect($parentScope.bootAction).toHaveBeenCalled();
       });
 
       describe('onRegionSelected', function() {

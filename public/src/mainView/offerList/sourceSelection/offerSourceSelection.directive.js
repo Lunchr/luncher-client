@@ -13,6 +13,7 @@
           onRegionSelected: '&',
           onLocationSelected: '&',
           onBootWithLocator: '&',
+          onBootWithoutDefault: '&',
         },
         link: function($scope, $element, $attrs) {
           $scope.canSelectProximal = function() {
@@ -37,14 +38,13 @@
           };
 
           var offerSource = cookies.getOfferSource();
-          if (!offerSource) {
-            return;
-          }
-          if (offerSource.region){
+          if (offerSource && offerSource.region){
             $scope.regionSelected(offerSource.region);
-          } else if (offerSource.location) {
+          } else if (offerSource && offerSource.location) {
             $scope.userWantsProximal = true;
             $scope.onBootWithLocator();
+          } else {
+            $scope.onBootWithoutDefault();
           }
         },
         restrict: 'E',
