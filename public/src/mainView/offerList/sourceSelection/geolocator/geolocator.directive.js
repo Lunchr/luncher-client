@@ -124,7 +124,7 @@
             if (!newVal) {
               return;
             }
-            locatorMap.loadMapScript('geolocator-canvas', $scope.key);
+            locatorMap.loadMapScript('geolocator-canvas-'+$scope.$id, $scope.key);
             // only init the map the first time this directive is made visible
             deregister();
           });

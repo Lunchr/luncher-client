@@ -5,8 +5,8 @@
           <span class="select-icon"></span>
       </li>
       <li>
-          <input type="checkbox" ng-model="isLocationSelectionEnabled" ng-value="true" id="checkbox-closest">
-          <label for="checkbox-closest">Näita lähimaid pakkumisi</label>
+          <input type="checkbox" ng-model="isLocationSelectionEnabled" ng-value="true" id="checkbox-closest-{{$id}}">
+          <label for="checkbox-closest-{{$id}}">Näita lähimaid pakkumisi</label>
       </li>
     </ul>
     <geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="isLocationSelectionEnabled"
