@@ -18,12 +18,14 @@
         font: $font;
         cursor: pointer;
         &:before {
+            @mixin transition 0.2s;
             content: "";
             position: absolute;
             left: 0;
             top: 0;
-            width: 11px;
-            height: 11px;
+            width: 13px;
+            height: 13px;
+            box-sizing: border-box;
             border-radius: 50%;
             border: 1px solid $color;
         }
@@ -37,7 +39,7 @@
         visibility: hidden;
     }
     input[type=checkbox]:checked + label:before {
-        background: $color;
+        border-width: 5px;
     }
 }
 .sorter {
