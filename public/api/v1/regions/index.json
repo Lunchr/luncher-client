@@ -6,8 +6,4 @@
   "name":     "Tallinn",
   "location": "Europe/Tallinn",
   "cctld":    "ee"
-},{
-  "name":     "London",
-  "location": "Europe/London",
-  "cctld":    "uk"
 }]
