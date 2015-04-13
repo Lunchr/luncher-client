@@ -26,7 +26,7 @@
     <div class="container">
         <div class="dropdown" ng-class="state.sourceSelectionSideMenu">
             <offer-source-selection on-region-selected="loadOffersForRegion($region); state.sourceSelectionSideMenu=''"
-                                    on-location-selected="loadOffersNearLocation($lat, $lng); state.sourceSelectionSideMenu=''"
+                                    on-location-selected="loadOffersNearLocation($lat, $lng); state.sourceSelectionSideMenu=''">
             </offer-source-selection>
         </div>
         <div class="overlay" ng-click="state.sourceSelectionSideMenu=''"></div>
