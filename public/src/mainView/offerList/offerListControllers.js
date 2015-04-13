@@ -8,8 +8,8 @@
     'sourceSelection',
   ]);
 
-  module.controller('OfferListCtrl', ['$scope', '$resource', 'favorites',
-    function($scope, $resource, favorites) {
+  module.controller('OfferListCtrl', ['$scope', '$resource', 'favorites', 'cookies',
+    function($scope, $resource, favorites, cookies) {
       $scope.loadOffersForRegion = function(region) {
         $scope.region = region;
         $scope.offers = $resource('api/v1/regions/'+region+'/offers').query({},
@@ -34,6 +34,24 @@
         var lat = coords[1];
         return lat+","+lng;
       };
+      (function bootstrap(){
+        var offerSource = cookies.getOfferSource();
+        if (offerSource && offerSource.region){
+          $scope.loadOffersForRegion(offerSource.region);
+        } else if (offerSource && offerSource.location) {
+          if (!$scope.state) {
+            $scope.state = {};
+          }
+          $scope.state.sourceSelectionPopup = 'active';
+          $scope.state.isLocationSelectionEnabled = true;
+        } else {
+          if (!$scope.state) {
+            $scope.state = {};
+          }
+          $scope.state.sourceSelectionPopup = 'active';
+        }
+      })();
+
       function offerLoadSuccess() {
         updateFavorites();
       }
