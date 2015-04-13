@@ -11,10 +11,10 @@ $color-secondary-2: #bbb;
 $color-error: #dc1818;
 $color-success: #42a90e;
 
-$font-family: 'Lato', sans-serif;
+$font-family: 'Open Sans', sans-serif;
 $font-size: 13px;
 $font-weight: 300;
-$font: 300 13px 'Lato', sans-serif;
+$font: 300 13px 'Open Sans', sans-serif;
 
 @simple-extend-define material-box {
     position: relative;
