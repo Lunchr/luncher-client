@@ -8,7 +8,7 @@
     font-size: 13px;
     a {
         display: block;
-        padding: 15px 0;
+        padding: 14px 0 15px;
     }
     label {
         margin-right: 5px;
@@ -47,7 +47,7 @@
         left: -45px;
     }
     &.price-sorter {
-        width: 40px;
+        width: 46px;
     }
 }
 .dropdown {

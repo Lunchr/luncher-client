@@ -135,12 +135,13 @@
                 padding: 0 5px;
                 font: $font;
                 height: 25px;
-                line-height: 25px;
+                line-height: 26px;
                 border: none;
                 border-radius: 0;
                 background: transparent;
                 .remove-button {
-                    margin: 0;
+                    margin: 0 -3px;
+                    padding: 0 3px;
                     &:hover {
                         color: $color;
                     }
@@ -214,7 +215,7 @@
     a {
         display: block;
         position: relative;
-        padding: 15px 18px 15px 45px;
+        padding: 14px 18px 15px 45px;
     }
     span {
         position: absolute;
