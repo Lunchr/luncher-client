@@ -50,7 +50,7 @@
     </div>
     <div class="overlay" ng-click="menuState2=''"></div>
     <div class="container">
-        <div class="controls">
+        <div class="controls" ng-show="offers.length">
             <div class="col-1">
                 <offers-sorter id="location-sort-label" order-by="restaurant.name">
                     Asukoht
@@ -110,8 +110,9 @@
                 </div>
             </div>
         </div>
-        <div ng-hide="offers.length">
-          Pakkumised puuduvad.
-        </div>
+        <p class="message" ng-hide="offers.length">
+            <span class="icon icon-20"></span>
+            Vabandame, pakkumised puuduvad.
+      </p>
     </div>
 </div>
