@@ -14,7 +14,14 @@
         </div>
     </div>
 </div>
-<div class="popup"></div>
+<div class="popup" ng-class="locationState">
+    <h2>Vali enda asukokoht</h2>
+    <offer-source-selection on-region-selected="loadOffersForRegion($region); locationState=''"
+                            on-location-selected="loadOffersNearLocation($lat, $lng); locationState=''"
+                            on-boot-with-locator="locationState='active'"
+                            on-boot-without-default="locationState='active'">
+    </offer-source-selection>
+</div>
 <div class="overlay"></div>
 <div class="content">
     <div ng-class="menuState1" class="menu">
@@ -24,8 +31,6 @@
         </p>
         <offer-source-selection on-region-selected="loadOffersForRegion($region); menuState1=''"
                                 on-location-selected="loadOffersNearLocation($lat, $lng); menuState1=''"
-                                on-boot-with-locator="menuState1='active'"
-                                on-boot-without-default="menuState1='active'">
         </offer-source-selection>
     </div>
     <div class="overlay" ng-click="menuState1=''"></div>
