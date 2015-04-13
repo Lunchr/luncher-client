@@ -71,6 +71,18 @@
           color: $color;
       }
     }
+    &.warning {
+        &:before {
+            display: block;
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: 2px;
+            left: 0px;
+            top: 0;
+            background: rgb(238, 92, 16);
+        }
+    }
 }
 .offer-content {
     width: 100%;
