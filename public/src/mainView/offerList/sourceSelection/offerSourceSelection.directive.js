@@ -12,7 +12,7 @@
         scope: {
           onRegionSelected: '&',
           onLocationSelected: '&',
-          isLocationSelectionEnabled: '=',
+          isLocationSelectionEnabled: '=?',
         },
         link: function($scope, $element, $attrs) {
           $scope.canSelectProximal = function() {
