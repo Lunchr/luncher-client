@@ -2,6 +2,7 @@
 /*** CONTROLS ***/
 
 .controls {
+    position: relative;
     height: 45px;
     padding-left: 45px;
     color: $color;
@@ -51,19 +52,18 @@
     }
 }
 .dropdown {
-    display: none;
+    display: block;
     position: absolute;
-    left: -19px;
-    top: 35px;
+    top: 0;
+    left: 12px;
+    margin-top: -100%;
     z-index: 900;
-    &.active {
-        display: block;
-    }
+    @mixin transition 0.2s;
     ul {
         margin: 0;
         padding: 10px 0;
         background-color: #fff;
-        border-radius: 2px;
+        border-radius: 0 0 2px 2px;
         box-shadow: 0 1px 2px rgba(0,0,0,0.3);
         li {
             list-style: none;
@@ -76,16 +76,25 @@
             position: relative;
             width: 100%;
             margin: 0;
-            padding: 5px 80px 5px 41px;
+            padding: 4px 80px 5px 45px;
             box-sizing: border-box;
             &:before {
-                top: 5px;
-                left: 20px;
+                top: 6px;
+                left: 16px;
             }
         }
     }
-    .icon-wrap {
-        right: 0;
-        left: auto;
+    + .overlay {
+        display: none;
+        z-index: 899;
     }
+    &.active {
+        margin-top: 0;
+        + .overlay {
+            display: block;
+        }
+    }
+}
+.col-2 .dropdown {
+    left: -19px;
 }

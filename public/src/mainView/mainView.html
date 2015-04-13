@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-wrap">
             <p class="icon-wrap">
-                <button ng-click="menuState1='active'" class="icon icon-5">
+                <button ng-click="sourceState='active'" class="icon icon-5">
                     <span class="icon-label location">{{region}}</span>
                 </button>
             </p>
@@ -24,32 +24,13 @@
 </div>
 <div class="overlay"></div>
 <div class="content">
-    <div ng-class="menuState1" class="menu">
-        <h2>Asukoha seaded</h2>
-        <p class="icon-wrap">
-            <button ng-click="menuState1=''" class="icon icon-9"></button>
-        </p>
-        <offer-source-selection on-region-selected="loadOffersForRegion($region); menuState1=''"
-                                on-location-selected="loadOffersNearLocation($lat, $lng); menuState1=''"
-        </offer-source-selection>
-    </div>
-    <div class="overlay" ng-click="menuState1=''"></div>
-    <div ng-class="menuState2" class="menu">
-        <h2>Filtreeri</h2>
-        <p class="icon-wrap">
-            <button ng-click="menuState2=''" class="icon icon-9"></button>
-        </p>
-        <form>
-            <ul ng-controller="TagListCtrl">
-                <li ng-repeat="tag in tagList">
-                    <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
-                    <label for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
-                </li>
-            </ul>
-        </form>
-    </div>
-    <div class="overlay" ng-click="menuState2=''"></div>
     <div class="container">
+        <div class="dropdown" ng-class="sourceState">
+            <offer-source-selection on-region-selected="loadOffersForRegion($region); menuState1=''"
+                                    on-location-selected="loadOffersNearLocation($lat, $lng); menuState1=''"
+            </offer-source-selection>
+        </div>
+        <div class="overlay" ng-click="sourceState=''"></div>
         <div class="controls" ng-show="offers.length">
             <div class="col-1">
                 <offers-sorter id="location-sort-label" order-by="restaurant.name">
@@ -58,18 +39,16 @@
             </div>
             <div class="col-2">
                 <div class="col-wrap">
-                    <a href="javascript:undefined" ng-click="menuState2='active'">Filtreeri</a>
-                    <!--form class="dropdown" ng-class="filtersState">
+                    <a href="javascript:undefined" ng-click="filtersState='active'">Filtreeri</a>
+                    <form class="dropdown" ng-class="filtersState">
                         <ul ng-controller="TagListCtrl">
                             <li ng-repeat="tag in tagList">
                                 <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
                                 <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
                             </li>
                         </ul>
-                        <p class="icon-wrap">
-                            <button ng-click="filtersState=''" class="icon icon-9"></button>
-                        </p>
-                    </form-->
+                    </form>
+                    <div class="overlay" ng-click="filtersState=''"></div>
                     <offers-sorter is-numeric="true" order-by="price" id="price-sort-label" class="price-sorter">
                         Hind
                     </offers-sorter>
