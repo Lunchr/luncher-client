@@ -35,6 +35,13 @@
     #search.filled {
         width: 100%;
     }
+    .location {
+        display: none;
+    }
+    .popup {
+        width: 80%;
+        margin-left: -40%;
+    }
 
     /* offer */
     .offer {
