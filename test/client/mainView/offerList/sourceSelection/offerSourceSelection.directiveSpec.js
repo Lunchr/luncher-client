@@ -24,94 +24,64 @@ describe('RegionSelection', function() {
   describe('offer source selection directive', function() {
     var element, $scope, $parentScope;
 
-    describe('with offer source cookie set for a region', function() {
+    beforeEach(function() {
+      var compiled = utils.compile('<offer-source-selection on-region-selected="regionSelected($region)"'+
+      'on-location-selected="locationSelected($lat, $lng)"></offer-source-selection>');
+      element = compiled.element;
+      $scope = compiled.scope;
+      $parentScope = compiled.parentScope;
+    });
+
+    describe('onRegionSelected', function() {
       beforeEach(function() {
-        var compiled = utils.compile('<offer-source-selection on-region-selected="regionSelected($region)"></offer-source-selection>',
-          function(parentScope) {
-            cookies.getOfferSource.and.returnValue({region: 'a-region'});
-            parentScope.regionSelected = jasmine.createSpy('regionSelected');
-          }
-        );
-        element = compiled.element;
-        $scope = compiled.scope;
-        $parentScope = compiled.parentScope;
+        $parentScope.regionSelected = jasmine.createSpy('regionSelected');
       });
 
-      it('should have called region selected on parent on createion', function() {
-        expect($parentScope.regionSelected).toHaveBeenCalledWith('a-region');
+      it('should call the specified function with $region as the argument when option selected from dropdown', function() {
+        $scope.regionSelected('test');
+
+        expect($parentScope.regionSelected).toHaveBeenCalledWith('test');
+      });
+
+      it('should set the offerSource cookie to the selected region', function() {
+        $scope.regionSelected('test');
+        expect(cookies.setOfferSource).toHaveBeenCalledWith({region: 'test'});
       });
     });
 
-    describe('with offer source cookie set for location', function() {
+    describe('onLocationSelected', function() {
       beforeEach(function() {
-        var compiled = utils.compile('<offer-source-selection on-boot-with-locator="bootAction()"></offer-source-selection>',
-          function(parentScope) {
-            cookies.getOfferSource.and.returnValue({location: true});
-            parentScope.bootAction = jasmine.createSpy('bootAction');
-          }
-        );
-        element = compiled.element;
-        $scope = compiled.scope;
-        $parentScope = compiled.parentScope;
+        $parentScope.locationSelected = jasmine.createSpy('locationSelected');
       });
 
-      it('should have called region selected on parent on createion', function() {
-        expect($scope.userWantsProximal).toBe(true);
-        expect($parentScope.bootAction).toHaveBeenCalled();
+      it('should call the specified function with $region as the argument when option selected from dropdown', function() {
+        $scope.locationSelected('lat', 'lng');
+
+        expect($parentScope.locationSelected).toHaveBeenCalledWith('lat', 'lng');
+      });
+
+      it('should set the offerSource cookie to location', function() {
+        $scope.locationSelected('lat', 'lng');
+        expect(cookies.setOfferSource).toHaveBeenCalledWith({location:true});
       });
     });
+  });
 
-    describe('with no cookie set', function() {
-      beforeEach(function() {
-        var compiled = utils.compile('<offer-source-selection on-region-selected="regionSelected($region)"'+
-        'on-location-selected="locationSelected($lat, $lng)" on-boot-without-default="bootAction()"></offer-source-selection>',
-          function(parentScope){
-            cookies.getOfferSource.and.stub();
-            parentScope.bootAction = jasmine.createSpy('bootAction');
-          }
-        );
-        element = compiled.element;
-        $scope = compiled.scope;
-        $parentScope = compiled.parentScope;
+  describe('offer source selection directive with optional bind', function() {
+    var element, $scope, $parentScope;
+
+    beforeEach(function() {
+      var compiled = utils.compile('<offer-source-selection is-location-selection-enabled="aVar"></offer-source-selection>', function(parentScope) {
+        parentScope.aVar = 'testing';
       });
-
-      it('should call the boot without default method', function() {
-        expect($parentScope.bootAction).toHaveBeenCalled();
-      });
-
-      describe('onRegionSelected', function() {
-        beforeEach(function() {
-          $parentScope.regionSelected = jasmine.createSpy('regionSelected');
-        });
-
-        it('should call the specified function with $region as the argument when option selected from dropdown', function() {
-          $scope.regionSelected('test');
-
-          expect($parentScope.regionSelected).toHaveBeenCalledWith('test');
-        });
-
-        it('should set the offerSource cookie to the selected region', function() {
-          $scope.regionSelected('test');
-          expect(cookies.setOfferSource).toHaveBeenCalledWith({region: 'test'});
-        });
-      });
-
-      describe('onLocationSelected', function() {
-        beforeEach(function() {
-          $parentScope.locationSelected = jasmine.createSpy('locationSelected');
-        });
-
-        it('should call the specified function with $region as the argument when option selected from dropdown', function() {
-          $scope.locationSelected('lat', 'lng');
-
-          expect($parentScope.locationSelected).toHaveBeenCalledWith('lat', 'lng');
-        });
-
-        it('should set the offerSource cookie to location', function() {
-          $scope.locationSelected('lat', 'lng');
-          expect(cookies.setOfferSource).toHaveBeenCalledWith({location:true});
-        });
-      });
+      element = compiled.element;
+      $scope = compiled.scope;
+      $parentScope = compiled.parentScope;
     });
+
+    it('should be bound to parent\'s scope', function() {
+      expect($scope.isLocationSelectionEnabled).toEqual('testing');
+    });
+
   });
 });

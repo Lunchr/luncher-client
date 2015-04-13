@@ -1,17 +1,32 @@
 describe('OfferList cotrollers', function() {
   'use strict';
-  beforeEach(module('offerListControllers', function($provide) {
-    // mock the favorites service
-    $provide.provider('favorites', {
-      $get: function() {
-        return {
-          // have to add this method, otherwise we get an error when the
-          // favorites module tries to execute the run block
-          refreshCookieExpirations: jasmine.createSpy(),
-        };
-      }
+  var cookies;
+  beforeEach(function() {
+    module('offerListControllers', function($provide) {
+      $provide.provider('favorites', {
+        $get: function() {
+          return {
+            // have to add this method, otherwise we get an error when the
+            // favorites module tries to execute the run block
+            refreshCookieExpirations: jasmine.createSpy(),
+          };
+        }
+      });
+      $provide.provider('cookies', {
+        $get: function() {
+          return {
+            refreshExpirations: function(){},
+            setOfferSource: jasmine.createSpy('setOfferSource'),
+            getOfferSource: jasmine.createSpy('getOfferSource'),
+            removeOfferSource: jasmine.createSpy('removeOfferSource'),
+          };
+        }
+      });
     });
-  }));
+    inject(function(_cookies_) {
+      cookies = _cookies_;
+    });
+  });
 
   describe('Search controller', function() {
     var $scope;

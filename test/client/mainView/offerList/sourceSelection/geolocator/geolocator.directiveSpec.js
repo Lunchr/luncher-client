@@ -33,7 +33,7 @@ describe('geolocator module', function() {
         $parentScope.ngShowBinding = true;
       });
 
-      expect(locatorMap.loadMapScript).toHaveBeenCalledWith('geolocator-canvas', 'a-key');
+      expect(locatorMap.loadMapScript).toHaveBeenCalledWith('geolocator-canvas-'+$scope.$id, 'a-key');
     });
 
     it('should load map from service only the first time', function() {
