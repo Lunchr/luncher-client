@@ -18,12 +18,14 @@
         font: $font;
         cursor: pointer;
         &:before {
+            @mixin transition 0.2s;
             content: "";
             position: absolute;
             left: 0;
             top: 0;
-            width: 11px;
-            height: 11px;
+            width: 13px;
+            height: 13px;
+            box-sizing: border-box;
             border-radius: 50%;
             border: 1px solid $color;
         }
@@ -37,7 +39,7 @@
         visibility: hidden;
     }
     input[type=checkbox]:checked + label:before {
-        background: $color;
+        border-width: 5px;
     }
 }
 .sorter {
@@ -76,10 +78,10 @@
             position: relative;
             width: 100%;
             margin: 0;
-            padding: 4px 80px 5px 45px;
+            padding: 6px 15px 7px 35px;
             box-sizing: border-box;
             &:before {
-                top: 6px;
+                top: 8px;
                 left: 16px;
             }
         }
@@ -96,5 +98,5 @@
     }
 }
 .col-2 .dropdown {
-    left: -19px;
+    left: -15px;
 }
