@@ -100,7 +100,7 @@
     .buttons {
         padding-right: 0;
     }
-    #geolocator-canvas {
+    .geolocator-canvas {
       height: 300px;
     }
 }
