@@ -7,10 +7,8 @@ describe('Praad App', function() {
     beforeEach(function() {
       browser.manage().deleteAllCookies();
       browser.get('/');
+      clickPromise = element(by.css('.popup')).element(by.css('label')).click();
       offers = element.all(by.repeater('offer in offerList'));
-      clickPromise = element(by.model('selectedRegion')).click().then(function() {
-        return element(by.css('option[label=Tartu]')).click();
-      });
     });
 
     it('should initially have 3 offers', function() {

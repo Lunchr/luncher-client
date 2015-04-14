@@ -1,4 +1,7 @@
-<select ng-options="region as region.name for region in regions" ng-model="selectedRegion"
-        ng-change="onRegionSelected({$region: selectedRegion.name})">
-    <option value="?" disabled selected>Vali regioon</option>
-</select>
+<form>
+  <p ng-repeat="region in regions">
+    <input type="radio" id="region-selection-{{$id}}" ng-model="selected.region"
+           ng-change="onRegionSelected({$region: region.name})" ng-value="region.name">
+    <label for="region-selection-{{$id}}"> {{region.name}} </label>
+  </p>
+</form>

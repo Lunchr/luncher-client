@@ -39,9 +39,7 @@ describe('RegionSelection', function() {
         });
 
         it('should call the specified function with $region as the argument when option selected from dropdown', function() {
-          element.children().eq(0).removeAttr('selected');
-          element.children().eq(3).attr('selected', true);
-          element.trigger('change');
+          element.find('input').eq(2).click().trigger('click');
 
           expect($parentScope.regionSelected).toHaveBeenCalled();
           expect($parentScope.regionSelected.calls.mostRecent().args[0]).toEqual(mockRegions[2].name);
