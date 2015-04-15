@@ -5,6 +5,9 @@
     .container {
         padding: 0 8px;
     }
+    .dropdown {
+        left: 8px;
+    }
     .image {
         width: 100%;
     }

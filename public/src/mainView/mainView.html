@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-wrap">
             <p class="icon-wrap">
-                <button ng-click="state.sourceSelectionSideMenu='active'" class="icon icon-5">
+                <button ng-click="state.sourceSelectionDropdown='active'" class="icon icon-5">
                     <span class="icon-label location">{{region}}</span>
                 </button>
             </p>
@@ -24,12 +24,12 @@
 <div class="overlay"></div>
 <div class="content">
     <div class="container">
-        <div class="dropdown" ng-class="state.sourceSelectionSideMenu">
-            <offer-source-selection on-region-selected="loadOffersForRegion($region); state.sourceSelectionSideMenu=''"
-                                    on-location-selected="loadOffersNearLocation($lat, $lng); state.sourceSelectionSideMenu=''">
+        <div class="dropdown" ng-class="state.sourceSelectionDropdown">
+            <offer-source-selection on-region-selected="loadOffersForRegion($region); state.sourceSelectionDropdown=''"
+                                    on-location-selected="loadOffersNearLocation($lat, $lng); state.sourceSelectionDropdown=''">
             </offer-source-selection>
         </div>
-        <div class="overlay" ng-click="state.sourceSelectionSideMenu=''"></div>
+        <div class="overlay" ng-click="state.sourceSelectionDropdown=''"></div>
         <div class="controls" ng-show="offers.length">
             <div class="col-1">
                 <offers-sorter id="location-sort-label" order-by="restaurant.name">
@@ -38,8 +38,8 @@
             </div>
             <div class="col-2">
                 <div class="col-wrap">
-                    <a href="javascript:undefined" ng-click="state.filtersSideMenu='active'">Filtreeri</a>
-                    <form class="dropdown" ng-class="state.filtersSideMenu">
+                    <a href="javascript:undefined" ng-click="state.filtersDropdown='active'">Filtreeri</a>
+                    <form class="dropdown" ng-class="state.filtersDropdown">
                         <ul ng-controller="TagListCtrl">
                             <li ng-repeat="tag in tagList">
                                 <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
@@ -47,7 +47,7 @@
                             </li>
                         </ul>
                     </form>
-                    <div class="overlay" ng-click="state.filtersSideMenu=''"></div>
+                    <div class="overlay" ng-click="state.filtersDropdown=''"></div>
                     <offers-sorter is-numeric="true" order-by="price" id="price-sort-label" class="price-sorter">
                         Hind
                     </offers-sorter>

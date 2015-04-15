@@ -287,3 +287,35 @@
     right: 0;
     margin: 7px 0;
 }
+
+/* Checkbox, Radio */
+input[type=checkbox],
+input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    + label {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        margin: 0;
+        padding: 6px 15px 7px 36px;
+        box-sizing: border-box;
+        cursor: pointer;
+        &:before {
+            @mixin transition 0.2s;
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 16px;
+            width: 14px;
+            height: 14px;
+            box-sizing: border-box;
+            border-radius: 50%;
+            border: 1px solid $color;
+        }
+    }
+}
+input[type=checkbox]:checked + label:before,
+input[type=radio]:checked + label:before {
+    border: 5px solid $color;
+}
