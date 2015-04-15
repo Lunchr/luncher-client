@@ -1,15 +1,10 @@
-<form>
-    <ul>
-      <li>
-          <region-selection on-region-selected="regionSelected($region)"></region-selection>
-          <span class="select-icon"></span>
-      </li>
-      <li>
-          <input type="checkbox" ng-model="isLocationSelectionEnabled" ng-value="true" id="checkbox-closest-{{$id}}">
-          <label for="checkbox-closest-{{$id}}">Näita lähimaid pakkumisi</label>
-      </li>
-    </ul>
-    <geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="isLocationSelectionEnabled"
-                key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8">
-    </geolocator>
-</form>
+<ul>
+    <region-selection on-region-selected="regionSelected($region)"></region-selection>
+    <li>
+        <input type="checkbox" ng-model="isLocationSelectionEnabled" ng-value="true" id="checkbox-closest-{{$id}}">
+        <label for="checkbox-closest-{{$id}}">Näita lähimaid pakkumisi</label>
+    </li>
+</ul>
+<geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="isLocationSelectionEnabled"
+            key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8">
+</geolocator>

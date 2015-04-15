@@ -1,7 +1,7 @@
 <form>
-  <p ng-repeat="region in regions">
+<li ng-repeat="region in regions">
     <input type="radio" id="region-selection-{{$id}}" ng-model="selected.region"
            ng-change="onRegionSelected({$region: region.name})" ng-value="region.name">
     <label for="region-selection-{{$id}}"> {{region.name}} </label>
-  </p>
+</li>
 </form>
