@@ -18,7 +18,7 @@
     <h2>Vali enda asukokoht</h2>
     <offer-source-selection on-region-selected="loadOffersForRegion($region); state.sourceSelectionPopup=''"
                             on-location-selected="loadOffersNearLocation($lat, $lng); state.sourceSelectionPopup=''"
-                            is-location-selection-enabled="state.isLocationSelectionEnabled">
+                            state="state.offerSource">
     </offer-source-selection>
 </div>
 <div class="overlay"></div>
@@ -26,7 +26,8 @@
     <div class="container">
         <div class="dropdown" ng-class="state.sourceSelectionDropdown">
             <offer-source-selection on-region-selected="loadOffersForRegion($region); state.sourceSelectionDropdown=''"
-                                    on-location-selected="loadOffersNearLocation($lat, $lng); state.sourceSelectionDropdown=''">
+                                    on-location-selected="loadOffersNearLocation($lat, $lng); state.sourceSelectionDropdown=''"
+                                    state="state.offerSource">
             </offer-source-selection>
         </div>
         <div class="overlay" ng-click="state.sourceSelectionDropdown=''"></div>

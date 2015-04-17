@@ -35,21 +35,21 @@
         return lat+","+lng;
       };
       (function bootstrap(){
-        var offerSource = cookies.getOfferSource();
-        if (offerSource && offerSource.region){
-          $scope.loadOffersForRegion(offerSource.region);
-        } else if (offerSource && offerSource.location) {
-          if (!$scope.state) {
-            $scope.state = {};
-          }
-          $scope.state.sourceSelectionPopup = 'active';
-          $scope.state.isLocationSelectionEnabled = true;
-        } else {
-          if (!$scope.state) {
-            $scope.state = {};
-          }
-          $scope.state.sourceSelectionPopup = 'active';
+        if (!$scope.state) {
+          $scope.state = {};
         }
+        var offerSource = cookies.getOfferSource();
+        if (offerSource) {
+          $scope.state.offerSource = offerSource;
+          if(offerSource.region){
+            $scope.loadOffersForRegion(offerSource.region);
+            return;
+          } else if (offerSource.location) {
+            $scope.state.sourceSelectionPopup = 'active';
+            return;
+          }
+        }
+        $scope.state.sourceSelectionPopup = 'active';
       })();
 
       function offerLoadSuccess() {

@@ -12,7 +12,7 @@
         scope: {
           onRegionSelected: '&',
           onLocationSelected: '&',
-          isLocationSelectionEnabled: '=?',
+          state: '=?',
         },
         link: function($scope, $element, $attrs) {
           $scope.canSelectProximal = function() {
@@ -35,6 +35,13 @@
               $lng: lng,
             });
           };
+          if (!$scope.state) {
+            $scope.state = {};
+          } else {
+            $scope.state = {
+              offerSource: $scope.state,
+            };
+          }
         },
         restrict: 'E',
         templateUrl: 'src/mainView/offerList/sourceSelection/offerSourceSelection.template.html',
