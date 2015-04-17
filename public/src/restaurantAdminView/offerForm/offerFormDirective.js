@@ -2,7 +2,6 @@
   'use strict';
   var module = angular.module('offerFormDirective', [
     'ngTagsInput',
-    'fileReaderService',
     'ngResource',
     'ngImageInputWithPreview',
   ]);
@@ -41,8 +40,8 @@
               $scope.ingredients = offer.ingredients;
               $scope.tags = offer.tags;
               $scope.price = offer.price;
-              $scope.date = new Date(offer.from_time);
-              $scope.date.setHours(0, 0, 0, 0);
+              $scope.baseDate = new Date(offer.from_time);
+              $scope.baseDate.setHours(0, 0, 0, 0);
               $scope.fromTime = new Date(offer.from_time);
               $scope.fromTime.setFullYear(1970);
               $scope.fromTime.setMonth(0);
@@ -86,8 +85,8 @@
               }),
               price: $scope.price,
               // both getTime()s return the time with added timezone offset, so one offset has to be subtracted
-              from_time: new Date($scope.date.getTime() + $scope.fromTime.getTime() - $scope.fromTime.getTimezoneOffset() * 60 * 1000),
-              to_time: new Date($scope.date.getTime() + $scope.toTime.getTime() - $scope.toTime.getTimezoneOffset() * 60 * 1000),
+              from_time: new Date($scope.baseDate.getTime() + $scope.fromTime.getTime() - $scope.fromTime.getTimezoneOffset() * 60 * 1000),
+              to_time: new Date($scope.baseDate.getTime() + $scope.toTime.getTime() - $scope.toTime.getTimezoneOffset() * 60 * 1000),
               image: $scope.image && $scope.image.src,
             };
             if (isEdit) {
