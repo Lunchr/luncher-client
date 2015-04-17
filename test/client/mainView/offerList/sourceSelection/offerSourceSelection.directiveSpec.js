@@ -1,4 +1,4 @@
-describe('RegionSelection', function() {
+describe('OfferSourceSelection', function() {
   'use strict';
   var cookies;
   beforeEach(function() {
@@ -21,7 +21,7 @@ describe('RegionSelection', function() {
     });
   });
 
-  describe('offer source selection directive', function() {
+  describe('directive', function() {
     var element, $scope, $parentScope;
 
     beforeEach(function() {
@@ -67,12 +67,14 @@ describe('RegionSelection', function() {
     });
   });
 
-  describe('offer source selection directive with optional bind', function() {
+  describe('directive with optional bind', function() {
     var element, $scope, $parentScope;
 
     beforeEach(function() {
-      var compiled = utils.compile('<offer-source-selection is-location-selection-enabled="aVar"></offer-source-selection>', function(parentScope) {
-        parentScope.aVar = 'testing';
+      var compiled = utils.compile('<offer-source-selection state="aState.something"></offer-source-selection>', function(parentScope) {
+        parentScope.aState = {
+          something: 'testing',
+        };
       });
       element = compiled.element;
       $scope = compiled.scope;
@@ -80,7 +82,7 @@ describe('RegionSelection', function() {
     });
 
     it('should be bound to parent\'s scope', function() {
-      expect($scope.isLocationSelectionEnabled).toEqual('testing');
+      expect($scope.state.offerSource).toEqual('testing');
     });
 
   });

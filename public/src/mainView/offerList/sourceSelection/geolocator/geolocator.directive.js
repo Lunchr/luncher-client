@@ -17,7 +17,7 @@
       lat: location.lat(),
       lng: location.lng(),
     };
-  }
+  };
 
   module.factory('locatorMap', ['$window', '$q', '$timeout',
     function($window, $q, $timeout) {

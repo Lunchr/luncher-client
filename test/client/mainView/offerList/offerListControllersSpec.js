@@ -15,7 +15,7 @@ describe('OfferList cotrollers', function() {
       $provide.provider('cookies', {
         $get: function() {
           return {
-            refreshExpirations: function(){},
+            refreshExpirations: function() {},
             setOfferSource: jasmine.createSpy('setOfferSource'),
             getOfferSource: jasmine.createSpy('getOfferSource'),
             removeOfferSource: jasmine.createSpy('removeOfferSource'),
@@ -126,7 +126,9 @@ describe('OfferList cotrollers', function() {
     describe('bootstrapping', function() {
       describe('with offer source cookie set for a region', function() {
         beforeEach(inject(function($rootScope, $controller, favorites, $httpBackend) {
-          cookies.getOfferSource.and.returnValue({region: 'a-region'});
+          cookies.getOfferSource.and.returnValue({
+            region: 'a-region'
+          });
           $httpBackend.expectGET('api/v1/regions/a-region/offers').respond(offerUtils.getMockOffers());
 
           $scope = $rootScope.$new();
@@ -143,11 +145,19 @@ describe('OfferList cotrollers', function() {
           expect($scope.offers.length).toBe(4);
           expect($scope.region).toBe('a-region');
         }));
+
+        it('should set the offerSource state to that region', inject(function($httpBackend) {
+          $httpBackend.flush();
+          expect($scope.state.sourceSelectionPopup).toBeFalsy();
+          expect($scope.state.offerSource.region).toBe('a-region');
+        }));
       });
 
       describe('with offer source cookie set for location', function() {
         beforeEach(inject(function($rootScope, $controller) {
-          cookies.getOfferSource.and.returnValue({location: true});
+          cookies.getOfferSource.and.returnValue({
+            location: true
+          });
 
           $scope = $rootScope.$new();
           $controller('OfferListCtrl', {
@@ -157,7 +167,7 @@ describe('OfferList cotrollers', function() {
 
         it('should open the source selection popup with locator enabled', function() {
           expect($scope.state.sourceSelectionPopup).toBe('active');
-          expect($scope.state.isLocationSelectionEnabled).toBe(true);
+          expect($scope.state.offerSource.location).toBe(true);
         });
       });
     });
@@ -176,7 +186,7 @@ describe('OfferList cotrollers', function() {
 
       it('should open the source selection popup', function() {
         expect($scope.state.sourceSelectionPopup).toBe('active');
-          expect($scope.state.isLocationSelectionEnabled).toBeFalsy();
+        expect($scope.state.isLocationSelectionEnabled).toBeFalsy();
       });
 
       describe('loadOffersForRegion', function() {

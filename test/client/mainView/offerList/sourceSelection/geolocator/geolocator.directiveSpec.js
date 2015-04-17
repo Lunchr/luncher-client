@@ -15,30 +15,29 @@ describe('geolocator module', function() {
   });
 
   describe('geolocator directive', function() {
-    var element, $scope, $parentScope;
+    var element, $scope, $parentScope, locatorDefer;
 
-    beforeEach(function() {
+    beforeEach(inject(function($q) {
       var compiled = utils.compile('<geolocator on-location-selected="locationSelected($lat, $lng)" key="a-key" ng-show="ngShowBinding"></geolocator>');
       element = compiled.element;
       $scope = compiled.scope;
       $parentScope = compiled.parentScope;
       $parentScope.ngShowBinding = false;
-    });
+      locatorDefer = $q.defer();
+      locatorMap.loadMap = jasmine.createSpy('loadMap').and.returnValue(locatorDefer.promise);
+    }));
 
     it('should load map from service when made visible', function() {
-      locatorMap.loadMapScript = jasmine.createSpy('loadMapScript');
-      expect(locatorMap.loadMapScript).not.toHaveBeenCalled();
+      expect(locatorMap.loadMap).not.toHaveBeenCalled();
 
       $scope.$apply(function() {
         $parentScope.ngShowBinding = true;
       });
 
-      expect(locatorMap.loadMapScript).toHaveBeenCalledWith('geolocator-canvas-'+$scope.$id, 'a-key');
+      expect(locatorMap.loadMap).toHaveBeenCalledWith('geolocator-canvas-'+$scope.$id, 'a-key');
     });
 
     it('should load map from service only the first time', function() {
-      locatorMap.loadMapScript = jasmine.createSpy('loadMapScript');
-
       $scope.$apply(function() {
         $parentScope.ngShowBinding = true;
       });
@@ -49,14 +48,22 @@ describe('geolocator module', function() {
         $parentScope.ngShowBinding = true;
       });
 
-      expect(locatorMap.loadMapScript.calls.count()).toBe(1);
+      expect(locatorMap.loadMap.calls.count()).toBe(1);
     });
 
     it('should call parent\'s location selected method with location from service when location selected', function() {
       $parentScope.locationSelected = jasmine.createSpy('locationSelected');
-      locatorMap.getLocation = jasmine.createSpy('getLocation').and.returnValue({
-        lat: 'lat',
-        lng: 'lng',
+      locatorDefer.resolve({
+        getLocation: jasmine.createSpy('getLocation').and.returnValue({
+          lat: 'lat',
+          lng: 'lng',
+        }),
+        readyPromise: {
+          then: jasmine.createSpy('readyPromise'),
+        },
+      });
+      $scope.$apply(function() {
+        $parentScope.ngShowBinding = true;
       });
 
       $scope.locationSelected();
