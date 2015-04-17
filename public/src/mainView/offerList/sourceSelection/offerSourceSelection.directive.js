@@ -16,7 +16,7 @@
         },
         link: function($scope, $element, $attrs) {
           $scope.canSelectProximal = function() {
-            return !$window.navigator.geolocation;
+            return !!$window.navigator.geolocation;
           };
           $scope.regionSelected = function(region) {
             cookies.setOfferSource({

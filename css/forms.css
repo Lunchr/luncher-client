@@ -314,6 +314,13 @@ input[type=radio] {
             border: 1px solid $color;
         }
     }
+    &:disabled + label {
+      color: $color-secondary-2;
+      cursor: default;
+      &:before {
+        border-color: $color-secondary-2;
+      }
+    }
 }
 input[type=checkbox]:checked + label:before,
 input[type=radio]:checked + label:before {
