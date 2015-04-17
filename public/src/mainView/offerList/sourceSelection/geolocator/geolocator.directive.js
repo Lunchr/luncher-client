@@ -2,6 +2,11 @@
   'use strict';
   var module = angular.module('geolocator', []);
 
+  /**
+   * @constructor
+   * @param {google.maps.Marker} marker - The marker on the map that indicates the user's location
+   * @param {Promise} readyPromise      - Promise that will be resolved when the marker is ready to be queried for the user's location
+   */
   function Locator(marker, readyPromise) {
     this.marker = marker;
     this.readyPromise = readyPromise;
@@ -129,6 +134,10 @@
          * accepted to share their location the map will be centered to that location
          * and a marker will be displayed that the user can move to confirm/specify
          * their actual location.
+         *
+         * @param {string} canvasID - The elemt ID of the canvas to load the map onto.
+         * @param {string} [key]    - Google Maps API key to be used for initializing the API.
+         * @returns {Locator}
          */
         loadMap: loadMap,
       };
