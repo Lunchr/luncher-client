@@ -1,16 +1,16 @@
 describe('geolocator module', function() {
   'use strict';
-  var locatorMap;
+  var ngGeolocator;
   beforeEach(function() {
     module('geolocator', 'partials', function($provide) {
-      $provide.provider('locatorMap', {
+      $provide.provider('ngGeolocator', {
         $get: function() {
           return {};
         }
       });
     });
-    inject(function(_locatorMap_){
-      locatorMap = _locatorMap_;
+    inject(function(_ngGeolocator_){
+      ngGeolocator = _ngGeolocator_;
     });
   });
 
@@ -24,17 +24,17 @@ describe('geolocator module', function() {
       $parentScope = compiled.parentScope;
       $parentScope.ngShowBinding = false;
       locatorDefer = $q.defer();
-      locatorMap.loadMap = jasmine.createSpy('loadMap').and.returnValue(locatorDefer.promise);
+      ngGeolocator.create = jasmine.createSpy('create').and.returnValue(locatorDefer.promise);
     }));
 
     it('should load map from service when made visible', function() {
-      expect(locatorMap.loadMap).not.toHaveBeenCalled();
+      expect(ngGeolocator.create).not.toHaveBeenCalled();
 
       $scope.$apply(function() {
         $parentScope.ngShowBinding = true;
       });
 
-      expect(locatorMap.loadMap).toHaveBeenCalledWith('geolocator-canvas-'+$scope.$id, 'a-key');
+      expect(ngGeolocator.create).toHaveBeenCalledWith('geolocator-canvas-'+$scope.$id, 'a-key');
     });
 
     it('should load map from service only the first time', function() {
@@ -48,7 +48,7 @@ describe('geolocator module', function() {
         $parentScope.ngShowBinding = true;
       });
 
-      expect(locatorMap.loadMap.calls.count()).toBe(1);
+      expect(ngGeolocator.create.calls.count()).toBe(1);
     });
 
     it('should call parent\'s location selected method with location from service when location selected', function() {
@@ -58,9 +58,6 @@ describe('geolocator module', function() {
           lat: 'lat',
           lng: 'lng',
         }),
-        readyPromise: {
-          then: jasmine.createSpy('readyPromise'),
-        },
       });
       $scope.$apply(function() {
         $parentScope.ngShowBinding = true;
