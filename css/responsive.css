@@ -42,8 +42,11 @@
         display: none;
     }
     .popup {
-        width: 80%;
-        margin-left: -40%;
+        width: 90%;
+        margin-left: -45%;
+    }
+    .dropdown {
+        margin-top: -200%;
     }
 
     /* offer */
@@ -86,5 +89,23 @@
     /* desktop only */
     .desktop {
         display: none !important;
+    }
+}
+@media (max-width: 430px) {
+    .dropdown {
+        width: 100%;
+        left: 0;
+        .geolocator-canvas {
+            width: 100%;
+        }
+        ul {
+            border-radius: 0;
+            label {
+                padding: 6px 23px 7px 44px;
+                &:before {
+                    left: 24px;
+                }
+            }
+        }
     }
 }

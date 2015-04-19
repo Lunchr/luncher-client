@@ -82,6 +82,13 @@
             display: block;
         }
     }
+    .buttons {
+        padding-right: 10px;
+        margin-bottom: 0;
+        input {
+            position: relative;
+        }
+    }
 }
 .col-2 .dropdown {
     left: -15px;

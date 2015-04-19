@@ -1,4 +1,3 @@
-<div>
 <li ng-repeat="region in regions">
     <input type="radio" id="region-selection-{{$id}}" ng-model="state.offerSource.region"
            ng-change="onRegionSelected({$region: region.name}); state.offerSource={region: state.offerSource.region}"
@@ -7,4 +6,3 @@
                 state.offerSource object on ng-change -->
     <label for="region-selection-{{$id}}"> {{region.name}} </label>
 </li>
-</div>
