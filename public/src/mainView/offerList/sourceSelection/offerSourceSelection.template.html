@@ -12,8 +12,10 @@
                     location are selected can happen. -->
         <label for="checkbox-proximal-{{$id}}">Näita lähimaid pakkumisi</label>
     </li>
+    <li>
+        <geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="state.offerSource.location"
+                    key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8">
+        </geolocator>
+    </li>
 </ul>
 </form>
-<geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="state.offerSource.location"
-            key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8">
-</geolocator>
