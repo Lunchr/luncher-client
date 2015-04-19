@@ -29,7 +29,6 @@
         },
         restrict: 'E',
         templateUrl: 'src/mainView/offerList/sourceSelection/regionSelection/regionSelection.template.html',
-        replace: true,
       };
     }
   ]);
