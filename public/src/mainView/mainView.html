@@ -39,16 +39,18 @@
             </div>
             <div class="col-2">
                 <div class="col-wrap">
-                    <a href="javascript:undefined" ng-click="state.filtersDropdown='active'">Filtreeri</a>
-                    <form class="dropdown" ng-class="state.filtersDropdown">
-                        <ul ng-controller="TagListCtrl">
-                            <li ng-repeat="tag in tagList">
-                                <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
-                                <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
-                            </li>
-                        </ul>
-                    </form>
-                    <div class="overlay" ng-click="state.filtersDropdown=''"></div>
+                    <div ng-controller="TagListCtrl">
+                      <a href="javascript:undefined" ng-click="state.filtersDropdown='active'">{{(selectedTags | joinTags) || 'Filtreeri'}}</a>
+                      <form class="dropdown" ng-class="state.filtersDropdown">
+                          <ul>
+                              <li ng-repeat="tag in tagList">
+                                  <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
+                                  <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
+                              </li>
+                          </ul>
+                      </form>
+                      <div class="overlay" ng-click="state.filtersDropdown=''"></div>
+                    </div>
                     <offers-sorter is-numeric="true" order-by="price" id="price-sort-label" class="price-sorter">
                         Hind
                     </offers-sorter>

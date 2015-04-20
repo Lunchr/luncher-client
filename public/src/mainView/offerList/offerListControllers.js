@@ -82,10 +82,12 @@
       $scope.tagList = $resource('api/v1/tags').query();
 
       $scope.$watch('tagList', function(tagList) {
+        $scope.selectedTags = [];
         offerFilterState.selectedTags = [];
         tagList.forEach(function(tag) {
           if (tag.selected) {
             offerFilterState.selectedTags.push(tag.name);
+            $scope.selectedTags.push(tag.display_name);
           }
         });
       }, true);

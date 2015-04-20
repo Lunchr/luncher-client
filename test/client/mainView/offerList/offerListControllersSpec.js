@@ -74,6 +74,7 @@ describe('OfferList cotrollers', function() {
         $scope.$apply();
 
         expect(offerFilterState.selectedTags.length).toBe(0);
+        expect($scope.selectedTags.length).toBe(0);
       }));
 
       it('should set selected tags to empty list if nothing selected (false)', inject(function(offerFilterState) {
@@ -82,6 +83,7 @@ describe('OfferList cotrollers', function() {
         $scope.$apply();
 
         expect(offerFilterState.selectedTags.length).toBe(0);
+        expect($scope.selectedTags.length).toBe(0);
       }));
 
       it('should add selected tag to list', inject(function(offerFilterState) {
@@ -91,6 +93,8 @@ describe('OfferList cotrollers', function() {
 
         expect(offerFilterState.selectedTags.length).toBe(1);
         expect(offerFilterState.selectedTags[0]).toBe('lind');
+        expect($scope.selectedTags.length).toBe(1);
+        expect($scope.selectedTags[0]).toBe('Linnust');
       }));
 
       describe('with 2 tags selected', function() {
@@ -106,6 +110,9 @@ describe('OfferList cotrollers', function() {
           expect(offerFilterState.selectedTags.length).toBe(2);
           expect(offerFilterState.selectedTags).toContain('lind');
           expect(offerFilterState.selectedTags).toContain('siga');
+          expect($scope.selectedTags.length).toBe(2);
+          expect($scope.selectedTags).toContain('Linnust');
+          expect($scope.selectedTags).toContain('Seast');
         }));
 
         it('should remove from selected tags to list', inject(function(offerFilterState) {
@@ -115,6 +122,8 @@ describe('OfferList cotrollers', function() {
 
           expect(offerFilterState.selectedTags.length).toBe(1);
           expect(offerFilterState.selectedTags).toContain('lind');
+          expect($scope.selectedTags.length).toBe(1);
+          expect($scope.selectedTags).toContain('Linnust');
         }));
       });
     });
