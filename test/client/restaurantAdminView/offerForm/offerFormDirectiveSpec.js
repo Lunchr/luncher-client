@@ -123,7 +123,7 @@ describe('Offer Form', function() {
               a: 'b'
             }];
             $scope.price = 2.5;
-            $scope.baseDate = new Date(2015, 3, 15);
+            $scope.date = new Date(2015, 3, 15);
             $scope.fromTime = new Date(1970, 0, 1, 10, 0, 0);
             $scope.toTime = new Date(1970, 0, 1, 15, 0, 0);
             $scope.image = {src: 'image data'};
@@ -201,7 +201,7 @@ describe('Offer Form', function() {
         name: 'tag2'
       }]);
       expect($scope.price).toEqual(2.5);
-      expect($scope.baseDate).toEqual(new Date(2015, 3, 15));
+      expect($scope.date).toEqual(new Date(2015, 3, 15));
       expect($scope.fromTime).toEqual(new Date(1970, 0, 1, 10, 0, 0));
       expect($scope.toTime).toEqual(new Date(1970, 0, 1, 15, 0, 0));
       expect($scope.image.src).toEqual('image path');
