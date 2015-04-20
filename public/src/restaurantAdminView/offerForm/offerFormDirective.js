@@ -22,7 +22,7 @@
           submitFunction: '&onSubmit',
           cancelFunction: '&onCancel',
         },
-        controller: function($scope, $element, $attrs, $transclude) {
+        controller: function($scope, $element, $attrs) {
           var isEdit = !!$scope.offerToEdit;
           $scope.allTags = $resource('api/v1/tags', {}, {
             'queryCached': {
