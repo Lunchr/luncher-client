@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4 col-sm-3">
       <p>
-        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="5" ng-maxlength="40" required>
+        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="5" ng-maxlength="70" required>
         <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
           <span ng-show="!isReadyForError(form.title)">
             Nimetus
@@ -23,7 +23,7 @@
       <p>
         <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
                      because of this we have to mark it manually for now-->
-        <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="3" on-tag-added="form.ingredients.$dirty=true"
+        <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="2" on-tag-added="form.ingredients.$dirty=true"
                     on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}"
                     replace-spaces-with-dashes="false">
           <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
