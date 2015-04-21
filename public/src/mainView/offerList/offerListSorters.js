@@ -33,6 +33,9 @@
   offerListSorters.filter('order', ['orderByFilter', 'offerOrderState',
     function(orderByFilter, offerOrderState) {
       return function(offers) {
+        if (!offerOrderState.orderBy) {
+          return offers;
+        }
         var asc = offerOrderState.isAscending;
         var reverse = typeof asc === 'undefined' ? false : !asc;
         var reversePrefix = reverse ? '-' : '';
