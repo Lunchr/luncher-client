@@ -14,6 +14,19 @@
     };
   });
 
+  offerListFilters.filter('approximateDistance', [
+    function() {
+      return function(input) {
+        var approximation = Math.round(input / 10.0) * 10;
+        if (input >= 1000) {
+          return '~' + (approximation / 1000.0).toFixed(2) + 'km';
+        } else {
+          return '~' + approximation + 'm';
+        }
+      };
+    }
+  ]);
+
   offerListFilters.filter('tag', ['filterFilter', 'offerFilterState', 'doIntersect',
     function(filterFilter, offerFilterState, doIntersect) {
       return function(offers) {

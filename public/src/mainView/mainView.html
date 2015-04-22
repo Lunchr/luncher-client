@@ -67,7 +67,12 @@
                 <div class="offer-content">
                     <div class="col-1">
                         <p>{{offer.restaurant.name}}</p>
-                        <p class="additional">{{offer.restaurant.address}}</p>
+                        <p class="additional">
+                          {{offer.restaurant.address}}
+                          <span ng-if="offer.distance">
+                            {{offer.distance | approximateDistance}}
+                          </span>
+                        </p>
                     </div>
                     <div class="col-2">
                         <div class="col-wrap">

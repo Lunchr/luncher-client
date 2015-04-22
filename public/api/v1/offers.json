@@ -14,7 +14,8 @@
   "price": 3.4,
   "ingredients": ["Kana", "aedviljad", "tsillikaste"],
   "tags": ["lind", "kana"],
-  "image": "mock-images/meatmarket.jpg"
+  "image": "mock-images/meatmarket.jpg",
+  "distance": 1234.123456
 }, {
   "_id": "2",
   "restaurant": {
@@ -31,5 +32,6 @@
   "price": 3.3,
   "ingredients": ["Seafilee", "aedviljad", "mahushapu kaste"],
   "tags": ["siga"],
-  "image": "mock-images/meatmarket2.jpg"
+  "image": "mock-images/meatmarket2.jpg",
+  "distance": 125.123456
 }]
