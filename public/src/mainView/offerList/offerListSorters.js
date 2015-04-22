@@ -12,7 +12,7 @@
           isNumeric: '@'
         },
         controller: function($scope, $element, $attrs, $transclude) {
-          $scope.isAscending = true;
+          $scope.isAscending = false;
           $scope.clicked = function() {
             $scope.isAscending = !$scope.isAscending;
             offerOrderState.orderBy = $scope.orderBy;

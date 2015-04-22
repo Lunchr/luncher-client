@@ -47,8 +47,8 @@ describe('OfferList sorters', function() {
         expect(scope.isAscending).toBeDefined();
       });
 
-      it('should have default asc state of true', function() {
-        expect(scope.isAscending).toBe(true);
+      it('should have default asc state of false', function() {
+        expect(scope.isAscending).toBe(false);
       });
 
       it('should hide asc state from parent scope', function() {
@@ -74,9 +74,9 @@ describe('OfferList sorters', function() {
         });
 
         it('should should reverse order for this sorter', function() {
-          expect(scope.isAscending).toBe(false);
-          clickSorter();
           expect(scope.isAscending).toBe(true);
+          clickSorter();
+          expect(scope.isAscending).toBe(false);
         });
 
         it('should change the orderBy value of the state service', inject(function(offerOrderState) {
@@ -84,9 +84,9 @@ describe('OfferList sorters', function() {
         }));
 
         it('should set the asc/desc value of the state service', inject(function(offerOrderState) {
-          expect(offerOrderState.isAscending).toBe(false);
-          clickSorter();
           expect(offerOrderState.isAscending).toBe(true);
+          clickSorter();
+          expect(offerOrderState.isAscending).toBe(false);
         }));
       });
 
