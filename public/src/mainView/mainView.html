@@ -33,8 +33,11 @@
         <div class="overlay" ng-click="state.sourceSelectionDropdown=''"></div>
         <div class="controls" ng-show="offers.length">
             <div class="col-1">
-                <offers-sorter id="location-sort-label" order-by="restaurant.name">
+                <offers-sorter ng-if="!state.offerSource.offerSource.location" order-by="restaurant.name">
                     Asukoht
+                </offers-sorter>
+                <offers-sorter ng-if="state.offerSource.offerSource.location" is-numeric="true" order-by="distance">
+                    Kaugus
                 </offers-sorter>
             </div>
             <div class="col-2">
@@ -51,7 +54,7 @@
                       </form>
                       <div class="overlay" ng-click="state.filtersDropdown=''"></div>
                     </div>
-                    <offers-sorter is-numeric="true" order-by="price" id="price-sort-label" class="price-sorter">
+                    <offers-sorter is-numeric="true" order-by="price" class="price-sorter">
                         Hind
                     </offers-sorter>
                 </div>
