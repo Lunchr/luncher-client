@@ -60,8 +60,8 @@
                 </div>
             </div>
         </div>
-        <div class="offers-wrap" ng-repeat="offerList in vm.offersGroupedByIsFavorite">
-            <div class="offer" ng-repeat="offer in offerList | search | tag | order" id="{{offer._id}}"
+        <div class="offers-wrap" ng-repeat="offerList in vm.offersGroupedByIsFavorite" ng-class="{filled: filteredOffers.length}">
+            <div class="offer" ng-repeat="offer in offerList | search | tag | order as filteredOffers" id="{{offer._id}}"
                  ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state, favorite: offer.isFavorite}">
                 <p class="icon-wrap">
                   <!-- stop event propagation to avoid expanding the offer when the user just wants to favorite -->
