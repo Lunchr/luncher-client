@@ -12,11 +12,17 @@
     function($scope, $resource, favorites, cookies) {
       $scope.loadOffersForRegion = function(region) {
         $scope.region = region;
+        cookies.setOfferSource({
+          region: region,
+        });
         $scope.offers = $resource('api/v1/regions/'+region+'/offers').query({},
           offerLoadSuccess, offerLoadError);
       };
       $scope.loadOffersNearLocation = function(lat, lng) {
         delete $scope.region;
+        cookies.setOfferSource({
+          location: true,
+        });
         $scope.offers = $resource('api/v1/offers').query({
           lat: lat,
           lng: lng,

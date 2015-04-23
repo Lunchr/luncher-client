@@ -5,19 +5,6 @@ describe('OfferSourceSelection', function() {
     module('sourceSelection', 'partials', function($provide){
       $provide.factory('regionSelectionDirective', function(){ return {}; });
       $provide.factory('geolocator', function(){ return {}; });
-      $provide.provider('cookies', {
-        $get: function() {
-          return {
-            refreshExpirations: function(){},
-            setOfferSource: jasmine.createSpy('setOfferSource'),
-            getOfferSource: jasmine.createSpy('getOfferSource'),
-            removeOfferSource: jasmine.createSpy('removeOfferSource'),
-          };
-        }
-      });
-    });
-    inject(function(_cookies_) {
-      cookies = _cookies_;
     });
   });
 
@@ -42,11 +29,6 @@ describe('OfferSourceSelection', function() {
 
         expect($parentScope.regionSelected).toHaveBeenCalledWith('test');
       });
-
-      it('should set the offerSource cookie to the selected region', function() {
-        $scope.regionSelected('test');
-        expect(cookies.setOfferSource).toHaveBeenCalledWith({region: 'test'});
-      });
     });
 
     describe('onLocationSelected', function() {
@@ -58,11 +40,6 @@ describe('OfferSourceSelection', function() {
         $scope.locationSelected('lat', 'lng');
 
         expect($parentScope.locationSelected).toHaveBeenCalledWith('lat', 'lng');
-      });
-
-      it('should set the offerSource cookie to location', function() {
-        $scope.locationSelected('lat', 'lng');
-        expect(cookies.setOfferSource).toHaveBeenCalledWith({location:true});
       });
     });
   });

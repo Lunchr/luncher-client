@@ -199,19 +199,30 @@ describe('OfferList cotrollers', function() {
       });
 
       describe('loadOffersForRegion', function() {
-        it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
+        beforeEach(inject(function($httpBackend) {
           $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(offerUtils.getMockOffers());
+        }));
+
+        it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
           expect($scope.offers).toBeUndefined();
           $scope.loadOffersForRegion('tartu');
           $httpBackend.flush();
           expect($scope.offers.length).toBe(4);
           expect($scope.region).toBe('tartu');
         }));
+
+        it('should set the offerSource cookie to the selected region', function() {
+          $scope.loadOffersForRegion('tartu');
+          expect(cookies.setOfferSource).toHaveBeenCalledWith({region: 'tartu'});
+        });
       });
 
       describe('loadOffersNearLocation', function() {
-        it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
+        beforeEach(inject(function($httpBackend) {
           $httpBackend.expectGET('api/v1/offers?lat=1.1&lng=2.2').respond(offerUtils.getMockOffers());
+        }));
+
+        it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
           expect($scope.offers).toBeUndefined();
           $scope.loadOffersNearLocation(1.1, 2.2);
           $httpBackend.flush();
@@ -219,9 +230,13 @@ describe('OfferList cotrollers', function() {
           expect($scope.region).toBeUndefined();
         }));
 
+        it('should set the offerSource cookie to location', function() {
+          $scope.loadOffersNearLocation(1.1, 2.2);
+          expect(cookies.setOfferSource).toHaveBeenCalledWith({location:true});
+        });
+
         describe('with load offers for region invoked', function() {
           beforeEach(inject(function($httpBackend) {
-            $httpBackend.expectGET('api/v1/offers?lat=1.1&lng=2.2').respond(offerUtils.getMockOffers());
             $scope.loadOffersNearLocation(1.1, 2.2);
           }));
 

@@ -6,8 +6,8 @@
     'cookies',
   ]);
 
-  module.directive('offerSourceSelection', ['$window', 'cookies',
-    function($window, cookies) {
+  module.directive('offerSourceSelection', ['$window',
+    function($window) {
       return {
         scope: {
           onRegionSelected: '&',
@@ -19,17 +19,11 @@
             return !!$window.navigator.geolocation;
           };
           $scope.regionSelected = function(region) {
-            cookies.setOfferSource({
-              region: region,
-            });
             $scope.onRegionSelected({
               $region: region,
             });
           };
           $scope.locationSelected = function(lat, lng) {
-            cookies.setOfferSource({
-              location: true,
-            });
             $scope.onLocationSelected({
               $lat: lat,
               $lng: lng,
