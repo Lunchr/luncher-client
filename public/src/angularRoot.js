@@ -12,6 +12,7 @@
       when('/offers', {
         templateUrl: 'src/mainView/mainView.html',
         controller: 'MainViewCtrl',
+        controllerAs: 'vm',
       }).
       when('/admin', {
         templateUrl: 'src/restaurantAdminView/restaurantAdminView.html',
