@@ -3,40 +3,29 @@
   var module = angular.module('sourceSelection', [
     'regionSelection',
     'geolocator',
-    'cookies',
   ]);
 
-  module.directive('offerSourceSelection', ['$window',
-    function($window) {
+  module.directive('offerSourceSelection', ['$window', 'offerSourceService',
+    function($window, offerSourceService) {
       return {
         scope: {
-          onRegionSelected: '&',
-          onLocationSelected: '&',
-          state: '=?',
+          onSelected: '&',
         },
-        link: function($scope, $element, $attrs) {
-          $scope.canSelectProximal = function() {
-            return !!$window.navigator.geolocation;
-          };
-          $scope.regionSelected = function(region) {
-            $scope.onRegionSelected({
-              $region: region,
-            });
-          };
-          $scope.locationSelected = function(lat, lng) {
-            $scope.onLocationSelected({
-              $lat: lat,
-              $lng: lng,
-            });
-          };
-          if (!$scope.state) {
-            $scope.state = {};
-          } else {
-            $scope.state = {
-              offerSource: $scope.state,
+        controllerAs: 'ctrl',
+        bindToController: true,
+        controller: ['$scope',
+          function($scope) {
+            var ctrl = this;
+            ctrl.canSelectProximal = function() {
+              return !!$window.navigator.geolocation;
             };
+            function offerSourceChanged(offerSource) {
+              ctrl.locationSelected = !!offerSource.location;
+            }
+            offerSourceService.subscribeToChanges($scope, offerSourceChanged);
+            offerSourceChanged(offerSourceService.getCurrent());
           }
-        },
+        ],
         restrict: 'E',
         templateUrl: 'src/mainView/sourceSelection/offerSourceSelection.template.html',
       };

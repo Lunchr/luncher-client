@@ -1,19 +1,13 @@
 <form>
 <ul>
-    <region-selection on-region-selected="regionSelected($region)" state="state"></region-selection>
+    <region-selection on-selected="ctrl.onSelected()"></region-selection>
     <li>
-        <input type="radio" ng-model="state.offerSource.location" ng-value="true"
-               id="checkbox-proximal-{{$id}}" ng-disabled="!canSelectProximal()"
-               ng-change="state.offerSource={location: state.offerSource.location}">
-               <!-- The previous ng-change line is used to clean up the state.offerSource
-                    object. This is needed because we use 2 different properties on the
-                    object to track the radio buttons' state. The location and the regions
-                    property. Without the cleanup, situations where both a region and the
-                    location are selected can happen. -->
+        <input type="radio" ng-model="ctrl.locationSelected" ng-value="true"
+               id="checkbox-proximal-{{$id}}" ng-disabled="!ctrl.canSelectProximal()">
         <label for="checkbox-proximal-{{$id}}">Näita lähimaid pakkumisi</label>
     </li>
     <li>
-        <geolocator on-location-selected="locationSelected($lat, $lng)" ng-show="state.offerSource.location"
+        <geolocator on-selected="ctrl.onSelected()" ng-show="ctrl.locationSelected"
                     key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8">
         </geolocator>
     </li>

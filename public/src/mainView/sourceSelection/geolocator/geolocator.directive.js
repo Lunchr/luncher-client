@@ -2,31 +2,40 @@
   'use strict';
   var module = angular.module('geolocator', ['ngGeolocator']);
 
-  module.directive('geolocator', ['ngGeolocator',
-    function(ngGeolocator) {
+  module.directive('geolocator', ['ngGeolocator', 'offerSourceService',
+    function(ngGeolocator, offerSourceService) {
       return {
         scope: {
           key: '@',
-          onLocationSelected: '&',
+          onSelected: '&',
           ngShow: '=',
         },
-        link: function($scope, $element, $attrs) {
-          var locator;
-          $scope.locationSelected = function() {
-            var location = locator.getLocation();
-            $scope.onLocationSelected({
-              $lat: location.lat,
-              $lng: location.lng,
+        controllerAs: 'ctrl',
+        bindToController: true,
+        controller: function() {
+          var ctrl = this;
+          ctrl.ready = false;
+          ctrl.locationSelected = function() {
+            var location = ctrl.locator.getLocation();
+            offerSourceService.update({
+              location: {
+                lat: location.lat,
+                lng: location.lng,
+              },
             });
+            ctrl.onSelected();
           };
-          $scope.ready = false;
-          var deregister = $scope.$watch('ngShow', function(newVal, oldVal) {
+        },
+        link: function($scope, $element, $attrs, ctrl) {
+          var deregister = $scope.$watch(function() {
+            return ctrl.ngShow;
+          }, function(newVal, oldVal) {
             if (!newVal) {
               return;
             }
-            ngGeolocator.create('geolocator-canvas-'+$scope.$id, $scope.key).then(function(_locator_) {
-              locator = _locator_;
-              $scope.ready = true;
+            ngGeolocator.create('geolocator-canvas-'+$scope.$id, ctrl.key).then(function(locator) {
+              ctrl.locator = locator;
+              ctrl.ready = true;
             });
             // only init the map the first time this directive is made visible
             deregister();

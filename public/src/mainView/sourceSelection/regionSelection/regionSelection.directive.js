@@ -4,29 +4,37 @@
     'ngResource',
   ]);
 
-  module.directive('regionSelection', ['$resource',
-    function($resource) {
+  module.directive('regionSelection', ['$resource', 'offerSourceService',
+    function($resource, offerSourceService) {
       return {
         scope: {
-          onRegionSelected: '&',
-          state: '=?'
+          onSelected: '&',
         },
-        link: function($scope, $element, $attrs) {
-          $scope.regions = $resource('api/v1/regions', {}, {
-            'queryCached': {
-              method: 'GET',
-              isArray: true,
-              cache: true,
+        controllerAs: 'ctrl',
+        bindToController: true,
+        controller: ['$scope',
+          function($scope) {
+            var ctrl = this;
+            ctrl.regions = $resource('api/v1/regions', {}, {
+              'queryCached': {
+                method: 'GET',
+                isArray: true,
+                cache: true,
+              }
+            }).queryCached();
+            ctrl.regionSelected = function() {
+              offerSourceService.update({
+                region: ctrl.selected
+              });
+              ctrl.onSelected();
+            };
+            function offerSourceChanged(offerSource) {
+              ctrl.selected = offerSource.region;
             }
-          }).queryCached();
-          if (!$scope.state) {
-            // The selected region will be bound to a property on this object. This
-            // is required because each radio button in ng-repeat has its own scope
-            // and without an explicit element in the parent they would all see a
-            // different region as the selected one.
-            $scope.state = {};
+            offerSourceService.subscribeToChanges($scope, offerSourceChanged);
+            offerSourceChanged(offerSourceService.getCurrent());
           }
-        },
+        ],
         restrict: 'E',
         templateUrl: 'src/mainView/sourceSelection/regionSelection/regionSelection.template.html',
       };

@@ -4,32 +4,13 @@
     'ngResource',
     'offerListControllers',
     'favorites',
+    'offerSource',
     'sourceSelection',
   ]);
 
-  module.controller('MainViewCtrl', ['$resource', 'favorites', 'cookies',
-    function($resource, favorites, cookies) {
+  module.controller('MainViewCtrl', ['$scope', '$resource', 'favorites', 'offerSourceService',
+    function($scope, $resource, favorites, offerSourceService) {
       var vm = this;
-      vm.loadOffersForRegion = function(region) {
-        var offerSource = {
-          region: region,
-        };
-        cookies.setOfferSource(offerSource);
-        vm.offerSource = offerSource;
-        vm.offers = $resource('api/v1/regions/'+region+'/offers').query({},
-          offerLoadSuccess, offerLoadError);
-      };
-      vm.loadOffersNearLocation = function(lat, lng) {
-        var offerSource = {
-          location: true,
-        };
-        cookies.setOfferSource(offerSource);
-        vm.offerSource = offerSource;
-        vm.offers = $resource('api/v1/offers').query({
-          lat: lat,
-          lng: lng,
-        }, offerLoadSuccess, offerLoadError);
-      };
       vm.toggleFavorite = function(restaurantName) {
         favorites.toggleInclusion(restaurantName);
         updateFavorites();
@@ -42,26 +23,38 @@
         var lat = coords[1];
         return lat+","+lng;
       };
+
+      offerSourceService.subscribeToChanges($scope, function loadOffers(offerSource) {
+        vm.offerSource = offerSource;
+        if (offerSource.region) {
+          loadOffersForRegion(offerSource.region);
+        } else if (offerSource.location) {
+          loadOffersNearLocation(offerSource.location);
+        }
+      });
       (function bootstrap(){
         if (!vm.state) {
           vm.state = {};
         }
-        var offerSource = cookies.getOfferSource();
-        if (offerSource) {
-          if(offerSource.region){
-            vm.loadOffersForRegion(offerSource.region);
-            return;
-          } else if (offerSource.location) {
-            vm.offerSource = {
-              location: true,
-            };
-            vm.state.sourceSelectionPopup = 'active';
-            return;
-          }
+        var offerSource = offerSourceService.getCurrent();
+        vm.offerSource = offerSource;
+        if (offerSource && offerSource.region) {
+          loadOffersForRegion(offerSource.region);
+        } else {
+          vm.state.sourceSelectionPopup = 'active';
         }
-        vm.state.sourceSelectionPopup = 'active';
       })();
 
+      function loadOffersForRegion(region) {
+        vm.offers = $resource('api/v1/regions/'+region+'/offers').query({},
+          offerLoadSuccess, offerLoadError);
+      }
+      function loadOffersNearLocation(location) {
+        vm.offers = $resource('api/v1/offers').query({
+          lat: location.lat,
+          lng: location.lng,
+        }, offerLoadSuccess, offerLoadError);
+      }
       function offerLoadSuccess() {
         updateFavorites();
       }

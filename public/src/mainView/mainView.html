@@ -3,7 +3,7 @@
         <div class="header-wrap">
             <p class="icon-wrap">
                 <button ng-click="vm.state.sourceSelectionDropdown='active'" class="icon icon-5">
-                    <span class="icon-label location">{{vm.region}}</span>
+                    <span class="icon-label location">{{vm.offerSource.region}}</span>
                 </button>
             </p>
             <p id="logo">Luncher</p>
@@ -16,27 +16,23 @@
 </div>
 <div class="popup" ng-class="vm.state.sourceSelectionPopup">
     <h2>Vali enda asukoht</h2>
-    <offer-source-selection on-region-selected="vm.loadOffersForRegion($region); vm.state.sourceSelectionPopup=''"
-                            on-location-selected="vm.loadOffersNearLocation($lat, $lng); vm.state.sourceSelectionPopup=''"
-                            state="vm.state.offerSource">
+    <offer-source-selection on-selected="vm.state.sourceSelectionPopup=''">
     </offer-source-selection>
 </div>
 <div class="overlay"></div>
 <div class="content">
     <div class="container">
         <div class="dropdown" ng-class="vm.state.sourceSelectionDropdown">
-            <offer-source-selection on-region-selected="vm.loadOffersForRegion($region); vm.state.sourceSelectionDropdown=''"
-                                    on-location-selected="vm.loadOffersNearLocation($lat, $lng); vm.state.sourceSelectionDropdown=''"
-                                    state="vm.state.offerSource">
+            <offer-source-selection on-selected="vm.state.sourceSelectionDropdown=''">
             </offer-source-selection>
         </div>
         <div class="overlay" ng-click="vm.state.sourceSelectionDropdown=''"></div>
         <div class="controls" ng-show="vm.offers.length">
             <div class="col-1">
-                <offers-sorter ng-if="!vm.state.offerSource.offerSource.location" order-by="restaurant.name">
+                <offers-sorter ng-if="!vm.offerSource.location" order-by="restaurant.name">
                     Asukoht
                 </offers-sorter>
-                <offers-sorter ng-if="vm.state.offerSource.offerSource.location" is-numeric="true" order-by="distance">
+                <offers-sorter ng-if="vm.offerSource.location" is-numeric="true" order-by="distance">
                     Kaugus
                 </offers-sorter>
             </div>

@@ -1,8 +1,5 @@
-<li ng-repeat="region in regions">
-    <input type="radio" id="region-selection-{{$id}}" ng-model="state.offerSource.region"
-           ng-change="onRegionSelected({$region: region.name}); state.offerSource={region: state.offerSource.region}"
-           ng-value="region.name">
-           <!-- See offerSourceSelection.directive for reasons why we clean up the
-                state.offerSource object on ng-change -->
+<li ng-repeat="region in ctrl.regions">
+    <input type="radio" id="region-selection-{{$id}}" ng-model="ctrl.selected"
+           ng-change="ctrl.regionSelected(region.name)" ng-value="region.name">
     <label for="region-selection-{{$id}}"> {{region.name}} </label>
 </li>
