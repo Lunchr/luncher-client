@@ -105,7 +105,10 @@
 
   module.controller('SearchCtrl', ['$scope', 'offerFilterState',
     function($scope, offerFilterState) {
-      $scope.$watch('query', function(query) {
+      var search = this;
+      $scope.$watch(function() {
+        return search.query;
+      }, function(query) {
         offerFilterState.query = query;
       }, true);
     }

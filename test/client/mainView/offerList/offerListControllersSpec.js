@@ -29,17 +29,18 @@ describe('OfferList cotrollers', function() {
   });
 
   describe('Search controller', function() {
-    var $scope;
+    var $scope, search;
 
     beforeEach(inject(function($rootScope, $controller) {
       $scope = $rootScope.$new();
-      $controller('SearchCtrl', {
+      $controller('SearchCtrl as search', {
         $scope: $scope
       });
+      search = $scope.search;
     }));
 
     it('should update filter state service', inject(function(offerFilterState) {
-      $scope.query = "Who is ...";
+      search.query = "Who is ...";
 
       $scope.$apply();
 

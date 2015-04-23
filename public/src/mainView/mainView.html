@@ -7,9 +7,9 @@
                 </button>
             </p>
             <p id="logo">Luncher</p>
-            <p class="search-wrap" ng-controller="SearchCtrl">
-                <input ng-class="{ 'filled': query.length }" id="search" type="text" ng-model="query">
-                <button ng-click="query = ''" id="search-submit" class="icon-7"></button>
+            <p class="search-wrap" ng-controller="SearchCtrl as search">
+                <input ng-class="{ 'filled': search.query.length }" id="search" type="text" ng-model="search.query">
+                <button ng-click="search.query = ''" id="search-submit" class="icon-7"></button>
             </p>
         </div>
     </div>
