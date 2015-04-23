@@ -11,18 +11,20 @@
     function($resource, favorites, cookies) {
       var vm = this;
       vm.loadOffersForRegion = function(region) {
-        vm.region = region;
-        cookies.setOfferSource({
+        var offerSource = {
           region: region,
-        });
+        };
+        cookies.setOfferSource(offerSource);
+        vm.offerSource = offerSource;
         vm.offers = $resource('api/v1/regions/'+region+'/offers').query({},
           offerLoadSuccess, offerLoadError);
       };
       vm.loadOffersNearLocation = function(lat, lng) {
-        delete vm.region;
-        cookies.setOfferSource({
+        var offerSource = {
           location: true,
-        });
+        };
+        cookies.setOfferSource(offerSource);
+        vm.offerSource = offerSource;
         vm.offers = $resource('api/v1/offers').query({
           lat: lat,
           lng: lng,
@@ -46,11 +48,13 @@
         }
         var offerSource = cookies.getOfferSource();
         if (offerSource) {
-          vm.state.offerSource = offerSource;
           if(offerSource.region){
             vm.loadOffersForRegion(offerSource.region);
             return;
           } else if (offerSource.location) {
+            vm.offerSource = {
+              location: true,
+            };
             vm.state.sourceSelectionPopup = 'active';
             return;
           }

@@ -52,13 +52,12 @@ describe('mainViewController', function() {
           expect(vm.offers.length).toBe(0);
           $httpBackend.flush();
           expect(vm.offers.length).toBe(4);
-          expect(vm.region).toBe('a-region');
         }));
 
         it('should set the offerSource state to that region', inject(function($httpBackend) {
           $httpBackend.flush();
           expect(vm.state.sourceSelectionPopup).toBeFalsy();
-          expect(vm.state.offerSource.region).toBe('a-region');
+          expect(vm.offerSource.region).toBe('a-region');
         }));
       });
 
@@ -77,7 +76,7 @@ describe('mainViewController', function() {
 
         it('should open the source selection popup with locator enabled', function() {
           expect(vm.state.sourceSelectionPopup).toBe('active');
-          expect(vm.state.offerSource.location).toBe(true);
+          expect(vm.offerSource.location).toBe(true);
         });
       });
     });
@@ -89,7 +88,9 @@ describe('mainViewController', function() {
           $scope: $scope
         });
         vm = $scope.vm;
-        vm.region = 'to-test-that-this-is-removed-for-load-near-location';
+        vm.offerSource = {
+          region: 'to-test-that-this-is-removed-for-load-near-location',
+        };
 
         favorites.decorateOffers = jasmine.createSpy();
         favorites.toggleInclusion = jasmine.createSpy();
@@ -110,7 +111,7 @@ describe('mainViewController', function() {
           vm.loadOffersForRegion('tartu');
           $httpBackend.flush();
           expect(vm.offers.length).toBe(4);
-          expect(vm.region).toBe('tartu');
+          expect(vm.offerSource.region).toBe('tartu');
         }));
 
         it('should set the offerSource cookie to the selected region', function() {
@@ -129,7 +130,8 @@ describe('mainViewController', function() {
           vm.loadOffersNearLocation(1.1, 2.2);
           $httpBackend.flush();
           expect(vm.offers.length).toBe(4);
-          expect(vm.region).toBeUndefined();
+          expect(vm.offerSource.region).toBeUndefined();
+          expect(vm.offerSource.location).toBe(true);
         }));
 
         it('should set the offerSource cookie to location', function() {
