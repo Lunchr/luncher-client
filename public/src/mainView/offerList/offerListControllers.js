@@ -85,15 +85,18 @@
 
   module.controller('TagListCtrl', ['$scope', 'offerFilterState', '$resource',
     function($scope, offerFilterState, $resource) {
-      $scope.tagList = $resource('api/v1/tags').query();
+      var tags = this;
+      tags.list = $resource('api/v1/tags').query();
 
-      $scope.$watch('tagList', function(tagList) {
-        $scope.selectedTags = [];
+      $scope.$watch(function() {
+        return tags.list;
+      }, function(tagList) {
+        tags.selected = [];
         offerFilterState.selectedTags = [];
         tagList.forEach(function(tag) {
           if (tag.selected) {
             offerFilterState.selectedTags.push(tag.name);
-            $scope.selectedTags.push(tag.display_name);
+            tags.selected.push(tag.display_name);
           }
         });
       }, true);

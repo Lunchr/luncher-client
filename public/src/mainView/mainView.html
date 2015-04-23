@@ -42,12 +42,12 @@
             </div>
             <div class="col-2">
                 <div class="col-wrap">
-                    <div ng-controller="TagListCtrl">
-                      <a href="javascript:undefined" ng-click="state.filtersDropdown='active'">{{(selectedTags | joinTags) || 'Filtreeri'}}</a>
+                    <div ng-controller="TagListCtrl as tags">
+                      <a href="javascript:undefined" ng-click="state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
                       <form class="dropdown" ng-class="state.filtersDropdown">
                           <ul>
-                              <li ng-repeat="tag in tagList">
-                                  <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
+                              <li ng-repeat="tag in tags.list">
+                                  <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
                                   <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
                               </li>
                           </ul>
