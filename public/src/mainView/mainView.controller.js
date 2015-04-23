@@ -7,31 +7,32 @@
     'sourceSelection',
   ]);
 
-  module.controller('MainViewCtrl', ['$scope', '$resource', 'favorites', 'cookies',
-    function($scope, $resource, favorites, cookies) {
-      $scope.loadOffersForRegion = function(region) {
-        $scope.region = region;
+  module.controller('MainViewCtrl', ['$resource', 'favorites', 'cookies',
+    function($resource, favorites, cookies) {
+      var vm = this;
+      vm.loadOffersForRegion = function(region) {
+        vm.region = region;
         cookies.setOfferSource({
           region: region,
         });
-        $scope.offers = $resource('api/v1/regions/'+region+'/offers').query({},
+        vm.offers = $resource('api/v1/regions/'+region+'/offers').query({},
           offerLoadSuccess, offerLoadError);
       };
-      $scope.loadOffersNearLocation = function(lat, lng) {
-        delete $scope.region;
+      vm.loadOffersNearLocation = function(lat, lng) {
+        delete vm.region;
         cookies.setOfferSource({
           location: true,
         });
-        $scope.offers = $resource('api/v1/offers').query({
+        vm.offers = $resource('api/v1/offers').query({
           lat: lat,
           lng: lng,
         }, offerLoadSuccess, offerLoadError);
       };
-      $scope.toggleFavorite = function(restaurantName) {
+      vm.toggleFavorite = function(restaurantName) {
         favorites.toggleInclusion(restaurantName);
         updateFavorites();
       };
-      $scope.getLatLng = function(offer) {
+      vm.getLatLng = function(offer) {
         // offer.restaurant.location is a GeoJSON object. This means coordinates
         // is an array of [lng,lat]
         var coords = offer.restaurant.location.coordinates;
@@ -40,43 +41,43 @@
         return lat+","+lng;
       };
       (function bootstrap(){
-        if (!$scope.state) {
-          $scope.state = {};
+        if (!vm.state) {
+          vm.state = {};
         }
         var offerSource = cookies.getOfferSource();
         if (offerSource) {
-          $scope.state.offerSource = offerSource;
+          vm.state.offerSource = offerSource;
           if(offerSource.region){
-            $scope.loadOffersForRegion(offerSource.region);
+            vm.loadOffersForRegion(offerSource.region);
             return;
           } else if (offerSource.location) {
-            $scope.state.sourceSelectionPopup = 'active';
+            vm.state.sourceSelectionPopup = 'active';
             return;
           }
         }
-        $scope.state.sourceSelectionPopup = 'active';
+        vm.state.sourceSelectionPopup = 'active';
       })();
 
       function offerLoadSuccess() {
         updateFavorites();
       }
       function offerLoadError() {
-        $scope.offersGroupedByIsFavorite = [];
+        vm.offersGroupedByIsFavorite = [];
       }
       function updateFavorites() {
-        favorites.decorateOffers($scope.offers);
-        var favoriteOffers = $scope.offers.filter(function(offer) {
+        favorites.decorateOffers(vm.offers);
+        var favoriteOffers = vm.offers.filter(function(offer) {
           return offer.isFavorite;
         });
-        var otherOffers = $scope.offers.filter(function(offer) {
+        var otherOffers = vm.offers.filter(function(offer) {
           return !offer.isFavorite;
         });
-        $scope.offersGroupedByIsFavorite = [];
+        vm.offersGroupedByIsFavorite = [];
         if (favoriteOffers.length > 0) {
-          $scope.offersGroupedByIsFavorite.push(favoriteOffers);
+          vm.offersGroupedByIsFavorite.push(favoriteOffers);
         }
         if (otherOffers.length > 0) {
-          $scope.offersGroupedByIsFavorite.push(otherOffers);
+          vm.offersGroupedByIsFavorite.push(otherOffers);
         }
       }
     }

@@ -29,7 +29,7 @@ describe('mainViewController', function() {
   });
 
   describe('MainViewCtrl', function() {
-    var $scope;
+    var $scope, vm;
 
     describe('bootstrapping', function() {
       describe('with offer source cookie set for a region', function() {
@@ -40,24 +40,25 @@ describe('mainViewController', function() {
           $httpBackend.expectGET('api/v1/regions/a-region/offers').respond(offerUtils.getMockOffers());
 
           $scope = $rootScope.$new();
-          $controller('MainViewCtrl', {
+          $controller('MainViewCtrl as vm', {
             $scope: $scope
           });
+          vm = $scope.vm;
 
           favorites.decorateOffers = jasmine.createSpy();
         }));
 
         it('should load offers for that region', inject(function($httpBackend) {
-          expect($scope.offers.length).toBe(0);
+          expect(vm.offers.length).toBe(0);
           $httpBackend.flush();
-          expect($scope.offers.length).toBe(4);
-          expect($scope.region).toBe('a-region');
+          expect(vm.offers.length).toBe(4);
+          expect(vm.region).toBe('a-region');
         }));
 
         it('should set the offerSource state to that region', inject(function($httpBackend) {
           $httpBackend.flush();
-          expect($scope.state.sourceSelectionPopup).toBeFalsy();
-          expect($scope.state.offerSource.region).toBe('a-region');
+          expect(vm.state.sourceSelectionPopup).toBeFalsy();
+          expect(vm.state.offerSource.region).toBe('a-region');
         }));
       });
 
@@ -68,14 +69,15 @@ describe('mainViewController', function() {
           });
 
           $scope = $rootScope.$new();
-          $controller('MainViewCtrl', {
+          $controller('MainViewCtrl as vm', {
             $scope: $scope
           });
+          vm = $scope.vm;
         }));
 
         it('should open the source selection popup with locator enabled', function() {
-          expect($scope.state.sourceSelectionPopup).toBe('active');
-          expect($scope.state.offerSource.location).toBe(true);
+          expect(vm.state.sourceSelectionPopup).toBe('active');
+          expect(vm.state.offerSource.location).toBe(true);
         });
       });
     });
@@ -83,18 +85,19 @@ describe('mainViewController', function() {
     describe('with no offer source cookie set', function() {
       beforeEach(inject(function($rootScope, $controller, favorites) {
         $scope = $rootScope.$new();
-        $controller('MainViewCtrl', {
+        $controller('MainViewCtrl as vm', {
           $scope: $scope
         });
-        $scope.region = 'to-test-that-this-is-removed-for-load-near-location';
+        vm = $scope.vm;
+        vm.region = 'to-test-that-this-is-removed-for-load-near-location';
 
         favorites.decorateOffers = jasmine.createSpy();
         favorites.toggleInclusion = jasmine.createSpy();
       }));
 
       it('should open the source selection popup', function() {
-        expect($scope.state.sourceSelectionPopup).toBe('active');
-        expect($scope.state.isLocationSelectionEnabled).toBeFalsy();
+        expect(vm.state.sourceSelectionPopup).toBe('active');
+        expect(vm.state.isLocationSelectionEnabled).toBeFalsy();
       });
 
       describe('loadOffersForRegion', function() {
@@ -103,15 +106,15 @@ describe('mainViewController', function() {
         }));
 
         it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
-          expect($scope.offers).toBeUndefined();
-          $scope.loadOffersForRegion('tartu');
+          expect(vm.offers).toBeUndefined();
+          vm.loadOffersForRegion('tartu');
           $httpBackend.flush();
-          expect($scope.offers.length).toBe(4);
-          expect($scope.region).toBe('tartu');
+          expect(vm.offers.length).toBe(4);
+          expect(vm.region).toBe('tartu');
         }));
 
         it('should set the offerSource cookie to the selected region', function() {
-          $scope.loadOffersForRegion('tartu');
+          vm.loadOffersForRegion('tartu');
           expect(cookies.setOfferSource).toHaveBeenCalledWith({region: 'tartu'});
         });
       });
@@ -122,28 +125,28 @@ describe('mainViewController', function() {
         }));
 
         it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
-          expect($scope.offers).toBeUndefined();
-          $scope.loadOffersNearLocation(1.1, 2.2);
+          expect(vm.offers).toBeUndefined();
+          vm.loadOffersNearLocation(1.1, 2.2);
           $httpBackend.flush();
-          expect($scope.offers.length).toBe(4);
-          expect($scope.region).toBeUndefined();
+          expect(vm.offers.length).toBe(4);
+          expect(vm.region).toBeUndefined();
         }));
 
         it('should set the offerSource cookie to location', function() {
-          $scope.loadOffersNearLocation(1.1, 2.2);
+          vm.loadOffersNearLocation(1.1, 2.2);
           expect(cookies.setOfferSource).toHaveBeenCalledWith({location:true});
         });
 
         describe('with load offers for region invoked', function() {
           beforeEach(inject(function($httpBackend) {
-            $scope.loadOffersNearLocation(1.1, 2.2);
+            vm.loadOffersNearLocation(1.1, 2.2);
           }));
 
           describe('favorites', function() {
             it('should call the decorator after the offers are returned', inject(function($httpBackend, favorites) {
               expect(favorites.decorateOffers).not.toHaveBeenCalled();
               $httpBackend.flush();
-              expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+              expect(favorites.decorateOffers).toHaveBeenCalledWith(vm.offers);
             }));
           });
         });
@@ -154,7 +157,7 @@ describe('mainViewController', function() {
         beforeEach(inject(function($httpBackend) {
           mockOffers = offerUtils.getMockOffers();
           $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(mockOffers);
-          $scope.loadOffersForRegion('tartu');
+          vm.loadOffersForRegion('tartu');
         }));
 
         describe('favorites', function() {
@@ -165,7 +168,7 @@ describe('mainViewController', function() {
           it('should call the decorator after the offers are returned', inject(function($httpBackend, favorites) {
             expect(favorites.decorateOffers).not.toHaveBeenCalled();
             $httpBackend.flush();
-            expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+            expect(favorites.decorateOffers).toHaveBeenCalledWith(vm.offers);
           }));
 
           it('should call separate the offers into groups by favorites after offers are returned', inject(function($httpBackend) {
@@ -173,18 +176,18 @@ describe('mainViewController', function() {
             mockOffers[3].isFavorite = true;
             $httpBackend.flush();
 
-            expect($scope.offersGroupedByIsFavorite.length).toBe(2);
-            expect($scope.offersGroupedByIsFavorite[0]).toContainId('2');
-            expect($scope.offersGroupedByIsFavorite[0]).toContainId('4');
-            expect($scope.offersGroupedByIsFavorite[1]).toContainId('1');
-            expect($scope.offersGroupedByIsFavorite[1]).toContainId('3');
+            expect(vm.offersGroupedByIsFavorite.length).toBe(2);
+            expect(vm.offersGroupedByIsFavorite[0]).toContainId('2');
+            expect(vm.offersGroupedByIsFavorite[0]).toContainId('4');
+            expect(vm.offersGroupedByIsFavorite[1]).toContainId('1');
+            expect(vm.offersGroupedByIsFavorite[1]).toContainId('3');
           }));
 
           it('should group all into one with no favorites', inject(function($httpBackend) {
             $httpBackend.flush();
 
-            expect($scope.offersGroupedByIsFavorite.length).toBe(1);
-            expect($scope.offersGroupedByIsFavorite[0].length).toBe(4);
+            expect(vm.offersGroupedByIsFavorite.length).toBe(1);
+            expect(vm.offersGroupedByIsFavorite[0].length).toBe(4);
           }));
 
           it('should group all into one with all being favorites', inject(function($httpBackend) {
@@ -194,8 +197,8 @@ describe('mainViewController', function() {
             mockOffers[3].isFavorite = true;
             $httpBackend.flush();
 
-            expect($scope.offersGroupedByIsFavorite.length).toBe(1);
-            expect($scope.offersGroupedByIsFavorite[0].length).toBe(4);
+            expect(vm.offersGroupedByIsFavorite.length).toBe(1);
+            expect(vm.offersGroupedByIsFavorite[0].length).toBe(4);
           }));
 
           describe('toggle restaurant as favorite', function() {
@@ -208,10 +211,10 @@ describe('mainViewController', function() {
               var restaurantName = 'mock name';
               expect(favorites.toggleInclusion).not.toHaveBeenCalled();
 
-              $scope.toggleFavorite(restaurantName);
+              vm.toggleFavorite(restaurantName);
 
               expect(favorites.toggleInclusion).toHaveBeenCalledWith(restaurantName);
-              expect(favorites.decorateOffers).toHaveBeenCalledWith($scope.offers);
+              expect(favorites.decorateOffers).toHaveBeenCalledWith(vm.offers);
             }));
           });
         });
@@ -222,7 +225,7 @@ describe('mainViewController', function() {
           }));
 
           it('should return a string with "lat,lng"', function() {
-            var latlng = $scope.getLatLng({
+            var latlng = vm.getLatLng({
               restaurant: {
                 location: {
                   coordinates: [1.2, 2.1],
