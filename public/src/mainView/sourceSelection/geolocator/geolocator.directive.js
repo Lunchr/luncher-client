@@ -33,7 +33,7 @@
           });
         },
         restrict: 'E',
-        templateUrl: 'src/mainView/offerList/sourceSelection/geolocator/geolocator.template.html',
+        templateUrl: 'src/mainView/sourceSelection/geolocator/geolocator.template.html',
       };
     }
   ]);
