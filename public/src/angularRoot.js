@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   var praadApp = angular.module('praadApp', [
-    'offerListControllers',
+    'mainViewController',
     'restaurantAdminView',
     'commonFilters',
     'ngRoute',
@@ -11,7 +11,7 @@
       $routeProvider.
       when('/offers', {
         templateUrl: 'src/mainView/mainView.html',
-        controller: 'OfferListCtrl',
+        controller: 'MainViewCtrl',
       }).
       when('/admin', {
         templateUrl: 'src/restaurantAdminView/restaurantAdminView.html',
