@@ -35,8 +35,7 @@
 }
 
 /***** SEARCH *****/
-.search-wrap,
-.logout {
+.search-wrap {
     position: absolute;
     width: auto;
     right: 0;
@@ -96,4 +95,26 @@
 }
 #search:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+.logout {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    a.icon {
+        display: block;
+        color: #fff;
+        span {
+            display: block;
+            padding: 14px 14px 14px 36px;
+        }
+        &:before {
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+    }
 }
