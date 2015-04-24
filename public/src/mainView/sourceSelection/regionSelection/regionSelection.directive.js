@@ -2,6 +2,7 @@
   'use strict';
   var module = angular.module('regionSelection', [
     'ngResource',
+    'offerSource',
   ]);
 
   module.directive('regionSelection', ['$resource', 'offerSourceService',
@@ -29,7 +30,7 @@
               ctrl.onSelected();
             };
             function offerSourceChanged(offerSource) {
-              ctrl.selected = offerSource.region;
+              ctrl.selected = offerSource && offerSource.region;
             }
             offerSourceService.subscribeToChanges($scope, offerSourceChanged);
             offerSourceChanged(offerSourceService.getCurrent());
