@@ -1,29 +1,20 @@
 <div class="header">
     <div class="container">
         <div class="header-wrap">
-            <p class="icon-wrap">
-                <button ng-click="menuState='active'" class="icon icon-12"></button>
+            <p class="icon-wrap restaurant">
+                <button ng-click="menuState='active'" class="icon icon-12">
+                    <span class="icon-label location">{{restaurant.name}}</span>
+                </button>
             </p>
             <p id="logo">Luncher</p>
             <p class="logout">
-              <a href="/api/v1/logout"> Logi välja </a>
+              <a href="/api/v1/logout" class="icon icon-21">
+                  <span>Logi välja</span>
+              </a>
             </p>
         </div>
     </div>
 </div>
-<div ng-class="menuState" class="menu">
-    <h2>{{restaurant.name}}</h2>
-    <p class="icon-wrap">
-        <button ng-click="menuState=''" class="icon icon-9"></button>
-    </p>
-    <ul>
-        <li><a href="javascript:undefined"><span class="icon-1"></span>Restorani andmed</a></li>
-        <li><a href="javascript:undefined"><span class="icon-17"></span>Facebooki seaded</a></li>
-        <li><a href="javascript:undefined"><span class="icon-5"></span>Asukoha seaded</a></li>
-        <li><a href="javascript:undefined"><span class="icon-3"></span>Tagasiside</a></li>
-    </ul>
-</div>
-<div class="overlay"></div>
 <div class="content">
     <div class="container">
         <div class="offer-form-wrap">

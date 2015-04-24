@@ -5,7 +5,7 @@
     @simple-extend-addto material-box;
     padding: 0;
     background-color: #fff;
-    & + .offers-wrap {
+    &.filled + .offers-wrap.filled {
       margin-top: 15px;
     }
 }
@@ -44,6 +44,11 @@
     .icon-15:hover:before {
         content: "r";
         color: $color;
+    }
+    .distance {
+        color: #999;
+        font-size: 13px;
+        padding-left: 10px;
     }
     &.pending {
         opacity: 0.3;

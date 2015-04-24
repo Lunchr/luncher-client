@@ -2,57 +2,53 @@
     <div class="container">
         <div class="header-wrap">
             <p class="icon-wrap">
-                <button ng-click="state.sourceSelectionDropdown='active'" class="icon icon-5">
-                    <span class="icon-label location">{{region}}</span>
+                <button ng-click="vm.state.sourceSelectionDropdown='active'" class="icon icon-5">
+                    <span class="icon-label location">{{vm.offerSource.region}}</span>
                 </button>
             </p>
             <p id="logo">Luncher</p>
-            <p class="search-wrap" ng-controller="SearchCtrl">
-                <input ng-class="{ 'filled': query.length }" id="search" type="text" ng-model="query">
-                <button ng-click="query = ''" id="search-submit" class="icon-7"></button>
+            <p class="search-wrap" ng-controller="SearchCtrl as search">
+                <input ng-class="{ 'filled': search.query.length }" id="search" type="text" ng-model="search.query">
+                <button ng-click="search.query = ''" id="search-submit" class="icon-7"></button>
             </p>
         </div>
     </div>
 </div>
-<div class="popup" ng-class="state.sourceSelectionPopup">
+<div class="popup" ng-class="vm.state.sourceSelectionPopup">
     <h2>Vali enda asukoht</h2>
-    <offer-source-selection on-region-selected="loadOffersForRegion($region); state.sourceSelectionPopup=''"
-                            on-location-selected="loadOffersNearLocation($lat, $lng); state.sourceSelectionPopup=''"
-                            state="state.offerSource">
+    <offer-source-selection on-selected="vm.state.sourceSelectionPopup=''">
     </offer-source-selection>
 </div>
 <div class="overlay"></div>
 <div class="content">
     <div class="container">
-        <div class="dropdown" ng-class="state.sourceSelectionDropdown">
-            <offer-source-selection on-region-selected="loadOffersForRegion($region); state.sourceSelectionDropdown=''"
-                                    on-location-selected="loadOffersNearLocation($lat, $lng); state.sourceSelectionDropdown=''"
-                                    state="state.offerSource">
+        <div class="dropdown" ng-class="vm.state.sourceSelectionDropdown">
+            <offer-source-selection on-selected="vm.state.sourceSelectionDropdown=''">
             </offer-source-selection>
         </div>
-        <div class="overlay" ng-click="state.sourceSelectionDropdown=''"></div>
-        <div class="controls" ng-show="offers.length">
+        <div class="overlay" ng-click="vm.state.sourceSelectionDropdown=''"></div>
+        <div class="controls" ng-show="vm.offers.length">
             <div class="col-1">
-                <offers-sorter ng-if="!state.offerSource.offerSource.location" order-by="restaurant.name">
+                <offers-sorter ng-if="!vm.offerSource.location" order-by="restaurant.name">
                     Asukoht
                 </offers-sorter>
-                <offers-sorter ng-if="state.offerSource.offerSource.location" is-numeric="true" order-by="distance">
+                <offers-sorter ng-if="vm.offerSource.location" is-numeric="true" order-by="distance">
                     Kaugus
                 </offers-sorter>
             </div>
             <div class="col-2">
                 <div class="col-wrap">
-                    <div ng-controller="TagListCtrl">
-                      <a href="javascript:undefined" ng-click="state.filtersDropdown='active'">{{(selectedTags | joinTags) || 'Filtreeri'}}</a>
-                      <form class="dropdown" ng-class="state.filtersDropdown">
+                    <div ng-controller="TagListCtrl as tags">
+                      <a href="javascript:undefined" ng-click="vm.state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
+                      <form class="dropdown" ng-class="vm.state.filtersDropdown">
                           <ul>
-                              <li ng-repeat="tag in tagList">
-                                  <input type="checkbox" id="checkbox-{{tag.name}}" name="meat" ng-model="tag.selected">
+                              <li ng-repeat="tag in tags.list">
+                                  <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
                                   <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
                               </li>
                           </ul>
                       </form>
-                      <div class="overlay" ng-click="state.filtersDropdown=''"></div>
+                      <div class="overlay" ng-click="vm.state.filtersDropdown=''"></div>
                     </div>
                     <offers-sorter is-numeric="true" order-by="price" class="price-sorter">
                         Hind
@@ -60,21 +56,21 @@
                 </div>
             </div>
         </div>
-        <div class="offers-wrap" ng-repeat="offerList in offersGroupedByIsFavorite">
-            <div class="offer" ng-repeat="offer in offerList | search | tag | order" id="{{offer._id}}"
-                 ng-click="toggle.state = !toggle.state" ng-class="{expand: toggle.state, favorite: offer.isFavorite}">
+        <div class="offers-wrap" ng-repeat="offerList in vm.offersGroupedByIsFavorite" ng-class="{filled: filteredOffers.length}">
+            <div class="offer" ng-repeat="offer in offerList | search | tag | order as filteredOffers" id="{{offer._id}}"
+                 ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state, favorite: offer.isFavorite}">
                 <p class="icon-wrap">
                   <!-- stop event propagation to avoid expanding the offer when the user just wants to favorite -->
-                  <a href="javascript:undefined" class="icon icon-8" ng-click="toggleFavorite(offer.restaurant.name); $event.stopPropagation()"></a>
+                  <a href="javascript:undefined" class="icon icon-8" ng-click="vm.toggleFavorite(offer.restaurant.name); $event.stopPropagation()"></a>
                 </p>
                 <div class="offer-content">
                     <div class="col-1">
-                        <p>{{offer.restaurant.name}}</p>
+                        <p>{{offer.restaurant.name}}
+                            <span ng-if="offer.distance" class="distance">
+                              {{offer.distance | approximateDistance}}
+                            </span></p>
                         <p class="additional">
                           {{offer.restaurant.address}}
-                          <span ng-if="offer.distance">
-                            {{offer.distance | approximateDistance}}
-                          </span>
                         </p>
                     </div>
                     <div class="col-2">
@@ -89,7 +85,7 @@
                 </div>
                 <div class="secondary">
                     <div class="col-1">
-                        <div class="map" ng-style="{'background-image': 'url(https://maps.googleapis.com/maps/api/staticmap?center={{getLatLng(offer)}}&zoom=17&size=400x200&scale=2&markers=color:red%7C{{getLatLng(offer)}}&key=AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8)'}">
+                        <div class="map" ng-style="{'background-image': 'url(https://maps.googleapis.com/maps/api/staticmap?center={{vm.getLatLng(offer)}}&zoom=17&size=400x200&scale=2&markers=color:red%7C{{vm.getLatLng(offer)}}&key=AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8)'}">
                         </div>
                     </div>
                     <div class="col-2">
@@ -99,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <p class="message" ng-hide="offers.length">
+        <p class="message" ng-hide="vm.offers.length">
             <span class="icon icon-20"></span>
             Vabandame, pakkumised puuduvad.
       </p>
