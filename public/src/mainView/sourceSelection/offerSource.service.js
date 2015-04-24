@@ -27,7 +27,7 @@
 
         /**
          * @callback OfferSourceService~stateChangeCallback
-         * @param {OfferSourceService~OfferSource} offerSource
+         * @param {OfferSourceService~OfferSource} offerSource The new offer source
          */
 
         /**

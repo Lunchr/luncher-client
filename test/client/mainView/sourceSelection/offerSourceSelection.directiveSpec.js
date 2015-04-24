@@ -1,6 +1,5 @@
 describe('OfferSourceSelection', function() {
   'use strict';
-  var cookies;
   beforeEach(function() {
     module('sourceSelection', 'partials', function($provide){
       $provide.factory('regionSelectionDirective', function(){ return {}; });
