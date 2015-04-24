@@ -19,7 +19,7 @@ describe('Praad App', function() {
 
     it('should filter the offer list as user types into the search box', function() {
       clickPromise.then(function() {
-        element(by.model('query')).sendKeys('kana');
+        element(by.model('search.query')).sendKeys('kana');
 
         expect(offers.count()).toBe(1);
         var title = offers.first().element(by.binding('offer.title')).getText();
