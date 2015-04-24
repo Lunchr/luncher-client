@@ -23,6 +23,16 @@
         var lat = coords[1];
         return lat+","+lng;
       };
+      vm.isFirstForRestaurant = function(offers, offer) {
+        var i = offers.indexOf(offer);
+        if (i === 0) return true;
+        return offers[i-1].restaurant.name != offer.restaurant.name;
+      };
+      vm.isLastForRestaurant = function(offers, offer) {
+        var i = offers.indexOf(offer);
+        if (i === offers.length - 1) return true;
+        return offers[i+1].restaurant.name != offer.restaurant.name;
+      };
 
       offerSourceService.subscribeToChanges($scope, function loadOffers(offerSource) {
         vm.offerSource = offerSource;

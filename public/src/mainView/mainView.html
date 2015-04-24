@@ -38,7 +38,7 @@
                 <p ng-if="!vm.offerSource.location" ng-click="vm.state.geolocatorDropdown='active'">
                     Kaugus
                 </p>
-                <offers-sorter ng-if="vm.offerSource.location" is-numeric="true" order-by="distance">
+                <offers-sorter ng-if="vm.offerSource.location" is-numeric="true" order-by="restaurant.distance">
                     Kaugus
                 </offers-sorter>
             </div>
@@ -64,20 +64,24 @@
         </div>
         <div class="offers-wrap" ng-repeat="offerList in vm.offersGroupedByIsFavorite" ng-class="{filled: filteredOffers.length}">
             <div class="offer" ng-repeat="offer in offerList | search | tag | order as filteredOffers" id="{{offer._id}}"
-                 ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state, favorite: offer.isFavorite}">
-                <p class="icon-wrap">
+                 ng-click="offer.toggle.state = !offer.toggle.state"
+                 ng-class="{expand: offer.toggle.state, favorite: offer.isFavorite, 'not-last-for-restaurant': !vm.isLastForRestaurant(filteredOffers, offer)}">
+                <p class="icon-wrap" ng-if="vm.isFirstForRestaurant(filteredOffers, offer)">
                   <!-- stop event propagation to avoid expanding the offer when the user just wants to favorite -->
                   <a href="javascript:undefined" class="icon icon-8" ng-click="vm.toggleFavorite(offer.restaurant.name); $event.stopPropagation()"></a>
                 </p>
                 <div class="offer-content">
-                    <div class="col-1">
+                    <div class="col-1" ng-if="vm.isFirstForRestaurant(filteredOffers, offer)">
                         <p>{{offer.restaurant.name}}
-                            <span ng-if="offer.distance" class="distance">
-                              {{offer.distance | approximateDistance}}
+                            <span ng-if="offer.restaurant.distance" class="distance">
+                              {{offer.restaurant.distance | approximateDistance}}
                             </span></p>
                         <p class="additional">
                           {{offer.restaurant.address}}
                         </p>
+                    </div>
+                    <div class="col-1" ng-if="!vm.isFirstForRestaurant(filteredOffers, offer)">
+                      &nbsp;
                     </div>
                     <div class="col-2">
                         <div class="col-wrap">
