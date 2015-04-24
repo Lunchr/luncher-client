@@ -1,6 +1,6 @@
 describe('mainViewController', function() {
   'use strict';
-  var cookies;
+  var offerSourceService;
   beforeEach(function() {
     module('mainViewController', function($provide) {
       $provide.provider('favorites', {
@@ -12,19 +12,17 @@ describe('mainViewController', function() {
           };
         }
       });
-      $provide.provider('cookies', {
+      $provide.provider('offerSourceService', {
         $get: function() {
           return {
-            refreshExpirations: function() {},
-            setOfferSource: jasmine.createSpy('setOfferSource'),
-            getOfferSource: jasmine.createSpy('getOfferSource'),
-            removeOfferSource: jasmine.createSpy('removeOfferSource'),
+            subscribeToChanges: jasmine.createSpy('subscribeToChanges'),
+            getCurrent: jasmine.createSpy('getCurrent'),
           };
         }
       });
     });
-    inject(function(_cookies_) {
-      cookies = _cookies_;
+    inject(function(_offerSourceService_){
+      offerSourceService = _offerSourceService_;
     });
   });
 
@@ -32,9 +30,9 @@ describe('mainViewController', function() {
     var $scope, vm;
 
     describe('bootstrapping', function() {
-      describe('with offer source cookie set for a region', function() {
+      describe('with offer source current value set for a region', function() {
         beforeEach(inject(function($rootScope, $controller, favorites, $httpBackend) {
-          cookies.getOfferSource.and.returnValue({
+          offerSourceService.getCurrent.and.returnValue({
             region: 'a-region'
           });
           $httpBackend.expectGET('api/v1/regions/a-region/offers').respond(offerUtils.getMockOffers());
@@ -61,9 +59,9 @@ describe('mainViewController', function() {
         }));
       });
 
-      describe('with offer source cookie set for location', function() {
+      describe('with offer source current value set for location', function() {
         beforeEach(inject(function($rootScope, $controller) {
-          cookies.getOfferSource.and.returnValue({
+          offerSourceService.getCurrent.and.returnValue({
             location: true
           });
 
@@ -81,7 +79,7 @@ describe('mainViewController', function() {
       });
     });
 
-    describe('with no offer source cookie set', function() {
+    describe('with no offer source current value set', function() {
       beforeEach(inject(function($rootScope, $controller, favorites) {
         $scope = $rootScope.$new();
         $controller('MainViewCtrl as vm', {
@@ -108,16 +106,15 @@ describe('mainViewController', function() {
 
         it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
           expect(vm.offers).toBeUndefined();
-          vm.loadOffersForRegion('tartu');
+
+          updateOfferSource({
+            region: 'tartu',
+          });
           $httpBackend.flush();
+
           expect(vm.offers.length).toBe(4);
           expect(vm.offerSource.region).toBe('tartu');
         }));
-
-        it('should set the offerSource cookie to the selected region', function() {
-          vm.loadOffersForRegion('tartu');
-          expect(cookies.setOfferSource).toHaveBeenCalledWith({region: 'tartu'});
-        });
       });
 
       describe('loadOffersNearLocation', function() {
@@ -127,22 +124,29 @@ describe('mainViewController', function() {
 
         it('should have model with 4 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
           expect(vm.offers).toBeUndefined();
-          vm.loadOffersNearLocation(1.1, 2.2);
+
+          updateOfferSource({
+            location: {
+              lat: 1.1,
+              lng: 2.2,
+            },
+          });
           $httpBackend.flush();
+
           expect(vm.offers.length).toBe(4);
           expect(vm.offerSource.region).toBeUndefined();
-          expect(vm.offerSource.location).toBe(true);
+          expect(vm.offerSource.location).toBeTruthy();
         }));
 
-        it('should set the offerSource cookie to location', function() {
-          vm.loadOffersNearLocation(1.1, 2.2);
-          expect(cookies.setOfferSource).toHaveBeenCalledWith({location:true});
-        });
-
         describe('with load offers for region invoked', function() {
-          beforeEach(inject(function($httpBackend) {
-            vm.loadOffersNearLocation(1.1, 2.2);
-          }));
+          beforeEach(function() {
+            updateOfferSource({
+              location: {
+                lat: 1.1,
+                lng: 2.2,
+              },
+            });
+          });
 
           describe('favorites', function() {
             it('should call the decorator after the offers are returned', inject(function($httpBackend, favorites) {
@@ -159,7 +163,10 @@ describe('mainViewController', function() {
         beforeEach(inject(function($httpBackend) {
           mockOffers = offerUtils.getMockOffers();
           $httpBackend.expectGET('api/v1/regions/tartu/offers').respond(mockOffers);
-          vm.loadOffersForRegion('tartu');
+          var callback = offerSourceService.subscribeToChanges.calls.mostRecent().args[1];
+          callback({
+            region: 'tartu',
+          });
         }));
 
         describe('favorites', function() {
@@ -239,5 +246,10 @@ describe('mainViewController', function() {
         });
       });
     });
+
+    function updateOfferSource(offerSource) {
+      var callback = offerSourceService.subscribeToChanges.calls.mostRecent().args[1];
+      callback(offerSource);
+    }
   });
 });
