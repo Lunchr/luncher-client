@@ -118,3 +118,9 @@
         }
     }
 }
+.restaurant {
+    .icon-label {
+        width: 110px;
+        text-align: left;
+    }
+}
