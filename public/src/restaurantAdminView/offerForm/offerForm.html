@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4 col-sm-3">
       <p>
-        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="5" ng-maxlength="70" required>
+        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
         <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
           <span ng-show="!isReadyForError(form.title)">
             Nimetus
@@ -12,10 +12,10 @@
               Nimetus on kohustuslik.
             </span>
             <span ng-show="form.title.$error.minlength">
-              Nimetus peab olema vähemalt 5 tähte.
+              Nimetus peab olema vähemalt 4 tähte.
             </span>
             <span ng-show="form.title.$error.maxlength">
-              Nimetus võib olla kuni 40 tähte. ({{40-form.title.$viewValue.length}})
+              Nimetus võib olla kuni 70 tähte. ({{40-form.title.$viewValue.length}})
             </span>
           </span>
         </label>
@@ -38,7 +38,7 @@
                 Koostisosad on kohustuslikud.
               </span>
               <span ng-show="form.ingredients.$error.minTags && ingredients.length">
-                Pakkumine peab sisaldama vähemalt 3 koostisosa.
+                Pakkumine peab sisaldama vähemalt 2 koostisosa.
               </span>
             </span>
           </label>
