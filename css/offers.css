@@ -45,6 +45,11 @@
         content: "r";
         color: $color;
     }
+    .distance {
+        color: #999;
+        font-size: 13px;
+        padding-left: 10px;
+    }
     &.pending {
         opacity: 0.3;
         background-color: rgba(0, 0, 0, 0.06);
