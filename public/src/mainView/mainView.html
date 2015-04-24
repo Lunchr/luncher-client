@@ -32,7 +32,7 @@
                 <offers-sorter ng-if="!vm.offerSource.location" order-by="restaurant.name">
                     Asukoht
                 </offers-sorter>
-                <offers-sorter ng-if="vm.offerSource.location" is-numeric="true" order-by="distance">
+                <offers-sorter ng-if="vm.offerSource.location" is-numeric="true" order-by="restaurant.distance">
                     Kaugus
                 </offers-sorter>
             </div>
@@ -66,8 +66,8 @@
                 <div class="offer-content">
                     <div class="col-1">
                         <p>{{offer.restaurant.name}}
-                            <span ng-if="offer.distance" class="distance">
-                              {{offer.distance | approximateDistance}}
+                            <span ng-if="offer.restaurant.distance" class="distance">
+                              {{offer.restaurant.distance | approximateDistance}}
                             </span></p>
                         <p class="additional">
                           {{offer.restaurant.address}}
