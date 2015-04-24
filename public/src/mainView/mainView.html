@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-wrap">
             <p class="icon-wrap">
-                <button ng-click="vm.state.sourceSelectionDropdown='active'" class="icon icon-5">
+                <button ng-click="vm.state.regionSelectionDropdown='active'" class="icon icon-5">
                     <span class="icon-label location">{{vm.offerSource.region}}</span>
                 </button>
             </p>
@@ -22,16 +22,22 @@
 <div class="overlay"></div>
 <div class="content">
     <div class="container">
-        <div class="dropdown" ng-class="vm.state.sourceSelectionDropdown">
-            <offer-source-selection on-selected="vm.state.sourceSelectionDropdown=''">
-            </offer-source-selection>
+        <div class="dropdown" ng-class="vm.state.regionSelectionDropdown">
+            <region-selection on-selected="vm.state.regionSelectionDropdown=''">
+            </region-selection>
         </div>
-        <div class="overlay" ng-click="vm.state.sourceSelectionDropdown=''"></div>
+        <div class="overlay" ng-click="vm.state.regionSelectionDropdown=''"></div>
+        <div class="dropdown" ng-class="vm.state.geolocatorDropdown">
+            <geolocator on-selected="vm.state.geolocatorDropdown=''" ng-show="vm.state.geolocatorDropdown"
+                        key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8">
+            </geolocator>
+        </div>
+        <div class="overlay" ng-click="vm.state.geolocatorDropdown=''"></div>
         <div class="controls" ng-show="vm.offers.length">
             <div class="col-1">
-                <offers-sorter ng-if="!vm.offerSource.location" order-by="restaurant.name">
-                    Asukoht
-                </offers-sorter>
+                <p ng-if="!vm.offerSource.location" ng-click="vm.state.geolocatorDropdown='active'">
+                    Kaugus
+                </p>
                 <offers-sorter ng-if="vm.offerSource.location" is-numeric="true" order-by="distance">
                     Kaugus
                 </offers-sorter>
