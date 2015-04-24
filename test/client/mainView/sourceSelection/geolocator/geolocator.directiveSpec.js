@@ -1,6 +1,6 @@
 describe('geolocator module', function() {
   'use strict';
-  var ngGeolocator;
+  var ngGeolocator, offerSourceService;
   beforeEach(function() {
     module('geolocator', 'partials', function($provide) {
       $provide.provider('ngGeolocator', {
@@ -8,19 +8,26 @@ describe('geolocator module', function() {
           return {};
         }
       });
+      $provide.provider('offerSourceService', {
+        $get: function() {
+          return {};
+        }
+      });
     });
-    inject(function(_ngGeolocator_){
+    inject(function(_ngGeolocator_, _offerSourceService_){
       ngGeolocator = _ngGeolocator_;
+      offerSourceService = _offerSourceService_;
     });
   });
 
   describe('geolocator directive', function() {
-    var element, $scope, $parentScope, locatorDefer;
+    var element, $scope, ctrl, $parentScope, locatorDefer;
 
     beforeEach(inject(function($q) {
-      var compiled = utils.compile('<geolocator on-location-selected="locationSelected($lat, $lng)" key="a-key" ng-show="ngShowBinding"></geolocator>');
+      var compiled = utils.compile('<geolocator on-selected="locationSelected()" key="a-key" ng-show="ngShowBinding"></geolocator>');
       element = compiled.element;
       $scope = compiled.scope;
+      ctrl = $scope.ctrl;
       $parentScope = compiled.parentScope;
       $parentScope.ngShowBinding = false;
       locatorDefer = $q.defer();
@@ -51,21 +58,40 @@ describe('geolocator module', function() {
       expect(ngGeolocator.create.calls.count()).toBe(1);
     });
 
-    it('should call parent\'s location selected method with location from service when location selected', function() {
-      $parentScope.locationSelected = jasmine.createSpy('locationSelected');
-      locatorDefer.resolve({
-        getLocation: jasmine.createSpy('getLocation').and.returnValue({
-          lat: 'lat',
-          lng: 'lng',
-        }),
-      });
-      $scope.$apply(function() {
-        $parentScope.ngShowBinding = true;
+    describe('with the locator resolved', function() {
+      beforeEach(function() {
+        locatorDefer.resolve({
+          getLocation: jasmine.createSpy('getLocation').and.returnValue({
+            lat: 'lat',
+            lng: 'lng',
+          }),
+        });
+        $parentScope.locationSelected = jasmine.createSpy('locationSelected');
+        offerSourceService.update = jasmine.createSpy('updateOfferSource');
       });
 
-      $scope.locationSelected();
+      it('should call parent\'s location selected method when location selected', function() {
+        $scope.$apply(function() {
+          $parentScope.ngShowBinding = true;
+        });
+        ctrl.locationSelected();
 
-      expect($parentScope.locationSelected).toHaveBeenCalledWith('lat', 'lng');
+        expect($parentScope.locationSelected).toHaveBeenCalled();
+      });
+
+      it('should update the offerSource', function() {
+        $scope.$apply(function() {
+          $parentScope.ngShowBinding = true;
+        });
+        ctrl.locationSelected();
+
+        expect(offerSourceService.update).toHaveBeenCalledWith({
+          location: {
+            lat: 'lat',
+            lng: 'lng',
+          },
+        });
+      });
     });
   });
 });

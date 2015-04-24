@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var module = angular.module('geolocator', ['ngGeolocator']);
+  var module = angular.module('geolocator', ['ngGeolocator', 'offerSource']);
 
   module.directive('geolocator', ['ngGeolocator', 'offerSourceService',
     function(ngGeolocator, offerSourceService) {
