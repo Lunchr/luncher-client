@@ -1,65 +1,73 @@
 describe('OfferSourceSelection', function() {
   'use strict';
+  var offerSourceService;
   beforeEach(function() {
     module('sourceSelection', 'partials', function($provide){
       $provide.factory('regionSelectionDirective', function(){ return {}; });
       $provide.factory('geolocator', function(){ return {}; });
+      $provide.provider('offerSourceService', {
+        $get: function() {
+          return {
+            subscribeToChanges: jasmine.createSpy('subscribeToChanges'),
+            getCurrent: jasmine.createSpy('getCurrent'),
+          };
+        }
+      });
+    });
+    inject(function(_offerSourceService_){
+      offerSourceService = _offerSourceService_;
     });
   });
 
   describe('directive', function() {
-    var element, $scope, $parentScope;
+    var element, $scope, ctrl, $parentScope;
 
     beforeEach(function() {
-      var compiled = utils.compile('<offer-source-selection on-region-selected="regionSelected($region)"'+
-      'on-location-selected="locationSelected($lat, $lng)"></offer-source-selection>');
+      var compiled = utils.compile('<offer-source-selection on-selected="onSelected()"></offer-source-selection>');
       element = compiled.element;
       $scope = compiled.scope;
+      ctrl = $scope.ctrl;
       $parentScope = compiled.parentScope;
     });
 
-    describe('onRegionSelected', function() {
+    describe('onSelected', function() {
       beforeEach(function() {
-        $parentScope.regionSelected = jasmine.createSpy('regionSelected');
+        $parentScope.onSelected = jasmine.createSpy('onSelected');
       });
 
-      it('should call the specified function with $region as the argument when option selected from dropdown', function() {
-        $scope.regionSelected('test');
+      it('should call the specified function option selected from dropdown', function() {
+        ctrl.onSelected();
 
-        expect($parentScope.regionSelected).toHaveBeenCalledWith('test');
-      });
-    });
-
-    describe('onLocationSelected', function() {
-      beforeEach(function() {
-        $parentScope.locationSelected = jasmine.createSpy('locationSelected');
-      });
-
-      it('should call the specified function with $region as the argument when option selected from dropdown', function() {
-        $scope.locationSelected('lat', 'lng');
-
-        expect($parentScope.locationSelected).toHaveBeenCalledWith('lat', 'lng');
+        expect($parentScope.onSelected).toHaveBeenCalled();
       });
     });
-  });
 
-  describe('directive with optional bind', function() {
-    var element, $scope, $parentScope;
+    it('should init locationSelected with false if no current state in offerSourceService', function() {
+      expect(ctrl.locationSelected).toBeFalsy();
+    });
 
-    beforeEach(function() {
-      var compiled = utils.compile('<offer-source-selection state="aState.something"></offer-source-selection>', function(parentScope) {
-        parentScope.aState = {
-          something: 'testing',
-        };
+    it('should init locationSelected with false if region selected in offerSourceService', function() {
+      offerSourceService.getCurrent.and.returnValue({
+        region: 'test',
       });
-      element = compiled.element;
-      $scope = compiled.scope;
-      $parentScope = compiled.parentScope;
+      var compiled = utils.compile('<offer-source-selection></offer-source-selection>');
+      expect(compiled.scope.ctrl.locationSelected).toBeFalsy();
     });
 
-    it('should be bound to parent\'s scope', function() {
-      expect($scope.state.offerSource).toEqual('testing');
+    it('should init with current state from the offer source service', function() {
+      offerSourceService.getCurrent.and.returnValue({
+        location: 'test',
+      });
+      var compiled = utils.compile('<offer-source-selection></offer-source-selection>');
+      expect(compiled.scope.ctrl.locationSelected).toBeTruthy();
     });
 
+    it('should update when offer source changes', function() {
+      var callback = offerSourceService.subscribeToChanges.calls.mostRecent().args[1];
+      callback({
+        location: 'whatever',
+      });
+      expect(ctrl.locationSelected).toBeTruthy();
+    });
   });
 });

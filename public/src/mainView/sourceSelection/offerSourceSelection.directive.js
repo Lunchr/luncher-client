@@ -3,6 +3,7 @@
   var module = angular.module('sourceSelection', [
     'regionSelection',
     'geolocator',
+    'offerSource',
   ]);
 
   module.directive('offerSourceSelection', ['$window', 'offerSourceService',
@@ -20,7 +21,7 @@
               return !!$window.navigator.geolocation;
             };
             function offerSourceChanged(offerSource) {
-              ctrl.locationSelected = !!offerSource.location;
+              ctrl.locationSelected = offerSource && !!offerSource.location;
             }
             offerSourceService.subscribeToChanges($scope, offerSourceChanged);
             offerSourceChanged(offerSourceService.getCurrent());
