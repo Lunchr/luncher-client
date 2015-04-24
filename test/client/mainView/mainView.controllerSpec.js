@@ -244,6 +244,45 @@ describe('mainViewController', function() {
             expect(latlng).toEqual('2.1,1.2');
           });
         });
+
+        describe('grouping by restaurant', function() {
+          var offers = [
+            {restaurant:{name:'resto1'}},
+            {restaurant:{name:'resto2'}},
+            {restaurant:{name:'resto2'}},
+            {restaurant:{name:'resto3'}},
+          ];
+
+          describe('isFirstForRestaurant', function() {
+            it('should return true for first offer', function() {
+              expect(vm.isFirstForRestaurant(offers, offers[0])).toBe(true);
+            });
+
+            it('should return true for first offer for resto', function() {
+              expect(vm.isFirstForRestaurant(offers, offers[1])).toBe(true);
+              expect(vm.isFirstForRestaurant(offers, offers[3])).toBe(true);
+            });
+
+            it('should return false for second offer for resto', function() {
+              expect(vm.isFirstForRestaurant(offers, offers[2])).toBe(false);
+            });
+          });
+
+          describe('isLastForRestaurant', function() {
+            it('should return true for last offer', function() {
+              expect(vm.isLastForRestaurant(offers, offers[3])).toBe(true);
+            });
+
+            it('should return true for last offer for resto', function() {
+              expect(vm.isLastForRestaurant(offers, offers[0])).toBe(true);
+              expect(vm.isLastForRestaurant(offers, offers[2])).toBe(true);
+            });
+
+            it('should return false for first offer for resto, if more following', function() {
+              expect(vm.isLastForRestaurant(offers, offers[1])).toBe(false);
+            });
+          });
+        });
       });
     });
 
