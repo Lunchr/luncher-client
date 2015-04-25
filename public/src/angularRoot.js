@@ -1,12 +1,14 @@
 (function() {
   'use strict';
-  var praadApp = angular.module('praadApp', [
+  var module = angular.module('app', [
     'mainViewController',
     'restaurantAdminView',
     'commonFilters',
     'ngRoute',
     'i18nCustomizations',
-  ]).config(['$routeProvider',
+  ]);
+
+  module.config(['$routeProvider',
     function($routeProvider) {
       $routeProvider.
       when('/offers', {
@@ -18,14 +20,20 @@
         templateUrl: 'src/restaurantAdminView/restaurantAdminView.html',
         controller: 'RestaurantAdminViewCtrl',
         resolve: {
-          restaurant: ['$resource',
-            function ($resource) {
-              return $resource('api/v1/restaurant').get();
+          restaurant: ['$resource', '$location',
+            function ($resource, $location) {
+              return $resource('/api/v1/restaurant').get().$promise.catch(function(resp) {
+                if (resp.status === 403) {
+                  $location.path('/login');
+                }
+              });
             }
           ],
         },
+      }).
+      when('/login', {
         redirectTo: function() {
-          window.location = '/api/v1/login/facebook';
+          window.location.href = '/api/v1/login/facebook';
         },
       }).
       otherwise({
