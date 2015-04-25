@@ -1,7 +1,7 @@
 {
   "name": "praad",
   "version": "0.0.0-16",
-  "description": "praad",
+  "description": "luncher-client",
   "main": "src/app.js",
   "scripts": {
     "test": "grunt test",
@@ -13,7 +13,7 @@
     "url": "git://github.com/deiwin/luncher-client.git"
   },
   "author": "Deiwin Sarjas, Madis Lehtmets",
-  "license": "BSD 3-Clause License",
+  "license": "BSD 3-Clause",
   "bugs": {
     "url": "https://github.com/deiwin/luncher-client/issues"
   },

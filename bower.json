@@ -1,13 +1,13 @@
 {
   "name": "praad",
   "version": "0.0.0",
-  "homepage": "https://github.com/deiwin/praad",
+  "homepage": "https://github.com/deiwin/luncher-client",
   "authors": [
     "Deiwin Sarjas <deiwin.sarjas@gmail.com>",
     "Madis Lehtmets"
   ],
   "main": "app.js",
-  "license": "Apache License (v2)",
+  "license": "BSD 3-Clause",
   "private": true,
   "ignore": [
     "**/.*",
