@@ -10,9 +10,9 @@
     params: {id: '@_id'},
   };
 
-  module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource',
-    function($scope, $resource) {
-      $scope.restaurant = $resource('api/v1/restaurant').get();
+  module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource', 'restaurant',
+    function($scope, $resource, restaurant) {
+      $scope.restaurant = restaurant;
       $scope.postOffer = function(offer) {
         offer.restaurant = $scope.restaurant;
         var postedOffer = $resource('api/v1/offers', {}, {update: offerUpdateOperation}).save(offer);

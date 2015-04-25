@@ -15,6 +15,9 @@
 
   app.set('port', config.port);
 
+  // app.use('/api/v1/restaurant', function(req, res) {
+  //   res.status(403).send('nope');
+  // });
   app.use(bodyParser.json());
   var delayedReflector = function(req, res) {
     setTimeout(function() {

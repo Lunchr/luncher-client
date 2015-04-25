@@ -1,6 +1,12 @@
 describe('Restaurant admin view', function() {
   'use strict';
-  beforeEach(module('restaurantAdminViewControllers'));
+  beforeEach(module('restaurantAdminViewControllers', function($provide) {
+    $provide.provider('restaurant', {
+      $get: function() {
+        return offerUtils.getMockRestaurant();
+      }
+    });
+  }));
 
   describe('RestaurantAdminViewCtrl', function() {
     var $scope;
@@ -11,8 +17,6 @@ describe('Restaurant admin view', function() {
     }));
 
     beforeEach(inject(function($rootScope, $controller, $httpBackend) {
-      $httpBackend.expectGET('api/v1/restaurant').respond(offerUtils.getMockRestaurant());
-
       $scope = $rootScope.$new();
       $controller('RestaurantAdminViewCtrl', {
         $scope: $scope
@@ -20,51 +24,43 @@ describe('Restaurant admin view', function() {
     }));
 
     it('should have restaurant data after we mock-respond to the HTTP request', inject(function($httpBackend) {
-      expect($scope.restaurant.name).toBeUndefined();
-      $httpBackend.flush();
       expect($scope.restaurant.name).toBe('Bulgarian Chef');
     }));
 
-    describe('with the mock restaurant fetched', function() {
+    describe('postOffer', function() {
+      var postedOffer;
+
       beforeEach(inject(function($httpBackend) {
-        $httpBackend.flush();
+        spyOn($scope, '$broadcast');
+        postedOffer = {
+          id: 'mocked response from the backend'
+        };
+        $httpBackend.whenPOST('api/v1/offers').respond(postedOffer);
       }));
 
-      describe('postOffer', function() {
-        var postedOffer;
+      it('should broadcast the data returned from the POST', inject(function($httpBackend) {
+        $scope.postOffer({});
 
-        beforeEach(inject(function($httpBackend) {
-          spyOn($scope, '$broadcast');
-          postedOffer = {
-            id: 'mocked response from the backend'
-          };
-          $httpBackend.whenPOST('api/v1/offers').respond(postedOffer);
-        }));
+        expect($scope.$broadcast).toHaveBeenCalled();
+        var args = $scope.$broadcast.calls.mostRecent().args;
+        var channelName = args[0];
+        var data = args[1];
+        expect(channelName).toEqual('offer-posted');
 
-        it('should broadcast the data returned from the POST', inject(function($httpBackend) {
-          $scope.postOffer({});
+        expect(data.id).toBeUndefined();
+        $httpBackend.flush();
+        expect(data.id).toEqual(postedOffer.id);
+      }));
 
-          expect($scope.$broadcast).toHaveBeenCalled();
-          var args = $scope.$broadcast.calls.mostRecent().args;
-          var channelName = args[0];
-          var data = args[1];
-          expect(channelName).toEqual('offer-posted');
+      it('should post the combined offer', inject(function($httpBackend) {
+        $httpBackend.expectPOST('api/v1/offers', {
+          test: 'a test field',
+          restaurant: $scope.restaurant,
+        });
 
-          expect(data.id).toBeUndefined();
-          $httpBackend.flush();
-          expect(data.id).toEqual(postedOffer.id);
-        }));
-
-        it('should post the combined offer', inject(function($httpBackend) {
-          $httpBackend.expectPOST('api/v1/offers', {
-            test: 'a test field',
-            restaurant: $scope.restaurant,
-          });
-
-          $scope.postOffer({test: 'a test field'});
-          $httpBackend.flush();
-        }));
-      });
+        $scope.postOffer({test: 'a test field'});
+        $httpBackend.flush();
+      }));
     });
   });
 
