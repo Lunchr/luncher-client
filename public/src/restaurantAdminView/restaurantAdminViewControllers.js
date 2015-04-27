@@ -11,6 +11,13 @@
       id: '@_id'
     },
   };
+  var offerDeleteOperation = {
+    method: 'DELETE',
+    url: 'api/v1/offers/:id',
+    params: {
+      id: '@_id'
+    },
+  };
 
   module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource', 'restaurant',
     function($scope, $resource, restaurant) {
@@ -18,17 +25,19 @@
       $scope.postOffer = function(offer) {
         offer.restaurant = $scope.restaurant;
         var postedOffer = $resource('api/v1/offers', {}, {
-          update: offerUpdateOperation
+          update: offerUpdateOperation,
+          delete: offerDeleteOperation,
         }).save(offer);
         $scope.$broadcast(offerPostedEventChannel, postedOffer);
       };
     }
   ]);
 
-  module.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
-    function($scope, $resource) {
+  module.controller('RestaurantOfferListCtrl', ['$scope', '$resource', '$window',
+    function($scope, $resource, $window) {
       $scope.offers = $resource('api/v1/restaurant/offers', {}, {
-        update: offerUpdateOperation
+        update: offerUpdateOperation,
+        delete: offerDeleteOperation,
       }).query();
       $scope.updateOffer = function(currentOffer, offer) {
         offer.confirmationPending = true;
@@ -46,6 +55,20 @@
           }
         });
 
+      };
+      $scope.deleteOffer = function(offer) {
+        var confirmed = $window.confirm('Oled sa kindel et sa tahad kustutada pakkumise "'+offer.title+'"?');
+        if (!confirmed) return;
+        offer.confirmationPending = true;
+        offer.$delete({}, function success() {
+          var index = $scope.offers.indexOf(offer);
+          if (index > -1) {
+            $scope.offers.splice(index, 1);
+          }
+        }, function error(resp) {
+          offer.confirmationPending = false;
+          offer.hasWarning = true;
+        });
       };
       $scope.$on(offerPostedEventChannel, function(event, offer) {
         $scope.offers.unshift(offer);

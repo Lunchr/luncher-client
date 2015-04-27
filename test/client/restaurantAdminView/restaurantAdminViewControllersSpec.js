@@ -141,6 +141,69 @@ describe('Restaurant admin view', function() {
         }));
       });
 
+      describe('$delete an offer', function() {
+        var offer;
+        beforeEach(inject(function($httpBackend, $window) {
+          offer = $scope.offers[2];
+        }));
+
+        describe('with user declining the confirmation', function() {
+          var confirm;
+          beforeEach(inject(function($window) {
+            confirm = jasmine.createSpy('confirm').and.returnValue(false);
+            $window.confirm = confirm;
+          }));
+
+          it('should not send a request to the API', inject(function($httpBackend) {
+            $scope.deleteOffer({});
+
+            expect(confirm).toHaveBeenCalled();
+            $httpBackend.verifyNoOutstandingRequest();
+          }));
+        });
+
+        describe('with the user accepting the confirmation', function() {
+          var response;
+
+          beforeEach(inject(function($httpBackend, $window) {
+            offer = $scope.offers[2];
+            response = $httpBackend.expectDELETE('api/v1/offers/3').respond({});
+            $window.confirm = jasmine.createSpy('confirm').and.returnValue(true);
+          }));
+
+          it('should delete the offer when server succeeds', inject(function($httpBackend) {
+            expect($scope.offers).toContain(offer);
+
+            $scope.deleteOffer(offer);
+            expect($scope.offers).toContain(offer);
+
+            $httpBackend.flush();
+            expect($scope.offers).not.toContain(offer);
+          }));
+
+          it('should set the offer as confirmationPending while waiting for the backend', inject(function($httpBackend) {
+            expect(offer.confirmationPending).toBeFalsy();
+
+            $scope.deleteOffer(offer);
+            expect(offer.confirmationPending).toBeTruthy();
+
+            $httpBackend.flush();
+            expect(offer.confirmationPending).toBeFalsy();
+          }));
+
+          it('should set hasWarning in case of an error', inject(function($httpBackend) {
+            expect($scope.offers).toContain(offer);
+
+            $scope.deleteOffer(offer);
+            response.respond(500, {});
+            $httpBackend.flush();
+
+            expect($scope.offers).toContain(offer);
+            expect(offer.hasWarning).toBe(true);
+          }));
+        });
+      });
+
       describe('$on(\'offer-posted\') listener', function() {
         var mockOffer, deferred;
 

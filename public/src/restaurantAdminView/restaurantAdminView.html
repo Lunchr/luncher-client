@@ -24,8 +24,10 @@
             </p>
         </div>
         <div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
-            <div class="offer" ng-repeat="offer in offers" id="{{offer._id}}" ng-class="{pending: offer.confirmationPending, edit: offer.editing}">
-                <offer-form ng-show="offer.editing" edit="offer" on-submit="updateOffer($currentOffer, $offer); $offer.editing=false" on-cancel="offer.editing=false"></offer-form>
+            <div class="offer" ng-repeat="offer in offers" id="{{offer._id}}"
+                 ng-class="{pending: offer.confirmationPending, warning: offer.hasWarning, edit: offer.editing}">
+                <offer-form ng-show="offer.editing" edit="offer" on-submit="updateOffer($currentOffer, $offer); $offer.editing=false"
+                            on-cancel="offer.editing=false" on-delete="deleteOffer(offer)"></offer-form>
                 <div ng-show="!offer.editing">
                   <p class="icon-wrap edit-btn">
                     <a href="javascript:undefined" ng-click="offer.editing=true" class="icon icon-15"></a>

@@ -10,7 +10,7 @@ describe('Offer Form', function() {
     beforeEach(inject(function($httpBackend) {
       mockTags = offerUtils.getMockTags();
       $httpBackend.expectGET('api/v1/tags').respond(mockTags);
-      var compiled = utils.compile('<offer-form on-submit="submitClicked($offer)" on-cancel="cancelClicked()"></offer-form>');
+      var compiled = utils.compile('<offer-form on-submit="submitClicked($offer)" on-cancel="cancelClicked()" on-delete="deleteClicked()"></offer-form>');
       element = compiled.element;
       $scope = compiled.scope;
       $parentScope = compiled.parentScope;
@@ -154,6 +154,18 @@ describe('Offer Form', function() {
           $scope.cancelFunction();
 
           expect($parentScope.cancelClicked).toHaveBeenCalled();
+        });
+      });
+
+      describe('deleteOffer', function() {
+        beforeEach(function() {
+          $parentScope.deleteClicked = jasmine.createSpy();
+        });
+
+        it('should call the specified function with $offer as the argument', function() {
+          $scope.deleteFunction();
+
+          expect($parentScope.deleteClicked).toHaveBeenCalled();
         });
       });
     });

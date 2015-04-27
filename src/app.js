@@ -27,6 +27,7 @@
   };
   app.post('/api/v1/offers', delayedReflector);
   app.put('/api/v1/offers/:id', delayedReflector);
+  app.delete('/api/v1/offers/:id', delayedReflector);
 
   var publicDir = path.join(__dirname, '..', 'public');
   var apiDir = path.join(publicDir, 'api');

@@ -21,9 +21,10 @@
           offerToEdit: '=edit',
           submitFunction: '&onSubmit',
           cancelFunction: '&onCancel',
+          deleteFunction: '&onDelete',
         },
         controller: function($scope, $element, $attrs) {
-          var isEdit = !!$scope.offerToEdit;
+          $scope.isEdit = !!$scope.offerToEdit;
           $scope.allTags = $resource('api/v1/tags', {}, {
             'queryCached': {
               method: 'GET',
@@ -54,7 +55,7 @@
             }
           })($scope.offerToEdit);
           $scope.idPrefix = (function() {
-            if (isEdit)
+            if ($scope.isEdit)
               return 'edit-offer-' + $scope.offerToEdit._id + '-';
             else
               return 'new-offer-';
@@ -89,7 +90,7 @@
               to_time: new Date($scope.date.getTime() + $scope.toTime.getTime() - $scope.toTime.getTimezoneOffset() * 60 * 1000),
               image: $scope.image && $scope.image.src,
             };
-            if (isEdit) {
+            if ($scope.isEdit) {
               var offerCopy = angular.copy($scope.offerToEdit);
               angular.extend(offerCopy, offer);
               $scope.submitFunction({
