@@ -7,7 +7,9 @@
   var offerUpdateOperation = {
     method: 'PUT',
     url: 'api/v1/offers/:id',
-    params: {id: '@_id'},
+    params: {
+      id: '@_id'
+    },
   };
 
   module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource', 'restaurant',
@@ -15,7 +17,9 @@
       $scope.restaurant = restaurant;
       $scope.postOffer = function(offer) {
         offer.restaurant = $scope.restaurant;
-        var postedOffer = $resource('api/v1/offers', {}, {update: offerUpdateOperation}).save(offer);
+        var postedOffer = $resource('api/v1/offers', {}, {
+          update: offerUpdateOperation
+        }).save(offer);
         $scope.$broadcast(offerPostedEventChannel, postedOffer);
       };
     }
@@ -23,8 +27,10 @@
 
   module.controller('RestaurantOfferListCtrl', ['$scope', '$resource',
     function($scope, $resource) {
-      $scope.offers = $resource('api/v1/restaurant/offers', {}, {update: offerUpdateOperation}).query();
-      $scope.updateOffer = function(currentOffer, offer){
+      $scope.offers = $resource('api/v1/restaurant/offers', {}, {
+        update: offerUpdateOperation
+      }).query();
+      $scope.updateOffer = function(currentOffer, offer) {
         offer.confirmationPending = true;
         var index = $scope.offers.indexOf(currentOffer);
         if (index > -1) {
