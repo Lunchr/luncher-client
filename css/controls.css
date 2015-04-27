@@ -55,7 +55,7 @@
     position: absolute;
     top: 0;
     left: 12px;
-    margin-top: -100%;
+    margin-top: -200%;
     z-index: 900;
     color: #222;
     @mixin transition 0.2s;
