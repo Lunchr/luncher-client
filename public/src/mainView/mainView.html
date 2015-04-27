@@ -28,15 +28,19 @@
         </div>
         <div class="overlay" ng-click="vm.state.regionSelectionDropdown=''"></div>
         <div class="dropdown" ng-class="vm.state.geolocatorDropdown">
-            <geolocator on-selected="vm.state.geolocatorDropdown=''" ng-show="vm.state.geolocatorDropdown"
-                        key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8">
-            </geolocator>
+            <div class="dropdown-inner">
+                <geolocator on-selected="vm.state.geolocatorDropdown=''" ng-show="vm.state.geolocatorDropdown"
+                            key="AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8">
+                </geolocator>
+            </div>
         </div>
         <div class="overlay" ng-click="vm.state.geolocatorDropdown=''"></div>
         <div class="controls" ng-show="vm.offers.length">
             <div class="col-1">
-                <p ng-if="!vm.offerSource.location" ng-click="vm.state.geolocatorDropdown='active'">
-                    Kaugus
+                <p ng-if="!vm.offerSource.location">
+                    <a ng-click="vm.state.geolocatorDropdown='active'">
+                        Kaugus
+                    </a>
                 </p>
                 <offers-sorter ng-if="vm.offerSource.location" is-numeric="true" order-by="restaurant.distance">
                     Kaugus
@@ -45,16 +49,18 @@
             <div class="col-2">
                 <div class="col-wrap">
                     <div ng-controller="TagListCtrl as tags">
-                      <a href="javascript:undefined" ng-click="vm.state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
-                      <form class="dropdown" ng-class="vm.state.filtersDropdown">
+                        <p>
+                            <a href="javascript:undefined" ng-click="vm.state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
+                        </p>
+                        <form class="dropdown" ng-class="vm.state.filtersDropdown">
                           <ul>
                               <li ng-repeat="tag in tags.list">
                                   <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
                                   <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
                               </li>
                           </ul>
-                      </form>
-                      <div class="overlay" ng-click="vm.state.filtersDropdown=''"></div>
+                        </form>
+                        <div class="overlay" ng-click="vm.state.filtersDropdown=''"></div>
                     </div>
                     <offers-sorter is-numeric="true" order-by="price" class="price-sorter">
                         Hind
