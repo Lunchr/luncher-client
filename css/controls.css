@@ -59,18 +59,21 @@
     z-index: 900;
     color: #222;
     @mixin transition 0.2s;
-    ul {
+    ul,
+    .dropdown-inner {
         margin: 0;
         padding: 10px 0;
         background-color: #fff;
         border-radius: 0 0 2px 2px;
         box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        li {
-            list-style: none;
-        }
-        input {
-            position: absolute;
-        }
+        height: 0;
+        overflow: hidden;
+    }
+    li {
+        list-style: none;
+    }
+    input {
+        position: absolute;
     }
     + .overlay {
         display: none;
@@ -80,6 +83,10 @@
         margin-top: 0;
         + .overlay {
             display: block;
+        }
+        ul,
+        .dropdown-inner {
+            height: auto;
         }
     }
     .buttons {
