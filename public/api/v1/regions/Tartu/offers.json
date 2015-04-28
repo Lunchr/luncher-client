@@ -50,23 +50,6 @@
   "tags": ["loom", "veis"],
   "image": "mock-images/meatmarket3.jpg"
 }, {
-  "_id": "4",
-  "restaurant": {
-    "name": "Caesarian Kitchen",
-    "address": "Kompanii 10, Tartu",
-    "location": {
-      "type": "Point",
-      "coordinates": [26.722691, 58.380094]
-    }
-  },
-  "title": "Magushapu pardifilee",
-  "from_time": "2014-11-11T09:00:00.000Z",
-  "to_time": "2014-11-11T11:00:00.000Z",
-  "price": 3.7,
-  "ingredients": ["Pardifilee", "aedviljad", "magushapu kaste"],
-  "tags": ["lind", "part"],
-  "image": "mock-images/meatmarket4.jpg"
-}, {
   "_id": "5",
   "restaurant": {
     "name": "La Dolche Vita",
@@ -83,6 +66,23 @@
   "ingredients": ["Lambaliha", "parmesan", "farfalle"],
   "tags": ["lammas", "pasta"],
   "image": "mock-images/meatmarket5.jpg"
+}, {
+  "_id": "4",
+  "restaurant": {
+    "name": "Caesarian Kitchen",
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    }
+  },
+  "title": "Magushapu pardifilee",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "ingredients": ["Pardifilee", "aedviljad", "magushapu kaste"],
+  "tags": ["lind", "part"],
+  "image": "mock-images/meatmarket4.jpg"
 }, {
   "_id": "6",
   "restaurant": {
