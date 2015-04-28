@@ -19,7 +19,7 @@ describe('Offer Form', function() {
     it('should have tags data after we mock-respond to the HTTP request', inject(function($httpBackend) {
       expect($scope.allTags.length).toBe(0);
       $httpBackend.flush();
-      expect($scope.allTags.length).toBe(3);
+      expect($scope.allTags.length).toBe(5);
     }));
 
     describe('with the http requests mock-responded', function() {
@@ -30,7 +30,7 @@ describe('Offer Form', function() {
       it('should cache the tags request', inject(function($httpBackend) {
         // we'll create another directive and without flushing expect the tags to be resolved
         var compiled = utils.compile('<offer-form></offer-form>');
-        expect(compiled.scope.allTags.length).toBe(3);
+        expect(compiled.scope.allTags.length).toBe(5);
       }));
 
       it('should have a date string representing today', function() {
@@ -48,9 +48,10 @@ describe('Offer Form', function() {
       describe('getFilteredTags', function() {
         it('should return (mocked) tags that match the query', function() {
           var result = $scope.getFilteredTags('a');
-          expect(result.length).toBe(2);
+          expect(result.length).toBe(3);
           expect(result[0].name).toBe('kala');
           expect(result[1].name).toBe('siga');
+          expect(result[2].name).toBe('praad');
         });
 
         it('should return (mocked) tags that match the query', function() {

@@ -71,42 +71,107 @@ describe('OfferList filters', function() {
       }));
 
 
-      it('should return same array if no tags selected, even if state initialized',
-        inject(function(tagFilter, offerFilterState) {
-          offerFilterState.selectedTags = [];
-          var filteredOffers = tagFilter(offers);
-          expect(filteredOffers.length).toBe(4);
-          expect(filteredOffers).toContainId('1');
-          expect(filteredOffers).toContainId('2');
-          expect(filteredOffers).toContainId('3');
-          expect(filteredOffers).toContainId('4');
-        }));
+      it('should return same array if no tags selected, even if state initialized', inject(function(tagFilter, offerFilterState) {
+        offerFilterState.selectedTags = {
+          main: [],
+          others: [],
+        };
+        var filteredOffers = tagFilter(offers);
+        expect(filteredOffers.length).toBe(4);
+        expect(filteredOffers).toContainId('1');
+        expect(filteredOffers).toContainId('2');
+        expect(filteredOffers).toContainId('3');
+        expect(filteredOffers).toContainId('4');
+      }));
 
-      describe('with one tag selected', function() {
-        beforeEach(inject(function(offerFilterState) {
-          offerFilterState.selectedTags = ['lind'];
-        }));
+      describe('main tags', function() {
+        describe('with one tag selected', function() {
+          beforeEach(inject(function(offerFilterState) {
+            offerFilterState.selectedTags = {
+              main: ['lind'],
+            };
+          }));
 
-        it('should return array of offers with selected tags', inject(function(tagFilter) {
-          var filteredOffers = tagFilter(offers);
-          expect(filteredOffers.length).toBe(2);
-          expect(filteredOffers).toContainId('1');
-          expect(filteredOffers).toContainId('4');
-        }));
+          it('should return array of offers with selected tags', inject(function(tagFilter) {
+            var filteredOffers = tagFilter(offers);
+            expect(filteredOffers.length).toBe(2);
+            expect(filteredOffers).toContainId('1');
+            expect(filteredOffers).toContainId('4');
+          }));
+        });
+
+        describe('with more tags selected', function() {
+          beforeEach(inject(function(offerFilterState) {
+            offerFilterState.selectedTags = {
+              main: ['lind', 'loom', 'siga', 'part'],
+            };
+          }));
+
+          it('should return array of offers with selected tags', inject(function(tagFilter) {
+            var filteredOffers = tagFilter(offers);
+            expect(filteredOffers.length).toBe(4);
+            expect(filteredOffers).toContainId('1');
+            expect(filteredOffers).toContainId('2');
+            expect(filteredOffers).toContainId('3');
+            expect(filteredOffers).toContainId('4');
+          }));
+        });
       });
 
-      describe('with more tags selected', function() {
-        beforeEach(inject(function(offerFilterState) {
-          offerFilterState.selectedTags = ['lind', 'loom', 'siga', 'part'];
+      describe('other tags', function() {
+        describe('with one tag selected', function() {
+          beforeEach(inject(function(offerFilterState) {
+            offerFilterState.selectedTags = {
+              others: ['lind'],
+            };
+          }));
+
+          it('should return array of offers with selected tags', inject(function(tagFilter) {
+            var filteredOffers = tagFilter(offers);
+            expect(filteredOffers.length).toBe(2);
+            expect(filteredOffers).toContainId('1');
+            expect(filteredOffers).toContainId('4');
+          }));
+        });
+
+        describe('with more tags selected', function() {
+          beforeEach(inject(function(offerFilterState) {
+            offerFilterState.selectedTags = {
+              others: ['lind', 'loom', 'siga', 'part'],
+            };
+          }));
+
+          it('should return array of offers with selected tags', inject(function(tagFilter) {
+            var filteredOffers = tagFilter(offers);
+            expect(filteredOffers.length).toBe(4);
+            expect(filteredOffers).toContainId('1');
+            expect(filteredOffers).toContainId('2');
+            expect(filteredOffers).toContainId('3');
+            expect(filteredOffers).toContainId('4');
+          }));
+        });
+      });
+
+      describe('both tags', function() {
+        it('should AND the two results together', inject(function(tagFilter, offerFilterState) {
+          offerFilterState.selectedTags = {
+            main: ['supp'],
+            others: ['lind'],
+          };
+
+          var filteredOffers = tagFilter(offers);
+          expect(filteredOffers.length).toBe(1);
+          expect(filteredOffers).toContainId('4');
         }));
 
-        it('should return array of offers with selected tags', inject(function(tagFilter) {
+        it('should not return anything if no match', inject(function(tagFilter, offerFilterState) {
+          offerFilterState.selectedTags = {
+            main: ['supp'],
+            others: ['siga'],
+          };
+
           var filteredOffers = tagFilter(offers);
-          expect(filteredOffers.length).toBe(4);
-          expect(filteredOffers).toContainId('1');
-          expect(filteredOffers).toContainId('2');
-          expect(filteredOffers).toContainId('3');
-          expect(filteredOffers).toContainId('4');
+          expect(filteredOffers.length).toBe(0);
         }));
       });
     });

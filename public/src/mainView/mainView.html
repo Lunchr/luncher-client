@@ -49,12 +49,18 @@
             <div class="col-2">
                 <div class="col-wrap">
                     <div ng-controller="TagListCtrl as tags">
+                        <ul class="horizontal">
+                            <li ng-repeat="tag in tags.list | filter:tags.isMainTag">
+                                <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
+                                <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
+                            </li>
+                        </ul>
                         <p>
                             <a href="javascript:undefined" ng-click="vm.state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
                         </p>
                         <form class="dropdown" ng-class="vm.state.filtersDropdown">
                           <ul>
-                              <li ng-repeat="tag in tags.list">
+                              <li ng-repeat="tag in tags.list | filter:tags.isNotMainTag">
                                   <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
                                   <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
                               </li>

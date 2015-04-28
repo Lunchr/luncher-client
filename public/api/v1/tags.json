@@ -16,4 +16,13 @@
 }, {
   "name": "pizza",
   "display_name": "Pizza"
+}, {
+  "name": "praad",
+  "display_name": "Praad"
+}, {
+  "name": "supp",
+  "display_name": "Supp"
+}, {
+  "name": "magustoit",
+  "display_name": "Magustoit"
 }]

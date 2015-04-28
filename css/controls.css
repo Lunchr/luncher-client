@@ -42,6 +42,15 @@
     p {
         margin: 0;
     }
+    ul.horizontal {
+      margin: 0;
+      float: left;
+      padding: 8px 0px 15px;
+      li {
+        display: inline;
+        float: left;
+      }
+    }
 }
 .sorter {
     position: relative;
@@ -102,5 +111,5 @@
     }
 }
 .col-2 .dropdown {
-    left: -15px;
+    left: 250px;
 }

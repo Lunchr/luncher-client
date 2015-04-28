@@ -13,7 +13,7 @@
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 3.4,
   "ingredients": ["Kana", "aedviljad", "tsillikaste"],
-  "tags": ["lind", "kana"],
+  "tags": ["lind", "kana", "praad"],
   "image": "mock-images/meatmarket.jpg"
 }, {
   "_id": "2",
@@ -30,7 +30,7 @@
   "to_time": "2014-11-10T12:00:00.000Z",
   "price": 3.3,
   "ingredients": ["Seafilee", "aedviljad", "mahushapu kaste"],
-  "tags": ["siga"],
+  "tags": ["siga", "praad"],
   "image": "mock-images/meatmarket2.jpg"
 }, {
   "_id": "3",
@@ -47,7 +47,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.8,
   "ingredients": ["Veiseliha pihv", "burgerisai", "kodused friikartulid", "kaste", "salat"],
-  "tags": ["loom", "veis"],
+  "tags": ["loom", "veis", "praad"],
   "image": "mock-images/meatmarket3.jpg"
 }, {
   "_id": "5",
@@ -64,7 +64,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
   "ingredients": ["Lambaliha", "parmesan", "farfalle"],
-  "tags": ["lammas", "pasta"],
+  "tags": ["lammas", "pasta", "praad"],
   "image": "mock-images/meatmarket5.jpg"
 }, {
   "_id": "4",
@@ -81,7 +81,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
   "ingredients": ["Pardifilee", "aedviljad", "magushapu kaste"],
-  "tags": ["lind", "part"],
+  "tags": ["lind", "part", "praad"],
   "image": "mock-images/meatmarket4.jpg"
 }, {
   "_id": "6",
@@ -98,7 +98,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
   "ingredients": ["Salaami", "ananass", "juust", "pitsakaste", "pitsapõhi"],
-  "tags": ["pizza"],
+  "tags": ["pizza", "praad"],
   "image": "mock-images/meatmarket.jpg"
 }, {
   "_id": "7",
@@ -115,7 +115,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.4,
   "ingredients": ["Farfalled", "sink", "koor"],
-  "tags": ["pasta"],
+  "tags": ["pasta", "praad"],
   "image": "mock-images/meatmarket2.jpg"
 }, {
   "_id": "8",
@@ -132,7 +132,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.2,
   "ingredients": ["Kodune kotlet", "praekartulid", "salat", "kaste"],
-  "tags": ["loom"],
+  "tags": ["loom", "praad"],
   "image": "mock-images/meatmarket3.jpg"
 }, {
   "_id": "9",
@@ -149,7 +149,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.2,
   "ingredients": ["Lambakarree", "ahjukartul", "salat", "kaste"],
-  "tags": ["lammas"],
+  "tags": ["lammas", "praad"],
   "image": "mock-images/meatmarket4.jpg"
 }, {
   "_id": "10",
@@ -166,7 +166,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 5.2,
   "ingredients": ["Pardifilee", "ahuõunad", "friikartulid", "värske salat", "kaste"],
-  "tags": ["lind", "part"],
+  "tags": ["lind", "part", "praad"],
   "image": "mock-images/meatmarket5.jpg"
 }, {
   "_id": "11",
@@ -183,40 +183,40 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 5.9,
   "ingredients": ["Minutihv", "kodune ahjukartul", "astelpaju kaste", "värske salat"],
-  "tags": ["loom"],
+  "tags": ["loom", "praad"],
   "image": "mock-images/meatmarket.jpg"
 }, {
   "_id": "12",
   "restaurant": {
-    "name": "Ülikooli Kohvik",
-    "address": "Kompanii 10, Tartu",
+    "name": "Riis",
+    "address": "Tina 21, Tallinn",
     "location": {
       "type": "Point",
       "coordinates": [26.722691, 58.380094]
     }
   },
-  "title": "Pikpoiss hapukapsa ja ahjukartuliga",
+  "title": "Vanaema kohupiima- õunakook vaniljejäätisega",
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
-  "price": 3.5,
-  "ingredients": ["Pikpoiss", "ahjukartul", "hapukapsas", "külm kaste"],
-  "tags": ["loom"],
+  "price": 2.9,
+  "ingredients": ["Kohupiim", "õunad", "vaniljejäätis"],
+  "tags": ["magustoit"],
   "image": "mock-images/meatmarket2.jpg"
 }, {
   "_id": "13",
   "restaurant": {
-    "name": "Neljapäev",
+    "name": "Polpo",
     "address": "Kompanii 10, Tartu",
     "location": {
       "type": "Point",
       "coordinates": [26.722691, 58.380094]
     }
   },
-  "title": "Heigifilee sidrunise ahjukartuliga",
+  "title": "Tomatipüreesupp",
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
-  "price": 4.2,
-  "ingredients": ["Heigifilee", "ahjukartul", "salat", "kaste"],
-  "tags": ["kala"],
+  "price": 3,
+  "ingredients": ["Tomatipüree", "basiilik", "juustune röstsai"],
+  "tags": ["supp"],
   "image": "mock-images/meatmarket3.jpg"
 }]

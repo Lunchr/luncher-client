@@ -31,10 +31,19 @@
     function(filterFilter, offerFilterState, doIntersect) {
       return function(offers) {
         return filterFilter(offers, function(offer) {
-          if (offerFilterState.selectedTags && offerFilterState.selectedTags.length > 0) {
-            return doIntersect(offerFilterState.selectedTags, offer.tags);
+          if (!offerFilterState.selectedTags) {
+            return true;
           }
-          return true;
+          var tags = offerFilterState.selectedTags;
+          var mainTagsFilter = true;
+          if (tags.main && tags.main.length > 0) {
+            mainTagsFilter = doIntersect(tags.main, offer.tags);
+          }
+          var otherTagsFilter = true;
+          if (tags.others && tags.others.length > 0) {
+            otherTagsFilter = doIntersect(tags.others, offer.tags);
+          }
+          return mainTagsFilter && otherTagsFilter;
         });
       };
     }

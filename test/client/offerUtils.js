@@ -10,7 +10,7 @@ var offerUtils = (function() {
         'title': 'Sweet & Sour Chicken',
         'ingredients': ['Kana', 'aedviljad', 'tsillikaste'],
         'price': 3.4,
-        'tags': ['lind']
+        'tags': ['lind', 'praad']
       }, {
         '_id': '2',
         'restaurant': {
@@ -19,7 +19,7 @@ var offerUtils = (function() {
         'title': 'Sweet & Sour Pork',
         'ingredients': ['Seafilee', 'aedviljad', 'mahushapu kaste'],
         'price': 3.3,
-        'tags': ['siga']
+        'tags': ['siga', 'praad']
       }, {
         '_id': '3',
         'restaurant': {
@@ -28,16 +28,16 @@ var offerUtils = (function() {
         'title': 'Sweet & Sour Beef',
         'ingredients': ['Veiseliha pihv', 'burgerisai', 'kodused friikartulid', 'kaste', 'salat'],
         'price': 3.6,
-        'tags': ['loom']
+        'tags': ['loom', 'praad']
       }, {
         '_id': '4',
         'restaurant': {
           'name': 'Dutch Dishes'
         },
-        'title': 'Sweet & Sour Duck',
+        'title': 'Sweet & Sour Duck Soup',
         'ingredients': ['Part', 'aedviljad', 'magushapu kaste'],
         'price': 3.2,
-        'tags': ['lind']
+        'tags': ['lind', 'supp']
       }];
     },
     getMockRestaurant: function() {
@@ -56,6 +56,12 @@ var offerUtils = (function() {
       }, {
         'name': 'siga',
         'display_name': 'Seast'
+      }, {
+        'name': 'praad',
+        'display_name': 'Praad'
+      }, {
+        'name': 'supp',
+        'display_name': 'Supp'
       }];
     },
     getMockRegions: function() {
