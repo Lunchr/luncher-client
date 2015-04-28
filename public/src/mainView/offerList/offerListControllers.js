@@ -9,12 +9,15 @@
   module.controller('TagListCtrl', ['$scope', 'offerFilterState', '$resource',
     function($scope, offerFilterState, $resource) {
       var tags = this;
-      var mainTags = ['praad', 'supp', 'magustoit'];
+      var mainTags = ['supp', 'praad', 'magustoit'];
       tags.isMainTag = function(tag, index) {
         return mainTags.indexOf(tag.name) > -1;
       };
       tags.isNotMainTag = function(tag, index) {
         return !tags.isMainTag(tag, index);
+      };
+      tags.mainTagIndex = function(tag, index) {
+        return mainTags.indexOf(tag.name);
       };
       tags.list = $resource('api/v1/tags').query();
 

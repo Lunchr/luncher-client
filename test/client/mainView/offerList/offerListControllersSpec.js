@@ -59,6 +59,11 @@ describe('OfferList cotrollers', function() {
         expect(tags.isNotMainTag(tags.list[3])).toBe(false);
       });
 
+      it('should tell to which index in the main tag list the current tag refers', function() {
+        expect(tags.mainTagIndex(tags.list[3])).toBe(1);
+        expect(tags.mainTagIndex(tags.list[4])).toBe(0);
+      });
+
       it('should set selected tags to empty list if nothing selected (undefined)', inject(function(offerFilterState) {
         $scope.$apply();
 
