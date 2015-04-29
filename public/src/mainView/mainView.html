@@ -42,7 +42,10 @@
                         Kaugus
                     </a>
                 </p>
-                <offers-sorter ng-if="vm.offerSource.location" is-numeric="true" order-by="restaurant.distance">
+                <!-- This sorter needs to use ng-show instead of ng-if in order to be ready
+                     to react to offer source changes. If a location is used as a offer source
+                     then this will be set active. -->
+                <offers-sorter ng-show="vm.offerSource.location" is-numeric="true" order-by="restaurant.distance">
                     Kaugus
                 </offers-sorter>
             </div>

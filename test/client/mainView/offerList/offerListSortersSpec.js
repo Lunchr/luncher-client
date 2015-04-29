@@ -1,7 +1,21 @@
 describe('OfferList sorters', function() {
   'use strict';
-  beforeEach(module('partials'));
-  beforeEach(module('offerListSorters'));
+  var offerSourceService;
+  beforeEach(function() {
+    module('offerListSorters', 'partials', function($provide) {
+      $provide.provider('offerSourceService', {
+        $get: function() {
+          return {
+            subscribeToChanges: jasmine.createSpy('subscribeToChanges'),
+          };
+        }
+      });
+    });
+    inject(function(_offerSourceService_){
+      offerSourceService = _offerSourceService_;
+    });
+  });
+
 
   it('should have order state', inject(function(offerOrderState) {
     expect(offerOrderState).toBeDefined();
@@ -68,6 +82,10 @@ describe('OfferList sorters', function() {
         expect(scope.clicked).toHaveBeenCalled();
       });
 
+      it('should not subscribe to offer source changes', function() {
+        expect(offerSourceService.subscribeToChanges).not.toHaveBeenCalled();
+      });
+
       describe('when element clicked', function() {
         beforeEach(function() {
           clickSorter();
@@ -110,6 +128,29 @@ describe('OfferList sorters', function() {
         it('should not be marked active', function() {
           expect(scope.isActive()).toBe(false);
         });
+      });
+    });
+
+    describe('offer sorter directive for \'restaurant.distance\'', function() {
+      var scope;
+      beforeEach(function() {
+        var compiled = utils.compile('<offers-sorter is-numeric="true" order-by="restaurant.distance">Dist</offers-sorter>');
+        scope = compiled.scope;
+      });
+
+      it('should subscribe to offer source changes with current scope', function() {
+        expect(offerSourceService.subscribeToChanges).toHaveBeenCalled();
+        expect(offerSourceService.subscribeToChanges.calls.mostRecent().args[0]).toBe(scope);
+      });
+
+      it('should update when offer source changes', function() {
+        var callback = offerSourceService.subscribeToChanges.calls.mostRecent().args[1];
+        callback({
+          location: 'whatever',
+        });
+
+        expect(scope.isAscending).toBe(true);
+        expect(scope.isActive()).toBe(true);
       });
     });
 

@@ -1,11 +1,11 @@
 (function() {
   'use strict';
-  var offerListSorters = angular.module('offerListSorters', []);
+  var module = angular.module('offerListSorters', ['offerSource']);
 
-  offerListSorters.value('offerOrderState', {});
+  module.value('offerOrderState', {});
 
-  offerListSorters.directive('offersSorter', ['offerOrderState',
-    function(offerOrderState) {
+  module.directive('offersSorter', ['offerOrderState', 'offerSourceService',
+    function(offerOrderState, offerSourceService) {
       return {
         scope: {
           orderBy: '@',
@@ -15,12 +15,23 @@
           $scope.isAscending = false;
           $scope.clicked = function() {
             $scope.isAscending = !$scope.isAscending;
-            offerOrderState.orderBy = $scope.orderBy;
-            offerOrderState.isAscending = $scope.isAscending;
+            updateOrderState();
           };
           $scope.isActive = function() {
             return $scope.orderBy === offerOrderState.orderBy;
           };
+          if ($scope.orderBy === 'restaurant.distance') {
+            offerSourceService.subscribeToChanges($scope, function(offerSource) {
+              if (offerSource.location) {
+                $scope.isAscending = true;
+                updateOrderState();
+              }
+            });
+          }
+          function updateOrderState() {
+            offerOrderState.orderBy = $scope.orderBy;
+            offerOrderState.isAscending = $scope.isAscending;
+          }
         },
         restrict: 'E',
         templateUrl: 'src/mainView/offerList/offersSorterDirective.html',
@@ -30,7 +41,7 @@
     }
   ]);
 
-  offerListSorters.filter('order', ['orderByFilter', 'offerOrderState',
+  module.filter('order', ['orderByFilter', 'offerOrderState',
     function(orderByFilter, offerOrderState) {
       return function(offers) {
         if (!offerOrderState.orderBy) {
