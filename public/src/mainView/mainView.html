@@ -49,7 +49,7 @@
             <div class="col-2">
                 <div class="col-wrap">
                     <div ng-controller="TagListCtrl as tags">
-                        <ul class="horizontal">
+                        <ul class="horizontal desktop">
                             <li ng-repeat="tag in tags.list | filter:tags.isMainTag | orderBy:tags.mainTagIndex">
                                 <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
                                 <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
