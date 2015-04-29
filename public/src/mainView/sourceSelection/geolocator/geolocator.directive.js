@@ -2,8 +2,8 @@
   'use strict';
   var module = angular.module('geolocator', ['ngGeolocator', 'offerSource']);
 
-  module.directive('geolocator', ['ngGeolocator', 'offerSourceService',
-    function(ngGeolocator, offerSourceService) {
+  module.directive('geolocator', ['$timeout', 'ngGeolocator', 'offerSourceService',
+    function($timeout, ngGeolocator, offerSourceService) {
       return {
         scope: {
           key: '@',
@@ -33,10 +33,18 @@
             if (!newVal) {
               return;
             }
-            ngGeolocator.create('geolocator-canvas-'+$scope.$id, ctrl.key).then(function(locator) {
-              ctrl.locator = locator;
-              ctrl.ready = true;
-            });
+            // The small timeout is used as a hacky fix to an issue where, if the Google Maps API
+            // is already loaded, the initialization is almost instant and finishes before the
+            // ngShow animation does. This means that the map will be initialized for a zero sized
+            // canvas which messes things up. The timeout hack avoids this. I tried looking for a
+            // way to listen to when the animation finishes, but didn't find anything good. Initializing
+            // this with a callback after the animation would be a much nicer fix, though.
+            $timeout(function() {
+              ngGeolocator.create('geolocator-canvas-'+$scope.$id, ctrl.key).then(function(locator) {
+                ctrl.locator = locator;
+                ctrl.ready = true;
+              });
+            }, 10);
             // only init the map the first time this directive is made visible
             deregister();
           });

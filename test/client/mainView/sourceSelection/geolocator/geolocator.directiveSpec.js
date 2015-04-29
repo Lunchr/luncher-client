@@ -21,9 +21,10 @@ describe('geolocator module', function() {
   });
 
   describe('geolocator directive', function() {
-    var element, $scope, ctrl, $parentScope, locatorDefer;
+    var element, $scope, ctrl, $parentScope, locatorDefer, $timeout;
 
-    beforeEach(inject(function($q) {
+    beforeEach(inject(function($q, _$timeout_) {
+      $timeout = _$timeout_;
       var compiled = utils.compile('<geolocator on-selected="locationSelected()" key="a-key" ng-show="ngShowBinding"></geolocator>');
       element = compiled.element;
       $scope = compiled.scope;
@@ -40,6 +41,7 @@ describe('geolocator module', function() {
       $scope.$apply(function() {
         $parentScope.ngShowBinding = true;
       });
+      $timeout.flush();
 
       expect(ngGeolocator.create).toHaveBeenCalledWith('geolocator-canvas-'+$scope.$id, 'a-key');
     });
@@ -48,6 +50,7 @@ describe('geolocator module', function() {
       $scope.$apply(function() {
         $parentScope.ngShowBinding = true;
       });
+      $timeout.flush();
       $scope.$apply(function() {
         $parentScope.ngShowBinding = false;
       });
@@ -74,6 +77,7 @@ describe('geolocator module', function() {
         $scope.$apply(function() {
           $parentScope.ngShowBinding = true;
         });
+        $timeout.flush();
         ctrl.locationSelected();
 
         expect($parentScope.locationSelected).toHaveBeenCalled();
@@ -83,6 +87,7 @@ describe('geolocator module', function() {
         $scope.$apply(function() {
           $parentScope.ngShowBinding = true;
         });
+        $timeout.flush();
         ctrl.locationSelected();
 
         expect(offerSourceService.update).toHaveBeenCalledWith({
