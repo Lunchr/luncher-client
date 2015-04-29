@@ -48,6 +48,9 @@
     .dropdown {
         margin-top: -200%;
     }
+    .col-2 .dropdown {
+        left: -15px;
+    }
 
     /* offer */
     .offer {
