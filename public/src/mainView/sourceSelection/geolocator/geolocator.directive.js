@@ -2,11 +2,14 @@
   'use strict';
   var module = angular.module('geolocator', ['ngGeolocator', 'offerSource']);
 
+  module.config(['ngGeolocatorProvider', function(ngGeolocatorProvider) {
+    ngGeolocatorProvider.setGoogleMapsAPIKey('AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8');
+  }]);
+
   module.directive('geolocator', ['$timeout', 'ngGeolocator', 'offerSourceService',
     function($timeout, ngGeolocator, offerSourceService) {
       return {
         scope: {
-          key: '@',
           onSelected: '&',
           ngShow: '=',
         },
@@ -40,7 +43,7 @@
             // way to listen to when the animation finishes, but didn't find anything good. Initializing
             // this with a callback after the animation would be a much nicer fix, though.
             $timeout(function() {
-              ngGeolocator.create('geolocator-canvas-'+$scope.$id, ctrl.key).then(function(locator) {
+              ngGeolocator.create('geolocator-canvas-'+$scope.$id).then(function(locator) {
                 ctrl.locator = locator;
                 ctrl.ready = true;
               });

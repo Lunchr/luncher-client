@@ -25,7 +25,7 @@ describe('geolocator module', function() {
 
     beforeEach(inject(function($q, _$timeout_) {
       $timeout = _$timeout_;
-      var compiled = utils.compile('<geolocator on-selected="locationSelected()" key="a-key" ng-show="ngShowBinding"></geolocator>');
+      var compiled = utils.compile('<geolocator on-selected="locationSelected()" ng-show="ngShowBinding"></geolocator>');
       element = compiled.element;
       $scope = compiled.scope;
       ctrl = $scope.ctrl;
@@ -43,7 +43,7 @@ describe('geolocator module', function() {
       });
       $timeout.flush();
 
-      expect(ngGeolocator.create).toHaveBeenCalledWith('geolocator-canvas-'+$scope.$id, 'a-key');
+      expect(ngGeolocator.create).toHaveBeenCalledWith('geolocator-canvas-'+$scope.$id);
     });
 
     it('should load map from service only the first time', function() {
@@ -98,5 +98,22 @@ describe('geolocator module', function() {
         });
       });
     });
+  });
+});
+
+describe('ngGeolocator configuration', function() {
+  'use strict';
+  var p;
+  beforeEach(function(){
+    module('ngGeolocator', function(ngGeolocatorProvider) {
+      spyOn(ngGeolocatorProvider, 'setGoogleMapsAPIKey');
+      p = ngGeolocatorProvider;
+    });
+    module('geolocator');
+    inject();
+  });
+
+  it('should have called the refresh function on initialization', function() {
+    expect(p.setGoogleMapsAPIKey).toHaveBeenCalled();
   });
 });
