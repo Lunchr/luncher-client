@@ -4,6 +4,11 @@
 
   module.config(['ngGeolocatorProvider', function(ngGeolocatorProvider) {
     ngGeolocatorProvider.setGoogleMapsAPIKey('AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8');
+    ngGeolocatorProvider.extendLocatorMarkerOptions({
+      icon: {
+        url: '/img/geolocator-pointer.png',
+      },
+    });
   }]);
 
   module.directive('geolocator', ['$timeout', 'ngGeolocator', 'offerSourceService',

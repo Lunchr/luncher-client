@@ -107,13 +107,19 @@ describe('ngGeolocator configuration', function() {
   beforeEach(function(){
     module('ngGeolocator', function(ngGeolocatorProvider) {
       spyOn(ngGeolocatorProvider, 'setGoogleMapsAPIKey');
+      spyOn(ngGeolocatorProvider, 'extendLocatorMarkerOptions');
       p = ngGeolocatorProvider;
     });
     module('geolocator');
     inject();
   });
 
-  it('should have called the refresh function on initialization', function() {
+  it('should have set the API key', function() {
     expect(p.setGoogleMapsAPIKey).toHaveBeenCalled();
+  });
+
+  it('should have customized the locator marker', function() {
+    expect(p.extendLocatorMarkerOptions).toHaveBeenCalled();
+    expect(p.extendLocatorMarkerOptions.calls.first().args[0].icon.url).toBeTruthy();
   });
 });
