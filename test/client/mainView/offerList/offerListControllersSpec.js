@@ -1,8 +1,21 @@
 describe('OfferList cotrollers', function() {
   'use strict';
-  var cookies;
   beforeEach(function() {
-    module('offerListControllers');
+    module('offerListControllers', function($provide) {
+      $provide.provider('offerFilterStateService', {
+        $get: function() {
+          var val;
+          return {
+            getCurrent: function() {
+              return val;
+            },
+            update: function(_val_) {
+              val = _val_;
+            },
+          };
+        },
+      });
+    });
   });
 
   describe('Search controller', function() {
@@ -14,14 +27,15 @@ describe('OfferList cotrollers', function() {
         $scope: $scope
       });
       search = $scope.search;
+      $scope.$apply();
     }));
 
-    it('should update filter state service', inject(function(offerFilterState) {
+    it('should update filter state service', inject(function(offerFilterStateService) {
       search.query = "Who is ...";
 
       $scope.$apply();
 
-      expect(offerFilterState.query).toBe("Who is ...");
+      expect(offerFilterStateService.getCurrent().query).toBe("Who is ...");
     }));
   });
 
@@ -64,42 +78,42 @@ describe('OfferList cotrollers', function() {
         expect(tags.mainTagIndex(tags.list[4])).toBe(0);
       });
 
-      it('should set selected tags to empty list if nothing selected (undefined)', inject(function(offerFilterState) {
+      it('should set selected tags to empty list if nothing selected (undefined)', inject(function(offerFilterStateService) {
         $scope.$apply();
 
-        expect(offerFilterState.selectedTags.main.length).toBe(0);
-        expect(offerFilterState.selectedTags.others.length).toBe(0);
+        expect(offerFilterStateService.getCurrent().selectedTags.main.length).toBe(0);
+        expect(offerFilterStateService.getCurrent().selectedTags.others.length).toBe(0);
         expect(tags.selected.length).toBe(0);
       }));
 
-      it('should set selected tags to empty list if nothing selected (false)', inject(function(offerFilterState) {
+      it('should set selected tags to empty list if nothing selected (false)', inject(function(offerFilterStateService) {
         tags.list[0].selected = false;
 
         $scope.$apply();
 
-        expect(offerFilterState.selectedTags.main.length).toBe(0);
-        expect(offerFilterState.selectedTags.others.length).toBe(0);
+        expect(offerFilterStateService.getCurrent().selectedTags.main.length).toBe(0);
+        expect(offerFilterStateService.getCurrent().selectedTags.others.length).toBe(0);
         expect(tags.selected.length).toBe(0);
       }));
 
-      it('should add selected non-main tag to others\' list', inject(function(offerFilterState) {
+      it('should add selected non-main tag to others\' list', inject(function(offerFilterStateService) {
         tags.list[1].selected = true;
 
         $scope.$apply();
 
-        expect(offerFilterState.selectedTags.others.length).toBe(1);
-        expect(offerFilterState.selectedTags.others[0]).toBe('lind');
+        expect(offerFilterStateService.getCurrent().selectedTags.others.length).toBe(1);
+        expect(offerFilterStateService.getCurrent().selectedTags.others[0]).toBe('lind');
         expect(tags.selected.length).toBe(1);
         expect(tags.selected[0]).toBe('Linnust');
       }));
 
-      it('should add selected main tag to main list', inject(function(offerFilterState) {
+      it('should add selected main tag to main list', inject(function(offerFilterStateService) {
         tags.list[3].selected = true;
 
         $scope.$apply();
 
-        expect(offerFilterState.selectedTags.main.length).toBe(1);
-        expect(offerFilterState.selectedTags.main[0]).toBe('praad');
+        expect(offerFilterStateService.getCurrent().selectedTags.main.length).toBe(1);
+        expect(offerFilterStateService.getCurrent().selectedTags.main[0]).toBe('praad');
         expect(tags.selected.length).toBe(0);
       }));
 
@@ -112,22 +126,22 @@ describe('OfferList cotrollers', function() {
           $scope.$apply();
         });
 
-        it('should add multiple selected tags to list', inject(function(offerFilterState) {
-          expect(offerFilterState.selectedTags.others.length).toBe(2);
-          expect(offerFilterState.selectedTags.others).toContain('lind');
-          expect(offerFilterState.selectedTags.others).toContain('siga');
+        it('should add multiple selected tags to list', inject(function(offerFilterStateService) {
+          expect(offerFilterStateService.getCurrent().selectedTags.others.length).toBe(2);
+          expect(offerFilterStateService.getCurrent().selectedTags.others).toContain('lind');
+          expect(offerFilterStateService.getCurrent().selectedTags.others).toContain('siga');
           expect(tags.selected.length).toBe(2);
           expect(tags.selected).toContain('Linnust');
           expect(tags.selected).toContain('Seast');
         }));
 
-        it('should remove from selected tags to list', inject(function(offerFilterState) {
+        it('should remove from selected tags to list', inject(function(offerFilterStateService) {
           tags.list[2].selected = false;
 
           $scope.$apply();
 
-          expect(offerFilterState.selectedTags.others.length).toBe(1);
-          expect(offerFilterState.selectedTags.others).toContain('lind');
+          expect(offerFilterStateService.getCurrent().selectedTags.others.length).toBe(1);
+          expect(offerFilterStateService.getCurrent().selectedTags.others).toContain('lind');
           expect(tags.selected.length).toBe(1);
           expect(tags.selected).toContain('Linnust');
         }));

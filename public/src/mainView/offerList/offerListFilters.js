@@ -1,8 +1,21 @@
 (function() {
   'use strict';
-  var offerListFilters = angular.module('offerListFilters', []);
+  var offerListFilters = angular.module('offerListFilters', [
+    'cookies',
+  ]);
 
-  offerListFilters.value('offerFilterState', {});
+  offerListFilters.factory('offerFilterStateService', ['cookies',
+    function(cookies) {
+      return {
+        getCurrent: function() {
+          return cookies.getFilterState();
+        },
+        update: function(filterState) {
+          cookies.setFilterState(filterState);
+        }
+      };
+    }
+  ]);
 
   offerListFilters.factory('doIntersect', function() {
     return function(as, bs) {
@@ -27,14 +40,15 @@
     }
   ]);
 
-  offerListFilters.filter('tag', ['filterFilter', 'offerFilterState', 'doIntersect',
-    function(filterFilter, offerFilterState, doIntersect) {
+  offerListFilters.filter('tag', ['filterFilter', 'offerFilterStateService', 'doIntersect',
+    function(filterFilter, offerFilterStateService, doIntersect) {
       return function(offers) {
         return filterFilter(offers, function(offer) {
-          if (!offerFilterState.selectedTags) {
+          var filterState = offerFilterStateService.getCurrent();
+          if (!filterState || !filterState.selectedTags) {
             return true;
           }
-          var tags = offerFilterState.selectedTags;
+          var tags = filterState.selectedTags;
           var mainTagsFilter = true;
           if (tags.main && tags.main.length > 0) {
             mainTagsFilter = doIntersect(tags.main, offer.tags);
@@ -49,11 +63,15 @@
     }
   ]);
 
-  offerListFilters.filter('search', ['filterFilter', 'offerFilterState',
-    function(filterFilter, offerFilterState) {
+  offerListFilters.filter('search', ['filterFilter', 'offerFilterStateService',
+    function(filterFilter, offerFilterStateService) {
       return function(offers) {
         return filterFilter(offers, function(offer) {
-          var query = new RegExp(offerFilterState.query, 'i');
+          var filterState = offerFilterStateService.getCurrent();
+          if (!filterState || !filterState.query) {
+            return true;
+          }
+          var query = new RegExp(filterState.query, 'i');
 
           var result = offer.title.match(query);
           result = result || offer.ingredients.some(function(ingredient) {

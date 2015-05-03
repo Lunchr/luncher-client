@@ -1,9 +1,31 @@
 describe('OfferList filters', function() {
   'use strict';
-  beforeEach(module('offerListFilters'));
+  var cookies;
+  beforeEach(function() {
+    module('offerListFilters', function($provide) {
+      $provide.provider('cookies', {
+        $get: function() {
+          var val;
+          return {
+            refreshExpirations: function() {},
+            setFilterState: jasmine.createSpy('setFilterState').and.callFake(function(_val_) {
+              val = _val_;
+            }),
+            getFilterState: jasmine.createSpy('getFilterState').and.callFake(function() {
+              return val;
+            }),
+            removeFilterState: jasmine.createSpy('removeFilterState'),
+          };
+        }
+      });
+    });
+    inject(function(_cookies_) {
+      cookies = _cookies_;
+    });
+  });
 
-  it('should have filter state service', inject(function(offerFilterState) {
-    expect(offerFilterState).toBeDefined();
+  it('should NOT initially have filter state service', inject(function(offerFilterStateService) {
+    expect(offerFilterStateService.getCurrent()).toBeUndefined();
   }));
 
   describe('doIntersect service', function() {
@@ -53,9 +75,9 @@ describe('OfferList filters', function() {
   describe('with filter state', function() {
     var offers;
 
-    beforeEach(inject(function(offerFilterState) {
+    beforeEach(inject(function(offerFilterStateService) {
       offers = offerUtils.getMockOffers();
-      utils.pruneObject(offerFilterState);
+      offerFilterStateService.update({});
       jasmine.addMatchers(offerUtils.matchers);
     }));
 
@@ -71,11 +93,13 @@ describe('OfferList filters', function() {
       }));
 
 
-      it('should return same array if no tags selected, even if state initialized', inject(function(tagFilter, offerFilterState) {
-        offerFilterState.selectedTags = {
-          main: [],
-          others: [],
-        };
+      it('should return same array if no tags selected, even if state initialized', inject(function(tagFilter, offerFilterStateService) {
+        offerFilterStateService.update({
+          selectedTags: {
+            main: [],
+            others: [],
+          }
+        });
         var filteredOffers = tagFilter(offers);
         expect(filteredOffers.length).toBe(4);
         expect(filteredOffers).toContainId('1');
@@ -86,10 +110,12 @@ describe('OfferList filters', function() {
 
       describe('main tags', function() {
         describe('with one tag selected', function() {
-          beforeEach(inject(function(offerFilterState) {
-            offerFilterState.selectedTags = {
-              main: ['lind'],
-            };
+          beforeEach(inject(function(offerFilterStateService) {
+            offerFilterStateService.update({
+              selectedTags: {
+                main: ['lind'],
+              },
+            });
           }));
 
           it('should return array of offers with selected tags', inject(function(tagFilter) {
@@ -101,10 +127,12 @@ describe('OfferList filters', function() {
         });
 
         describe('with more tags selected', function() {
-          beforeEach(inject(function(offerFilterState) {
-            offerFilterState.selectedTags = {
-              main: ['lind', 'loom', 'siga', 'part'],
-            };
+          beforeEach(inject(function(offerFilterStateService) {
+            offerFilterStateService.update({
+              selectedTags: {
+                main: ['lind', 'loom', 'siga', 'part'],
+              },
+            });
           }));
 
           it('should return array of offers with selected tags', inject(function(tagFilter) {
@@ -120,10 +148,12 @@ describe('OfferList filters', function() {
 
       describe('other tags', function() {
         describe('with one tag selected', function() {
-          beforeEach(inject(function(offerFilterState) {
-            offerFilterState.selectedTags = {
-              others: ['lind'],
-            };
+          beforeEach(inject(function(offerFilterStateService) {
+            offerFilterStateService.update({
+              selectedTags: {
+                others: ['lind'],
+              },
+            });
           }));
 
           it('should return array of offers with selected tags', inject(function(tagFilter) {
@@ -135,10 +165,12 @@ describe('OfferList filters', function() {
         });
 
         describe('with more tags selected', function() {
-          beforeEach(inject(function(offerFilterState) {
-            offerFilterState.selectedTags = {
-              others: ['lind', 'loom', 'siga', 'part'],
-            };
+          beforeEach(inject(function(offerFilterStateService) {
+            offerFilterStateService.update({
+              selectedTags: {
+                others: ['lind', 'loom', 'siga', 'part'],
+              },
+            });
           }));
 
           it('should return array of offers with selected tags', inject(function(tagFilter) {
@@ -153,22 +185,26 @@ describe('OfferList filters', function() {
       });
 
       describe('both tags', function() {
-        it('should AND the two results together', inject(function(tagFilter, offerFilterState) {
-          offerFilterState.selectedTags = {
-            main: ['supp'],
-            others: ['lind'],
-          };
+        it('should AND the two results together', inject(function(tagFilter, offerFilterStateService) {
+          offerFilterStateService.update({
+            selectedTags: {
+              main: ['supp'],
+              others: ['lind'],
+            },
+          });
 
           var filteredOffers = tagFilter(offers);
           expect(filteredOffers.length).toBe(1);
           expect(filteredOffers).toContainId('4');
         }));
 
-        it('should not return anything if no match', inject(function(tagFilter, offerFilterState) {
-          offerFilterState.selectedTags = {
-            main: ['supp'],
-            others: ['siga'],
-          };
+        it('should not return anything if no match', inject(function(tagFilter, offerFilterStateService) {
+          offerFilterStateService.update({
+            selectedTags: {
+              main: ['supp'],
+              others: ['siga'],
+            },
+          });
 
           var filteredOffers = tagFilter(offers);
           expect(filteredOffers.length).toBe(0);
@@ -187,8 +223,10 @@ describe('OfferList filters', function() {
         expect(filteredOffers).toContainId('4');
       }));
 
-      it('should return same array for empty query', inject(function(searchFilter, offerFilterState) {
-        offerFilterState.query = '';
+      it('should return same array for empty query', inject(function(searchFilter, offerFilterStateService) {
+        offerFilterStateService.update({
+          query: '',
+        });
 
         var filteredOffers = searchFilter(offers);
 
@@ -199,8 +237,10 @@ describe('OfferList filters', function() {
         expect(filteredOffers).toContainId('4');
       }));
 
-      it('should filter on the description', inject(function(searchFilter, offerFilterState) {
-        offerFilterState.query = 'Kana';
+      it('should filter on the description', inject(function(searchFilter, offerFilterStateService) {
+        offerFilterStateService.update({
+          query: 'Kana',
+        });
 
         var filteredOffers = searchFilter(offers);
 
@@ -208,8 +248,10 @@ describe('OfferList filters', function() {
         expect(filteredOffers).toContainId('1');
       }));
 
-      it('should be case insensitive', inject(function(searchFilter, offerFilterState) {
-        offerFilterState.query = 'kanA';
+      it('should be case insensitive', inject(function(searchFilter, offerFilterStateService) {
+        offerFilterStateService.update({
+          query: 'kanA',
+        });
 
         var filteredOffers = searchFilter(offers);
 
@@ -217,8 +259,10 @@ describe('OfferList filters', function() {
         expect(filteredOffers).toContainId('1');
       }));
 
-      it('should filter on the title', inject(function(searchFilter, offerFilterState) {
-        offerFilterState.query = 'Chicken';
+      it('should filter on the title', inject(function(searchFilter, offerFilterStateService) {
+        offerFilterStateService.update({
+          query: 'Chicken',
+        });
 
         var filteredOffers = searchFilter(offers);
 
@@ -226,8 +270,10 @@ describe('OfferList filters', function() {
         expect(filteredOffers).toContainId('1');
       }));
 
-      it('should filter on tags', inject(function(searchFilter, offerFilterState) {
-        offerFilterState.query = 'lind';
+      it('should filter on tags', inject(function(searchFilter, offerFilterStateService) {
+        offerFilterStateService.update({
+          query: 'lind',
+        });
 
         var filteredOffers = searchFilter(offers);
 
@@ -236,8 +282,10 @@ describe('OfferList filters', function() {
         expect(filteredOffers).toContainId('4');
       }));
 
-      it('should filter on location', inject(function(searchFilter, offerFilterState) {
-        offerFilterState.query = 'Bulgarian';
+      it('should filter on location', inject(function(searchFilter, offerFilterStateService) {
+        offerFilterStateService.update({
+          query: 'Bulgarian',
+        });
 
         var filteredOffers = searchFilter(offers);
 
@@ -245,16 +293,20 @@ describe('OfferList filters', function() {
         expect(filteredOffers).toContainId('2');
       }));
 
-      it('should not filter on price', inject(function(searchFilter, offerFilterState) {
-        offerFilterState.query = '3.6';
+      it('should not filter on price', inject(function(searchFilter, offerFilterStateService) {
+        offerFilterStateService.update({
+          query: '3.6',
+        });
 
         var filteredOffers = searchFilter(offers);
 
         expect(filteredOffers.length).toBe(0);
       }));
 
-      it('should not filter on id', inject(function(searchFilter, offerFilterState) {
-        offerFilterState.query = '1';
+      it('should not filter on id', inject(function(searchFilter, offerFilterStateService) {
+        offerFilterStateService.update({
+          query: '1',
+        });
 
         var filteredOffers = searchFilter(offers);
 

@@ -13,6 +13,10 @@
       name: 'luncher_offer_source',
       expiry: 28,
     },
+    filterState: {
+      name: 'luncher_filters',
+      expiry: 28,
+    },
   });
 
   module.factory('cookies', ['ipCookie', 'allCookies',
