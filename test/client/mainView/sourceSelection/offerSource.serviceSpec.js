@@ -2,7 +2,7 @@ describe('offerSource', function() {
   'use strict';
   var cookies;
   beforeEach(function() {
-    module('offerSource', function($provide) {
+    module('offerSource', 'pubSub', function($provide) {
       $provide.provider('cookies', {
         $get: function() {
           return {
