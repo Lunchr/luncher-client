@@ -264,6 +264,14 @@
             color: $color-a;
         }
     }
+    &.icon {
+        padding-left: 40px;
+        &:before {
+            position: absolute;
+            left: 15px;
+            top: 9px;
+        }
+    }
     input[type="submit"]& {
       border: none;
     }
