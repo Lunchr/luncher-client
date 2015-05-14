@@ -1,20 +1,18 @@
-<div class="header">
+<header>
     <div class="container">
-        <div class="header-wrap">
-            <p class="icon-wrap restaurant">
-                <button ng-click="menuState='active'" class="icon icon-12">
-                    <span class="icon-label location">{{restaurant.name}}</span>
-                </button>
-            </p>
-            <p id="logo">Luncher</p>
-            <p class="logout">
-              <a href="/api/v1/logout" class="icon icon-21">
-                  <span>Logi välja</span>
-              </a>
-            </p>
-        </div>
+        <p class="icon-wrap restaurant">
+            <button ng-click="menuState='active'" class="icon icon-12">
+                <span class="icon-label location">{{restaurant.name}}</span>
+            </button>
+        </p>
+        <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
+        <p class="logout">
+          <a href="/api/v1/logout" class="icon icon-21">
+              <span>Logi välja</span>
+          </a>
+        </p>
     </div>
-</div>
+</header>
 <div class="content">
     <div class="container">
         <div class="offer-form-wrap">

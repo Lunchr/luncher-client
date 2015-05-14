@@ -8,7 +8,7 @@
     color: $color;
     font-size: 13px;
     a {
-        display: block;
+        display: inline-block;
         padding: 14px 0 15px;
         cursor: pointer;
     }
@@ -43,13 +43,24 @@
         margin: 0;
     }
     ul.horizontal {
-      margin: 0;
-      float: left;
-      padding: 8px 0px 15px;
-      li {
-        display: inline;
         float: left;
-      }
+        margin: 0 0 0 -10px;
+        padding: 8px 0px;
+        li {
+            display: inline;
+            float: left;
+        }
+        label {
+            padding-left: 30px;
+            padding-right: 10px;
+        }
+        input[type=checkbox] + label:before,
+        input[type=radio] + label:before {
+            left: 10px;
+        }
+        + p a {
+            padding-left: 12px;
+        }
     }
 }
 .sorter {
