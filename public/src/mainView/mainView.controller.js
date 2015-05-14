@@ -74,10 +74,10 @@
       function updateFavorites() {
         favorites.decorateOffers(vm.offers);
         var favoriteOffers = vm.offers.filter(function(offer) {
-          return offer.isFavorite;
+          return offer.restaurant.isFavorite;
         });
         var otherOffers = vm.offers.filter(function(offer) {
-          return !offer.isFavorite;
+          return !offer.restaurant.isFavorite;
         });
         vm.offersGroupedByIsFavorite = [];
         if (favoriteOffers.length > 0) {

@@ -181,8 +181,8 @@ describe('mainViewController', function() {
           }));
 
           it('should call separate the offers into groups by favorites after offers are returned', inject(function($httpBackend) {
-            mockOffers[1].isFavorite = true;
-            mockOffers[3].isFavorite = true;
+            mockOffers[1].restaurant.isFavorite = true;
+            mockOffers[3].restaurant.isFavorite = true;
             $httpBackend.flush();
 
             expect(vm.offersGroupedByIsFavorite.length).toBe(2);
@@ -200,10 +200,10 @@ describe('mainViewController', function() {
           }));
 
           it('should group all into one with all being favorites', inject(function($httpBackend) {
-            mockOffers[0].isFavorite = true;
-            mockOffers[1].isFavorite = true;
-            mockOffers[2].isFavorite = true;
-            mockOffers[3].isFavorite = true;
+            mockOffers[0].restaurant.isFavorite = true;
+            mockOffers[1].restaurant.isFavorite = true;
+            mockOffers[2].restaurant.isFavorite = true;
+            mockOffers[3].restaurant.isFavorite = true;
             $httpBackend.flush();
 
             expect(vm.offersGroupedByIsFavorite.length).toBe(1);

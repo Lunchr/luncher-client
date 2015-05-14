@@ -79,7 +79,7 @@
         <div class="offers-wrap" ng-repeat="offerList in vm.offersGroupedByIsFavorite" ng-class="{filled: filteredOffers.length}">
             <div class="offer" ng-repeat="offer in offerList | search | tag | orderBy:'restaurant.name' | order as filteredOffers" id="{{offer._id}}"
                  ng-click="offer.toggle.state = !offer.toggle.state"
-                 ng-class="{expand: offer.toggle.state, favorite: offer.isFavorite, 'not-last-for-restaurant': !vm.isLastForRestaurant(filteredOffers, offer)}">
+                 ng-class="{expand: offer.toggle.state, favorite: offer.restaurant.isFavorite, 'not-last-for-restaurant': !vm.isLastForRestaurant(filteredOffers, offer)}">
                 <p class="icon-wrap" ng-if="vm.isFirstForRestaurant(filteredOffers, offer)">
                   <!-- stop event propagation to avoid expanding the offer when the user just wants to favorite -->
                   <a href="javascript:undefined" class="icon icon-8" ng-click="vm.toggleFavorite(offer.restaurant.name); $event.stopPropagation()"></a>
