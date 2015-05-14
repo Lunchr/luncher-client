@@ -1,7 +1,7 @@
 
 /*** HEADER, LOGO, SEARCH, MENU ***/
 
-.header {
+header {
     position: absolute;
     top: 0;
     left: 0;
@@ -11,12 +11,9 @@
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     color: #fff;
-    .header-wrap {
-        position: relative;
-        padding: 8px 0;
-    }
     .icon-wrap {
         z-index: 100;
+        margin-left: 12px;
     }
 }
 #logo {
@@ -41,6 +38,7 @@
     right: 0;
     top: 8px;
     margin: 0;
+    margin-right: 12px
 }
 #search {
     position: relative;
@@ -102,7 +100,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    margin: 0;
+    margin: 0 12px 0 0;
     padding: 0;
     a.icon {
         display: block;

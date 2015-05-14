@@ -1,19 +1,17 @@
-<div class="header">
+<header>
     <div class="container">
-        <div class="header-wrap">
-            <p class="icon-wrap">
-                <button ng-click="vm.state.regionSelectionDropdown='active'" class="icon icon-5">
-                    <span class="icon-label location">{{vm.offerSource.region}}</span>
-                </button>
-            </p>
-            <p id="logo">Luncher</p>
-            <p class="search-wrap" ng-controller="SearchCtrl as search">
-                <input ng-class="{ 'filled': search.query.length }" id="search" type="text" ng-model="search.query">
-                <button ng-click="search.query = ''" id="search-submit" class="icon-7"></button>
-            </p>
-        </div>
+        <p class="icon-wrap">
+            <button ng-click="vm.state.regionSelectionDropdown='active'" class="icon icon-5">
+                <span class="icon-label location">{{vm.offerSource.region}}</span>
+            </button>
+        </p>
+        <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
+        <p class="search-wrap" ng-controller="SearchCtrl as search">
+            <input ng-class="{ 'filled': search.query.length }" id="search" type="text" ng-model="search.query">
+            <button ng-click="search.query = ''" id="search-submit" class="icon-7"></button>
+        </p>
     </div>
-</div>
+</header>
 <div class="popup" ng-class="vm.state.sourceSelectionPopup">
     <h2>Vali enda asukoht</h2>
     <offer-source-selection on-selected="vm.state.sourceSelectionPopup=''">
@@ -58,7 +56,8 @@
                             </li>
                         </ul>
                         <p>
-                            <a href="javascript:undefined" ng-click="vm.state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
+                            <a class="desktop" href="javascript:undefined" ng-click="vm.state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Veel filtreid'}}</a>
+                            <a class="mobile" href="javascript:undefined" ng-click="vm.state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
                         </p>
                         <form class="dropdown" ng-class="vm.state.filtersDropdown">
                           <ul>
