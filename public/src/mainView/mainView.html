@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="overlay" ng-click="vm.state.geolocatorDropdown=''"></div>
-        <div class="controls" ng-show="vm.offers.length">
+        <div class="controls" ng-show="vm.hasOffers">
             <div class="col-1">
                 <p ng-if="!vm.offerSource.location">
                     <a ng-click="vm.state.geolocatorDropdown='active'">
@@ -76,58 +76,10 @@
                 </div>
             </div>
         </div>
-        <div class="offers-wrap" ng-repeat="offerList in vm.offersGroupedByIsFavorite" ng-class="{filled: filteredOffers.length}">
-            <div class="offer" ng-repeat="offer in offerList | search | tag | orderBy:'restaurant.name' | order as filteredOffers" id="{{offer._id}}"
-                 ng-click="offer.toggle.state = !offer.toggle.state"
-                 ng-class="{expand: offer.toggle.state, favorite: offer.restaurant.isFavorite, 'not-last-for-restaurant': !vm.isLastForRestaurant(filteredOffers, offer)}">
-                <p class="icon-wrap" ng-if="vm.isFirstForRestaurant(filteredOffers, offer)">
-                  <!-- stop event propagation to avoid expanding the offer when the user just wants to favorite -->
-                  <a href="javascript:undefined" class="icon icon-8" ng-click="vm.toggleFavorite(offer.restaurant.name); $event.stopPropagation()"></a>
-                </p>
-                <div class="offer-content">
-                    <div class="col-1" ng-if="vm.isFirstForRestaurant(filteredOffers, offer)">
-                        <p>
-                            {{offer.restaurant.name}}
-                            <span ng-if="offer.restaurant.distance" class="distance">
-                              {{offer.restaurant.distance | approximateDistance}}
-                            </span></p>
-                        <p class="additional">
-                          {{offer.restaurant.address}}
-                        </p>
-                    </div>
-                    <div class="col-1" ng-if="!vm.isFirstForRestaurant(filteredOffers, offer)">
-                      &nbsp;
-                    </div>
-                    <div class="col-2">
-                        <div class="col-wrap">
-                            <p class="mobile">
-                                {{offer.restaurant.name}}
-                                <span ng-if="offer.restaurant.distance" class="distance">
-                                    {{offer.restaurant.distance | approximateDistance}}
-                                </span>
-                            </p>
-                            <p class="desktop">{{offer.title}}</p>
-                            <p class="price">{{offer.price | currency:'€'}}</p>
-                        </div>
-                        <p class="additional mobile">{{offer.title}}</p>
-                        <p class="additional desktop">{{offer.ingredients | joinTags}}</p>
-                    </div>
-                </div>
-                <div class="secondary">
-                    <div class="col-1">
-                        <div class="map" ng-style="{'background-image': 'url(https://maps.googleapis.com/maps/api/staticmap?center={{vm.getLatLng(offer)}}&zoom=17&size=400x200&scale=2&markers=color:red%7C{{vm.getLatLng(offer)}}&key=AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8)'}">
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <p class="additional mobile">{{offer.ingredients | joinTags}}</p>
-                        <p class="image" ng-style="{'background-image':'url(../{{offer.image}})'}"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <p class="message" ng-hide="vm.offers.length">
-            <span class="icon icon-20"></span>
-            Vabandame, pakkumised puuduvad.
-      </p>
+        <offer-list has-offers="vm.hasOffers"></offer-list>
+        <p class="message" ng-hide="vm.hasOffers">
+          <span class="icon icon-20"></span>
+          Vabandame, pakkumised puuduvad.
+        </p>
     </div>
 </div>
