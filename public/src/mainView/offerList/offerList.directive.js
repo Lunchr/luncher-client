@@ -4,6 +4,7 @@
     'ngResource',
     'offerListControllers',
     'offerListFilters',
+    'offerListSorters',
     'favorites',
     'offerSource',
     'commonFilters',
@@ -11,8 +12,8 @@
 
   var PUBLIC_GOOGLE_MAPS_API_KEY = 'AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8';
 
-  module.directive('offerList', ['$resource', 'favorites', 'offerSourceService', 'offerFilterStateService',
-    function($resource, favorites, offerSourceService, offerFilterStateService) {
+  module.directive('offerList', ['$resource', 'favorites', 'offerSourceService', 'offerFilterStateService', 'offerOrderStateService',
+    function($resource, favorites, offerSourceService, offerFilterStateService, offerOrderStateService) {
       return {
         scope: {
           hasOffers: '=?',
@@ -60,6 +61,9 @@
             }
           });
           offerFilterStateService.subscribeToChanges($scope, function filterChanged(filterState) {
+            onOffersUpdated();
+          });
+          offerOrderStateService.subscribeToChanges($scope, function orderChanged(orderState) {
             onOffersUpdated();
           });
           (function bootstrap() {

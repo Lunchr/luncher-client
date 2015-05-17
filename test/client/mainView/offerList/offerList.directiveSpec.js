@@ -1,6 +1,6 @@
 describe('offerList', function() {
   'use strict';
-  var offerSourceService, filterStateService;
+  var offerSourceService, filterStateService, orderStateService;
   beforeEach(function() {
     module('offerList', 'partials', function($provide) {
       $provide.provider('favorites', {
@@ -28,10 +28,19 @@ describe('offerList', function() {
           };
         }
       });
+      $provide.provider('offerOrderStateService', {
+        $get: function() {
+          return {
+            subscribeToChanges: jasmine.createSpy('orderState.subscribeToChanges'),
+            getCurrent: jasmine.createSpy('orderState.getCurrent'),
+          };
+        }
+      });
     });
-    inject(function(_offerSourceService_, offerFilterStateService){
+    inject(function(_offerSourceService_, offerFilterStateService, offerOrderStateService){
       offerSourceService = _offerSourceService_;
       filterStateService = offerFilterStateService;
+      orderStateService = offerOrderStateService;
     });
   });
 
@@ -212,6 +221,20 @@ describe('offerList', function() {
           });
         });
 
+        describe('update offer order state', function() {
+          beforeEach(inject(function($httpBackend) {
+            $httpBackend.flush();
+          }));
+
+          it('should regroup offers', function () {
+            var offers = ctrl.offersGroupedByIsFavorite;
+
+            updateOrderState();
+
+            expect(ctrl.offersGroupedByIsFavorite).not.toBe(offers);
+          });
+        });
+
         describe('favorites', function() {
           beforeEach(function() {
             jasmine.addMatchers(offerUtils.matchers);
@@ -337,6 +360,11 @@ describe('offerList', function() {
     function updateFilterState(filterState) {
       var callback = filterStateService.subscribeToChanges.calls.mostRecent().args[1];
       callback(filterState);
+    }
+
+    function updateOrderState(orderState) {
+      var callback = orderStateService.subscribeToChanges.calls.mostRecent().args[1];
+      callback(orderState);
     }
   });
 });
