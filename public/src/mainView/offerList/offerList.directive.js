@@ -101,6 +101,9 @@
           }
 
           function groupOffers() {
+            if (!ctrl.offers) {
+              return [];
+            }
             var favoriteOffers = ctrl.offers.filter(function(offer) {
               return offer.restaurant.isFavorite;
             });
