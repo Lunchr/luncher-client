@@ -37,7 +37,7 @@ describe('offerList', function() {
         }
       });
     });
-    inject(function(_offerSourceService_, offerFilterStateService, offerOrderStateService){
+    inject(function(_offerSourceService_, offerFilterStateService, offerOrderStateService) {
       offerSourceService = _offerSourceService_;
       filterStateService = offerFilterStateService;
       orderStateService = offerOrderStateService;
@@ -212,12 +212,12 @@ describe('offerList', function() {
             $httpBackend.flush();
           }));
 
-          it('should regroup offers', function () {
-            var offers = ctrl.offersGroupedByIsFavorite;
+          it('should regroup offers', function() {
+            var offers = ctrl.offersByRestaurantByFavorite;
 
             updateFilterState();
 
-            expect(ctrl.offersGroupedByIsFavorite).not.toBe(offers);
+            expect(ctrl.offersByRestaurantByFavorite).not.toBe(offers);
           });
         });
 
@@ -226,12 +226,12 @@ describe('offerList', function() {
             $httpBackend.flush();
           }));
 
-          it('should regroup offers', function () {
-            var offers = ctrl.offersGroupedByIsFavorite;
+          it('should regroup offers', function() {
+            var offers = ctrl.offersByRestaurantByFavorite;
 
             updateOrderState();
 
-            expect(ctrl.offersGroupedByIsFavorite).not.toBe(offers);
+            expect(ctrl.offersByRestaurantByFavorite).not.toBe(offers);
           });
         });
 
@@ -251,18 +251,18 @@ describe('offerList', function() {
             mockOffers[3].restaurant.isFavorite = true;
             $httpBackend.flush();
 
-            expect(ctrl.offersGroupedByIsFavorite.length).toBe(2);
-            expect(ctrl.offersGroupedByIsFavorite[0]).toContainId('2');
-            expect(ctrl.offersGroupedByIsFavorite[0]).toContainId('4');
-            expect(ctrl.offersGroupedByIsFavorite[1]).toContainId('1');
-            expect(ctrl.offersGroupedByIsFavorite[1]).toContainId('3');
+            expect(ctrl.offersByRestaurantByFavorite.length).toBe(2);
+            expect(ctrl.offersByRestaurantByFavorite[0]).toContainId('2');
+            expect(ctrl.offersByRestaurantByFavorite[0]).toContainId('4');
+            expect(ctrl.offersByRestaurantByFavorite[1]).toContainId('1');
+            expect(ctrl.offersByRestaurantByFavorite[1]).toContainId('3');
           }));
 
           it('should group all into one with no favorites', inject(function($httpBackend) {
             $httpBackend.flush();
 
-            expect(ctrl.offersGroupedByIsFavorite.length).toBe(1);
-            expect(ctrl.offersGroupedByIsFavorite[0].length).toBe(4);
+            expect(ctrl.offersByRestaurantByFavorite.length).toBe(1);
+            expect(ctrl.offersByRestaurantByFavorite[0].length).toBe(4);
           }));
 
           it('should group all into one with all being favorites', inject(function($httpBackend) {
@@ -272,8 +272,8 @@ describe('offerList', function() {
             mockOffers[3].restaurant.isFavorite = true;
             $httpBackend.flush();
 
-            expect(ctrl.offersGroupedByIsFavorite.length).toBe(1);
-            expect(ctrl.offersGroupedByIsFavorite[0].length).toBe(4);
+            expect(ctrl.offersByRestaurantByFavorite.length).toBe(1);
+            expect(ctrl.offersByRestaurantByFavorite[0].length).toBe(4);
           }));
 
           describe('toggle restaurant as favorite', function() {
@@ -308,45 +308,6 @@ describe('offerList', function() {
               },
             });
             expect(staticmap).toEqual('https://maps.googleapis.com/maps/api/staticmap?center=2.1%2C1.2&zoom=17&size=200x200&scale=2&markers=color%3Ared%7C2.1%2C1.2&key=AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8');
-          });
-        });
-
-        describe('grouping by restaurant', function() {
-          var offers = [
-            {restaurant:{name:'resto1'}},
-            {restaurant:{name:'resto2'}},
-            {restaurant:{name:'resto2'}},
-            {restaurant:{name:'resto3'}},
-          ];
-
-          describe('isFirstForRestaurant', function() {
-            it('should return true for first offer', function() {
-              expect(ctrl.isFirstForRestaurant(offers, offers[0])).toBe(true);
-            });
-
-            it('should return true for first offer for resto', function() {
-              expect(ctrl.isFirstForRestaurant(offers, offers[1])).toBe(true);
-              expect(ctrl.isFirstForRestaurant(offers, offers[3])).toBe(true);
-            });
-
-            it('should return false for second offer for resto', function() {
-              expect(ctrl.isFirstForRestaurant(offers, offers[2])).toBe(false);
-            });
-          });
-
-          describe('isLastForRestaurant', function() {
-            it('should return true for last offer', function() {
-              expect(ctrl.isLastForRestaurant(offers, offers[3])).toBe(true);
-            });
-
-            it('should return true for last offer for resto', function() {
-              expect(ctrl.isLastForRestaurant(offers, offers[0])).toBe(true);
-              expect(ctrl.isLastForRestaurant(offers, offers[2])).toBe(true);
-            });
-
-            it('should return false for first offer for resto, if more following', function() {
-              expect(ctrl.isLastForRestaurant(offers, offers[1])).toBe(false);
-            });
           });
         });
       });

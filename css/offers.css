@@ -73,12 +73,6 @@
             animation: spin 1s linear infinite;
         }
     }
-    &.favorite {
-      .icon-8:before {
-          content: "k";
-          color: $color;
-      }
-    }
     &.warning {
         &:before {
             display: block;
@@ -91,6 +85,16 @@
             background: rgb(238, 92, 16);
         }
     }
+}
+.restaurant {
+  position: relative;
+  box-sizing: border-box;
+  &.favorite {
+    .icon-8:before {
+      content: "k";
+      color: $color;
+    }
+  }
 }
 .offer-content {
     width: 100%;

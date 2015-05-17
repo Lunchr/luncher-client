@@ -1,50 +1,33 @@
-<div class="offers-wrap" ng-repeat="offerList in ctrl.offersGroupedByIsFavorite" ng-class="{filled: filteredOffers.length}">
-  <div class="offer" ng-repeat="offer in offerList | search | tag | orderBy:'restaurant.name' | order as filteredOffers" id="{{offer._id}}"
-       ng-click="offer.toggle.state = !offer.toggle.state"
-       ng-class="{expand: offer.toggle.state, favorite: offer.restaurant.isFavorite, 'not-last-for-restaurant': !ctrl.isLastForRestaurant(filteredOffers, offer)}">
-    <p class="icon-wrap" ng-if="ctrl.isFirstForRestaurant(filteredOffers, offer)">
-      <!-- stop event propagation to avoid expanding the offer when the user just wants to favorite -->
-      <a href="javascript:undefined" class="icon icon-8" ng-click="ctrl.toggleFavorite(offer.restaurant.name); $event.stopPropagation()"></a>
-    </p>
-    <div class="offer-content">
-      <div class="col-1" ng-if="ctrl.isFirstForRestaurant(filteredOffers, offer)">
-        <p>
-          {{offer.restaurant.name}}
-          <span ng-if="offer.restaurant.distance" class="distance">
-            {{offer.restaurant.distance | approximateDistance}}
-          </span>
-        </p>
-        <p class="additional">
-          {{offer.restaurant.address}}
-        </p>
-      </div>
-      <div class="col-1" ng-if="!ctrl.isFirstForRestaurant(filteredOffers, offer)">
-        &nbsp;
-      </div>
-      <div class="col-2">
-        <div class="col-wrap">
-          <p class="mobile">
-            {{offer.restaurant.name}}
-            <span ng-if="offer.restaurant.distance" class="distance">
-              {{offer.restaurant.distance | approximateDistance}}
-            </span>
-          </p>
-          <p class="desktop">{{offer.title}}</p>
-          <p class="price">{{offer.price | currency:'€'}}</p>
-        </div>
-        <p class="additional mobile">{{offer.title}}</p>
-        <p class="additional desktop">{{offer.ingredients | joinTags}}</p>
-      </div>
-    </div>
-    <div class="secondary">
+<div class="offers-wrap" ng-repeat="offersByRestaurant in ctrl.offersByRestaurantByFavorite">
+  <div class="restaurant-wrap" ng-repeat="restaurant in offersByRestaurant">
       <div class="col-1">
-        <div class="map" ng-style="{'background-image': 'url({{ctrl.getStaticMap(offer)}})'}">
-        </div>
+          <div class="restaurant" ng-class="{favorite: restaurant.isFavorite}">
+              <p class="icon-wrap">
+                <a href="javascript:undefined" class="icon icon-8" ng-click="ctrl.toggleFavorite(restaurant.name)"></a>
+              </p>
+              <h3>
+                  {{restaurant.name}}
+                  <span class="distance">
+                      {{restaurant.distance | approximateDistance}}
+                  </span>
+              </h3>
+              <p>{{restaurant.address}}</p>
+              <div class="secondary">
+                  <p><a href="#">+372 5678 910</a></p>
+                  <p><img src="map" alt="map"></p>
+              </div>
+          </div>
       </div>
       <div class="col-2">
-        <p class="additional mobile">{{offer.ingredients | joinTags}}</p>
-        <p class="image" ng-style="{'background-image':'url(../{{offer.image}})'}"></p>
+          <div class="offer" ng-repeat="offer in restaurant.offers">
+              <h3>{{offer.title}}</h3>
+              <p>{{offer.ingredients | joinTags}}</p>
+              <p class="price">{{offer.price | currency:'€'}}</p>
+              <div class="secondary">
+                  <p>Lisainfo</p>
+                  <p><img src="pilt" alt="pilt"></p>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
 </div>

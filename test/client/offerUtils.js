@@ -108,6 +108,16 @@ var offerUtils = (function() {
             result.pass = actual.some(function(elem) {
               return elem._id === expected;
             });
+            if (!result.pass) {
+              result.pass = actual.some(function(restaurant) {
+                if (!(restaurant.offers instanceof Array)) {
+                  return false;
+                }
+                return restaurant.offers.some(function(offer) {
+                  return offer._id === expected;
+                });
+              });
+            }
 
             var notText = result.pass ? ' not' : '';
             result.message = 'Expected ' + actual + notText + ' to contain id ' + expected;

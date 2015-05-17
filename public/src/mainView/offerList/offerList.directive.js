@@ -12,8 +12,10 @@
 
   var PUBLIC_GOOGLE_MAPS_API_KEY = 'AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8';
 
-  module.directive('offerList', ['$resource', 'favorites', 'offerSourceService', 'offerFilterStateService', 'offerOrderStateService',
-    function($resource, favorites, offerSourceService, offerFilterStateService, offerOrderStateService) {
+  module.directive('offerList', ['$resource', 'favorites', 'offerSourceService', 'offerFilterStateService',
+    'offerOrderStateService', 'searchFilter', 'tagFilter', 'orderByFilter', 'orderFilter',
+    function($resource, favorites, offerSourceService, offerFilterStateService, offerOrderStateService,
+             searchFilter, tagFilter, orderByFilter, orderFilter) {
       return {
         scope: {
           hasOffers: '=?',
@@ -25,16 +27,6 @@
           ctrl.toggleFavorite = function(restaurantName) {
             favorites.toggleInclusion(restaurantName);
             onFavoritesUpdated();
-          };
-          ctrl.isFirstForRestaurant = function(offers, offer) {
-            var i = offers.indexOf(offer);
-            if (i === 0) return true;
-            return offers[i - 1].restaurant.name != offer.restaurant.name;
-          };
-          ctrl.isLastForRestaurant = function(offers, offer) {
-            var i = offers.indexOf(offer);
-            if (i === offers.length - 1) return true;
-            return offers[i + 1].restaurant.name != offer.restaurant.name;
           };
           ctrl.getStaticMap = function(offer) {
             var latLng = getLatLng(offer);
@@ -100,28 +92,49 @@
           }
 
           function onOffersUpdated() {
-            ctrl.offersGroupedByIsFavorite = groupOffers();
-            ctrl.hasOffers = ctrl.offersGroupedByIsFavorite.length > 0;
+            var offers = searchFilter(ctrl.offers);
+            offers = tagFilter(offers);
+            offers = orderByFilter(offers, 'restaurant.name');
+            offers = orderFilter(offers);
+            ctrl.offersByRestaurantByFavorite = groupOffers(offers);
+            ctrl.hasOffers = ctrl.offersByRestaurantByFavorite.length > 0;
           }
 
-          function groupOffers() {
-            if (!ctrl.offers) {
-              return [];
+          function groupOffers(offers) {
+            var offersByRestaurant = [];
+            for (var i = 0; i < offers.length; i++) {
+              var offer = offers[i];
+              if (isFirstForRestaurant(offers, i)) {
+                var restaurant = offer.restaurant;
+                restaurant.offers = [];
+                offersByRestaurant.push(restaurant);
+              }
+              var lastRestaurant = offersByRestaurant[offersByRestaurant.length - 1];
+              lastRestaurant.offers.push(offer);
             }
-            var favoriteOffers = ctrl.offers.filter(function(offer) {
-              return offer.restaurant.isFavorite;
+
+            var favoriteOffersByRestaurant = [];
+            var otherOffersByRestaurant = [];
+            offersByRestaurant.forEach(function(restaurant) {
+              if (restaurant.isFavorite) {
+                favoriteOffersByRestaurant.push(restaurant);
+              } else {
+                otherOffersByRestaurant.push(restaurant);
+              }
             });
-            var otherOffers = ctrl.offers.filter(function(offer) {
-              return !offer.restaurant.isFavorite;
-            });
-            var offersGroupedByIsFavorite = [];
-            if (favoriteOffers.length > 0) {
-              offersGroupedByIsFavorite.push(favoriteOffers);
+            var offersByRestaurantByFavorite = [];
+            if (favoriteOffersByRestaurant.length > 0) {
+              offersByRestaurantByFavorite.push(favoriteOffersByRestaurant);
             }
-            if (otherOffers.length > 0) {
-              offersGroupedByIsFavorite.push(otherOffers);
+            if (otherOffersByRestaurant.length > 0) {
+              offersByRestaurantByFavorite.push(otherOffersByRestaurant);
             }
-            return offersGroupedByIsFavorite;
+            return offersByRestaurantByFavorite;
+          }
+
+          function isFirstForRestaurant(offers, i) {
+            if (i === 0) return true;
+            return offers[i - 1].restaurant.name != offers[i].restaurant.name;
           }
 
           function getLatLng(offer) {
