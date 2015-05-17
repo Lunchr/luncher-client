@@ -28,17 +28,17 @@
             var coords = offer.restaurant.location.coordinates;
             var lng = coords[0];
             var lat = coords[1];
-            return lat+","+lng;
+            return lat + "," + lng;
           };
           ctrl.isFirstForRestaurant = function(offers, offer) {
             var i = offers.indexOf(offer);
             if (i === 0) return true;
-            return offers[i-1].restaurant.name != offer.restaurant.name;
+            return offers[i - 1].restaurant.name != offer.restaurant.name;
           };
           ctrl.isLastForRestaurant = function(offers, offer) {
             var i = offers.indexOf(offer);
             if (i === offers.length - 1) return true;
-            return offers[i+1].restaurant.name != offer.restaurant.name;
+            return offers[i + 1].restaurant.name != offer.restaurant.name;
           };
 
           offerSourceService.subscribeToChanges($scope, function loadOffers(offerSource) {
@@ -49,7 +49,7 @@
               loadOffersNearLocation(offerSource.location);
             }
           });
-          (function bootstrap(){
+          (function bootstrap() {
             var offerSource = offerSourceService.getCurrent();
             ctrl.offerSource = offerSource;
             if (offerSource && offerSource.region) {
@@ -58,21 +58,25 @@
           })();
 
           function loadOffersForRegion(region) {
-            ctrl.offers = $resource('api/v1/regions/'+region+'/offers').query({},
+            ctrl.offers = $resource('api/v1/regions/' + region + '/offers').query({},
               offerLoadSuccess, offerLoadError);
           }
+
           function loadOffersNearLocation(location) {
             ctrl.offers = $resource('api/v1/offers').query({
               lat: location.lat,
               lng: location.lng,
             }, offerLoadSuccess, offerLoadError);
           }
+
           function offerLoadSuccess() {
             updateFavorites();
           }
+
           function offerLoadError() {
             ctrl.offersGroupedByIsFavorite = [];
           }
+
           function updateFavorites() {
             favorites.decorateOffers(ctrl.offers);
             var favoriteOffers = ctrl.offers.filter(function(offer) {
