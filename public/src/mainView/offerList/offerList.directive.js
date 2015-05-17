@@ -22,7 +22,7 @@
           var ctrl = this;
           ctrl.toggleFavorite = function(restaurantName) {
             favorites.toggleInclusion(restaurantName);
-            updateFavorites();
+            onFavoritesUpdated();
           };
           ctrl.isFirstForRestaurant = function(offers, offer) {
             var i = offers.indexOf(offer);
@@ -79,29 +79,38 @@
           }
 
           function offerLoadSuccess() {
-            updateFavorites();
+            onFavoritesUpdated();
           }
 
           function offerLoadError() {
             ctrl.offersGroupedByIsFavorite = [];
           }
 
-          function updateFavorites() {
+          function onFavoritesUpdated() {
             favorites.decorateOffers(ctrl.offers);
+            onOffersUpdated();
+          }
+
+          function onOffersUpdated() {
+            ctrl.offersGroupedByIsFavorite = groupOffers();
+            ctrl.hasOffers = ctrl.offersGroupedByIsFavorite.length > 0;
+          }
+
+          function groupOffers() {
             var favoriteOffers = ctrl.offers.filter(function(offer) {
               return offer.restaurant.isFavorite;
             });
             var otherOffers = ctrl.offers.filter(function(offer) {
               return !offer.restaurant.isFavorite;
             });
-            ctrl.offersGroupedByIsFavorite = [];
+            var offersGroupedByIsFavorite = [];
             if (favoriteOffers.length > 0) {
-              ctrl.offersGroupedByIsFavorite.push(favoriteOffers);
+              offersGroupedByIsFavorite.push(favoriteOffers);
             }
             if (otherOffers.length > 0) {
-              ctrl.offersGroupedByIsFavorite.push(otherOffers);
+              offersGroupedByIsFavorite.push(otherOffers);
             }
-            ctrl.hasOffers = ctrl.offersGroupedByIsFavorite.length > 0;
+            return offersGroupedByIsFavorite;
           }
 
           function getLatLng(offer) {
