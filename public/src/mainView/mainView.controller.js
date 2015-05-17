@@ -9,8 +9,8 @@
     'sourceSelection',
   ]);
 
-  module.controller('MainViewCtrl', ['offerSourceService',
-    function(offerSourceService) {
+  module.controller('MainViewCtrl', ['$scope', 'offerSourceService',
+    function($scope, offerSourceService) {
       var vm = this;
       if (!vm.state) {
         vm.state = {};
@@ -20,6 +20,9 @@
       if (!offerSource || !offerSource.region) {
         vm.state.sourceSelectionPopup = 'active';
       }
+      offerSourceService.subscribeToChanges($scope, function loadOffers(offerSource) {
+        vm.offerSource = offerSource;
+      });
     }
   ]);
 })();

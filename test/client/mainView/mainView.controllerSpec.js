@@ -6,6 +6,7 @@ describe('mainViewController', function() {
       $provide.provider('offerSourceService', {
         $get: function() {
           return {
+            subscribeToChanges: jasmine.createSpy('subscribeToChanges'),
             getCurrent: jasmine.createSpy('getCurrent'),
           };
         }
@@ -71,7 +72,20 @@ describe('mainViewController', function() {
           expect(vm.state.sourceSelectionPopup).toBe('active');
           expect(vm.state.isLocationSelectionEnabled).toBeFalsy();
         });
+
+        it('should keep offer source up to date', function() {
+          updateOfferSource({
+            test: true,
+          });
+
+          expect(vm.offerSource.test).toBe(true);
+        });
       });
     });
+
+    function updateOfferSource(offerSource) {
+      var callback = offerSourceService.subscribeToChanges.calls.mostRecent().args[1];
+      callback(offerSource);
+    }
   });
 });
