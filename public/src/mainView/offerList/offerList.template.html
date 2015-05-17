@@ -36,7 +36,7 @@
     </div>
     <div class="secondary">
       <div class="col-1">
-        <div class="map" ng-style="{'background-image': 'url(https://maps.googleapis.com/maps/api/staticmap?center={{ctrl.getLatLng(offer)}}&zoom=17&size=400x200&scale=2&markers=color:red%7C{{ctrl.getLatLng(offer)}}&key=AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8)'}">
+        <div class="map" ng-style="{'background-image': 'url({{ctrl.getStaticMap(offer)}})'}">
         </div>
       </div>
       <div class="col-2">

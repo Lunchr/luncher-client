@@ -8,6 +8,8 @@
     'commonFilters',
   ]);
 
+  var PUBLIC_GOOGLE_MAPS_API_KEY = 'AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8';
+
   module.directive('offerList', ['$resource', 'favorites', 'offerSourceService',
     function($resource, favorites, offerSourceService) {
       return {
@@ -22,14 +24,6 @@
             favorites.toggleInclusion(restaurantName);
             updateFavorites();
           };
-          ctrl.getLatLng = function(offer) {
-            // offer.restaurant.location is a GeoJSON object. This means coordinates
-            // is an array of [lng,lat]
-            var coords = offer.restaurant.location.coordinates;
-            var lng = coords[0];
-            var lat = coords[1];
-            return lat + "," + lng;
-          };
           ctrl.isFirstForRestaurant = function(offers, offer) {
             var i = offers.indexOf(offer);
             if (i === 0) return true;
@@ -39,6 +33,21 @@
             var i = offers.indexOf(offer);
             if (i === offers.length - 1) return true;
             return offers[i + 1].restaurant.name != offer.restaurant.name;
+          };
+          ctrl.getStaticMap = function(offer) {
+            var latLng = getLatLng(offer);
+            var params = {
+              center: latLng,
+              zoom: 17,
+              size: '200x200',
+              scale: 2,
+              markers: 'color:red|' + latLng,
+              key: PUBLIC_GOOGLE_MAPS_API_KEY,
+            };
+            var encodedParams = Object.keys(params).map(function(k) {
+              return k + '=' + encodeURIComponent(params[k]);
+            }).join('&');
+            return 'https://maps.googleapis.com/maps/api/staticmap?' + encodedParams;
           };
 
           offerSourceService.subscribeToChanges($scope, function loadOffers(offerSource) {
@@ -93,6 +102,15 @@
               ctrl.offersGroupedByIsFavorite.push(otherOffers);
             }
             ctrl.hasOffers = ctrl.offersGroupedByIsFavorite.length > 0;
+          }
+
+          function getLatLng(offer) {
+            // offer.restaurant.location is a GeoJSON object. This means coordinates
+            // is an array of [lng,lat]
+            var coords = offer.restaurant.location.coordinates;
+            var lng = coords[0];
+            var lat = coords[1];
+            return lat + "," + lng;
           }
         },
         restrict: 'E',
