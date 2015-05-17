@@ -3,6 +3,7 @@
   var module = angular.module('offerList', [
     'ngResource',
     'offerListControllers',
+    'offerListFilters',
     'favorites',
     'offerSource',
     'commonFilters',
@@ -10,8 +11,8 @@
 
   var PUBLIC_GOOGLE_MAPS_API_KEY = 'AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8';
 
-  module.directive('offerList', ['$resource', 'favorites', 'offerSourceService',
-    function($resource, favorites, offerSourceService) {
+  module.directive('offerList', ['$resource', 'favorites', 'offerSourceService', 'offerFilterStateService',
+    function($resource, favorites, offerSourceService, offerFilterStateService) {
       return {
         scope: {
           hasOffers: '=?',
@@ -57,6 +58,9 @@
             } else if (offerSource.location) {
               loadOffersNearLocation(offerSource.location);
             }
+          });
+          offerFilterStateService.subscribeToChanges($scope, function filterChanged(filterState) {
+            onOffersUpdated();
           });
           (function bootstrap() {
             var offerSource = offerSourceService.getCurrent();

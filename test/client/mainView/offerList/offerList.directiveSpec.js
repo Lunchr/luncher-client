@@ -1,6 +1,6 @@
 describe('offerList', function() {
   'use strict';
-  var offerSourceService;
+  var offerSourceService, filterStateService;
   beforeEach(function() {
     module('offerList', 'partials', function($provide) {
       $provide.provider('favorites', {
@@ -15,14 +15,23 @@ describe('offerList', function() {
       $provide.provider('offerSourceService', {
         $get: function() {
           return {
-            subscribeToChanges: jasmine.createSpy('subscribeToChanges'),
-            getCurrent: jasmine.createSpy('getCurrent'),
+            subscribeToChanges: jasmine.createSpy('offerSource.subscribeToChanges'),
+            getCurrent: jasmine.createSpy('offerSource.getCurrent'),
+          };
+        }
+      });
+      $provide.provider('offerFilterStateService', {
+        $get: function() {
+          return {
+            subscribeToChanges: jasmine.createSpy('filterState.subscribeToChanges'),
+            getCurrent: jasmine.createSpy('filterState.getCurrent'),
           };
         }
       });
     });
-    inject(function(_offerSourceService_){
+    inject(function(_offerSourceService_, offerFilterStateService){
       offerSourceService = _offerSourceService_;
+      filterStateService = offerFilterStateService;
     });
   });
 
@@ -93,8 +102,6 @@ describe('offerList', function() {
         favorites.decorateOffers = jasmine.createSpy();
         favorites.toggleInclusion = jasmine.createSpy();
       }));
-
-
 
       describe('loadOffersForRegion', function() {
         beforeEach(inject(function($httpBackend) {
@@ -190,6 +197,20 @@ describe('offerList', function() {
             region: 'tartu',
           });
         }));
+
+        describe('update offer filter state', function() {
+          beforeEach(inject(function($httpBackend) {
+            $httpBackend.flush();
+          }));
+
+          it('should regroup offers', function () {
+            var offers = ctrl.offersGroupedByIsFavorite;
+
+            updateFilterState();
+
+            expect(ctrl.offersGroupedByIsFavorite).not.toBe(offers);
+          });
+        });
 
         describe('favorites', function() {
           beforeEach(function() {
@@ -311,6 +332,11 @@ describe('offerList', function() {
     function updateOfferSource(offerSource) {
       var callback = offerSourceService.subscribeToChanges.calls.mostRecent().args[1];
       callback(offerSource);
+    }
+
+    function updateFilterState(filterState) {
+      var callback = filterStateService.subscribeToChanges.calls.mostRecent().args[1];
+      callback(filterState);
     }
   });
 });
