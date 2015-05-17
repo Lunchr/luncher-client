@@ -16,14 +16,9 @@ describe('OfferList sorters', function() {
     });
   });
 
-
-  it('should have order state', inject(function(offerOrderState) {
-    expect(offerOrderState).toBeDefined();
-  }));
-
   describe('with order state', function() {
-    beforeEach(inject(function(offerOrderState) {
-      utils.pruneObject(offerOrderState);
+    beforeEach(inject(function(offerOrderStateService) {
+      offerOrderStateService.update({});
       jasmine.addMatchers(offerUtils.matchers);
     }));
 
@@ -97,20 +92,22 @@ describe('OfferList sorters', function() {
           expect(scope.isAscending).toBe(false);
         });
 
-        it('should change the orderBy value of the state service', inject(function(offerOrderState) {
-          expect(offerOrderState.orderBy).toBe('location');
+        it('should change the orderBy value of the state service', inject(function(offerOrderStateService) {
+          expect(offerOrderStateService.getCurrent().orderBy).toBe('location');
         }));
 
-        it('should set the asc/desc value of the state service', inject(function(offerOrderState) {
-          expect(offerOrderState.isAscending).toBe(true);
+        it('should set the asc/desc value of the state service', inject(function(offerOrderStateService) {
+          expect(offerOrderStateService.getCurrent().isAscending).toBe(true);
           clickSorter();
-          expect(offerOrderState.isAscending).toBe(false);
+          expect(offerOrderStateService.getCurrent().isAscending).toBe(false);
         }));
       });
 
       describe('when state ordered by current directive', function() {
-        beforeEach(inject(function(offerOrderState) {
-          offerOrderState.orderBy = 'location';
+        beforeEach(inject(function(offerOrderStateService) {
+          offerOrderStateService.update({
+            orderBy: 'location',
+          });
           scope.$apply();
         }));
 
@@ -120,8 +117,10 @@ describe('OfferList sorters', function() {
       });
 
       describe('when state ordered by some other directive', function() {
-        beforeEach(inject(function(offerOrderState) {
-          offerOrderState.orderBy = 'not-location';
+        beforeEach(inject(function(offerOrderStateService) {
+          offerOrderStateService.update({
+            orderBy: 'not-location',
+          });
           scope.$apply();
         }));
 
@@ -167,34 +166,42 @@ describe('OfferList sorters', function() {
         expect(orderedOffers).toHaveIdOrder(['1', '2', '3', '4']);
       });
 
-      it('should return same data if offer order state\'s orderBy field empty', inject(function(offerOrderState) {
-        offerOrderState.isAscending = false;
+      it('should return same data if offer order state\'s orderBy field empty', inject(function(offerOrderStateService) {
+        offerOrderStateService.update({
+          isAscending: false,
+        });
 
         var orderedOffers = sort(offers);
 
         expect(orderedOffers).toHaveIdOrder(['1', '2', '3', '4']);
       }));
 
-      it('should order by price ascendingly', inject(function(offerOrderState) {
-        offerOrderState.orderBy = 'price';
-        offerOrderState.isAscending = true;
+      it('should order by price ascendingly', inject(function(offerOrderStateService) {
+        offerOrderStateService.update({
+          orderBy: 'price',
+          isAscending: true,
+        });
 
         var orderedOffers = sort(offers);
 
         expect(orderedOffers).toHaveIdOrder(['4', '2', '1', '3']);
       }));
 
-      it('order ascendingly by default', inject(function(offerOrderState) {
-        offerOrderState.orderBy = 'price';
+      it('order ascendingly by default', inject(function(offerOrderStateService) {
+        offerOrderStateService.update({
+          orderBy: 'price',
+        });
 
         var orderedOffers = sort(offers);
 
         expect(orderedOffers).toHaveIdOrder(['4', '2', '1', '3']);
       }));
 
-      it('should order by price descendingly', inject(function(offerOrderState) {
-        offerOrderState.orderBy = 'price';
-        offerOrderState.isAscending = false;
+      it('should order by price descendingly', inject(function(offerOrderStateService) {
+        offerOrderStateService.update({
+          orderBy: 'price',
+          isAscending: false,
+        });
 
         var orderedOffers = sort(offers);
 
