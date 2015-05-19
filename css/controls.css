@@ -44,7 +44,7 @@
     }
     ul.horizontal {
         float: left;
-        margin: 0 0 0 -10px;
+        margin: 0 0 0 -28px;
         padding: 8px 0px;
         li {
             display: inline;
@@ -71,7 +71,7 @@
         left: -45px;
     }
     &.price-sorter {
-        width: 46px;
+        width: 60px;
     }
 }
 .dropdown {

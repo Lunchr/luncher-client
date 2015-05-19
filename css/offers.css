@@ -8,29 +8,64 @@
     &.filled + .offers-wrap.filled {
       margin-top: 15px;
     }
+    + .offers-wrap {
+        margin-top: 15px;
+    }
 }
-.offer {
-    position: relative;
-    padding: 11px 0 11px 45px;
-    cursor: pointer;
+.restaurant-wrap {
+    display: inline-block;
+    width: 100%;
+    margin: -2px 0;
     border-bottom: 1px solid #f0f0f0;
     box-sizing: border-box;
-    &.not-last-for-restaurant {
-      border-bottom: none;
-    }
     &:last-of-type {
         border: none;
+        margin-bottom: -4px
     }
-    &:hover,
-    &.expand {
-        background-color: rgba(0, 0, 0, 0.02);
+    h3 {
+        margin: 0;
+        padding: 2px 0;
+        font-size: 16px;
+        line-height: 1.2;
+        font-weight: 300;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
-    &.edit {
+    p {
+        position: relative;
         padding: 0;
-        &:hover {
-            background: transparent;
-            cursor: default;
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.2;
+        font-weight: 300;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        &.icon-wrap {
+            position: absolute;
         }
+    }
+    p.price {
+        position: absolute;
+        top: 11px;
+        right: 0px;
+        padding: 2px 0;
+        font-size: 16px;
+        line-height: 1.2;
+        font-weight: 300;
+        width: 60px;
+    }
+}
+.restaurant {
+    position: relative;
+    padding: 11px 0 11px 45px;
+    box-sizing: border-box;
+    &.favorite {
+      .icon-8:before {
+        content: "k";
+        color: $color;
+      }
     }
     .icon {
         color: #e0e0e0;
@@ -38,20 +73,24 @@
             color: #b3b3b3;
         }
     }
-    .edit-btn,
-    .edit-btn a {
-        width: 100%;
-        height: 100%;
-        z-index: 100;
+}
+.distance {
+    color: #999;
+    font-size: 13px;
+    padding-left: 5px;
+}
+.offer {
+    position: relative;
+    padding: 11px;
+    cursor: pointer;
+    box-sizing: border-box;
+    &:hover,
+    &.expand {
+        background-color: rgba(0, 0, 0, 0.02);
     }
     .icon-15:hover:before {
         content: "r";
         color: $color;
-    }
-    .distance {
-        color: #999;
-        font-size: 13px;
-        padding-left: 10px;
     }
     &.pending {
         opacity: 0.3;
@@ -86,45 +125,18 @@
         }
     }
 }
-.restaurant {
-  position: relative;
-  box-sizing: border-box;
-  &.favorite {
-    .icon-8:before {
-      content: "k";
-      color: $color;
+.edit {
+    padding: 0;
+    &:hover {
+        background: transparent;
+        cursor: default;
     }
-  }
 }
-.offer-content {
+.edit-btn,
+.edit-btn a {
     width: 100%;
-    box-sizing: border-box;
-    &:after {
-        display: block;
-        content: "";
-        clear: both;
-    }
-    p {
-        margin: 0;
-        padding: 2px 0;
-        font-size: 16px;
-        line-height: 1.2;
-        font-weight: 300;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        &.additional {
-            position: relative;
-            padding: 0;
-            font-size: 13px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        &.price {
-            width: 40px;
-        }
-    }
+    height: 100%;
+    z-index: 100;
 }
 .image {
     width: 50%;
@@ -156,13 +168,12 @@
     display: inline-block;
     float: left;
     box-sizing: border-box;
-    padding-right: 12px;
 }
 .col-1 {
-    width: 28.3%;
+    width: 33%;
 }
 .col-2 {
-    width: 71.6%;
+    width: 67%;
 }
 .col-wrap {
     display: table;

@@ -1,7 +1,7 @@
 <div class="offers-wrap" ng-repeat="offersByRestaurant in ctrl.offersByRestaurantByFavorite">
   <div class="restaurant-wrap" ng-repeat="restaurant in offersByRestaurant">
       <div class="col-1">
-          <div class="restaurant" ng-class="{favorite: restaurant.isFavorite}">
+          <div class="restaurant" ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{favorite: restaurant.isFavorite, expand: offer.toggle.state}">
               <p class="icon-wrap">
                 <a href="javascript:undefined" class="icon icon-8" ng-click="ctrl.toggleFavorite(restaurant.name)"></a>
               </p>
@@ -19,7 +19,7 @@
           </div>
       </div>
       <div class="col-2">
-          <div class="offer" ng-repeat="offer in restaurant.offers">
+          <div class="offer" ng-repeat="offer in restaurant.offers" ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state}">
               <h3>{{offer.title}}</h3>
               <p>{{offer.ingredients | joinTags}}</p>
               <p class="price">{{offer.price | currency:'€'}}</p>
