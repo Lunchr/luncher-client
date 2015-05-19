@@ -1,7 +1,7 @@
 <div class="offers-wrap" ng-repeat="offersByRestaurant in ctrl.offersByRestaurantByFavorite">
   <div class="restaurant-wrap" ng-repeat="restaurant in offersByRestaurant">
       <div class="col-1">
-          <div class="restaurant" ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{favorite: restaurant.isFavorite, expand: offer.toggle.state}">
+          <div class="restaurant" ng-click="restaurant.toggle.state = !restaurant.toggle.state" ng-class="{favorite: restaurant.isFavorite, expand: restaurant.toggle.state}">
               <p class="icon-wrap">
                 <a href="javascript:undefined" class="icon icon-8" ng-click="ctrl.toggleFavorite(restaurant.name)"></a>
               </p>
@@ -14,7 +14,7 @@
               <p class="desktop">{{restaurant.address}}</p>
               <div class="secondary">
                   <p class="mobile">{{restaurant.address}}</p>
-                  <p><a href="#">+372 5678 910</a></p>
+                  <p><a href="javascript:void(0)">+372 5678 910</a></p>
                   <p class="map" ng-style="{'background-image': 'url({{ctrl.getStaticMap(restaurant)}})'}"></p>
               </div>
               <div class="col-2">
