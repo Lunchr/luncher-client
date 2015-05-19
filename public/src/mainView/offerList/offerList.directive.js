@@ -28,8 +28,8 @@
             favorites.toggleInclusion(restaurantName);
             onFavoritesUpdated();
           };
-          ctrl.getStaticMap = function(offer) {
-            var latLng = getLatLng(offer);
+          ctrl.getStaticMap = function(restaurant) {
+            var latLng = getLatLng(restaurant);
             var params = {
               center: latLng,
               zoom: 17,
@@ -137,10 +137,10 @@
             return offers[i - 1].restaurant.name != offers[i].restaurant.name;
           }
 
-          function getLatLng(offer) {
+          function getLatLng(restaurant) {
             // offer.restaurant.location is a GeoJSON object. This means coordinates
             // is an array of [lng,lat]
-            var coords = offer.restaurant.location.coordinates;
+            var coords = restaurant.location.coordinates;
             var lng = coords[0];
             var lat = coords[1];
             return lat + "," + lng;

@@ -15,7 +15,7 @@
               <div class="secondary">
                   <p class="mobile">{{restaurant.address}}</p>
                   <p><a href="#">+372 5678 910</a></p>
-                  <p class="map" ng-style="{'background-image': 'url(https://maps.googleapis.com/maps/api/staticmap?center={{vm.getLatLng(offer)}}&zoom=17&size=400x200&scale=2&markers=color:red%7C{{vm.getLatLng(offer)}}&key=AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8)'}"></p>
+                  <p class="map" ng-style="{'background-image': 'url({{ctrl.getStaticMap(restaurant)}})'}"></p>
               </div>
               <div class="col-2">
                   <p class="additional mobile">{{offer.ingredients | joinTags}}</p>

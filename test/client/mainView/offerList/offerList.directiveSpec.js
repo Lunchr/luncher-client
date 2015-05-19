@@ -301,10 +301,8 @@ describe('offerList', function() {
 
           it('should return a an URL to a static Google Maps map', function() {
             var staticmap = ctrl.getStaticMap({
-              restaurant: {
-                location: {
-                  coordinates: [1.2, 2.1],
-                },
+              location: {
+                coordinates: [1.2, 2.1],
               },
             });
             expect(staticmap).toEqual('https://maps.googleapis.com/maps/api/staticmap?center=2.1%2C1.2&zoom=17&size=200x200&scale=2&markers=color%3Ared%7C2.1%2C1.2&key=AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8');
