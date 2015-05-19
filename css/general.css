@@ -1,7 +1,11 @@
 
 /*** GENERAL STYLES ***/
 
-html, body {
+html {
+    overflow-y: scroll;
+    height: 100%;
+}
+body {
     height: 100%;
 }
 body {
