@@ -7,7 +7,7 @@
               </p>
               <h3>
                   {{restaurant.name}}
-                  <span class="distance">
+                  <span class="distance" ng-if="restaurant.distance">
                       {{restaurant.distance | approximateDistance}}
                   </span>
               </h3>
