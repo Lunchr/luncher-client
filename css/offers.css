@@ -60,7 +60,12 @@
 .restaurant {
     position: relative;
     padding: 11px 0 11px 45px;
+    cursor: pointer;
     box-sizing: border-box;
+    &:hover,
+    &.expand {
+        background-color: rgba(0, 0, 0, 0.02);
+    }
     &.favorite {
       .icon-8:before {
         content: "k";
@@ -73,11 +78,6 @@
             color: #b3b3b3;
         }
     }
-}
-.distance {
-    color: #999;
-    font-size: 13px;
-    padding-left: 5px;
 }
 .offer {
     position: relative;
@@ -124,6 +124,14 @@
             background: rgb(238, 92, 16);
         }
     }
+    .image {
+        width: 50%;
+        height: 200px;
+        margin: 10px 0 0;
+        border-radius: 2px;
+        background-size: cover;
+        background-position: 50%;
+    }
 }
 .edit {
     padding: 0;
@@ -138,13 +146,10 @@
     height: 100%;
     z-index: 100;
 }
-.image {
-    width: 50%;
-    height: 200px;
-    margin: 10px 0 0;
-    border-radius: 2px;
-    background-size: cover;
-    background-position: 50%;
+.distance {
+    color: #999;
+    font-size: 13px;
+    padding-left: 5px;
 }
 .map {
     width: 100%;
@@ -160,6 +165,10 @@
     @mixin transition 0.2s;
     .expand & {
         height: 210px;
+    }
+    p {
+        margin-top: 4px;
+        margin-bottom: 0;
     }
 }
 
