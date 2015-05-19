@@ -102,7 +102,7 @@
   "title": "Salaami & ananassi pizza",
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
-  "price": 4.5,
+  "price": 4.6,
   "ingredients": ["Salaami", "ananass", "juust", "pitsakaste", "pitsapõhi"],
   "tags": ["pizza", "praad"],
   "image": "mock-images/meatmarket.jpg"

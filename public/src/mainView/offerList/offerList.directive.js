@@ -104,6 +104,29 @@
             if (!(offers instanceof Array)) {
               return [];
             }
+            var favoriteOffers = [];
+            var otherOffers = [];
+            offers.forEach(function(offer) {
+              if (offer.restaurant.isFavorite) {
+                favoriteOffers.push(offer);
+              } else {
+                otherOffers.push(offer);
+              }
+            });
+            var favoriteOffersByRestaurant = groupOffersByRestaurant(favoriteOffers);
+            var otherOffersByRestaurant = groupOffersByRestaurant(otherOffers);
+
+            var offersByRestaurantByFavorite = [];
+            if (favoriteOffersByRestaurant.length > 0) {
+              offersByRestaurantByFavorite.push(favoriteOffersByRestaurant);
+            }
+            if (otherOffersByRestaurant.length > 0) {
+              offersByRestaurantByFavorite.push(otherOffersByRestaurant);
+            }
+            return offersByRestaurantByFavorite;
+          }
+
+          function groupOffersByRestaurant(offers) {
             var offersByRestaurant = [];
             for (var i = 0; i < offers.length; i++) {
               var offer = offers[i];
@@ -115,24 +138,7 @@
               var lastRestaurant = offersByRestaurant[offersByRestaurant.length - 1];
               lastRestaurant.offers.push(offer);
             }
-
-            var favoriteOffersByRestaurant = [];
-            var otherOffersByRestaurant = [];
-            offersByRestaurant.forEach(function(restaurant) {
-              if (restaurant.isFavorite) {
-                favoriteOffersByRestaurant.push(restaurant);
-              } else {
-                otherOffersByRestaurant.push(restaurant);
-              }
-            });
-            var offersByRestaurantByFavorite = [];
-            if (favoriteOffersByRestaurant.length > 0) {
-              offersByRestaurantByFavorite.push(favoriteOffersByRestaurant);
-            }
-            if (otherOffersByRestaurant.length > 0) {
-              offersByRestaurantByFavorite.push(otherOffersByRestaurant);
-            }
-            return offersByRestaurantByFavorite;
+            return offersByRestaurant;
           }
 
           function isFirstForRestaurant(offers, i) {
