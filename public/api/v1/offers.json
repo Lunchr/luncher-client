@@ -7,7 +7,8 @@
       "type": "Point",
       "coordinates": [26.722691, 58.380094]
     },
-    "distance": 1234.123456
+    "distance": 1234.123456,
+    "phone": "+372 5678 910"
   },
   "title": "Pekingi kana",
   "from_time": "2014-11-10T09:00:00.000Z",
@@ -25,7 +26,8 @@
       "type": "Point",
       "coordinates": [26.722691, 58.380094]
     },
-    "distance": 125.123456
+    "distance": 125.123456,
+    "phone": "+372 5678 910"
   },
   "title": "Magushapu seafilee",
   "from_time": "2014-11-10T09:00:00.000Z",
