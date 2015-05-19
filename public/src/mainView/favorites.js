@@ -31,13 +31,13 @@
           var favorites = cookies.getFavorites();
           if (!favorites) {
             offers.forEach(function(offer) {
-              offer.isFavorite = false;
+              offer.restaurant.isFavorite = false;
             });
             return;
           }
           offers.forEach(function(offer) {
             if (offer.restaurant) {
-              offer.isFavorite = favorites.indexOf(offer.restaurant.name) > -1;
+              offer.restaurant.isFavorite = favorites.indexOf(offer.restaurant.name) > -1;
             }
           });
         },

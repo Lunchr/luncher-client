@@ -29,6 +29,13 @@
   app.put('/api/v1/offers/:id', delayedReflector);
   app.delete('/api/v1/offers/:id', delayedReflector);
 
+  app.get('/api/v1/login/facebook', function(req, res) {
+    res.redirect('/#/admin');
+  });
+  app.get('/api/v1/logout', function(req, res) {
+    res.redirect('/#/');
+  });
+
   var publicDir = path.join(__dirname, '..', 'public');
   var apiDir = path.join(publicDir, 'api');
   app.use('/api', serveStatic(apiDir, {

@@ -2,18 +2,16 @@
   'use strict';
   var offerListFilters = angular.module('offerListFilters', [
     'cookies',
+    'pubSub',
   ]);
 
-  offerListFilters.factory('offerFilterStateService', ['cookies',
-    function(cookies) {
-      return {
-        getCurrent: function() {
-          return cookies.getFilterState();
-        },
-        update: function(filterState) {
-          cookies.setFilterState(filterState);
-        }
-      };
+  offerListFilters.factory('offerFilterStateService', ['cookies', 'PubSub',
+    function(cookies, PubSub) {
+      return new PubSub(function getter() {
+        return cookies.getFilterState();
+      }, function setter(filterState) {
+        cookies.setFilterState(filterState);
+      });
     }
   ]);
 

@@ -8,7 +8,7 @@
     .dropdown {
         left: 8px;
     }
-    .image {
+    .offer .image {
         width: 100%;
     }
 }
@@ -52,35 +52,32 @@
         left: -15px;
     }
 
-    /* offer */
-    .offer {
-        .col-1 {
-            display: none;
+    /* offers */
+    .restaurant-wrap {
+        .col-1,
+        .col-2 {
+            width: 100%
         }
     }
-    .col-2 {
-        .secondary & {
-            padding: 0;
-        }
-        .offer & {
+    .offer {
+        padding-left: 45px;
+        .image {
             width: 100%;
+            border-radius: 0;
+            margin-left: -45px
         }
     }
     .secondary {
         margin-left: -45px;
+        margin-right: -11px;
         .expand & {
             height: 229px;
             margin-bottom: -11px;
         }
-        .additional {
-            margin-top: 4px;
-            margin-bottom: 0;
+        p {
             padding-left: 45px;
+            padding-right: 11px;
         }
-    }
-    .image {
-        width: 100%;
-        border-radius: 0;
     }
     .form p {
         &.image-preview {

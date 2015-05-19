@@ -78,8 +78,8 @@ describe('Favorites module', function() {
 
     it('should set isFavorite to false for all offers if no cookie set', function() {
       favorites.decorateOffers(offers);
-      expect(offers[0].isFavorite).toBe(false);
-      expect(offers[1].isFavorite).toBe(false);
+      expect(offers[0].restaurant.isFavorite).toBe(false);
+      expect(offers[1].restaurant.isFavorite).toBe(false);
     });
 
     describe('with none of the offers having a favorite restaurant', function() {
@@ -89,8 +89,8 @@ describe('Favorites module', function() {
 
       it('should set isFavorite false for all offers', function() {
         favorites.decorateOffers(offers);
-        expect(offers[0].isFavorite).toBe(false);
-        expect(offers[1].isFavorite).toBe(false);
+        expect(offers[0].restaurant.isFavorite).toBe(false);
+        expect(offers[1].restaurant.isFavorite).toBe(false);
       });
     });
 
@@ -101,8 +101,8 @@ describe('Favorites module', function() {
 
       it('should set isFavorite to true for the offer', function() {
         favorites.decorateOffers(offers);
-        expect(offers[0].isFavorite).toBe(true);
-        expect(offers[1].isFavorite).toBe(false);
+        expect(offers[0].restaurant.isFavorite).toBe(true);
+        expect(offers[1].restaurant.isFavorite).toBe(false);
       });
     });
 
@@ -113,20 +113,20 @@ describe('Favorites module', function() {
 
       it('should set isFavorite to true for the offer', function() {
         favorites.decorateOffers(offers);
-        expect(offers[0].isFavorite).toBe(true);
-        expect(offers[1].isFavorite).toBe(true);
+        expect(offers[0].restaurant.isFavorite).toBe(true);
+        expect(offers[1].restaurant.isFavorite).toBe(true);
       });
     });
 
     describe('with one offer being marked as favorite but without a cookie', function() {
       beforeEach(function() {
-        offers[0].isFavorite = true;
+        offers[0].restaurant.isFavorite = true;
       });
 
       it('should set isFavorite false for all offers', function() {
         favorites.decorateOffers(offers);
-        expect(offers[0].isFavorite).toBe(false);
-        expect(offers[1].isFavorite).toBe(false);
+        expect(offers[0].restaurant.isFavorite).toBe(false);
+        expect(offers[1].restaurant.isFavorite).toBe(false);
       });
     });
   });

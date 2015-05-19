@@ -8,7 +8,7 @@ describe('Praad App', function() {
       browser.manage().deleteAllCookies();
       browser.get('/');
       clickPromise = element(by.css('.popup')).element(by.css('label')).click();
-      offers = element.all(by.repeater('offer in offerList'));
+      offers = element.all(by.repeater('offer in restaurant.offers'));
     });
 
     it('should initially have 3 offers', function() {

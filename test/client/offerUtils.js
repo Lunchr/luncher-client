@@ -5,7 +5,12 @@ var offerUtils = (function() {
       return [{
         '_id': '1',
         'restaurant': {
-          'name': 'Asian Chef'
+          'name': 'Asian Chef',
+          'address': 'Kompanii 10, Tartu',
+          'location': {
+            'type': 'Point',
+            'coordinates': [26.722691, 58.380094]
+          }
         },
         'title': 'Sweet & Sour Chicken',
         'ingredients': ['Kana', 'aedviljad', 'tsillikaste'],
@@ -14,7 +19,12 @@ var offerUtils = (function() {
       }, {
         '_id': '2',
         'restaurant': {
-          'name': 'Bulgarian Chef'
+          'name': 'Bulgarian Chef',
+          'address': 'Kompanii 10, Tartu',
+          'location': {
+            'type': 'Point',
+            'coordinates': [26.722691, 58.380094]
+          }
         },
         'title': 'Sweet & Sour Pork',
         'ingredients': ['Seafilee', 'aedviljad', 'mahushapu kaste'],
@@ -23,7 +33,12 @@ var offerUtils = (function() {
       }, {
         '_id': '3',
         'restaurant': {
-          'name': 'Caesar Chef'
+          'name': 'Caesar Chef',
+          'address': 'Kompanii 10, Tartu',
+          'location': {
+            'type': 'Point',
+            'coordinates': [26.722691, 58.380094]
+          }
         },
         'title': 'Sweet & Sour Beef',
         'ingredients': ['Veiseliha pihv', 'burgerisai', 'kodused friikartulid', 'kaste', 'salat'],
@@ -32,7 +47,12 @@ var offerUtils = (function() {
       }, {
         '_id': '4',
         'restaurant': {
-          'name': 'Dutch Dishes'
+          'name': 'Dutch Dishes',
+          'address': 'Kompanii 10, Tartu',
+          'location': {
+            'type': 'Point',
+            'coordinates': [26.722691, 58.380094]
+          }
         },
         'title': 'Sweet & Sour Duck Soup',
         'ingredients': ['Part', 'aedviljad', 'magushapu kaste'],
@@ -88,6 +108,16 @@ var offerUtils = (function() {
             result.pass = actual.some(function(elem) {
               return elem._id === expected;
             });
+            if (!result.pass) {
+              result.pass = actual.some(function(restaurant) {
+                if (!(restaurant.offers instanceof Array)) {
+                  return false;
+                }
+                return restaurant.offers.some(function(offer) {
+                  return offer._id === expected;
+                });
+              });
+            }
 
             var notText = result.pass ? ' not' : '';
             result.message = 'Expected ' + actual + notText + ' to contain id ' + expected;

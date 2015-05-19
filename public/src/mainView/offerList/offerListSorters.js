@@ -1,11 +1,23 @@
 (function() {
   'use strict';
-  var module = angular.module('offerListSorters', ['offerSource']);
+  var module = angular.module('offerListSorters', [
+    'offerSource',
+    'pubSub',
+  ]);
 
-  module.value('offerOrderState', {});
+  module.factory('offerOrderStateService', ['PubSub',
+    function(PubSub) {
+      var currentState = {};
+      return new PubSub(function getter() {
+        return currentState;
+      }, function setter(orderState) {
+        currentState = orderState;
+      });
+    }
+  ]);
 
-  module.directive('offersSorter', ['offerOrderState', 'offerSourceService',
-    function(offerOrderState, offerSourceService) {
+  module.directive('offersSorter', ['offerOrderStateService', 'offerSourceService',
+    function(offerOrderStateService, offerSourceService) {
       return {
         scope: {
           orderBy: '@',
@@ -18,7 +30,7 @@
             updateOrderState();
           };
           $scope.isActive = function() {
-            return $scope.orderBy === offerOrderState.orderBy;
+            return $scope.orderBy === offerOrderStateService.getCurrent().orderBy;
           };
           if ($scope.orderBy === 'restaurant.distance') {
             offerSourceService.subscribeToChanges($scope, function(offerSource) {
@@ -29,8 +41,10 @@
             });
           }
           function updateOrderState() {
-            offerOrderState.orderBy = $scope.orderBy;
-            offerOrderState.isAscending = $scope.isAscending;
+            offerOrderStateService.update({
+              orderBy: $scope.orderBy,
+              isAscending: $scope.isAscending,
+            });
           }
         },
         restrict: 'E',
@@ -41,10 +55,11 @@
     }
   ]);
 
-  module.filter('order', ['orderByFilter', 'offerOrderState',
-    function(orderByFilter, offerOrderState) {
+  module.filter('order', ['orderByFilter', 'offerOrderStateService',
+    function(orderByFilter, offerOrderStateService) {
       return function(offers) {
-        if (!offerOrderState.orderBy) {
+        var offerOrderState = offerOrderStateService.getCurrent();
+        if (! offerOrderState || !offerOrderState.orderBy) {
           return offers;
         }
         var asc = offerOrderState.isAscending;

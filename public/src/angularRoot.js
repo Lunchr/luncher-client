@@ -11,7 +11,7 @@
   module.config(['$routeProvider',
     function($routeProvider) {
       $routeProvider.
-      when('/offers', {
+      when('/', {
         templateUrl: 'src/mainView/mainView.html',
         controller: 'MainViewCtrl',
         controllerAs: 'vm',
@@ -32,12 +32,10 @@
         },
       }).
       when('/login', {
-        redirectTo: function() {
-          window.location.href = '/api/v1/login/facebook';
-        },
+        templateUrl: 'src/login.template.html',
       }).
       otherwise({
-        redirectTo: '/offers',
+        redirectTo: '/',
       });
     }
   ]);
