@@ -101,6 +101,9 @@
           }
 
           function groupOffers(offers) {
+            if (!(offers instanceof Array)) {
+              return [];
+            }
             var offersByRestaurant = [];
             for (var i = 0; i < offers.length; i++) {
               var offer = offers[i];
