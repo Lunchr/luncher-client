@@ -19,12 +19,23 @@
         outline: none;
     }
 }
+.with-label {
+    display: inline-block;
+    position: static;
+    width: auto;
+    .icon {
+        position: static;
+    }
+    .icon-label {
+        padding-left: 50px;
+    }
+}
 .icon-label {
     position: absolute;
     left: 0;
     top: 0;
     margin: 0;
-    padding: 13px 0 14px 36px;
+    padding: 13px 10px 14px 36px;
 }
 
 /*@charset "UTF-8";*/
