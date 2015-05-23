@@ -312,7 +312,7 @@
             text-overflow: ellipsis;
         }
         &.price {
-            width: 40px;
+            width: 60px;
         }
     }
 }
