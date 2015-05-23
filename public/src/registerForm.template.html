@@ -1,0 +1,80 @@
+<header>
+    <div class="container">
+        <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
+    </div>
+</header>
+<div class="content">
+    <div class="container">
+        <div class="offer-form-wrap">
+            <form class="offer-form" novalidate ng-submit="submitOffer()" name="form">
+                <div class="row">
+                    <div class="col-md-4 col-sm-3">
+                        <p>
+                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
+                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
+                                <span>
+                                    Söögikoha nimi
+                                </span>
+                            </label>
+                        </p>
+                            <p>
+                                <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
+                                <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
+                                    <span>
+                                        Aadress
+                                    </span>
+                                </label>
+                            </p>
+                        <p>
+                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
+                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
+                                <span>
+                                    Telefoni number
+                                </span>
+                            </label>
+                        </p>
+                        <p>
+                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
+                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
+                                <span>
+                                    Kodulehe aadress
+                                </span>
+                            </label>
+                        </p>
+                        <p>
+                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
+                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
+                                <span>
+                                    Lorem ipsum
+                                </span>
+                            </label>
+                        </p>
+                        <p>
+                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
+                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
+                                <span>
+                                    Dolor sit amet
+                                </span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-sm-3">
+                        siia võiks google map tulla, kus saad asukohta kaardil korrigeerida.
+                    </div>
+                </div>
+                <p class="buttons">
+                    <input class="btn" type="submit" ng-disabled="form.$invalid" value="Registreeri">
+                </p>
+            </form>
+
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <ul>
+                <li><a href="mailto:info@luncher.ee">info@luncher.ee</a></li>
+                <li><a href="javascript:undefined">+372 5623 1163</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
