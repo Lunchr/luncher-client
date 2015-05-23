@@ -333,7 +333,16 @@ input[type=radio] {
       }
     }
 }
-input[type=checkbox]:checked + label:before,
+input[type=checkbox] + label:before {
+    @mixin transition 0.1s;
+    border-radius: 2px;
+    background: url(../img/check.svg) no-repeat;
+    background-size: 0;
+    background-position: 50%;
+}
+input[type=checkbox]:checked + label:before {
+    background-size: 8px;
+}
 input[type=radio]:checked + label:before {
     border: 5px solid $color;
 }
