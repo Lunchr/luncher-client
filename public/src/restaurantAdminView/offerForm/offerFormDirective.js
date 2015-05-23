@@ -24,6 +24,7 @@
           deleteFunction: '&onDelete',
         },
         controller: function($scope, $element, $attrs) {
+          $scope.titleMaxLength = 70;
           $scope.isEdit = !!$scope.offerToEdit;
           $scope.allTags = $resource('api/v1/tags', {}, {
             'queryCached': {

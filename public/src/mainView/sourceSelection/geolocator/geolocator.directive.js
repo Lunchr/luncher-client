@@ -48,9 +48,11 @@
             // way to listen to when the animation finishes, but didn't find anything good. Initializing
             // this with a callback after the animation would be a much nicer fix, though.
             $timeout(function() {
-              ngGeolocator.create('geolocator-canvas-'+$scope.$id).then(function(locator) {
+              ngGeolocator.create('geolocator-canvas-'+$scope.$id).then(function success(locator) {
                 ctrl.locator = locator;
                 ctrl.ready = true;
+              }, function failure(message) {
+                ctrl.error = true;
               });
             }, 10);
             // only init the map the first time this directive is made visible

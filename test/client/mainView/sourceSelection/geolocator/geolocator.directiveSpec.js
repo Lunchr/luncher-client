@@ -71,31 +71,52 @@ describe('geolocator module', function() {
         });
         $parentScope.locationSelected = jasmine.createSpy('locationSelected');
         offerSourceService.update = jasmine.createSpy('updateOfferSource');
-      });
 
-      it('should call parent\'s location selected method when location selected', function() {
         $scope.$apply(function() {
           $parentScope.ngShowBinding = true;
         });
         $timeout.flush();
-        ctrl.locationSelected();
-
-        expect($parentScope.locationSelected).toHaveBeenCalled();
       });
 
-      it('should update the offerSource', function() {
+      it('should mark the controller as ready for locationSelected calls', function() {
+        expect(ctrl.ready).toBe(true);
+      });
+
+      describe('#locationSelected', function() {
+        it('should call parent\'s location selected method when location selected', function() {
+          ctrl.locationSelected();
+
+          expect($parentScope.locationSelected).toHaveBeenCalled();
+        });
+
+        it('should update the offerSource', function() {
+          ctrl.locationSelected();
+
+          expect(offerSourceService.update).toHaveBeenCalledWith({
+            location: {
+              lat: 'lat',
+              lng: 'lng',
+            },
+          });
+        });
+      });
+    });
+
+    describe('with the geolocator failing to be initialized', function() {
+      beforeEach(function() {
+        locatorDefer.reject('an error');
         $scope.$apply(function() {
           $parentScope.ngShowBinding = true;
         });
         $timeout.flush();
-        ctrl.locationSelected();
+      });
 
-        expect(offerSourceService.update).toHaveBeenCalledWith({
-          location: {
-            lat: 'lat',
-            lng: 'lng',
-          },
-        });
+      it('should NOT mark the controller as ready for locationSelected calls', function() {
+        expect(ctrl.ready).not.toBe(true);
+      });
+
+      it('should mark the controller to be in an error state', function() {
+        expect(ctrl.error).toBe(true);
       });
     });
   });
