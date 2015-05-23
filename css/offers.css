@@ -199,3 +199,120 @@
 .date {
   text-transform: capitalize;
 }
+
+
+/*** ADMIN OFFERS ***/
+
+.admin-offer {
+    position: relative;
+    padding: 11px 0 11px 45px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    box-sizing: border-box;
+    &.not-last-for-restaurant {
+      border-bottom: none;
+    }
+    &:last-of-type {
+        border: none;
+    }
+    &:hover,
+    &.expand {
+        background-color: rgba(0, 0, 0, 0.02);
+    }
+    &.edit {
+        padding: 0;
+        &:hover {
+            background: transparent;
+            cursor: default;
+        }
+    }
+    .icon {
+        color: #e0e0e0;
+        &:hover {
+            color: #b3b3b3;
+        }
+    }
+    .edit-btn,
+    .edit-btn a {
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+    }
+    .icon-15:hover:before {
+        content: "r";
+        color: $color;
+    }
+    .distance {
+        color: #999;
+        font-size: 13px;
+        padding-left: 10px;
+    }
+    &.pending {
+        opacity: 0.3;
+        background-color: rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid #ddd;
+        & .icon:before {
+            content: "";
+            position: absolute;
+            left: 16px;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #999;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -webkit-animation: spin 1s linear infinite;
+            -moz-animation: spin 1s linear infinite;
+            -o-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+        }
+    }
+    &.favorite {
+      .icon-8:before {
+          content: "k";
+          color: $color;
+      }
+    }
+    &.warning {
+        &:before {
+            display: block;
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: 2px;
+            left: 0px;
+            top: 0;
+            background: rgb(238, 92, 16);
+        }
+    }
+}
+.offer-content {
+    width: 100%;
+    box-sizing: border-box;
+    &:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+    p {
+        margin: 0;
+        padding: 2px 0;
+        font-size: 16px;
+        line-height: 1.2;
+        font-weight: 300;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        &.additional {
+            position: relative;
+            padding: 0;
+            font-size: 13px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        &.price {
+            width: 40px;
+        }
+    }
+}

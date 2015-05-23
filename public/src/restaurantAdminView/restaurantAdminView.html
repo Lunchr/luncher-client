@@ -22,7 +22,7 @@
             </p>
         </div>
         <div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
-            <div class="offer" ng-repeat="offer in offers" id="{{offer._id}}"
+            <div class="admin-offer" ng-repeat="offer in offers" id="{{offer._id}}"
                  ng-class="{pending: offer.confirmationPending, warning: offer.hasWarning, edit: offer.editing}">
                 <offer-form ng-show="offer.editing" edit="offer" on-submit="updateOffer($currentOffer, $offer); $offer.editing=false"
                             on-cancel="offer.editing=false" on-delete="deleteOffer(offer)"></offer-form>
