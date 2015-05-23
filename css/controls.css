@@ -120,17 +120,6 @@
             position: relative;
         }
     }
-    .message {
-        margin: 0 10px;
-        box-shadow: none;
-        padding: 10px 0px 0px 33px;
-        span {
-            display: block;
-        }
-        .icon {
-            left: 3px;
-        }
-    }
 }
 .col-2 .dropdown {
     left: 250px;
