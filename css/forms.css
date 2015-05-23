@@ -341,6 +341,7 @@ input[type=checkbox] + label:before {
     background-position: 50%;
 }
 input[type=checkbox]:checked + label:before {
+    background-color: $color;
     background-size: 8px;
 }
 input[type=radio]:checked + label:before {
