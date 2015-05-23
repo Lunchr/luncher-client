@@ -20,14 +20,9 @@
     }
 }
 .with-label {
-    display: inline-block;
-    position: static;
-    width: auto;
+    width: 250px;
     .icon {
         position: static;
-    }
-    .icon-label {
-        padding-left: 50px;
     }
 }
 .icon-label {
