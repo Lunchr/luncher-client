@@ -10,50 +10,34 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-3">
                         <p>
-                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
-                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
+                            <input ng-model="restaurantName" name="restaurantName" id="restaurantName" type="text" value="La Dolce Vita" required>
+                            <label ng-class="{filled: settings.restaurantName.$viewValue}" for="restaurantName">
                                 <span>
                                     Söögikoha nimi
                                 </span>
                             </label>
                         </p>
-                            <p>
-                                <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
-                                <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
-                                    <span>
-                                        Aadress
-                                    </span>
-                                </label>
-                            </p>
                         <p>
-                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
-                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
+                            <input ng-model="restaurantAddress" name="restaurantAddress" id="restaurantAddress" type="text" value="Kompanii 10, Tartu" required>
+                            <label ng-class="{filled: settings.restaurantAddress.$viewValue}" for="restaurantAddress">
+                                <span>
+                                    Aadress
+                                </span>
+                            </label>
+                        </p>
+                        <p>
+                            <input ng-model="restaurantPhone" name="restaurantPhone" id="restaurantPhone" type="text" value="+372 567 8910" required>
+                            <label ng-class="{filled: settings.restaurantPhone.$viewValue}" for="restaurantPhone">
                                 <span>
                                     Telefoni number
                                 </span>
                             </label>
                         </p>
                         <p>
-                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
-                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
+                            <input ng-model="restaurantWebpage" name="restaurantWebpage" id="restaurantWebpage" type="text" value="ladolcevita.ee" required>
+                            <label ng-class="{filled: settings.restaurantWebpage.$viewValue}" for="restaurantWebpage">
                                 <span>
                                     Kodulehe aadress
-                                </span>
-                            </label>
-                        </p>
-                        <p>
-                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
-                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
-                                <span>
-                                    Lorem ipsum
-                                </span>
-                            </label>
-                        </p>
-                        <p>
-                            <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="70" required>
-                            <label ng-class="{filled: form.title.$viewValue}" for="{{idPrefix}}title">
-                                <span>
-                                    Dolor sit amet
                                 </span>
                             </label>
                         </p>
@@ -66,7 +50,6 @@
                     <input class="btn" type="submit" ng-disabled="registration-form.$invalid" value="Registreeri">
                 </p>
             </form>
-
         </div>
     </div>
     <div class="footer">

@@ -1,0 +1,21 @@
+.settings {
+    display: block;
+    margin-top: -200px;
+    margin-bottom: 160px;
+    opacity: 1;
+    @mixin transition 0.2s;
+    .form {
+        height: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+        @mixin transition 0.2s;
+    }
+    &.active {
+        height: auto;
+        margin: 15px 0;
+        opacity: 1;
+        .form {
+            height: auto;
+        }
+    }
+}
