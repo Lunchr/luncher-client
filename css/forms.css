@@ -2,7 +2,7 @@
 /*** FORMS ***/
 
 /* Form */
-.offer-form {
+.form {
     display: block;
     width: 100%;
     padding: 35px 20px 20px;
@@ -226,7 +226,7 @@
         background-color: rgba(0, 0, 0, 0.02);
     }
 }
-.offer-form-wrap {
+.form-wrap {
     @simple-extend-addto material-box;
     display: inline-block;
     width: 100%;

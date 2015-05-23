@@ -5,8 +5,8 @@
 </header>
 <div class="content">
     <div class="container">
-        <div class="offer-form-wrap">
-            <form class="offer-form" novalidate ng-submit="submitOffer()" name="form">
+        <div class="form-wrap">
+            <form class="form" name="registration-form">
                 <div class="row">
                     <div class="col-md-4 col-sm-3">
                         <p>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <p class="buttons">
-                    <input class="btn" type="submit" ng-disabled="form.$invalid" value="Registreeri">
+                    <input class="btn" type="submit" ng-disabled="registration-form.$invalid" value="Registreeri">
                 </p>
             </form>
 
