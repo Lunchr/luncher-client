@@ -34,6 +34,7 @@ h6 {
     font-family: $font-family;
 }
 .content {
+    position: relative;
     min-height: 100%;
     padding-bottom: 64px;
     padding-top: 46px;
