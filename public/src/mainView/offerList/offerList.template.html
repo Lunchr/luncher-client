@@ -24,12 +24,12 @@
           </div>
       </div>
       <div class="col-2">
-          <div class="offer" ng-repeat="offer in restaurant.offers" ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state}">
+          <div class="offer" ng-repeat="offer in restaurant.offers" ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state, hasimage: offer.image, hasinfo: offer.info}">
               <h3>{{offer.title}}</h3>
               <p>{{offer.ingredients | joinTags}}</p>
               <p class="price">{{offer.price | currency:'€'}}</p>
               <div class="secondary">
-                  <p>Lisainfo</p>
+                  <p ng-show="offer.info">{{offer.info}}</p>
                   <p class="image" ng-style="{'background-image':'url(../{{offer.image}})'}"></p>
               </div>
           </div>
