@@ -5,11 +5,11 @@
 </header>
 <div class="content">
     <div class="login">
-        <form name="facebook-page-selection">
+        <form name="facebook-page-selection" ng-submit="vm.submit()">
             <p>Vali söögikoha leht, mida soovid registreerida.</p>
             <ul>
                 <li ng-repeat="page in vm.pages">
-                    <input type="radio" name="facebook-page" value="{{::page.name}}" id="{{$id}}">
+                    <input type="radio" name="facebook-page" ng-model="vm.selectedPage" ng-value="page.id" id="{{$id}}">
                     <label for="{{$id}}"> {{::page.name}} </label>
                 </li>
             </ul>
