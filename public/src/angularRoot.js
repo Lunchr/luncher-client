@@ -2,6 +2,7 @@
   'use strict';
   var module = angular.module('app', [
     'mainViewController',
+    'registerPages',
     'restaurantAdminView',
     'commonFilters',
     'ngRoute',
@@ -42,6 +43,18 @@
       }).
       when('/register/login', {
         templateUrl: 'src/register/login.template.html',
+      }).
+      when('/register/pages', {
+        templateUrl: 'src/register/pages.template.html',
+        controller: 'RegisterPagesCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          pages: ['$resource',
+            function($resource) {
+              return $resource('/api/v1/register/facebook/pages').query().$promise;
+            }
+          ],
+        },
       }).
       otherwise({
         redirectTo: '/',

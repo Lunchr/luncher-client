@@ -8,17 +8,9 @@
         <form name="facebook-page-selection">
             <p>Vali söögikoha leht, mida soovid registreerida.</p>
             <ul>
-                <li>
-                    <input type="radio" name="facebook-page" value="La Dolce vita" id="1">
-                    <label for="1"> La Dolce Vita </label>
-                </li>
-                <li>
-                    <input type="radio" name="facebook-page" value="olor sit amet" id="2">
-                    <label for="2"> Dolor sit amet </label>
-                </li>
-                <li>
-                    <input type="radio" name="facebook-page" value="Vestibulum ipsum" id="3">
-                    <label for="3"> Vestibulum ipsum </label>
+                <li ng-repeat="page in vm.pages">
+                    <input type="radio" name="facebook-page" value="{{::page.name}}" id="{{$id}}">
+                    <label for="{{$id}}"> {{::page.name}} </label>
                 </li>
             </ul>
             <p>
