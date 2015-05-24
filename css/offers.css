@@ -166,12 +166,19 @@
     height: 0;
     overflow: hidden;
     @mixin transition 0.2s;
-    .expand & {
-        height: 210px;
-    }
     p {
         margin-top: 4px;
         margin-bottom: 0;
+    }
+}
+.expand {
+    .secondary {
+        height: 19px;
+    }
+    &.hasimage {
+        .secondary {
+            height: 210px;
+        }
     }
 }
 

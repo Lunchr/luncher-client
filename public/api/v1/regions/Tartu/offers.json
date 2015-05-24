@@ -15,7 +15,7 @@
   "price": 3.4,
   "ingredients": ["Kana", "aedviljad", "tsillikaste"],
   "tags": ["lind", "kana", "praad"],
-  "image": "mock-images/meatmarket.jpg"
+  "image": ""
 }, {
   "_id": "2",
   "restaurant": {
@@ -33,7 +33,7 @@
   "price": 3.3,
   "ingredients": ["Seafilee", "aedviljad", "mahushapu kaste"],
   "tags": ["siga", "praad"],
-  "image": "mock-images/meatmarket2.jpg"
+  "image": ""
 }, {
   "_id": "3",
   "restaurant": {
@@ -177,7 +177,7 @@
   "price": 5.2,
   "ingredients": ["Pardifilee", "ahuõunad", "friikartulid", "värske salat", "kaste"],
   "tags": ["lind", "part", "praad"],
-  "image": "mock-images/meatmarket5.jpg"
+  "image": ""
 }, {
   "_id": "11",
   "restaurant": {
@@ -195,7 +195,7 @@
   "price": 5.9,
   "ingredients": ["Minutihv", "kodune ahjukartul", "astelpaju kaste", "värske salat"],
   "tags": ["loom", "praad"],
-  "image": "mock-images/meatmarket.jpg"
+  "image": ""
 }, {
   "_id": "12",
   "restaurant": {
