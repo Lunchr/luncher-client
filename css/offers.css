@@ -173,11 +173,16 @@
 }
 .expand {
     .secondary {
-        height: 19px;
+        height: 210px;
     }
-    &.hasimage {
+    &.offer {
         .secondary {
-            height: 210px;
+            height: 19px;
+        }
+        &.hasimage {
+            .secondary {
+                height: 210px;
+            }
         }
     }
 }
