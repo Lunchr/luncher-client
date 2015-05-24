@@ -28,5 +28,13 @@ describe('RegisterPagesCtrl', function() {
         expect(redirect).toHaveBeenCalledWith('/register/form/1234');
       });
     });
+
+    describe('skip', function() {
+      it('should redirect to registration form', function() {
+        vm.selectedPage = '123';
+        vm.skip();
+        expect(redirect).toHaveBeenCalledWith('/register/form');
+      });
+    });
   });
 });

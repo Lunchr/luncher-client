@@ -9,6 +9,9 @@
       vm.submit = function() {
         $location.path('/register/form/' + vm.selectedPage);
       };
+      vm.skip = function() {
+        $location.path('/register/form');
+      };
     }
   ]);
 })();
