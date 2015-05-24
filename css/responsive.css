@@ -61,6 +61,7 @@
     .offer {
         padding-left: 45px;
         .image {
+            height: 300px;
             width: 100%;
             border-radius: 0;
             margin-left: -45px
@@ -82,6 +83,16 @@
         &.hasinfo .secondary {
             height: 29px;
         }
+        &.hasimage {
+            .secondary {
+                height: 310px;
+            }
+            &.hasinfo {
+                .secondary {
+                    height: 329px;
+                }
+            }
+        }
     }
     .form p {
         &.image-preview {
@@ -95,7 +106,44 @@
         display: none !important;
     }
 }
+@media (max-width: 530px) {
+    .offer {
+        .image {
+            height: 250px;
+        }
+    }
+    .expand {
+        &.hasimage {
+            .secondary {
+                height: 260px;
+            }
+            &.hasinfo {
+                .secondary {
+                    height: 279px;
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 430px) {
+    .offer {
+        .image {
+            height: 200px;
+        }
+    }
+    .expand {
+        &.hasimage {
+            .secondary {
+                height: 210px;
+            }
+            &.hasinfo {
+                .secondary {
+                    height: 229px;
+                }
+            }
+        }
+    }
     .dropdown {
         width: 100%;
         left: 0;

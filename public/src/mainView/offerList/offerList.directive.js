@@ -33,7 +33,7 @@
             var params = {
               center: latLng,
               zoom: 16,
-              size: '200x200',
+              size: '750x200',
               scale: 2,
               markers: 'color:orange|' + latLng,
               key: PUBLIC_GOOGLE_MAPS_API_KEY,
