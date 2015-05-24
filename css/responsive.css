@@ -69,13 +69,18 @@
     .secondary {
         margin-left: -45px;
         margin-right: -11px;
-        .expand & {
-            height: 229px;
-            margin-bottom: -11px;
-        }
         p {
             padding-left: 45px;
             padding-right: 11px;
+        }
+    }
+    .expand {
+        .secondary {
+            height: 248px;
+            margin-bottom: -11px;
+        }
+        &.hasinfo .secondary {
+            height: 29px;
         }
     }
     .form p {

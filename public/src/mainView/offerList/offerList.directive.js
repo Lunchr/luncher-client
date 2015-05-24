@@ -32,10 +32,10 @@
             var latLng = getLatLng(restaurant);
             var params = {
               center: latLng,
-              zoom: 17,
+              zoom: 16,
               size: '200x200',
               scale: 2,
-              markers: 'color:red|' + latLng,
+              markers: 'color:orange|' + latLng,
               key: PUBLIC_GOOGLE_MAPS_API_KEY,
             };
             var encodedParams = Object.keys(params).map(function(k) {
