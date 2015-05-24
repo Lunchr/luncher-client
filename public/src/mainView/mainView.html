@@ -63,7 +63,12 @@
                                         <span class="icon icon-22"></span>
                                     </span>
                                 </a>
-                                <a class="mobile" href="javascript:undefined" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
+                                <a class="mobile" href="javascript:undefined" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown">
+                                    {{(tags.selected | joinTags) || 'Filtreeri'}}
+                                    <span class="icon-wrap">
+                                        <span class="icon icon-22"></span>
+                                    </span>
+                                </a>
                             </p>
                             <form class="dropdown">
                               <ul>
