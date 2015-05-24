@@ -99,6 +99,18 @@ var offerUtils = (function() {
         'cctld':    'uk',
       }];
     },
+    getMockPages: function() {
+      return [{
+        id: '1',
+        name: 'La Dolce Vita',
+      },{
+        id: '2',
+        name: 'Dolor sit amet',
+      },{
+        id: '3',
+        name: 'Vestibulum ipsum',
+      }];
+    },
     matchers: {
       toContainId: function(util, customEqualityTesters) {
         return {
