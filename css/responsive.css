@@ -50,12 +50,6 @@
         width: 90%;
         margin-left: -45%;
     }
-    .dropdown {
-        margin-top: -200%;
-    }
-    .col-2 .dropdown {
-        left: -15px;
-    }
 
     /* offers */
     .restaurant-wrap {
@@ -102,15 +96,6 @@
         left: 0;
         .geolocator-canvas {
             width: 100%;
-        }
-        ul {
-            border-radius: 0;
-            label {
-                padding: 6px 23px 7px 44px;
-                &:before {
-                    left: 24px;
-                }
-            }
         }
     }
 }
