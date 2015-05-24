@@ -36,6 +36,9 @@
             border-radius: 50%;
             border: 1px solid $color;
         }
+        &:hover {
+            color: #d96805;
+        }
     }
     form span {
         position: relative;
@@ -142,7 +145,6 @@
         position: relative;
         padding: 14px 37px 15px 18px;
         z-index: 996;
-        @mixin transition 0.2s;
         .icon-wrap {
             position: absolute;
             top: 0;
