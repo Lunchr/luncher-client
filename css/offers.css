@@ -141,7 +141,7 @@
     }
     .image {
         width: 50%;
-        height: 200px;
+        height: 219px;
         margin: 10px 0 0;
         border-radius: 2px;
         background-size: cover;
@@ -177,7 +177,7 @@
 }
 .expand {
     .secondary {
-        height: 224px;
+        height: 229px;
     }
     &.offer {
         .secondary {
@@ -188,15 +188,13 @@
         .secondary {
             height: 19px;
         }
+        .image {
+            height: 200px
+        }
     }
     &.hasimage {
         .secondary {
-            height: 210px;
-        }
-        &.hasinfo {
-            .secondary {
-                height: 229px;
-            }
+            height: 229px;
         }
     }
 }

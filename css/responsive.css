@@ -61,7 +61,6 @@
     .offer {
         padding-left: 45px;
         .image {
-            height: 300px;
             width: 100%;
             border-radius: 0;
             margin-left: -45px
@@ -80,12 +79,17 @@
             height: 248px;
             margin-bottom: -11px;
         }
-        &.hasinfo .secondary {
-            height: 29px;
+        &.hasinfo {
+            .secondary {
+                height: 29px;
+            }
         }
         &.hasimage {
             .secondary {
                 height: 310px;
+            }
+            .image {
+                height: 300px;
             }
             &.hasinfo {
                 .secondary {
