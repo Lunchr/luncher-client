@@ -1,8 +1,7 @@
 <p class="sorter">
     <a href="javascript:undefined" ng-click="clicked()">
         <span ng-show="isActive()" class="icon-wrap">
-            <span ng-show="isAscending" class="icon icon-14"></span>
-            <span ng-show="!isAscending" class="icon icon-13"></span>
+            <span ng-class="{desc: !isAscending}" class="icon icon-14"></span>
         </span>
         <span ng-transclude></span>
     </a>
