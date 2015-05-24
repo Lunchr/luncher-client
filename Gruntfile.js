@@ -151,7 +151,7 @@ module.exports = function(grunt) {
     })();
   })();
   (function configurePostcss() {
-    var browsers = ['ie >= 10, > 1%, last 2 versions'];
+    var browsers = 'last 2 versions, > 1%';
     var ignoredDoiuseFeatures = ['box-sizing'];
     var files = { 'public/css/main.css': 'css/main.css' };
     config.postcss = {
@@ -165,7 +165,7 @@ module.exports = function(grunt) {
             require('postcss-simple-vars').postcss,
             require('postcss-nested').postcss,
             require('postcss-media-minmax')(),
-            // require('autoprefixer-core')({ browsers: browsers }).postcss,
+            require('autoprefixer-core')({ browsers: browsers }).postcss,
           ]
         },
         files: files
