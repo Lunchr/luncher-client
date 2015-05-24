@@ -217,6 +217,6 @@ module.exports = function(grunt) {
   grunt.registerTask('once', ['jshint', 'karma:once']);
   grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'sed:clean_lcov', 'e2e', 'coveralls']);
   grunt.registerTask('predeploy', ['postcss:dist']);
-  grunt.registerTask('dev', ['express:dev', 'watch:postcss']);
+  grunt.registerTask('dev', ['postcss:dev', 'express:dev', 'watch:postcss']);
 
 };
