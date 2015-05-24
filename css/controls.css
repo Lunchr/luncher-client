@@ -57,7 +57,7 @@
             float: left;
         }
         label {
-            padding-left: 30px;
+            padding-left: 28px;
             padding-right: 10px;
         }
         input[type=checkbox] + label:before,
