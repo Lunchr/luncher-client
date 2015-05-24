@@ -1,0 +1,60 @@
+<header>
+    <div class="container">
+        <p class="icon-wrap">
+            <a href="../#/" class="icon icon-14 back">
+                <span class="icon-label">Tagasi</span>
+            </a>
+        </p>
+        <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
+        <p class="search-wrap" ng-controller="SearchCtrl as search">
+            <input ng-class="{ 'filled': search.query.length }" id="search" type="text" ng-model="search.query">
+            <button ng-click="search.query = ''" id="search-submit" class="icon-7"></button>
+        </p>
+    </div>
+</header>
+<div class="content">
+    <div class="container">
+        <ul class="faq">
+            <li ng-click="question1.state=!question1.state" ng-class="{expand: question1.state}">
+                <h2><strong>1. </strong>Lorem ispum dolor sit a met?</h2>
+                <div class="answer">
+                    <div class="answer-inner">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sed nulla alias, ex expedita. Sed, nobis! Dicta architecto debitis quibusdam doloribus sunt, necessitatibus aliquid blanditiis quaerat voluptatibus, a, laborum consequuntur!
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ng-click="question2.state=!question2.state" ng-class="{expand: question2.state}">
+                <h2><strong>2. </strong>Lorem ispum dolor sit a met?</h2>
+                <div class="answer">
+                    <div class="answer-inner">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sed nulla alias, ex expedita. Sed, nobis! Dicta architecto debitis quibusdam doloribus sunt, necessitatibus aliquid blanditiis quaerat voluptatibus, a, laborum consequuntur!
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ng-click="question3.state=!question3.state" ng-class="{expand: question3.state}">
+                <h2><strong>3. </strong>Lorem ispum dolor sit a met?</h2>
+                <div class="answer">
+                    <div class="answer-inner">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sed nulla alias, ex expedita. Sed, nobis! Dicta architecto debitis quibusdam doloribus sunt, necessitatibus aliquid blanditiis quaerat voluptatibus, a, laborum consequuntur!
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <ul>
+                <li><a href="mailto:info@luncher.ee">info@luncher.ee</a></li>
+                <li><a href="javascript:undefined">+372 5623 1163</a></li>
+                <li><a href="javascript:undefined">Restorani pidajale</a></li>
+                <li><a href="../#/">Avalehele</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

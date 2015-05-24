@@ -117,3 +117,17 @@ header {
         }
     }
 }
+
+.back {
+    color: #fff;
+    &:before {
+        display: block;
+        position: absolute;
+        top: 12px;
+        left: 10px;
+        transform: rotate(90deg);
+    }
+    &:hover {
+        color: #fff;
+    }
+}

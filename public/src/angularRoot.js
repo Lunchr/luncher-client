@@ -34,6 +34,9 @@
       when('/login', {
         templateUrl: 'src/login.template.html',
       }).
+      when('/faq', {
+        templateUrl: 'src/faq.template.html',
+      }).
       otherwise({
         redirectTo: '/',
       });
