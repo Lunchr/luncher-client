@@ -15,6 +15,7 @@
   "price": 3.4,
   "ingredients": ["Kana", "aedviljad", "tsillikaste"],
   "tags": ["lind", "kana", "praad"],
+  "info": "Gluteenivaba",
   "image": ""
 }, {
   "_id": "2",
@@ -33,6 +34,7 @@
   "price": 3.3,
   "ingredients": ["Seafilee", "aedviljad", "mahushapu kaste"],
   "tags": ["siga", "praad"],
+  "info": "Pakkumisega tasuta kaasas magustoit",
   "image": ""
 }, {
   "_id": "3",
@@ -51,6 +53,7 @@
   "price": 3.8,
   "ingredients": ["Veiseliha pihv", "burgerisai", "kodused friikartulid", "kaste", "salat"],
   "tags": ["loom", "veis", "praad"],
+  "info": "Kuni pakkumisi jätkub",
   "image": "mock-images/meatmarket3.jpg"
 }, {
   "_id": "5",
@@ -69,6 +72,7 @@
   "price": 4.5,
   "ingredients": ["Lambaliha", "parmesan", "farfalle"],
   "tags": ["lammas", "pasta", "praad"],
+  "info": "Gluteenivaba",
   "image": "mock-images/meatmarket5.jpg"
 }, {
   "_id": "4",
@@ -87,6 +91,7 @@
   "price": 4.5,
   "ingredients": ["Pardifilee", "aedviljad", "magushapu kaste"],
   "tags": ["lind", "part", "praad"],
+  "info": "Laktoosivaba",
   "image": "mock-images/meatmarket4.jpg"
 }, {
   "_id": "6",
@@ -141,6 +146,7 @@
   "price": 3.2,
   "ingredients": ["Kodune kotlet", "praekartulid", "salat", "kaste"],
   "tags": ["loom", "praad"],
+  "info": "Pakkumisega kaasas tasuta jook",
   "image": "mock-images/meatmarket3.jpg"
 }, {
   "_id": "9",
@@ -159,6 +165,7 @@
   "price": 4.2,
   "ingredients": ["Lambakarree", "ahjukartul", "salat", "kaste"],
   "tags": ["lammas", "praad"],
+  "info": "Pakkumisega kaasas tasuta supp",
   "image": "mock-images/meatmarket4.jpg"
 }, {
   "_id": "10",
@@ -177,6 +184,7 @@
   "price": 5.2,
   "ingredients": ["Pardifilee", "ahuõunad", "friikartulid", "värske salat", "kaste"],
   "tags": ["lind", "part", "praad"],
+  "info": "Pakkumisega kaasas tasuta supp",
   "image": ""
 }, {
   "_id": "11",
@@ -195,6 +203,7 @@
   "price": 5.9,
   "ingredients": ["Minutihv", "kodune ahjukartul", "astelpaju kaste", "värske salat"],
   "tags": ["loom", "praad"],
+  "info": "Gluteenivaba",
   "image": ""
 }, {
   "_id": "12",
@@ -231,5 +240,6 @@
   "price": 3,
   "ingredients": ["Tomatipüree", "basiilik", "juustune röstsai"],
   "tags": ["supp"],
+  "info": "Gluteenivaba, laktoosivaba",
   "image": "mock-images/meatmarket3.jpg"
 }]
