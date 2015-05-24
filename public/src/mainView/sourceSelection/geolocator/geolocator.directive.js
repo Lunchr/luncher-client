@@ -6,8 +6,15 @@
     ngGeolocatorProvider.setGoogleMapsAPIKey('AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8');
     ngGeolocatorProvider.extendLocatorMarkerOptions({
       icon: {
-        url: '/img/geolocator-pointer.png',
+        url: '/img/geolocator-pointer.svg',
       },
+    });
+    ngGeolocatorProvider.extendStaticMarkerOptions({
+      opacity: 0,
+    });
+    ngGeolocatorProvider.extendStaticCircleOptions({
+        fillOpacity: 0.1,
+        strokeOpacity: 0,
     });
   }]);
 
