@@ -1,7 +1,7 @@
 <header>
     <div class="container">
         <p class="icon-wrap with-label">
-            <button ng-click="vm.state.regionSelectionDropdown='active'" class="icon icon-5">
+            <button ng-click="vm.state.regionSelectionDropdown=!vm.state.regionSelectionDropdown" class="icon icon-5">
                 <span class="icon-label">{{vm.offerSource.region}}</span>
             </button>
         </p>
@@ -20,11 +20,11 @@
 <div class="overlay"></div>
 <div class="content">
     <div class="container">
-        <div class="dropdown" ng-class="vm.state.regionSelectionDropdown">
-            <region-selection on-selected="vm.state.regionSelectionDropdown=''">
+        <div class="dropdown" ng-class="{active: vm.state.regionSelectionDropdown}">
+            <region-selection on-selected="vm.state.regionSelectionDropdown=!vm.state.regionSelectionDropdown">
             </region-selection>
         </div>
-        <div class="overlay" ng-click="vm.state.regionSelectionDropdown=''"></div>
+        <div class="overlay" ng-click="vm.state.regionSelectionDropdown=!vm.state.regionSelectionDropdown"></div>
         <div class="dropdown" ng-class="vm.state.geolocatorDropdown">
             <div class="dropdown-inner">
                 <geolocator on-selected="vm.state.geolocatorDropdown=''" ng-show="vm.state.geolocatorDropdown">
@@ -55,19 +55,26 @@
                                 <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
                             </li>
                         </ul>
-                        <p>
-                            <a class="desktop" href="javascript:undefined" ng-click="vm.state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Veel filtreid'}}</a>
-                            <a class="mobile" href="javascript:undefined" ng-click="vm.state.filtersDropdown='active'">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
-                        </p>
-                        <form class="dropdown" ng-class="vm.state.filtersDropdown">
-                          <ul>
-                              <li ng-repeat="tag in tags.list | filter:tags.isNotMainTag">
-                                  <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
-                                  <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
-                              </li>
-                          </ul>
-                        </form>
-                        <div class="overlay" ng-click="vm.state.filtersDropdown=''"></div>
+                        <div class="select-dropdown" ng-class="{active: vm.state.filtersDropdown}">
+                            <p>
+                                <a class="desktop" href="javascript:undefined" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown">
+                                    {{(tags.selected | joinTags) || 'Veel filtreid'}}
+                                    <span class="icon-wrap">
+                                        <span class="icon icon-22"></span>
+                                    </span>
+                                </a>
+                                <a class="mobile" href="javascript:undefined" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown">{{(tags.selected | joinTags) || 'Filtreeri'}}</a>
+                            </p>
+                            <form class="dropdown">
+                              <ul>
+                                  <li ng-repeat="tag in tags.list | filter:tags.isNotMainTag">
+                                      <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
+                                      <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
+                                  </li>
+                              </ul>
+                            </form>
+                        </div>
+                        <div class="overlay" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown"></div>
                     </div>
                     <offers-sorter is-numeric="true" order-by="price" class="price-sorter">
                         Hind
