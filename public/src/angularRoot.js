@@ -56,6 +56,9 @@
           ],
         },
       }).
+      when('/register/form/:pageID?', {
+        templateUrl: 'src/register/form.template.html',
+      }).
       otherwise({
         redirectTo: '/',
       });
