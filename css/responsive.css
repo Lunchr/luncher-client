@@ -127,6 +127,14 @@
 }
 
 @media (max-width: 430px) {
+    header {
+        .icon-label {
+            display: none;
+        }
+    }
+    .select-dropdown {
+        margin-left: -25px;
+    }
     .offer {
         .image {
             height: 200px;
@@ -150,5 +158,11 @@
         .geolocator-canvas {
             width: 100%;
         }
+    }
+}
+
+@media (max-width: 300px) {
+    .select-dropdown {
+        display: none;
     }
 }
