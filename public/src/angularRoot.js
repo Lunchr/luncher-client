@@ -37,6 +37,12 @@
       when('/faq', {
         templateUrl: 'src/faq.template.html',
       }).
+      when('/register', {
+        redirectTo: '/register/login',
+      }).
+      when('/register/login', {
+        templateUrl: 'src/register/login.template.html',
+      }).
       otherwise({
         redirectTo: '/',
       });

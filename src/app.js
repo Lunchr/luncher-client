@@ -32,6 +32,9 @@
   app.get('/api/v1/login/facebook', function(req, res) {
     res.redirect('/#/admin');
   });
+  app.get('/api/v1/register/login/facebook', function(req, res) {
+    res.redirect('/#/register/pages');
+  });
   app.get('/api/v1/logout', function(req, res) {
     res.redirect('/#/');
   });
