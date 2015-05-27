@@ -6,38 +6,58 @@
 <div class="content">
     <div class="container">
         <div class="form-wrap">
-            <form class="form" name="registration-form">
+            <form class="form" name="form">
                 <div class="row">
                     <div class="col-md-4 col-sm-3">
                         <p>
-                            <input ng-model="restaurantName" name="restaurantName" id="restaurantName" type="text" value="La Dolce Vita" required>
-                            <label ng-class="{filled: settings.restaurantName.$viewValue}" for="restaurantName">
-                                <span>
+                            <input ng-model="vm.restaurant.name" name="name" id="restaurantName" type="text" required>
+                            <label ng-class="{filled: form.name.$viewValue}" for="restaurantName">
+                                <span ng-show="!vm.isReadyForError(form.name)">
                                     Söögikoha nimi
                                 </span>
+                                <span ng-show="vm.isReadyForError(form.name)" class="errors">
+                                  <span ng-show="form.name.$error.required">
+                                    Nimi on kohustuslik
+                                  </span>
+                                </span>
                             </label>
                         </p>
                         <p>
-                            <input ng-model="restaurantAddress" name="restaurantAddress" id="restaurantAddress" type="text" value="Kompanii 10, Tartu" required>
-                            <label ng-class="{filled: settings.restaurantAddress.$viewValue}" for="restaurantAddress">
-                                <span>
+                            <input ng-model="vm.restaurant.address" name="address" id="restaurantAddress" type="text" required>
+                            <label ng-class="{filled: form.address.$viewValue}" for="restaurantAddress">
+                                <span ng-show="!vm.isReadyForError(form.address)">
                                     Aadress
                                 </span>
-                            </label>
-                        </p>
-                        <p>
-                            <input ng-model="restaurantPhone" name="restaurantPhone" id="restaurantPhone" type="text" value="+372 567 8910" required>
-                            <label ng-class="{filled: settings.restaurantPhone.$viewValue}" for="restaurantPhone">
-                                <span>
-                                    Telefoni number
+                                <span ng-show="vm.isReadyForError(form.address)" class="errors">
+                                  <span ng-show="form.address.$error.required">
+                                    Aadress on kohustuslik
+                                  </span>
                                 </span>
                             </label>
                         </p>
                         <p>
-                            <input ng-model="restaurantWebpage" name="restaurantWebpage" id="restaurantWebpage" type="text" value="ladolcevita.ee" required>
-                            <label ng-class="{filled: settings.restaurantWebpage.$viewValue}" for="restaurantWebpage">
-                                <span>
+                            <input ng-model="vm.restaurant.phone" name="phone" id="restaurantPhone" type="text" required>
+                            <label ng-class="{filled: form.phone.$viewValue}" for="restaurantPhone">
+                                <span ng-show="!vm.isReadyForError(form.phone)">
+                                    Telefoni number
+                                </span>
+                                <span ng-show="vm.isReadyForError(form.phone)" class="errors">
+                                  <span ng-show="form.phone.$error.required">
+                                    Telefoni number on kohustuslik
+                                  </span>
+                                </span>
+                            </label>
+                        </p>
+                        <p>
+                            <input ng-model="vm.restaurant.webpage" name="webpage" id="restaurantWebpage" type="text" required>
+                            <label ng-class="{filled: form.webpage.$viewValue}" for="restaurantWebpage">
+                                <span ng-show="!vm.isReadyForError(form.webpage)">
                                     Kodulehe aadress
+                                </span>
+                                <span ng-show="vm.isReadyForError(form.webpage)" class="errors">
+                                  <span ng-show="form.webpage.$error.required">
+                                    Kodulehe aadress on kohustuslik
+                                  </span>
                                 </span>
                             </label>
                         </p>
@@ -47,7 +67,7 @@
                     </div>
                 </div>
                 <p class="buttons">
-                    <input class="btn" type="submit" ng-disabled="registration-form.$invalid" value="Registreeri">
+                    <input class="btn" type="submit" ng-disabled="form.$invalid" value="Registreeri">
                 </p>
             </form>
         </div>

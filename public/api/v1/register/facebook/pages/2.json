@@ -1,4 +1,7 @@
 {
   "id": "2",
-  "name": "Dolor sit amet"
+  "name": "Dolor sit amet",
+  "address": "Kompanii 10, Tartu",
+  "phone": "+372 567 8910",
+  "webpage": "dolorsitamet.ee"
 }
