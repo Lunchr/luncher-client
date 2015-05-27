@@ -1,37 +1,51 @@
 (function() {
   'use strict';
   var module = angular.module('cookies', [
-    'ipCookie',
+    'ngCookies',
   ]);
 
   module.constant('allCookies', {
     favorites: {
       name: 'luncher_favorites',
-      expiry: 28, //days
+      expiryInDays: 28, //days
     },
     offerSource: {
       name: 'luncher_offer_source',
-      expiry: 28,
+      expiryInDays: 28,
     },
     filterState: {
       name: 'luncher_filters',
-      expiry: 28,
+      expiryInDays: 28,
     },
   });
 
-  module.factory('cookies', ['ipCookie', 'allCookies',
-    function(ipCookie, allCookies) {
+  module.factory('cookies', ['$cookies', 'allCookies',
+    function($cookies, allCookies) {
       function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
+      /**
+       * @param  {Number} days
+       * @return {Date}   A date the specified amount of days from now (discards the time component)
+       */
+      function daysFromNow(days) {
+        var now = new Date();
+        return new Date(now.getFullYear(), now.getMonth(), now.getDate() + days);
+      }
+
+      function putCookie(cookieProps, cookie) {
+        var expires = daysFromNow(cookieProps.expiryInDays);
+        $cookies.putObject(cookieProps.name, cookie, {expires: expires});
       }
 
       var service = {
         refreshExpirations: function() {
           Object.keys(allCookies).forEach(function(key) {
             var cookieProps = allCookies[key];
-            var cookie = ipCookie(cookieProps.name);
+            var cookie = $cookies.getObject(cookieProps.name);
             if (cookie) {
-              ipCookie(cookieProps.name, cookie, {expires: cookieProps.expiry});
+              putCookie(cookieProps, cookie);
             }
           });
         },
@@ -41,15 +55,13 @@
         var cookieProps = allCookies[key];
         var capitalizedKey = capitalizeFirstLetter(key);
         service['get' + capitalizedKey] = function(){
-          return ipCookie(cookieProps.name);
+          return $cookies.getObject(cookieProps.name);
         };
         service['set' + capitalizedKey] = function(val){
-          // NB: ngCookies could be used after angular 1.4.x.
-          // In the current version, however, there is no good way to set the expiry time
-          return ipCookie(cookieProps.name, val, {expires: cookieProps.expiry});
+          putCookie(cookieProps, val);
         };
         service['remove' + capitalizedKey] = function(){
-          return ipCookie.remove(cookieProps.name);
+          return $cookies.remove(cookieProps.name);
         };
       });
       return service;
