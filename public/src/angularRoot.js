@@ -3,6 +3,7 @@
   var module = angular.module('app', [
     'mainViewController',
     'registerPages',
+    'registerForm',
     'restaurantAdminView',
     'commonFilters',
     'ngRoute',
@@ -51,13 +52,38 @@
         resolve: {
           pages: ['$resource',
             function($resource) {
-              return $resource('/api/v1/register/facebook/pages').query().$promise;
+              return $resource('/api/v1/register/facebook/pages').query().$promise.catch(function(resp) {
+                if (resp.status === 403) {
+                  $location.path('/register/login');
+                }
+              });
             }
           ],
         },
       }).
       when('/register/form/:pageID?', {
         templateUrl: 'src/register/form.template.html',
+        controller: 'RegisterFormCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          page: ['$resource', '$route', '$q',
+            function($resource, $route, $q) {
+              if (!$route.current.params.pageID) {
+                var deferred = $q.defer();
+                deferred.resolve();
+                return deferred.promise;
+              }
+              var params = {
+                id: $route.current.params.pageID,
+              };
+              return $resource('/api/v1/register/facebook/pages/:id').get(params).$promise.catch(function(resp) {
+                if (resp.status === 403) {
+                  $location.path('/register/login');
+                }
+              });
+            }
+          ],
+        }
       }).
       otherwise({
         redirectTo: '/',
