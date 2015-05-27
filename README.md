@@ -2,7 +2,7 @@
 
 A client
 =====
-[![Code Climate](https://codeclimate.com/github/Lunchr/luncher-client.png)](https://codeclimate.com/github/Lunchr/luncher-client) [![Build Status](https://travis-ci.org/Lunchr/luncher-client.svg)](https://travis-ci.org/Lunchr/luncher-client) [![Coverage Status](https://coveralls.io/repos/Lunchr/luncher-client/badge.png)](https://coveralls.io/r/Lunchr/luncher-client) [![Selenium Test Status](https://saucelabs.com/buildstatus/deiwin)](https://saucelabs.com/u/deiwin)
+[![Code Climate](https://codeclimate.com/github/Lunchr/luncher-client.png)](https://codeclimate.com/github/Lunchr/luncher-client) [![Build Status](https://travis-ci.org/Lunchr/luncher-client.svg)](https://travis-ci.org/Lunchr/luncher-client) [![Coverage Status](https://coveralls.io/repos/Lunchr/luncher-client/badge.svg)](https://coveralls.io/r/Lunchr/luncher-client) [![Selenium Test Status](https://saucelabs.com/buildstatus/deiwin)](https://saucelabs.com/u/deiwin)
 
 
 ## Development setup ##
