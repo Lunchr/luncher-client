@@ -152,7 +152,6 @@ module.exports = function(grunt) {
   })();
   (function configurePostcss() {
     var browsers = 'last 2 versions, > 1%';
-    var ignoredDoiuseFeatures = ['box-sizing'];
     var files = { 'public/css/main.css': 'css/main.css' };
     config.postcss = {
       dev: {
@@ -182,22 +181,6 @@ module.exports = function(grunt) {
             require('postcss-media-minmax')(),
             require('autoprefixer-core')({ browsers: browsers }).postcss,
             require('csswring').postcss,
-            require('doiuse')({
-              browsers: browsers,
-              onFeatureUsage: function(usageInfo) {
-                var browsers = usageInfo.featureData.missingData;
-                var noSupport = Object.keys(browsers).some(function (browser) {
-                  var versions = browsers[browser];
-                  return Object.keys(versions).some(function (version){
-                    var support = versions[version];
-                    return support.indexOf('n') > -1;
-                  });
-                });
-                if (noSupport) {
-                  grunt.log.error(usageInfo.message);
-                }
-              }
-            }).postcss,
           ]
         },
         files: files

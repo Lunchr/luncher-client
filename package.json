@@ -28,7 +28,6 @@
     "autoprefixer-core": "^5.2.0",
     "bower": "~1.4.1",
     "csswring": "^3.0.5",
-    "doiuse": "^0.3.3",
     "grunt": "^0.4.5",
     "grunt-bower-task": "^0.4.0",
     "grunt-contrib-clean": "^0.6.0",
