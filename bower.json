@@ -1,7 +1,7 @@
 {
-  "name": "praad",
+  "name": "luncher-client",
   "version": "0.0.0",
-  "homepage": "https://github.com/deiwin/luncher-client",
+  "homepage": "https://github.com/Lunchr/luncher-client",
   "authors": [
     "Deiwin Sarjas <deiwin.sarjas@gmail.com>",
     "Madis Lehtmets"

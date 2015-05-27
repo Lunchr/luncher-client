@@ -1,7 +1,7 @@
 {
-  "name": "praad",
+  "name": "luncher-client",
   "version": "0.0.0-16",
-  "description": "luncher-client",
+  "description": "An Angular client for Luncher",
   "main": "src/app.js",
   "scripts": {
     "test": "grunt test",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/deiwin/luncher-client.git"
+    "url": "git://github.com/Lunchr/luncher-client.git"
   },
   "author": "Deiwin Sarjas, Madis Lehtmets",
   "license": "BSD 3-Clause",
   "bugs": {
-    "url": "https://github.com/deiwin/luncher-client/issues"
+    "url": "https://github.com/Lunchr/luncher-client/issues"
   },
-  "homepage": "https://github.com/deiwin/luncher-client",
+  "homepage": "https://github.com/Lunchr/luncher-client",
   "dependencies": {
     "express": "^4.12.4",
     "body-parser": "^1.12.4",
@@ -57,9 +57,5 @@
     "postcss-simple-extend": "^0.3.1",
     "postcss-simple-vars": "^0.3.0",
     "saucelabs": "^0.1.1"
-  },
-  "subdomain": "deiwin-praad",
-  "engines": {
-    "node": "0.10.x"
   }
 }
