@@ -103,6 +103,9 @@ var offerUtils = (function() {
       return [{
         id: '1',
         name: 'La Dolce Vita',
+        address: 'Kompanii 10, Tartu',
+        phone: '+372 567 8910',
+        webpage: 'ladolcevita.ee',
       },{
         id: '2',
         name: 'Dolor sit amet',

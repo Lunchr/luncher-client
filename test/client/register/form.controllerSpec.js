@@ -22,6 +22,16 @@ describe('RegisterFormCtrl', function() {
       vm = $scope.vm;
     }));
 
+    describe('initialization', function() {
+      it('should preload the restaurant data', function() {
+        expect(vm.restaurant.id).toBeUndefined();
+        expect(vm.restaurant.name).toEqual('La Dolce Vita');
+        expect(vm.restaurant.address).toEqual('Kompanii 10, Tartu');
+        expect(vm.restaurant.phone).toEqual('+372 567 8910');
+        expect(vm.restaurant.webpage).toEqual('ladolcevita.ee');
+      });
+    });
+
     describe('submit', function() {
       var respond;
       beforeEach(function() {
