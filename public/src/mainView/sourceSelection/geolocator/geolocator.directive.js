@@ -1,22 +1,28 @@
 (function() {
   'use strict';
-  var module = angular.module('geolocator', ['ngGeolocator', 'offerSource']);
+  var module = angular.module('geolocator', [
+    'ngGeolocator',
+    'offerSource',
+    'apiKeys',
+  ]);
 
-  module.config(['ngGeolocatorProvider', function(ngGeolocatorProvider) {
-    ngGeolocatorProvider.setGoogleMapsAPIKey('AIzaSyDf4MxGKR5Ejn6uDv3IjaNuqZcfO-ivyV8');
-    ngGeolocatorProvider.extendLocatorMarkerOptions({
-      icon: {
-        url: '/img/geolocator-pointer.svg',
-      },
-    });
-    ngGeolocatorProvider.extendStaticMarkerOptions({
-      opacity: 0,
-    });
-    ngGeolocatorProvider.extendStaticCircleOptions({
-        fillOpacity: 0.1,
-        strokeOpacity: 0,
-    });
-  }]);
+  module.config(['ngGeolocatorProvider', 'googleMapsAPIKey',
+    function(ngGeolocatorProvider, googleMapsAPIKey) {
+      ngGeolocatorProvider.setGoogleMapsAPIKey(googleMapsAPIKey);
+      ngGeolocatorProvider.extendLocatorMarkerOptions({
+        icon: {
+          url: '/img/geolocator-pointer.svg',
+        },
+      });
+      ngGeolocatorProvider.extendStaticMarkerOptions({
+        opacity: 0,
+      });
+      ngGeolocatorProvider.extendStaticCircleOptions({
+          fillOpacity: 0.1,
+          strokeOpacity: 0,
+      });
+    }
+  ]);
 
   module.directive('geolocator', ['$timeout', 'ngGeolocator', 'offerSourceService',
     function($timeout, ngGeolocator, offerSourceService) {
