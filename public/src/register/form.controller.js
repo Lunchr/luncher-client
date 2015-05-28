@@ -2,6 +2,7 @@
   'use strict';
   var module = angular.module('registerForm', [
     'ngResource',
+    'geoSpecifier',
   ]);
 
   module.controller('RegisterFormCtrl', ['$resource', '$location', 'page',
@@ -13,6 +14,7 @@
           address: page.address,
           phone: page.phone,
           webpage: page.webpage,
+          region: 'ee',
         };
       }
 
