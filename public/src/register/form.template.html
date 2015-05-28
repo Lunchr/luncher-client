@@ -6,7 +6,11 @@
 <div class="content">
     <div class="container">
         <div class="form-wrap">
-            <form class="form" name="form">
+            <p class="message" ng-show="vm.errorMessage">
+              <span class="icon icon-20"></span>
+              Midagi läks valesti. Server vastas veaga: {{vm.errorMessage}}
+            </p>
+            <form class="form" name="form" ng-submit="vm.submit()" novalidate>
                 <div class="row">
                     <div class="col-md-4 col-sm-3">
                         <p>

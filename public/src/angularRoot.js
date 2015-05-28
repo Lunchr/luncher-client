@@ -6,6 +6,7 @@
     'registerForm',
     'restaurantAdminView',
     'commonFilters',
+    'ngResource',
     'ngRoute',
     'i18nCustomizations',
   ]);

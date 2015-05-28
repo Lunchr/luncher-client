@@ -25,9 +25,12 @@
       // res.status(500).send('uh oh');
     }, 1000);
   };
+
   app.post('/api/v1/offers', delayedReflector);
   app.put('/api/v1/offers/:id', delayedReflector);
   app.delete('/api/v1/offers/:id', delayedReflector);
+
+  app.post('/api/v1/restaurants', delayedReflector);
 
   app.get('/api/v1/login/facebook', function(req, res) {
     res.redirect('/#/admin');

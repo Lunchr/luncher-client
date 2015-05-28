@@ -1,9 +1,11 @@
 (function() {
   'use strict';
-  var module = angular.module('registerForm', []);
+  var module = angular.module('registerForm', [
+    'ngResource',
+  ]);
 
-  module.controller('RegisterFormCtrl', ['page',
-    function(page) {
+  module.controller('RegisterFormCtrl', ['$resource', '$location', 'page',
+    function($resource, $location, page) {
       var vm = this;
       if (page) {
         vm.restaurant = {
@@ -13,6 +15,16 @@
           webpage: page.webpage,
         };
       }
+
+      vm.submit = function() {
+        $resource('/api/v1/restaurants').save(vm.restaurant,
+          function success() {
+            $location.path('/admin');
+          }, function fail(response) {
+            vm.errorMessage = response.data;
+          }
+        );
+      };
 
       vm.isReadyForError = function() {
         for (var i = 0; i < arguments.length; i++) {
