@@ -27,7 +27,8 @@
                             </label>
                         </p>
                         <p>
-                            <input ng-model="vm.restaurant.address" name="address" id="restaurantAddress" type="text" required>
+                            <input ng-model="vm.restaurant.address" name="address" id="restaurantAddress" type="text" required
+                                   ng-model-options="{ updateOn: 'default blur', debounce: {'default': 2000, 'blur': 0} }">
                             <label ng-class="{filled: form.address.$viewValue}" for="restaurantAddress">
                                 <span ng-show="!vm.isReadyForError(form.address)">
                                     Aadress
