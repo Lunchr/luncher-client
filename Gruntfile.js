@@ -164,7 +164,7 @@ module.exports = function(grunt) {
             require('postcss-simple-vars').postcss,
             require('postcss-nested').postcss,
             require('postcss-media-minmax')(),
-            require('autoprefixer-core')({ browsers: browsers }).postcss,
+            require('autoprefixer-core')({ browsers: browsers }),
           ]
         },
         files: files
@@ -179,7 +179,7 @@ module.exports = function(grunt) {
             require('postcss-simple-vars').postcss,
             require('postcss-nested').postcss,
             require('postcss-media-minmax')(),
-            require('autoprefixer-core')({ browsers: browsers }).postcss,
+            require('autoprefixer-core')({ browsers: browsers }),
             require('csswring').postcss,
           ]
         },
