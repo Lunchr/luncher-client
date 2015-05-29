@@ -15,17 +15,21 @@
         bindToController: true,
         controller: ['$scope', function($scope) {
           var ctrl = this;
-          ctrl.locationSelected = function() {
-            var location = ctrl.locator.getLocation();
-            console.log(location);
-          };
-
+          var specifier;
           ctrl.ready = false;
-          geoSpecifierService.create('geo-specifier-canvas-' + $scope.$id, ctrl.address, ctrl.region).then(function success(locator) {
-            ctrl.locator = locator;
+          geoSpecifierService.create('geo-specifier-canvas-' + $scope.$id, ctrl.address, ctrl.region).then(function success(_specifier_) {
+            specifier = _specifier_;
             ctrl.ready = true;
           }, function failure(message) {
             ctrl.error = true;
+          });
+          $scope.$watch(function() {
+            return ctrl.address;
+          }, function(newVal, oldVal) {
+            if (!newVal || !ctrl.ready || newVal === oldVal) {
+              return;
+            }
+            specifier.setAddress(ctrl.address, ctrl.region);
           });
         }],
         restrict: 'E',

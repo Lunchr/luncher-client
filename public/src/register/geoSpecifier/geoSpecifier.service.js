@@ -16,7 +16,8 @@
    * @param {google.maps.Marker} marker - The marker on the map that indicates the
    *                                    	actual location
    */
-  function Locator(marker) {
+  function Specifier(maps, marker) {
+    var geocoder;
     /**
      * @typedef LatLng
      * @type {Object}
@@ -35,6 +36,24 @@
         lng: location.lng(),
       };
     };
+    this.setAddress = function(address, region) {
+      if (!geocoder) {
+        geocoder = new maps.Geocoder();
+      }
+      geocoder.geocode({
+        address: address,
+        region: region,
+      }, function(results, status) {
+        if (status == maps.GeocoderStatus.OK) {
+          var geo = results[0].geometry;
+          var map = marker.getMap();
+
+          map.setCenter(geo.location);
+          map.fitBounds(geo.viewport);
+          marker.setPosition(geo.location);
+        }
+      });
+    };
   }
 
 
@@ -50,13 +69,13 @@
      * will then draw a map on the specified canvasID. The map will be centered to
      * the geocoded location of the provided address and a marker will be displayed
      * that the user can move to specify the location. This marker will then be
-     * used to create a new {@link Locator} object which will then be used to
+     * used to create a new {@link Specifier} object which will then be used to
      * resolve the returned promise.
      *
      * @param {string} canvasID - The elemt ID of the canvas to load the map onto.
      * @param {string} address  - The address to initially center the map on.
      * @param {string} region   - The ccTLD ("top-level domain") for the address.
-     * @returns {Promise.<Locator>}
+     * @returns {Promise.<Specifier>}
      */
     this.create = function(canvasID, address, region) {
       var mapsAPIPromise = loadMapsAPI();
@@ -77,7 +96,7 @@
         var locatorMarker = createLocatorMarker(map, geo.location);
         map.setCenter(geo.location);
         map.fitBounds(geo.viewport);
-        return new Locator(locatorMarker);
+        return new Specifier($window.google.maps, locatorMarker);
       });
     };
 
