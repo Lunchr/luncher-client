@@ -13,11 +13,11 @@
    * @constructor
    * @memberof geoSpecifier
    *
-   * @param {google.maps.Marker} marker - The marker on the map that indicates the
-   *                                    	actual location
+   * @param {google.maps} maps    - The Google Maps API
+   * @param {google.maps.Map} map
    */
-  function Specifier(maps, marker) {
-    var geocoder;
+  function Specifier($q, maps, map) {
+    var geocoder, marker;
     /**
      * @typedef LatLng
      * @type {Object}
@@ -37,23 +37,66 @@
       };
     };
     this.setAddress = function(address, region) {
+      geocode(address, region).then(function(geo) {
+        if (!marker) {
+          marker = createMarker(map, geo.location);
+        } else {
+          marker.setPosition(geo.location);
+        }
+        map.setCenter(geo.location);
+        map.fitBounds(geo.viewport);
+      });
+    };
+    this.onResized = function() {
+      maps.event.trigger(map, 'resize');
+    }
+
+    /**
+     * @typedef Geometry
+     * @type {Object}
+     * @property {LatLng} location       - The coordinates
+     * @property {LatLngBounds} viewport - The recommended viewport for the returned result
+     * @memberof geoSpecifier
+     */
+
+    /**
+     * Uses the Google Maps API to geocode the given address using the provided
+     * region as a bias.
+     *
+     * @param  {string} address
+     * @param  {string} region
+     * @return {Promise.<Geometry>} The geocoding result geometry promise
+     */
+    function geocode(address, region) {
       if (!geocoder) {
         geocoder = new maps.Geocoder();
       }
+      var deferred = $q.defer();
       geocoder.geocode({
         address: address,
         region: region,
       }, function(results, status) {
         if (status == maps.GeocoderStatus.OK) {
-          var geo = results[0].geometry;
-          var map = marker.getMap();
-
-          map.setCenter(geo.location);
-          map.fitBounds(geo.viewport);
-          marker.setPosition(geo.location);
+          deferred.resolve(results[0].geometry);
+        } else {
+          deferred.reject(status);
         }
       });
-    };
+      return deferred.promise;
+    }
+
+    function createMarker(map, pos) {
+      var markerOptions = {
+        draggable: true,
+        zIndex: 3,
+        map: map,
+        position: pos,
+        icon: {
+          url: '/img/geolocator-pointer.svg',
+        },
+      };
+      return new maps.Marker(markerOptions);
+    }
   }
 
 
@@ -65,6 +108,7 @@
     var mapsAPIPromise;
 
     /**
+     * XXX
      * create will initialize google maps, if it isn't already initialized, and
      * will then draw a map on the specified canvasID. The map will be centered to
      * the geocoded location of the provided address and a marker will be displayed
@@ -77,26 +121,11 @@
      * @param {string} region   - The ccTLD ("top-level domain") for the address.
      * @returns {Promise.<Specifier>}
      */
-    this.create = function(canvasID, address, region) {
-      var mapsAPIPromise = loadMapsAPI();
-      var mapPromise = mapsAPIPromise.then(function() {
+    this.create = function(canvasID) {
+      return loadMapsAPI().then(function() {
         return initMap(canvasID);
-      });
-      var geocodeGeometryPromise = mapsAPIPromise.then(function() {
-        return geocode(address, region);
-      });
-
-      return $q.all({
-        map: mapPromise,
-        geo: geocodeGeometryPromise,
-      }).then(function(asyncResults) {
-        var map = asyncResults.map;
-        var geo = asyncResults.geo;
-
-        var locatorMarker = createLocatorMarker(map, geo.location);
-        map.setCenter(geo.location);
-        map.fitBounds(geo.viewport);
-        return new Specifier($window.google.maps, locatorMarker);
+      }).then(function(map) {
+        return new Specifier($q, $window.google.maps, map);
       });
     };
 
@@ -126,56 +155,11 @@
       return mapsAPIPromise;
     }
 
-    /**
-     * @typedef Geometry
-     * @type {Object}
-     * @property {LatLng} location       - The coordinates
-     * @property {LatLngBounds} viewport - The recommended viewport for the returned result
-     * @memberof geoSpecifier
-     */
-
-    /**
-     * Uses the Google Maps API to geocode the given address using the provided
-     * region as a bias.
-     *
-     * @param  {string} address
-     * @param  {string} region
-     * @return {Promise.<Geometry>} The geocoding result geometry promise
-     */
-    function geocode(address, region) {
-      var deferred = $q.defer();
-      var geocoder = new $window.google.maps.Geocoder();
-      geocoder.geocode({
-        address: address,
-        region: region,
-      }, function(results, status) {
-        if (status == $window.google.maps.GeocoderStatus.OK) {
-          deferred.resolve(results[0].geometry);
-        } else {
-          deferred.reject(status);
-        }
-      });
-      return deferred.promise;
-    }
-
-    function initMap(canvasID, center) {
+    function initMap(canvasID) {
       var mapOptions = {
         zoom: 17,
       };
       return new $window.google.maps.Map($window.document.getElementById(canvasID), mapOptions);
-    }
-
-    function createLocatorMarker(map, pos) {
-      var markerOptions = {
-        draggable: true,
-        zIndex: 3,
-        map: map,
-        position: pos,
-        icon: {
-          url: '/img/geolocator-pointer.svg',
-        },
-      };
-      return new $window.google.maps.Marker(markerOptions);
     }
   }
 })();

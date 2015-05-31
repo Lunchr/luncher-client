@@ -8,6 +8,7 @@
   module.controller('RegisterFormCtrl', ['$resource', '$location', 'page',
     function($resource, $location, page) {
       var vm = this;
+      var specifier;
       if (page) {
         vm.restaurant = {
           name: page.name,
@@ -35,6 +36,10 @@
             return true;
         }
         return false;
+      };
+
+      vm.registerSpecifier = function(_specifier_) {
+        specifier = _specifier_;
       };
     }
   ]);
