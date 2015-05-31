@@ -147,8 +147,8 @@
           }
 
           function getLatLng(restaurant) {
-            // offer.restaurant.location is a GeoJSON object. This means coordinates
-            // is an array of [lng,lat]
+            // offer.restaurant.location is a GeoJSON object of type Point. This
+            // means coordinates is an array of [lng,lat]
             var coords = restaurant.location.coordinates;
             var lng = coords[0];
             var lat = coords[1];
