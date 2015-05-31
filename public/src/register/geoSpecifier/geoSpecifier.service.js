@@ -14,7 +14,7 @@
    * @memberof geoSpecifier
    *
    * @param {google.maps} maps    - The Google Maps API
-   * @param {google.maps.Map} map
+   * @param {google.maps.Map} map - The map the marker will be loaded onto
    */
   function Specifier($q, maps, map) {
     var geocoder, marker;
@@ -49,7 +49,7 @@
     };
     this.onResized = function() {
       maps.event.trigger(map, 'resize');
-    }
+    };
 
     /**
      * @typedef Geometry
@@ -108,17 +108,12 @@
     var mapsAPIPromise;
 
     /**
-     * XXX
      * create will initialize google maps, if it isn't already initialized, and
-     * will then draw a map on the specified canvasID. The map will be centered to
-     * the geocoded location of the provided address and a marker will be displayed
-     * that the user can move to specify the location. This marker will then be
+     * will then draw a map on the specified canvasID. This map will then be
      * used to create a new {@link Specifier} object which will then be used to
      * resolve the returned promise.
      *
-     * @param {string} canvasID - The elemt ID of the canvas to load the map onto.
-     * @param {string} address  - The address to initially center the map on.
-     * @param {string} region   - The ccTLD ("top-level domain") for the address.
+     * @param {string} canvasID - The element ID of the canvas to load the map onto.
      * @returns {Promise.<Specifier>}
      */
     this.create = function(canvasID) {
@@ -131,7 +126,8 @@
 
     /**
      * Asynchorously loads the Google Maps API by appending it's script to the
-     * DOM body element.
+     * DOM body element. But only if it hasn't already been loaded by this service
+     * or otherwise.
      *
      * @returns {Promise} A promise that will be resolved when Google Maps has
      * been initialized.
