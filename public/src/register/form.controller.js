@@ -20,7 +20,13 @@
       }
 
       vm.submit = function() {
-        $resource('/api/v1/restaurants').save(vm.restaurant,
+        var restaurant = vm.restaurant;
+        var location = specifier.getLocation();
+        restaurant.location = {
+          type: 'Point',
+          coordinates: [location.lng, location.lat],
+        };
+        $resource('/api/v1/restaurants').save(restaurant,
           function success() {
             $location.path('/admin');
           }, function fail(response) {
