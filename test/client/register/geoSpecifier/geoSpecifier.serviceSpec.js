@@ -209,6 +209,20 @@ describe('geoSpecifierService', function() {
                   expect(map.setCenter).toHaveBeenCalledWith('the location');
                   expect(map.fitBounds).toHaveBeenCalledWith('the viewport');
                 });
+
+                it('should use the marker when getLocation called', function() {
+                  $rootScope.$apply();
+                  marker.getPosition = jasmine.createSpy('maps.Marker.getPosition').and.returnValue({
+                    lat: jasmine.createSpy('lat').and.returnValue(1),
+                    lng: jasmine.createSpy('lng').and.returnValue(2),
+                  });
+
+                  var location = specifier.getLocation();
+
+                  expect(marker.getPosition).toHaveBeenCalled();
+                  expect(location.lat).toEqual(1);
+                  expect(location.lng).toEqual(2);
+                });
               });
 
               describe('with region included', function() {
