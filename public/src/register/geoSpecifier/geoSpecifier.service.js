@@ -64,7 +64,7 @@
      * region as a bias.
      *
      * @param  {string} address
-     * @param  {string} region
+     * @param  {string} [region]
      * @return {Promise.<Geometry>} The geocoding result geometry promise
      */
     function geocode(address, region) {
@@ -72,10 +72,13 @@
         geocoder = new maps.Geocoder();
       }
       var deferred = $q.defer();
-      geocoder.geocode({
+      var geocoderParams = {
         address: address,
-        region: region,
-      }, function(results, status) {
+      };
+      if (region) {
+        geocoderParams.region = region;
+      }
+      geocoder.geocode(geocoderParams, function(results, status) {
         if (status == maps.GeocoderStatus.OK) {
           deferred.resolve(results[0].geometry);
         } else {
