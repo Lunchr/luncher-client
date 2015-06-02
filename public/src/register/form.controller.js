@@ -15,7 +15,6 @@
           address: page.address,
           phone: page.phone,
           webpage: page.webpage,
-          region: 'ee',
         };
       }
 
