@@ -129,6 +129,21 @@ describe('geoSpecifierService', function() {
             }).toThrow();
           });
 
+          describe('onResized', function() {
+            var trigger;
+            beforeEach(function() {
+              trigger = jasmine.createSpy('trigger');
+              $window.google.maps.event = {
+                trigger: trigger,
+              };
+            });
+
+            it('should trigger the resize event on the map', function() {
+              specifier.onResized();
+              expect(trigger).toHaveBeenCalledWith($window.google.maps.Map(), 'resize');
+            });
+          });
+
           describe('setting the address', function() {
             var maps, map, marker, geocoder;
             beforeEach(function() {
