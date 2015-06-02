@@ -2,11 +2,43 @@ describe('RegisterFormCtrl', function() {
   'use strict';
   beforeEach(module('registerForm', function($provide) {
     $provide.provider('page', {
-      $get: function() {
-        return offerUtils.getMockPages()[0];
-      }
+      $get: function() {},
     });
   }));
+
+  describe('with the controller initialized with page data', function() {
+    var vm, redirect, $httpBackend;
+    beforeEach(function() {
+      module(function($provide) {
+        $provide.provider('page', {
+          $get: function() {
+            return offerUtils.getMockPages()[0];
+          }
+        });
+      });
+      inject(function($location, $rootScope, $controller, _$httpBackend_) {
+        $httpBackend = _$httpBackend_;
+        $location.path = jasmine.createSpy('$location.path');
+        redirect = $location.path;
+
+        var $scope = $rootScope.$new();
+        $controller('RegisterFormCtrl as vm', {
+          $scope: $scope,
+        });
+        vm = $scope.vm;
+      });
+    });
+
+    describe('initialization', function() {
+      it('should preload the restaurant data', function() {
+        expect(vm.restaurant.id).toBeUndefined();
+        expect(vm.restaurant.name).toEqual('La Dolce Vita');
+        expect(vm.restaurant.address).toEqual('Kompanii 10, Tartu');
+        expect(vm.restaurant.phone).toEqual('+372 567 8910');
+        expect(vm.restaurant.webpage).toEqual('ladolcevita.ee');
+      });
+    });
+  });
 
   describe('with the controller initialized', function() {
     var vm, redirect, $httpBackend;
@@ -21,16 +53,6 @@ describe('RegisterFormCtrl', function() {
       });
       vm = $scope.vm;
     }));
-
-    describe('initialization', function() {
-      it('should preload the restaurant data', function() {
-        expect(vm.restaurant.id).toBeUndefined();
-        expect(vm.restaurant.name).toEqual('La Dolce Vita');
-        expect(vm.restaurant.address).toEqual('Kompanii 10, Tartu');
-        expect(vm.restaurant.phone).toEqual('+372 567 8910');
-        expect(vm.restaurant.webpage).toEqual('ladolcevita.ee');
-      });
-    });
 
     describe('submit', function() {
       var respond;
