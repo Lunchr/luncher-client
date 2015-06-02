@@ -2,11 +2,13 @@
   'use strict';
   var module = angular.module('registerForm', [
     'ngResource',
+    'geoSpecifier',
   ]);
 
   module.controller('RegisterFormCtrl', ['$resource', '$location', 'page',
     function($resource, $location, page) {
       var vm = this;
+      var specifier;
       if (page) {
         vm.restaurant = {
           name: page.name,
@@ -17,7 +19,13 @@
       }
 
       vm.submit = function() {
-        $resource('/api/v1/restaurants').save(vm.restaurant,
+        var restaurant = vm.restaurant;
+        var location = specifier.getLocation();
+        restaurant.location = {
+          type: 'Point',
+          coordinates: [location.lng, location.lat],
+        };
+        $resource('/api/v1/restaurants').save(restaurant,
           function success() {
             $location.path('/admin');
           }, function fail(response) {
@@ -33,6 +41,10 @@
             return true;
         }
         return false;
+      };
+
+      vm.registerSpecifier = function(_specifier_) {
+        specifier = _specifier_;
       };
     }
   ]);

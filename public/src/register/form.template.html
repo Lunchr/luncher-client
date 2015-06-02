@@ -27,7 +27,8 @@
                             </label>
                         </p>
                         <p>
-                            <input ng-model="vm.restaurant.address" name="address" id="restaurantAddress" type="text" required>
+                            <input ng-model="vm.restaurant.address" name="address" id="restaurantAddress" type="text" required
+                                   ng-model-options="{ updateOn: 'default blur', debounce: {'default': 2000, 'blur': 0} }">
                             <label ng-class="{filled: form.address.$viewValue}" for="restaurantAddress">
                                 <span ng-show="!vm.isReadyForError(form.address)">
                                     Aadress
@@ -67,7 +68,9 @@
                         </p>
                     </div>
                     <div class="col-md-2 col-sm-3">
-                        siia võiks google map tulla, kus saad asukohta kaardil korrigeerida.
+                        Asukoha täpsustus kaardil:
+                        <geo-specifier address="vm.restaurant.address" region="vm.restaruant.region"
+                                       register="vm.registerSpecifier($specifier)"></geo-specifier>
                     </div>
                 </div>
                 <p class="buttons">
