@@ -38,8 +38,18 @@ describe('RegisterFormCtrl', function() {
         vm.restaurant = {
           name: 'test name',
         };
+        vm.registerSpecifier({
+          getLocation: jasmine.createSpy('getLocation').and.returnValue({
+            lat: 'lat',
+            lng: 'lng',
+          }),
+        });
         respond = $httpBackend.expectPOST('/api/v1/restaurants', {
           name: 'test name',
+          location: {
+            type: 'Point',
+            coordinates: ['lng', 'lat'],
+          },
         }).respond;
       });
 
