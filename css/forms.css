@@ -137,6 +137,7 @@
             -webkit-appearance: none;
             &.focused {
                 box-shadow: none;
+                border-bottom: 1px solid $color-h;
                 & ~ label {
                     top: -12px;
                     font-size: 10px;
