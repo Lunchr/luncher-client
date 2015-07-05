@@ -90,7 +90,7 @@
       <div class="row">
         <div class="col-xs-3">
           <p>
-            <input ng-class="{filled: date}" ng-model="date" name="date" id="{{idPrefix}}date" type="date" min="{{today}}" required>
+            <input ng-class="{filled: date}" placeholder="dd/mm/yyyy" ng-model="date" name="date" id="{{idPrefix}}date" type="date" min="{{today}}" required>
             <label ng-class="{filled: date}" for="{{idPrefix}}date">
               <span ng-show="!isReadyForError(form.date)">
                 Kuupäev
@@ -143,8 +143,10 @@
     </div>
     <div class="col-md-2 col-sm-3">
       <p>
-        <input ng-class="{filled: form.image.$viewValue && !image.isPath}" name="image" id="{{idPrefix}}image" type="file" value=""
-               image-with-preview ng-model="image" accept="image/jpeg,image/png" dimensions="height > 400 && width >= height">
+        <span class="file-input-wrap">
+            <input ng-class="{filled: form.image.$viewValue && !image.isPath}" name="image" id="{{idPrefix}}image" type="file" value=""
+                   image-with-preview ng-model="image" accept="image/jpeg,image/png" dimensions="height > 400 && width >= height">
+        </span>
         <label ng-class="{filled: form.image.$viewValue && !image.isPath}" for="{{idPrefix}}image">
           <span ng-show="!isReadyForError(form.image)">
             Pilt
