@@ -14,7 +14,7 @@
           name: page.name,
           address: page.address,
           phone: page.phone,
-          webpage: page.webpage,
+          website: page.website,
         };
       }
 

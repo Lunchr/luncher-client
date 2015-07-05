@@ -54,13 +54,13 @@
                             </label>
                         </p>
                         <p>
-                            <input ng-model="vm.restaurant.webpage" name="webpage" id="restaurantWebpage" type="text" required>
-                            <label ng-class="{filled: form.webpage.$viewValue}" for="restaurantWebpage">
-                                <span ng-show="!vm.isReadyForError(form.webpage)">
+                            <input ng-model="vm.restaurant.website" name="website" id="restaurantWebsite" type="text" required>
+                            <label ng-class="{filled: form.website.$viewValue}" for="restaurantWebsite">
+                                <span ng-show="!vm.isReadyForError(form.website)">
                                     Kodulehe aadress
                                 </span>
-                                <span ng-show="vm.isReadyForError(form.webpage)" class="errors">
-                                  <span ng-show="form.webpage.$error.required">
+                                <span ng-show="vm.isReadyForError(form.website)" class="errors">
+                                  <span ng-show="form.website.$error.required">
                                     Kodulehe aadress on kohustuslik
                                   </span>
                                 </span>

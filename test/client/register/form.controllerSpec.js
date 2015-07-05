@@ -35,7 +35,7 @@ describe('RegisterFormCtrl', function() {
         expect(vm.restaurant.name).toEqual('La Dolce Vita');
         expect(vm.restaurant.address).toEqual('Kompanii 10, Tartu');
         expect(vm.restaurant.phone).toEqual('+372 567 8910');
-        expect(vm.restaurant.webpage).toEqual('ladolcevita.ee');
+        expect(vm.restaurant.website).toEqual('ladolcevita.ee');
       });
     });
   });
