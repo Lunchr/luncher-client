@@ -15,12 +15,12 @@
         }
         &.image-preview {
             height: 221px;
-            margin-top: -30px;
+            margin-top: -31px;
             margin-bottom: 20px;
             background: #F7F7F7 url(../img/img-icon.svg) center no-repeat;
             background-size: 50% 50%;
             border: 1px dashed $color-secondary-2;
-            border-top: none;
+            border-top-style: solid;
             label {
                 left: 0;
                 width: 100%;
@@ -68,12 +68,25 @@
                 border: none;
             }
         }
+        &::-webkit-input-placeholder,
+        &:-moz-placeholder,
+        &::-moz-placeholder,
+        &:-ms-input-placeholder {
+            color: transparent;
+            opacity: 1;
+        }
         &:focus {
             border-bottom: 1px solid $color-h;
             & + label {
                 top: -12px;
                 font-size: 10px;
                 color: $color-h;
+            }
+            &::-webkit-input-placeholder,
+            &:-moz-placeholder,
+            &::-moz-placeholder,
+            &:-ms-input-placeholder {
+                color: $color-secondary;
             }
         }
         &.ng-invalid.ng-dirty.ng-touched {
@@ -124,6 +137,7 @@
             -webkit-appearance: none;
             &.focused {
                 box-shadow: none;
+                border-bottom: 1px solid $color-h;
                 & ~ label {
                     top: -12px;
                     font-size: 10px;
@@ -171,6 +185,14 @@
             }
         }
     }
+}
+
+.file-input-wrap {
+    display: block;
+    overflow: hidden;
+}
+body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http://browserhacks.com/#hack-ac5c4714c7405861a285fd127f15338e */
+    margin-left: -77px;
 }
 
 ::-webkit-inner-spin-button,
