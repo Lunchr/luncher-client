@@ -12,7 +12,7 @@
             </p>
             <form class="form" name="form" ng-submit="vm.submit()" novalidate>
                 <div class="row">
-                    <div class="col-md-4 col-sm-3">
+                    <div class="col-sm-3">
                         <p>
                             <input ng-model="vm.restaurant.name" name="name" id="restaurantName" type="text" required>
                             <label ng-class="{filled: form.name.$viewValue}" for="restaurantName">
@@ -54,6 +54,19 @@
                             </label>
                         </p>
                         <p>
+                            <input ng-model="vm.restaurant.email" name="email" id="restaurantEmail" type="text" required>
+                            <label ng-class="{filled: form.email.$viewValue}" for="restaurantEmail">
+                                <span ng-show="!vm.isReadyForError(form.email)">
+                                    E-posti aadress
+                                </span>
+                                <span ng-show="vm.isReadyForError(form.email)" class="errors">
+                                  <span ng-show="form.email.$error.required">
+                                    E-posti aadress on kohustuslik
+                                  </span>
+                                </span>
+                            </label>
+                        </p>
+                        <p>
                             <input ng-model="vm.restaurant.website" name="website" id="restaurantWebsite" type="text" required>
                             <label ng-class="{filled: form.website.$viewValue}" for="restaurantWebsite">
                                 <span ng-show="!vm.isReadyForError(form.website)">
@@ -67,14 +80,18 @@
                             </label>
                         </p>
                     </div>
-                    <div class="col-md-2 col-sm-3">
-                        Asukoha täpsustus kaardil:
-                        <geo-specifier address="vm.restaurant.address" region="vm.restaruant.region"
-                                       register="vm.registerSpecifier($specifier)"></geo-specifier>
+                    <div class="col-sm-3">
+                        <p>
+                            <label class="filled">Asukoha täpsustus kaardil</label>
+                            <span class="geolocator-wrap">
+                                <geo-specifier address="vm.restaurant.address" region="vm.restaruant.region"
+                                               register="vm.registerSpecifier($specifier)"></geo-specifier>
+                            </span>
+                        </p>
                     </div>
                 </div>
                 <p class="buttons">
-                    <input class="btn" type="submit" ng-disabled="form.$invalid" value="Registreeri">
+                    <input class="btn" type="submit" value="Registreeri">
                 </p>
             </form>
         </div>

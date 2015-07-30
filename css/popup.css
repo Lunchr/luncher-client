@@ -34,8 +34,4 @@
     .buttons {
         padding-right: 0;
     }
-    .geolocator-canvas {
-      height: 300px;
-      width: 100%;
-    }
 }

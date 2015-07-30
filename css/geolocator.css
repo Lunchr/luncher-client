@@ -1,4 +1,21 @@
 .geolocator-canvas {
-  height: 400px;
-  width: 400px;
+    height: 400px;
+    width: 400px;
+}
+.geolocator-wrap {
+    position: relative;
+    top: 8px;
+}
+.form-wrap {
+    .geolocator-canvas {
+        height: 237px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+.popup {
+    .geolocator-canvas {
+      height: 300px;
+      width: 100%;
+    }
 }

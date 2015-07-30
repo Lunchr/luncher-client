@@ -128,6 +128,13 @@
             }
         }
     }
+    .dropdown {
+        width: 100%;
+        left: 0;
+        .geolocator-canvas {
+            width: 100%;
+        }
+    }
 }
 
 @media (max-width: 430px) {
@@ -154,13 +161,6 @@
                     height: 229px;
                 }
             }
-        }
-    }
-    .dropdown {
-        width: 100%;
-        left: 0;
-        .geolocator-canvas {
-            width: 100%;
         }
     }
 }
