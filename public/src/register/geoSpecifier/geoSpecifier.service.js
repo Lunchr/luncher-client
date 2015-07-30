@@ -94,9 +94,11 @@
         zIndex: 3,
         map: map,
         position: pos,
-        icon: {
+
+        /*icon: {
           url: '/img/geolocator-pointer.svg',
-        },
+      }, not working correctly in IE & FF */
+
       };
       return new maps.Marker(markerOptions);
     }
