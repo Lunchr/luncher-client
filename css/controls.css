@@ -141,6 +141,7 @@
 .select-dropdown {
     position: relative;
     float: left;
+    z-index: 100;
     a {
         position: relative;
         padding: 14px 37px 15px 18px;
