@@ -264,14 +264,15 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
 .btn {
     @simple-extend-addto material-box;
     display: inline-block;
-    padding: 8px 18px;
+    padding: 8px 18px 5px;
     background: $color;
     color: #fff;
     text-decoration: none;
+    border: none;
+    border-bottom: 3px solid $color-h;
     &:hover {
         background: $color-h;
         color: #fff;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
     &:focus,
     &:active {
@@ -285,6 +286,7 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
         color: $color;
         background: transparent;
         box-shadow: none;
+        border-bottom: none;
         &:hover {
             color: $color-a;
         }
@@ -297,14 +299,12 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
             top: 9px;
         }
     }
-    input[type="submit"]& {
-      border: none;
-    }
     &:disabled {
         background: $color-secondary-2;
         color: #fff;
         box-shadow: none;
         opacity: 0.5;
+        border-bottom: 3px solid $color-secondary-2;
         &:hover {
             background: $color-secondary-2;
             color: #fff;
