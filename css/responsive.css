@@ -52,7 +52,7 @@
     }
 
     /* offers */
-    .restaurant-wrap {
+    .offers-group {
         .col-1,
         .col-2 {
             width: 100%
@@ -104,6 +104,17 @@
             margin-bottom: 30px;
         }
     }
+    .admin-offers {
+        .offer {
+            padding-left: 0;
+        }
+        .col-1 {
+            width: 30%;
+        }
+        .col-2 {
+            width: 70%;
+        }
+    }
 
     /* desktop only */
     .desktop {
@@ -114,6 +125,15 @@
     .offer {
         .image {
             height: 250px;
+        }
+    }
+    .admin-offers {
+        .col-1,
+        .col-2 {
+            width: 100%;
+        }
+        .col-1 {
+            border-bottom: 1px solid #f0f0f0
         }
     }
     .expand {
