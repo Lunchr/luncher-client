@@ -1,6 +1,7 @@
 language: node_js
 node_js:
 - '0.12'
+sudo: false
 before_script:
 - npm install -g grunt-cli
 - npm install -g codeclimate-test-reporter
@@ -19,7 +20,4 @@ addons:
       secure: CYfKmsM4xS4AiqhTMqBMOQTaeRdESqisoPRIem2jJn6RbjKxK1Zs/3pNddla0NlZWM1NTGitWoQOprzjOOUBsARIeP4QD2Xfwr3RUfyzDhgaFDZ+gg1YkXlquh9ROmiEJnBIT6hWCEYMk67JAL2Bg4AluYgJco/cCRb85B7+eus=
     access_key:
       secure: A4w7g/KwXQY0gMh5c5aJoxrqLhvqgjndGrSNC7SO8MkXjYX/Oxr3ZdwWiar14fppQG20xpupgrOBAanRLDHJ81QB/Q7C1+w1QjJj3I48ekKB9T/5tv2o17m1wPGa4Vxbl9CX7Ovn4VNCyk5lqsRd3KqhL/QEvYP9H+jx0HCVw/0=
-notifications:
-  sqwiggle:
-    secure: MdXm8Pu+VWs6o7rcvL65o1fTQX0HvicChCkAuddQLNpK0v64K5rtug53FTbXUUG09PIhlfKxE3lCk4TstpVolsOFDZboclg0qgfsnAKfqBVRaG5tAne6xcnFAxyh5xhthSAUIF1FBpxpOyDBeUv3Z2Yq9pG2WMetHRpSCHwFWzA=
 
