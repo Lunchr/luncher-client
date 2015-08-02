@@ -52,6 +52,9 @@
             padding-top: 15px;
             white-space: inherit;
         }
+        &.buttons {
+            margin-top: 10px;
+        }
     }
     p.price {
         position: absolute;
@@ -252,6 +255,8 @@
         width: 25%;
         cursor: default;
         padding-left: 15px;
+        margin-right: -1px;
+        border-right: 1px solid #f0f0f0;
         &:hover {
             background: transparent;
         }

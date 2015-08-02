@@ -140,10 +140,19 @@
                     <h3><strong>Täna</strong>, Esmaspäev</h3>
                     <p class="additional">7. november</p>
                     <p class="action">
-                        <a class="icon icon-17" href="javascript:undefined">
-                            Muuda postitust
+                        <a class="icon icon-17" href="javascript:undefined" ng-click="fbMessage.state = !fbMessage.state">
+                            muuda postituse teksti
                         </a>
                     </p>
+                    <div>
+                        <p><textarea name="name"></textarea></p>
+                        <p class="buttons">
+                            <a class="btn btn-secondary" href="javascript:undefined">
+                                Loobu
+                            </a>
+                            <input class="btn" type="submit" value="Salvesta">
+                        </p>
+                    </div>
                 </div>
                 <div class="col-2">
                     <div class="offer" ng-class="{edit: offer.editing}">
@@ -182,9 +191,18 @@
                     <p class="additional">8 november</p>
                     <p class="action">
                         <a class="icon icon-17" href="javascript:undefined">
-                            Muuda postitust
+                            muuda postituse teksti
                         </a>
                     </p>
+                    <div>
+                        <p><textarea name="name"></textarea></p>
+                        <p class="buttons">
+                            <a class="btn btn-secondary" href="javascript:undefined">
+                                Loobu
+                            </a>
+                            <input class="btn" type="submit" value="Salvesta">
+                        </p>
+                    </div>
                 </div>
                 <div class="col-2">
                     <div class="offer">
