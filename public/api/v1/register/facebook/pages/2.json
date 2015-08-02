@@ -3,5 +3,6 @@
   "name": "Dolor sit amet",
   "address": "Kompanii 10, Tartu",
   "phone": "+372 567 8910",
-  "website": "dolorsitamet.ee"
+  "website": "dolorsitamet.ee",
+  "email": "an.email@address.com"
 }

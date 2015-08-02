@@ -15,6 +15,7 @@
           address: page.address,
           phone: page.phone,
           website: page.website,
+          email: page.email,
         };
       }
 
