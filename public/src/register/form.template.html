@@ -10,7 +10,7 @@
               <span class="icon icon-20"></span>
               Midagi läks valesti. Server vastas veaga: {{vm.errorMessage}}
             </p>
-            <form class="form" name="form" ng-submit="form.$valid && vm.submit()" novalidate>
+            <form class="form" name="form" ng-submit="vm.submitClicked = true; form.$valid && vm.submit()" novalidate>
                 <div class="row">
                     <div class="col-sm-3">
                         <p>
