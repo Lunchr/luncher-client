@@ -31,6 +31,7 @@ describe('RegisterFormCtrl', function() {
 
     describe('initialization', function() {
       it('should preload the restaurant data', function() {
+        expect(vm.restaurant.pageID).toEqual('1');
         expect(vm.restaurant.id).toBeUndefined();
         expect(vm.restaurant.name).toEqual('La Dolce Vita');
         expect(vm.restaurant.address).toEqual('Kompanii 10, Tartu');
@@ -59,6 +60,7 @@ describe('RegisterFormCtrl', function() {
       beforeEach(function() {
         vm.restaurant = {
           name: 'test name',
+          pageID: '1',
         };
         vm.registerSpecifier({
           getLocation: jasmine.createSpy('getLocation').and.returnValue({
@@ -68,6 +70,7 @@ describe('RegisterFormCtrl', function() {
         });
         respond = $httpBackend.expectPOST('/api/v1/restaurants', {
           name: 'test name',
+          pageID: '1',
           location: {
             type: 'Point',
             coordinates: ['lng', 'lat'],

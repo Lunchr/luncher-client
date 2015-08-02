@@ -11,6 +11,7 @@
       var specifier;
       if (page) {
         vm.restaurant = {
+          pageID: page.id,
           name: page.name,
           address: page.address,
           phone: page.phone,
