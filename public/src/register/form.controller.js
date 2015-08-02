@@ -11,7 +11,7 @@
       var specifier;
       if (page) {
         vm.restaurant = {
-          pageID: page.id,
+          facebook_page_id: page.id,
           name: page.name,
           address: page.address,
           phone: page.phone,
