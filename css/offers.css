@@ -8,7 +8,7 @@
     &.filled + .offers-wrap.filled {
       margin-top: 15px;
     }
-    + .offers-wrap {
+    + .offers {
         margin-top: 15px;
     }
 }
@@ -47,6 +47,10 @@
         text-overflow: ellipsis;
         &.icon-wrap {
             position: absolute;
+        }
+        &.action {
+            padding-top: 15px;
+            white-space: inherit;
         }
     }
     p.price {
@@ -91,6 +95,19 @@
             border-radius: 2px;
             background-size: cover;
             background-position: center;
+        }
+    }
+    .form {
+        p {
+            position: relative;
+            margin: 0 0 30px;
+            line-height: inherit;
+            font-weight: inherit;
+            overflow: visible;
+            white-space: inherit;
+            &.image-preview {
+                margin-top: -31px;
+            }
         }
     }
 }
@@ -230,116 +247,60 @@
 
 /*** ADMIN OFFERS ***/
 
-.admin-offer {
-    position: relative;
-    padding: 11px 0 11px 45px;
-    cursor: pointer;
-    border-bottom: 1px solid #f0f0f0;
-    box-sizing: border-box;
-    &.not-last-for-restaurant {
-      border-bottom: none;
-    }
-    &:last-of-type {
-        border: none;
-    }
-    &:hover,
-    &.expand {
-        background-color: rgba(0, 0, 0, 0.02);
-    }
-    &.edit {
-        padding: 0;
+.admin-offers {
+    .col-1 {
+        width: 25%;
+        cursor: default;
+        padding-left: 15px;
         &:hover {
             background: transparent;
-            cursor: default;
+        }
+        .icon {
+            color: $color;
+            position: relative;
+            padding-left: 20px;
+            &:before {
+                position: absolute;
+                top: 0;
+                left: -3px;
+                font-size: 21px;
+            }
+            &:hover {
+                color: $color-h;
+            }
         }
     }
-    .icon {
-        color: #e0e0e0;
-        &:hover {
-            color: #b3b3b3;
+    .col-2 {
+        width: 75%;
+    }
+    .offer {
+        border-left: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        &:last-child {
+            border-bottom: 0;
         }
     }
-    .edit-btn,
+    .icon-wrap {
+        strong {
+            position: absolute;
+            top: 12px;
+            left: 13px;
+            border-radius: 50%;
+            border: 1px solid #EE9910;
+            height: 16px;
+            width: 18px;
+            text-align: center;
+            color: #EE9910;
+            padding-top: 2px;
+            font-weight: 100;
+        }
+    }
     .edit-btn a {
         width: 100%;
         height: 100%;
         z-index: 100;
     }
-    .icon-15:hover:before {
-        content: "r";
-        color: $color;
-    }
-    .distance {
-        color: #999;
-        font-size: 13px;
-        padding-left: 10px;
-    }
-    &.pending {
-        opacity: 0.3;
-        background-color: rgba(0, 0, 0, 0.06);
-        border-bottom: 1px solid #ddd;
-        & .icon:before {
-            content: "";
-            position: absolute;
-            left: 16px;
-            top: 15px;
-            width: 12px;
-            height: 12px;
-            border: 1px solid #999;
-            border-right-color: transparent;
-            border-radius: 50%;
-            -webkit-animation: spin 1s linear infinite;
-            -moz-animation: spin 1s linear infinite;
-            -o-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-        }
-    }
-    &.favorite {
-      .icon-8:before {
-          content: "k";
-          color: $color;
-      }
-    }
-    &.warning {
-        &:before {
-            display: block;
-            position: absolute;
-            content: "";
-            height: 100%;
-            width: 2px;
-            left: 0px;
-            top: 0;
-            background: rgb(238, 92, 16);
-        }
-    }
-}
-.offer-content {
-    width: 100%;
-    box-sizing: border-box;
-    &:after {
-        display: block;
-        content: "";
-        clear: both;
-    }
-    p {
-        margin: 0;
-        padding: 2px 0;
-        font-size: 16px;
-        line-height: 1.2;
-        font-weight: 300;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        &.additional {
-            position: relative;
-            padding: 0;
-            font-size: 13px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        &.price {
-            width: 60px;
-        }
+    .offer-content {
+        padding-left: 35px;
     }
 }

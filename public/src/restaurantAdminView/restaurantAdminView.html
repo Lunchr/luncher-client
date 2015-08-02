@@ -134,22 +134,82 @@
                 </div>
             </div>
         </div -->
-        <div class="offers">
+        <div class="offers admin-offers">
             <div class="offers-group">
                 <div class="col-1">
-                    <h3>Reede, 11 november</h3>
-                    <p class="additional">11:00 - 15:00</p>
+                    <h3><strong>Täna</strong>, Esmaspäev</h3>
+                    <p class="additional">7. november</p>
+                    <p class="action">
+                        <a class="icon icon-17" href="javascript:undefined">
+                            Muuda postitust
+                        </a>
+                    </p>
+                </div>
+                <div class="col-2">
+                    <div class="offer" ng-class="{edit: offer.editing}">
+                        <offer-form ng-show="offer.editing" edit="offer" on-submit="updateOffer($currentOffer, $offer); $offer.editing=false"
+                                    on-cancel="offer.editing=false" on-delete="deleteOffer(offer)"></offer-form>
+                        <div ng-show="!offer.editing">
+                            <p class="icon-wrap edit-btn">
+                                <a href="javascript:undefined" ng-click="offer.editing=true" class="icon icon-15"></a>
+                            </p>
+                            <div class="offer-content">
+                                <h3>Lambaliha & paremsani pasta</h3>
+                                <p>lambaliha, farfalled, parmesan, kaste</p>
+                                <p class="price">4,5 €</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offer">
+                        <div>
+                            <p class="icon-wrap edit-btn">
+                                <a href="javascript:undefined" class="icon icon-15"></a>
+                            </p>
+                            <div class="offer-content">
+                                <h3>Lambaliha & paremsani pasta</h3>
+                                <p>lambaliha, farfalled, parmesan, kaste</p>
+                                <p class="price">4,5 €</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offers admin-offers">
+            <div class="offers-group">
+                <div class="col-1">
+                    <h3>Teisipäev</h3>
+                    <p class="additional">8 november</p>
+                    <p class="action">
+                        <a class="icon icon-17" href="javascript:undefined">
+                            Muuda postitust
+                        </a>
+                    </p>
                 </div>
                 <div class="col-2">
                     <div class="offer">
-                        <h3>Lambaliha & paremsani pasta</h3>
-                        <p>lambaliha, farfalled, parmesan, kaste</p>
-                        <p class="price">4,5 €</p>
+                        <div>
+                            <p class="icon-wrap edit-btn">
+                                <a href="javascript:undefined" class="icon icon-15"></a>
+                            </p>
+                            <div class="offer-content">
+                                <h3>Lambaliha & paremsani pasta</h3>
+                                <p>lambaliha, farfalled, parmesan, kaste</p>
+                                <p class="price">4,5 €</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="offer">
-                        <h3>Lambaliha & paremsani pasta</h3>
-                        <p>lambaliha, farfalled, parmesan, kaste</p>
-                        <p class="price">4,5 €</p>
+                        <div>
+                            <p class="icon-wrap edit-btn">
+                                <a href="javascript:undefined" class="icon icon-15"></a>
+                            </p>
+                            <div class="offer-content">
+                                <h3>Lambaliha & paremsani pasta</h3>
+                                <p>lambaliha, farfalled, parmesan, kaste</p>
+                                <p class="price">4,5 €</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
