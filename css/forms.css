@@ -270,13 +270,14 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
     text-decoration: none;
     border: none;
     border-bottom: 3px solid $color-h;
+    &:focus,
     &:hover {
         background: $color-h;
         color: #fff;
     }
-    &:focus,
     &:active {
         background: $color-a;
+        border-bottom: 3px solid $color-a;
         color: #fff;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         outline: none;
