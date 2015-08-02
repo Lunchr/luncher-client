@@ -107,7 +107,7 @@
                 <a href="javascript:undefined" ng-click="addingAnOffer=true"><span class="icon-4"></span>Lisa uus pakkumine</a>
             </p>
         </div>
-        <div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
+        <!-- div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
             <div class="admin-offer" ng-repeat="offer in offers" id="{{offer._id}}"
                  ng-class="{pending: offer.confirmationPending, warning: offer.hasWarning, edit: offer.editing}">
                 <offer-form ng-show="offer.editing" edit="offer" on-submit="updateOffer($currentOffer, $offer); $offer.editing=false"
@@ -131,6 +131,26 @@
                           <p class="additional desktop">{{offer.ingredients | joinTags}}</p>
                       </div>
                   </div>
+                </div>
+            </div>
+        </div -->
+        <div class="offers">
+            <div class="offers-group">
+                <div class="col-1">
+                    <h3>Reede, 11 november</h3>
+                    <p class="additional">11:00 - 15:00</p>
+                </div>
+                <div class="col-2">
+                    <div class="offer">
+                        <h3>Lambaliha & paremsani pasta</h3>
+                        <p>lambaliha, farfalled, parmesan, kaste</p>
+                        <p class="price">4,5 €</p>
+                    </div>
+                    <div class="offer">
+                        <h3>Lambaliha & paremsani pasta</h3>
+                        <p>lambaliha, farfalled, parmesan, kaste</p>
+                        <p class="price">4,5 €</p>
+                    </div>
                 </div>
             </div>
         </div>

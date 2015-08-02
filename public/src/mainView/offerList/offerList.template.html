@@ -1,26 +1,24 @@
-<div class="offers-wrap" ng-repeat="offersByRestaurant in ctrl.offersByRestaurantByFavorite">
-  <div class="restaurant-wrap" ng-repeat="restaurant in offersByRestaurant">
-      <div class="col-1">
-          <div class="restaurant" ng-click="restaurant.toggle.state = !restaurant.toggle.state" ng-class="{favorite: restaurant.isFavorite, expand: restaurant.toggle.state}">
-              <p class="icon-wrap">
-                <a href="javascript:undefined" class="icon icon-8" ng-click="ctrl.toggleFavorite(restaurant.name)"></a>
-              </p>
-              <h3>
-                  {{restaurant.name}}
-                  <span class="distance" ng-if="restaurant.distance">
-                      {{restaurant.distance | approximateDistance}}
-                  </span>
-              </h3>
-              <p class="desktop">{{restaurant.address}}</p>
-              <div class="secondary">
-                  <p class="mobile">{{restaurant.address}}</p>
-                  <p><a href="tel:{{restaurant.phone}}">{{restaurant.phone}}</a></p>
-                  <p class="map" ng-style="{'background-image': 'url({{ctrl.getStaticMap(restaurant)}})'}"></p>
-              </div>
-              <div class="col-2">
-                  <p class="additional mobile">{{offer.ingredients | joinTags}}</p>
-                  <p class="image" ng-style="{'background-image':'url(../{{offer.image}})'}"></p>
-              </div>
+<div class="offers" ng-repeat="offersByRestaurant in ctrl.offersByRestaurantByFavorite">
+  <div class="offers-group" ng-repeat="restaurant in offersByRestaurant">
+      <div class="col-1" ng-click="restaurant.toggle.state = !restaurant.toggle.state" ng-class="{favorite: restaurant.isFavorite, expand: restaurant.toggle.state}">
+          <p class="icon-wrap">
+            <a href="javascript:undefined" class="icon icon-8" ng-click="ctrl.toggleFavorite(restaurant.name)"></a>
+          </p>
+          <h3>
+              {{restaurant.name}}
+              <span class="distance" ng-if="restaurant.distance">
+                  {{restaurant.distance | approximateDistance}}
+              </span>
+          </h3>
+          <p class="desktop">{{restaurant.address}}</p>
+          <div class="secondary">
+              <p class="mobile">{{restaurant.address}}</p>
+              <p><a href="tel:{{restaurant.phone}}">{{restaurant.phone}}</a></p>
+              <p class="map" ng-style="{'background-image': 'url({{ctrl.getStaticMap(restaurant)}})'}"></p>
+          </div>
+          <div class="col-2">
+              <p class="additional mobile">{{offer.ingredients | joinTags}}</p>
+              <p class="image" ng-style="{'background-image':'url(../{{offer.image}})'}"></p>
           </div>
       </div>
       <div class="col-2">
