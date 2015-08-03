@@ -82,7 +82,7 @@ describe('Restaurant admin view', function() {
       vm = $scope.vm;
     }));
 
-    it('should have model with 3 offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
+    it('should have model with offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
       expect(vm.offers.length).toBe(0);
       $httpBackend.flush();
       expect(vm.offers.length).toBe(4);
@@ -93,6 +93,16 @@ describe('Restaurant admin view', function() {
         $httpBackend.flush();
       }));
 
+      it('should group offers by date', function() {
+        expect(vm.offersByDate.length).toBe(3);
+        // new Date(...) sets the time to 00:00 in UTC, but the setHours forces it to 00:00 in the local timezone
+        expect(vm.offersByDate[0].date.getTime()).toEqual(new Date('2016-11-11').setHours(0, 0, 0, 0));
+        expect(vm.offersByDate[0].offers.length).toBe(2);
+        expect(vm.offersByDate[1].date.getTime()).toEqual(new Date('2016-11-12').setHours(0, 0, 0, 0));
+        expect(vm.offersByDate[1].offers.length).toBe(1);
+        expect(vm.offersByDate[2].date.getTime()).toEqual(new Date('2016-11-13').setHours(0, 0, 0, 0));
+        expect(vm.offersByDate[2].offers.length).toBe(1);
+      });
 
       describe('$update an offer', function() {
         var originalOffer, changedOffer, response;

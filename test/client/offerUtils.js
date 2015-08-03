@@ -12,6 +12,8 @@ var offerUtils = (function() {
             'coordinates': [26.722691, 58.380094]
           }
         },
+        'from_time': '2016-11-11T11:00:00.000Z',
+        'to_time': '2016-11-11T15:00:00.000Z',
         'title': 'Sweet & Sour Chicken',
         'ingredients': ['Kana', 'aedviljad', 'tsillikaste'],
         'price': 3.4,
@@ -26,6 +28,8 @@ var offerUtils = (function() {
             'coordinates': [26.722691, 58.380094]
           }
         },
+        'from_time': '2016-11-11T11:00:00.000Z',
+        'to_time': '2016-11-11T15:00:00.000Z',
         'title': 'Sweet & Sour Pork',
         'ingredients': ['Seafilee', 'aedviljad', 'mahushapu kaste'],
         'price': 3.3,
@@ -40,6 +44,8 @@ var offerUtils = (function() {
             'coordinates': [26.722691, 58.380094]
           }
         },
+        'from_time': '2016-11-12T11:00:00.000Z',
+        'to_time': '2016-11-12T15:00:00.000Z',
         'title': 'Sweet & Sour Beef',
         'ingredients': ['Veiseliha pihv', 'burgerisai', 'kodused friikartulid', 'kaste', 'salat'],
         'price': 3.6,
@@ -54,6 +60,8 @@ var offerUtils = (function() {
             'coordinates': [26.722691, 58.380094]
           }
         },
+        'from_time': '2016-11-13T11:00:00.000Z',
+        'to_time': '2016-11-13T15:00:00.000Z',
         'title': 'Sweet & Sour Duck Soup',
         'ingredients': ['Part', 'aedviljad', 'magushapu kaste'],
         'price': 3.2,
