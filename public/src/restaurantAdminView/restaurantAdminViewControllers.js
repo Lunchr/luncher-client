@@ -118,7 +118,7 @@
       function getDateWithoutTime(dateWithTime) {
         var date = new Date(dateWithTime.getTime());
         date.setHours(0, 0, 0, 0);
-        return date
+        return date;
       }
     }
   ]);
