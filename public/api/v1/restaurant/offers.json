@@ -22,4 +22,40 @@
   "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
   "tags": ["pizza"],
   "image": "mock-images/meatmarket2.jpg"
+}, {
+  "_id": "7",
+  "restaurant": {
+    "name": "La Dolche Vita"
+  },
+  "title": "Salaami & ananassi pizza",
+  "from_time": "2016-11-12T09:00:00.000Z",
+  "to_time": "2016-11-12T11:00:00.000Z",
+  "price": 4.5,
+  "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
+  "tags": ["pizza"],
+  "image": "mock-images/meatmarket2.jpg"
+}, {
+  "_id": "8",
+  "restaurant": {
+    "name": "La Dolche Vita"
+  },
+  "title": "Salaami & ananassi pizza",
+  "from_time": "2016-11-12T09:00:00.000Z",
+  "to_time": "2016-11-12T11:00:00.000Z",
+  "price": 4.5,
+  "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
+  "tags": ["pizza"],
+  "image": "mock-images/meatmarket2.jpg"
+}, {
+  "_id": "9",
+  "restaurant": {
+    "name": "La Dolche Vita"
+  },
+  "title": "Salaami & ananassi pizza",
+  "from_time": "2016-11-13T09:00:00.000Z",
+  "to_time": "2016-11-13T11:00:00.000Z",
+  "price": 4.5,
+  "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
+  "tags": ["pizza"],
+  "image": "mock-images/meatmarket2.jpg"
 }]

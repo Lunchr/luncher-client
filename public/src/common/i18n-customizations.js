@@ -5,7 +5,7 @@
       $provide.decorator('$locale', ['$delegate',
         function($delegate) {
           if($delegate.id === 'et-ee') {
-            $delegate.DATETIME_FORMATS.justDate = 'EEEE, d. MMMM';
+            $delegate.DATETIME_FORMATS.justDate = 'd. MMMM';
           }
           return $delegate;
         }

@@ -2,7 +2,7 @@
     <div class="container">
         <p class="icon-wrap with-label">
             <button ng-click="settings.state = !settings.state" class="icon icon-12">
-                <span class="icon-label">{{restaurant.name}}</span>
+                <span class="icon-label">{{vm.restaurant.name}}</span>
             </button>
         </p>
         <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
@@ -102,52 +102,29 @@
             </form>
         </div>
         <div class="form-wrap">
-            <offer-form ng-show="addingAnOffer" on-submit="postOffer($offer); addingAnOffer=false" on-cancel="addingAnOffer=false"></offer-form>
+            <offer-form ng-show="addingAnOffer" on-submit="vm.postOffer($offer); addingAnOffer=false" on-cancel="addingAnOffer=false"></offer-form>
             <p ng-show="!addingAnOffer" class="new-offer-btn">
                 <a href="javascript:undefined" ng-click="addingAnOffer=true"><span class="icon-4"></span>Lisa uus pakkumine</a>
             </p>
         </div>
-        <!-- div class="offers-wrap" ng-controller="RestaurantOfferListCtrl">
-            <div class="admin-offer" ng-repeat="offer in offers" id="{{offer._id}}"
-                 ng-class="{pending: offer.confirmationPending, warning: offer.hasWarning, edit: offer.editing}">
-                <offer-form ng-show="offer.editing" edit="offer" on-submit="updateOffer($currentOffer, $offer); $offer.editing=false"
-                            on-cancel="offer.editing=false" on-delete="deleteOffer(offer)"></offer-form>
-                <div ng-show="!offer.editing">
-                  <p class="icon-wrap edit-btn">
-                    <a href="javascript:undefined" ng-click="offer.editing=true" class="icon icon-15"></a>
-                  </p>
-                  <div class="offer-content">
-                      <div class="col-1 date">
-                          <p>{{offer.from_time | date:'justDate'}}</p>
-                          <p class="additional">{{offer.from_time | date:'shortTime'}} - {{offer.to_time | date:'shortTime'}}</p>
-                      </div>
-                      <div class="col-2">
-                          <div class="col-wrap">
-                              <p class="mobile date">{{offer.from_time | date:'justDate'}}</p>
-                              <p class="desktop">{{offer.title}}</p>
-                              <p class="price">{{offer.price | currency:'€'}}</p>
-                          </div>
-                          <p class="additional mobile">{{offer.title}}</p>
-                          <p class="additional desktop">{{offer.ingredients | joinTags}}</p>
-                      </div>
-                  </div>
-                </div>
-            </div>
-        </div -->
-        <div class="offers admin-offers">
-            <div class="offers-group">
+        <div class="offers admin-offers" ng-controller="RestaurantOfferListCtrl as vm">
+            <div class="offers-group" ng-repeat="dateOffers in vm.offersByDate">
                 <div class="col-1">
-                    <h3><strong>Täna</strong>, Esmaspäev</h3>
-                    <p class="additional">7. november</p>
+                    <h3>
+                        <span ng-if="vm.isToday(dateOffers.date)"><strong>Täna</strong>, </span>
+                        <span class="date">{{dateOffers.date | date:'EEEE'}}</span>
+                    </h3>
+                    <p class="additional">{{dateOffers.date | date:'justDate'}}</p>
                     <p class="action">
-                        <a class="icon icon-17" href="javascript:undefined" ng-click="fbMessage.state = !fbMessage.state">
+                        <a class="icon icon-17" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = !dateOffers.state.fbMessage">
                             muuda postituse teksti
                         </a>
                     </p>
-                    <div>
+                    <div ng-show="dateOffers.state.fbMessage">
+                        <!-- TODO: should probably be wrapped in a form -->
                         <p><textarea name="name"></textarea></p>
                         <p class="buttons">
-                            <a class="btn btn-secondary" href="javascript:undefined">
+                            <a class="btn btn-secondary" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = false">
                                 Loobu
                             </a>
                             <input class="btn" type="submit" value="Salvesta">
@@ -155,77 +132,17 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <div class="offer" ng-class="{edit: offer.editing}">
-                        <offer-form ng-show="offer.editing" edit="offer" on-submit="updateOffer($currentOffer, $offer); $offer.editing=false"
-                                    on-cancel="offer.editing=false" on-delete="deleteOffer(offer)"></offer-form>
+                    <div class="offer" ng-class="{edit: offer.editing}" ng-repeat="offer in dateOffers.offers">
+                        <offer-form ng-show="offer.editing" edit="offer" on-submit="vm.updateOffer($currentOffer, $offer); $offer.editing=false"
+                            on-cancel="offer.editing=false" on-delete="vm.deleteOffer(offer)"></offer-form>
                         <div ng-show="!offer.editing">
                             <p class="icon-wrap edit-btn">
                                 <a href="javascript:undefined" ng-click="offer.editing=true" class="icon icon-15"></a>
                             </p>
                             <div class="offer-content">
-                                <h3>Lambaliha & paremsani pasta</h3>
-                                <p>lambaliha, farfalled, parmesan, kaste</p>
-                                <p class="price">4,5 €</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="offer">
-                        <div>
-                            <p class="icon-wrap edit-btn">
-                                <a href="javascript:undefined" class="icon icon-15"></a>
-                            </p>
-                            <div class="offer-content">
-                                <h3>Lambaliha & paremsani pasta</h3>
-                                <p>lambaliha, farfalled, parmesan, kaste</p>
-                                <p class="price">4,5 €</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="offers admin-offers">
-            <div class="offers-group">
-                <div class="col-1">
-                    <h3>Teisipäev</h3>
-                    <p class="additional">8 november</p>
-                    <p class="action">
-                        <a class="icon icon-17" href="javascript:undefined">
-                            muuda postituse teksti
-                        </a>
-                    </p>
-                    <div>
-                        <p><textarea name="name"></textarea></p>
-                        <p class="buttons">
-                            <a class="btn btn-secondary" href="javascript:undefined">
-                                Loobu
-                            </a>
-                            <input class="btn" type="submit" value="Salvesta">
-                        </p>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="offer">
-                        <div>
-                            <p class="icon-wrap edit-btn">
-                                <a href="javascript:undefined" class="icon icon-15"></a>
-                            </p>
-                            <div class="offer-content">
-                                <h3>Lambaliha & paremsani pasta</h3>
-                                <p>lambaliha, farfalled, parmesan, kaste</p>
-                                <p class="price">4,5 €</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="offer">
-                        <div>
-                            <p class="icon-wrap edit-btn">
-                                <a href="javascript:undefined" class="icon icon-15"></a>
-                            </p>
-                            <div class="offer-content">
-                                <h3>Lambaliha & paremsani pasta</h3>
-                                <p>lambaliha, farfalled, parmesan, kaste</p>
-                                <p class="price">4,5 €</p>
+                                <h3>{{offer.title}}</h3>
+                                <p>{{offer.ingredients | joinTags}}</p>
+                                <p class="price">{{offer.price | currency:'€'}}</p>
                             </div>
                         </div>
                     </div>

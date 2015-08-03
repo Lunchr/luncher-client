@@ -22,6 +22,7 @@
       when('/admin', {
         templateUrl: 'src/restaurantAdminView/restaurantAdminView.html',
         controller: 'RestaurantAdminViewCtrl',
+        controllerAs: 'vm',
         resolve: {
           restaurant: ['$resource', '$location',
             function ($resource, $location) {

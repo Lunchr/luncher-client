@@ -21,9 +21,10 @@
 
   module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource', 'restaurant',
     function($scope, $resource, restaurant) {
-      $scope.restaurant = restaurant;
-      $scope.postOffer = function(offer) {
-        offer.restaurant = $scope.restaurant;
+      var vm = this;
+      vm.restaurant = restaurant;
+      vm.postOffer = function(offer) {
+        offer.restaurant = vm.restaurant;
         var postedOffer = $resource('api/v1/offers', {}, {
           update: offerUpdateOperation,
           delete: offerDeleteOperation,
@@ -35,35 +36,63 @@
 
   module.controller('RestaurantOfferListCtrl', ['$scope', '$resource', '$window',
     function($scope, $resource, $window) {
-      $scope.offers = $resource('api/v1/restaurant/offers', {}, {
+      var vm = this;
+      $scope.$watchCollection(function() {
+        return vm.offers;
+      }, function(newCollection, oldCollection) {
+        var dates = {};
+        newCollection.forEach(function(offer) {
+          var date = getDateWithoutTime(new Date(offer.from_time));
+          var key = date.getTime();
+          if (!dates.hasOwnProperty(key)) {
+            dates[key] = {
+              date: date,
+              offers: [],
+            };
+          }
+          dates[key].offers.push(offer);
+        });
+        vm.offersByDate = [];
+        Object.keys(dates).forEach(function(key) {
+          vm.offersByDate.push(dates[key]);
+        });
+      });
+      vm.isToday = function(date) {
+        var dateCopy = new Date(date.getTime());
+        dateCopy.setHours(0, 0, 0, 0);
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return dateCopy.getTime() === today.getTime();
+      };
+      vm.offers = $resource('api/v1/restaurant/offers', {}, {
         update: offerUpdateOperation,
         delete: offerDeleteOperation,
       }).query();
-      $scope.updateOffer = function(currentOffer, offer) {
+      vm.updateOffer = function(currentOffer, offer) {
         offer.confirmationPending = true;
-        var index = $scope.offers.indexOf(currentOffer);
+        var index = vm.offers.indexOf(currentOffer);
         if (index > -1) {
-          $scope.offers[index] = offer;
+          vm.offers[index] = offer;
         }
         offer.$update({}, function success() {
           offer.confirmationPending = false;
         }, function error() {
           // Put back the previous version if the update fails
-          var index = $scope.offers.indexOf(offer);
+          var index = vm.offers.indexOf(offer);
           if (index > -1) {
-            $scope.offers[index] = currentOffer;
+            vm.offers[index] = currentOffer;
           }
         });
 
       };
-      $scope.deleteOffer = function(offer) {
+      vm.deleteOffer = function(offer) {
         var confirmed = $window.confirm('Oled sa kindel et sa tahad kustutada pakkumise "'+offer.title+'"?');
         if (!confirmed) return;
         offer.confirmationPending = true;
         offer.$delete({}, function success() {
-          var index = $scope.offers.indexOf(offer);
+          var index = vm.offers.indexOf(offer);
           if (index > -1) {
-            $scope.offers.splice(index, 1);
+            vm.offers.splice(index, 1);
           }
         }, function error(resp) {
           offer.confirmationPending = false;
@@ -71,7 +100,7 @@
         });
       };
       $scope.$on(offerPostedEventChannel, function(event, offer) {
-        $scope.offers.unshift(offer);
+        vm.offers.unshift(offer);
 
         offer.confirmationPending = true;
         offer.$promise.then(function() {
@@ -79,12 +108,18 @@
         }, function() {
           // we could, in theory, use shift(), but I don't think we can guarantee at
           // this point that this offer is still the first one
-          var index = $scope.offers.indexOf(offer);
+          var index = vm.offers.indexOf(offer);
           if (index > -1) {
-            $scope.offers.splice(index, 1);
+            vm.offers.splice(index, 1);
           }
         });
       });
+
+      function getDateWithoutTime(dateWithTime) {
+        var date = new Date(dateWithTime.getTime());
+        date.setHours(0, 0, 0, 0);
+        return date
+      }
     }
   ]);
 })();
