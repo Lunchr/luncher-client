@@ -234,15 +234,16 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
 .new-offer-btn {
     display: block;
     margin: 0;
+    text-align: center;
     a {
         display: block;
         position: relative;
-        padding: 14px 18px 15px 45px;
+        padding: 14px 18px 15px 16px;
     }
     span {
-        position: absolute;
-        left: 13px;
-        top: 14px;
+        position: relative;
+        top: 5px;
+        padding-right: 10px;
     }
     &:hover {
         background-color: rgba(0, 0, 0, 0.02);

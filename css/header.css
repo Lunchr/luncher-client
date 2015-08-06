@@ -32,11 +32,13 @@ header {
             left: 13px;
         }
         &:hover,
-        &:focus,
-        &:active,
         &.active {
             color: #fff;
             background-color: $color-h;
+        }
+        &:focus,
+        &:active {
+            color: #fff;
         }
     }
 }
