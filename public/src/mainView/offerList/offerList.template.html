@@ -16,11 +16,6 @@
               <p><a href="tel:{{restaurant.phone}}">{{restaurant.phone}}</a></p>
               <p class="map" ng-style="{'background-image': 'url({{ctrl.getStaticMap(restaurant)}})'}"></p>
           </div>
-          <!-- TODO: add comment for why this block is repeated -->
-          <div class="col-2">
-              <p class="additional mobile">{{offer.ingredients | joinTags}}</p>
-              <p class="image" ng-style="{'background-image':'url(../{{offer.image}})'}"></p>
-          </div>
       </div>
       <div class="col-2">
           <div class="offer" ng-repeat="offer in restaurant.offers" ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state, hasimage: offer.image, hasinfo: offer.info}">
