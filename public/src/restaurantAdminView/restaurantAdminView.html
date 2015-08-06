@@ -143,14 +143,15 @@
                             </a>
                         </p>
                         <div ng-show="dateOffers.state.fbMessage">
-                            <!-- TODO: should probably be wrapped in a form -->
-                            <p><textarea name="name"></textarea></p>
-                            <p class="buttons">
-                                <a class="btn btn-secondary" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = false">
-                                    Loobu
-                                </a>
-                                <input class="btn" type="submit" value="Salvesta">
-                            </p>
+                            <form>
+                                <p><textarea name="name"></textarea></p>
+                                <p class="buttons">
+                                    <a class="btn btn-secondary" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = false">
+                                        Loobu
+                                    </a>
+                                    <input class="btn" type="submit" value="Salvesta">
+                                </p>
+                            </form>
                         </div>
                     </div>
                     <div class="col-2">
