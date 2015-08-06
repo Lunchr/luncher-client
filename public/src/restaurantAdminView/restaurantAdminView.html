@@ -1,7 +1,5 @@
 <header>
     <div class="container">
-
-        <!-- if there is multiple restaurants -->
         <p class="left">
             <a href="javascript:undefined" ng-click="vm.state.restaurantSelectionDropdown=!vm.state.restaurantSelectionDropdown" ng-class="{active: vm.state.restaurantSelectionDropdown}" class="icon icon-22">
                 <span>{{vm.restaurant.name}}</span>
@@ -10,15 +8,6 @@
                 <span></span>
             </a>
         </p>
-        <!-- end -->
-
-        <!-- if there is only one restaurant
-        <p class="left">
-            <a href="javascript:undefined" ng-click="settings.state = !settings.state" ng-class="{'active' : settings.state}" class="icon icon-1 settings-icon">
-                <span>{{vm.restaurant.name}}</span>
-            </a>
-        </p>
-        -->
         <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
         <p class="right">
           <a href="/api/v1/logout" class="icon icon-21">
