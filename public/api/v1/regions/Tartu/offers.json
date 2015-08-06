@@ -54,7 +54,7 @@
   "ingredients": ["Veiseliha pihv", "burgerisai", "kodused friikartulid", "kaste", "salat"],
   "tags": ["loom", "veis", "praad"],
   "info": "Kuni pakkumisi jätkub",
-  "image": "mock-images/meatmarket3.jpg"
+  "image": ""
 }, {
   "_id": "5",
   "restaurant": {
@@ -110,7 +110,7 @@
   "price": 4.6,
   "ingredients": ["Salaami", "ananass", "juust", "pitsakaste", "pitsapõhi"],
   "tags": ["pizza", "praad"],
-  "image": "mock-images/meatmarket.jpg"
+  "image": ""
 }, {
   "_id": "7",
   "restaurant": {
@@ -128,7 +128,7 @@
   "price": 3.4,
   "ingredients": ["Farfalled", "sink", "koor"],
   "tags": ["pasta", "praad"],
-  "image": "mock-images/meatmarket2.jpg"
+  "image": ""
 }, {
   "_id": "8",
   "restaurant": {
@@ -147,7 +147,7 @@
   "ingredients": ["Kodune kotlet", "praekartulid", "salat", "kaste"],
   "tags": ["loom", "praad"],
   "info": "Pakkumisega kaasas tasuta jook",
-  "image": "mock-images/meatmarket3.jpg"
+  "image": ""
 }, {
   "_id": "9",
   "restaurant": {
@@ -166,7 +166,7 @@
   "ingredients": ["Lambakarree", "ahjukartul", "salat", "kaste"],
   "tags": ["lammas", "praad"],
   "info": "Pakkumisega kaasas tasuta supp",
-  "image": "mock-images/meatmarket4.jpg"
+  "image": ""
 }, {
   "_id": "10",
   "restaurant": {

@@ -113,10 +113,21 @@
             }
         }
     }
+    .thumbnail {
+        position: absolute;
+        top: 16px;
+        left: 10px;
+        height: 30px;
+        width: 27px;
+        background-size: cover;
+        background-position: 50%;
+        transition: .2s;
+    }
 }
 .offer {
     position: relative;
     padding: 11px;
+    padding-left: 47px;
     cursor: pointer;
     box-sizing: border-box;
     &:hover,
@@ -216,6 +227,9 @@
         .secondary {
             height: 229px;
         }
+    }
+    .thumbnail {
+        opacity: 0;
     }
 }
 
