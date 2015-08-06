@@ -296,7 +296,7 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
         padding-left: 40px;
         &:before {
             position: absolute;
-            left: 15px;
+            left: 12px;
             top: 9px;
         }
     }

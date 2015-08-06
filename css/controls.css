@@ -112,6 +112,9 @@
     }
     li {
         list-style: none;
+        .btn {
+            margin: 10px 16px 5px;
+        }
     }
     input {
         position: absolute;
