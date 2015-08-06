@@ -107,42 +107,44 @@
                 <a href="javascript:undefined" ng-click="addingAnOffer=true"><span class="icon-4"></span>Lisa uus pakkumine</a>
             </p>
         </div>
-        <div class="offers admin-offers" ng-controller="RestaurantOfferListCtrl as vm">
-            <div class="offers-group" ng-repeat="dateOffers in vm.offersByDate">
-                <div class="col-1">
-                    <h3>
-                        <span ng-if="vm.isToday(dateOffers.date)"><strong>Täna</strong>, </span>
-                        <span class="date">{{dateOffers.date | date:'EEEE'}}</span>
-                    </h3>
-                    <p class="additional">{{dateOffers.date | date:'justDate'}}</p>
-                    <p class="action">
-                        <a class="icon icon-17" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = !dateOffers.state.fbMessage">
-                            muuda postituse teksti
-                        </a>
-                    </p>
-                    <div ng-show="dateOffers.state.fbMessage">
-                        <!-- TODO: should probably be wrapped in a form -->
-                        <p><textarea name="name"></textarea></p>
-                        <p class="buttons">
-                            <a class="btn btn-secondary" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = false">
-                                Loobu
+        <div ng-controller="RestaurantOfferListCtrl as vm">
+            <div class="offers admin-offers" ng-repeat="dateOffers in vm.offersByDate">
+                <div class="offers-group">
+                    <div class="col-1">
+                        <h3>
+                            <span ng-if="vm.isToday(dateOffers.date)"><strong>Täna</strong>, </span>
+                            <span class="date">{{dateOffers.date | date:'EEEE'}}</span>
+                        </h3>
+                        <p class="additional">{{dateOffers.date | date:'justDate'}}</p>
+                        <p class="action">
+                            <a class="icon icon-17" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = !dateOffers.state.fbMessage">
+                                muuda postituse teksti
                             </a>
-                            <input class="btn" type="submit" value="Salvesta">
                         </p>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="offer" ng-class="{edit: offer.editing}" ng-repeat="offer in dateOffers.offers">
-                        <offer-form ng-show="offer.editing" edit="offer" on-submit="vm.updateOffer($currentOffer, $offer); $offer.editing=false"
-                            on-cancel="offer.editing=false" on-delete="vm.deleteOffer(offer)"></offer-form>
-                        <div ng-show="!offer.editing">
-                            <p class="icon-wrap edit-btn">
-                                <a href="javascript:undefined" ng-click="offer.editing=true" class="icon icon-15"></a>
+                        <div ng-show="dateOffers.state.fbMessage">
+                            <!-- TODO: should probably be wrapped in a form -->
+                            <p><textarea name="name"></textarea></p>
+                            <p class="buttons">
+                                <a class="btn btn-secondary" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = false">
+                                    Loobu
+                                </a>
+                                <input class="btn" type="submit" value="Salvesta">
                             </p>
-                            <div class="offer-content">
-                                <h3>{{offer.title}}</h3>
-                                <p>{{offer.ingredients | joinTags}}</p>
-                                <p class="price">{{offer.price | currency:'€'}}</p>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="offer" ng-class="{edit: offer.editing}" ng-repeat="offer in dateOffers.offers">
+                            <offer-form ng-show="offer.editing" edit="offer" on-submit="vm.updateOffer($currentOffer, $offer); $offer.editing=false"
+                                on-cancel="offer.editing=false" on-delete="vm.deleteOffer(offer)"></offer-form>
+                            <div ng-show="!offer.editing">
+                                <p class="icon-wrap edit-btn">
+                                    <a href="javascript:undefined" ng-click="offer.editing=true" class="icon icon-15"></a>
+                                </p>
+                                <div class="offer-content">
+                                    <h3>{{offer.title}}</h3>
+                                    <p>{{offer.ingredients | joinTags}}</p>
+                                    <p class="price">{{offer.price | currency:'€'}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
