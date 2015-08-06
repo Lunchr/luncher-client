@@ -17,11 +17,14 @@ header {
         margin-left: 12px;
     }
     a {
-        display: block;
+        display: inline-block;
+        position: relative;
         color: #fff;
         span {
             display: block;
+            height: 46px;
             padding: 14px 14px 14px 36px;
+            box-sizing: border-box;
         }
         &:before {
             position: absolute;
@@ -29,12 +32,11 @@ header {
             left: 13px;
         }
         &:hover,
-        &:focus {
+        &:focus,
+        &:active,
+        &.active {
             color: #fff;
             background-color: $color-h;
-        }
-        &:active {
-            color: #fff;
         }
     }
 }
@@ -117,6 +119,10 @@ header {
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
+.settings-icon {
+    width: 47px;
+}
+
 .left {
     display: block;
     position: absolute;
@@ -124,6 +130,9 @@ header {
     top: 0;
     margin: 0 0 0 12px;
     padding: 0;
+    a {
+        float: left;
+    }
 }
 .right {
     display: block;
@@ -132,6 +141,9 @@ header {
     top: 0;
     margin: 0 12px 0 0;
     padding: 0;
+    a {
+        float: right;
+    }
 }
 
 .back {

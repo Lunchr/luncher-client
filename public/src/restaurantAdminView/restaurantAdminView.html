@@ -1,8 +1,11 @@
 <header>
     <div class="container">
         <p class="left">
-            <a href="javascript:undefined" ng-click="settings.state = !settings.state" class="icon icon-12">
+            <a href="javascript:undefined" ng-click="vm.state.restaurantSelectionDropdown=!vm.state.restaurantSelectionDropdown" ng-class="{active: vm.state.restaurantSelectionDropdown}" class="icon icon-12">
                 <span>{{vm.restaurant.name}}</span>
+            </a>
+            <a href="javascript:undefined" ng-click="settings.state = !settings.state" ng-class="{'active' : settings.state}" class="icon icon-1 settings-icon">
+                <span></span>
             </a>
         </p>
         <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
@@ -15,6 +18,18 @@
 </header>
 <div class="content">
     <div class="container">
+        <div class="dropdown" ng-class="{active: vm.state.restaurantSelectionDropdown}">
+            <ul>
+                <li>
+                    <input type="radio" id="selection-135" name="136" value="La Dolce Vita">
+                    <label for="selection-135">La Dolce Vita</label>
+                </li>
+                <li>
+                    <input type="radio" id="selection-137" name="138" value="Itaalia köök">
+                    <label for="selection-137">Itaalia köök</label>
+                </li>
+            </ul>
+        </div>
         <div class="form-wrap settings" ng-class="{'active' : settings.state}">
             <form class="form" name="form" ng-submit="form.$valid && vm.submit()" novalidate>
                 <div class="row">
