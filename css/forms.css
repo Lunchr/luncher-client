@@ -381,9 +381,9 @@ textarea {
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #f0f0f0;
-    border-radius: 2px;
+    border-bottom: 1px solid #BBBBBB;
     resize: none;
     &:focus {
-        border-color: $color;
+        border-bottom-color: $color;
     }
 }
