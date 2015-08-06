@@ -1,12 +1,12 @@
 <header>
     <div class="container">
-        <p class="icon-wrap with-label">
-            <button ng-click="settings.state = !settings.state" class="icon icon-12">
-                <span class="icon-label">{{vm.restaurant.name}}</span>
-            </button>
+        <p class="left">
+            <a href="javascript:undefined" ng-click="settings.state = !settings.state" class="icon icon-12">
+                <span>{{vm.restaurant.name}}</span>
+            </a>
         </p>
         <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
-        <p class="logout">
+        <p class="right">
           <a href="/api/v1/logout" class="icon icon-21">
               <span>Logi välja</span>
           </a>

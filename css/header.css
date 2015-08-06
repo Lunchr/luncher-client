@@ -16,6 +16,27 @@ header {
         z-index: 100;
         margin-left: 12px;
     }
+    a {
+        display: block;
+        color: #fff;
+        span {
+            display: block;
+            padding: 14px 14px 14px 36px;
+        }
+        &:before {
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+        &:hover,
+        &:focus {
+            color: #fff;
+            background-color: $color-h;
+        }
+        &:active {
+            color: #fff;
+        }
+    }
 }
 #logo {
     position: absolute;
@@ -96,26 +117,21 @@ header {
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
-.logout {
+.left {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0 0 0 12px;
+    padding: 0;
+}
+.right {
     display: block;
     position: absolute;
     right: 0;
     top: 0;
     margin: 0 12px 0 0;
     padding: 0;
-    a.icon {
-        display: block;
-        color: #fff;
-        span {
-            display: block;
-            padding: 14px 14px 14px 36px;
-        }
-        &:before {
-            position: absolute;
-            top: 15px;
-            left: 13px;
-        }
-    }
 }
 
 .back {
@@ -123,7 +139,7 @@ header {
     &:before {
         display: block;
         position: absolute;
-        top: 12px;
+        top: 13px;
         left: 10px;
         transform: rotate(90deg);
     }

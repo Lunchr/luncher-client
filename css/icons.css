@@ -87,6 +87,7 @@
 }
 .icon-5:before {
     content: "e";
+    top: 14px;
 }
 .icon-6:before {
     content: "f";
