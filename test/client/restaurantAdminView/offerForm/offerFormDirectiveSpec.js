@@ -186,7 +186,6 @@ describe('Offer Form', function() {
           price: 2.5,
           from_time: new Date(2115, 3, 15, 10, 0, 0),
           to_time: new Date(2115, 3, 15, 15, 0, 0),
-          additionalData: 'just something extra',
           image: {
             large: 'large image path',
             thumbnail: 'thumbnail path',
@@ -236,7 +235,6 @@ describe('Offer Form', function() {
           price: 2.5,
           from_time: new Date(2115, 3, 15, 10, 0, 0),
           to_time: new Date(2115, 3, 15, 15, 0, 0),
-          additionalData: 'just something extra',
         });
       });
 
@@ -257,7 +255,6 @@ describe('Offer Form', function() {
             from_time: new Date(2115, 3, 15, 10, 0, 0),
             to_time: new Date(2115, 3, 15, 15, 0, 0),
             image_data: 'image data',
-            additional_data: 'just something extra',
           });
         });
       });
