@@ -25,7 +25,6 @@
         },
         controller: function($scope, $element, $attrs) {
           $scope.titleMaxLength = 70;
-          $scope.isEdit = !!$scope.offerToEdit;
           $scope.allTags = $resource('api/v1/tags', {}, {
             'queryCached': {
               method: 'GET',
@@ -36,7 +35,8 @@
           $scope.getFilteredTags = function($query) {
             return filterFilter($scope.allTags, $query);
           };
-          (function prefillWith(offer) {
+          function prefillWith(offer) {
+            $scope.isEdit = !!offer;
             if (offer) {
               $scope.title = offer.title;
               $scope.ingredients = offer.ingredients;
@@ -54,9 +54,15 @@
               $scope.toTime.setDate(1);
               if (offer.image) {
                 $scope.image = offer.image.large;
+              } else if (offer.image_data) {
+                $scope.image = offer.image_data;
               }
             }
-          })($scope.offerToEdit);
+          }
+          prefillWith($scope.offerToEdit);
+          $scope.$watch('offerToEdit', function(value) {
+            prefillWith(value);
+          });
           $scope.idPrefix = (function() {
             if ($scope.isEdit)
               return 'edit-offer-' + $scope.offerToEdit._id + '-';
