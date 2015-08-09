@@ -15,8 +15,7 @@
   "price": 3.4,
   "ingredients": ["Kana", "aedviljad", "tsillikaste"],
   "tags": ["lind", "kana", "praad"],
-  "info": "Gluteenivaba",
-  "image": ""
+  "info": "Gluteenivaba"
 }, {
   "_id": "2",
   "restaurant": {
@@ -34,8 +33,7 @@
   "price": 3.3,
   "ingredients": ["Seafilee", "aedviljad", "mahushapu kaste"],
   "tags": ["siga", "praad"],
-  "info": "Pakkumisega tasuta kaasas magustoit",
-  "image": ""
+  "info": "Pakkumisega tasuta kaasas magustoit"
 }, {
   "_id": "3",
   "restaurant": {
@@ -53,8 +51,7 @@
   "price": 3.8,
   "ingredients": ["Veiseliha pihv", "burgerisai", "kodused friikartulid", "kaste", "salat"],
   "tags": ["loom", "veis", "praad"],
-  "info": "Kuni pakkumisi jätkub",
-  "image": ""
+  "info": "Kuni pakkumisi jätkub"
 }, {
   "_id": "5",
   "restaurant": {
@@ -73,7 +70,10 @@
   "ingredients": ["Lambaliha", "parmesan", "farfalle"],
   "tags": ["lammas", "pasta", "praad"],
   "info": "Gluteenivaba",
-  "image": "mock-images/meatmarket5.jpg"
+  "image": {
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
+  }
 }, {
   "_id": "4",
   "restaurant": {
@@ -92,7 +92,10 @@
   "ingredients": ["Pardifilee", "aedviljad", "magushapu kaste"],
   "tags": ["lind", "part", "praad"],
   "info": "Laktoosivaba",
-  "image": "mock-images/meatmarket4.jpg"
+  "image": {
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
+  }
 }, {
   "_id": "6",
   "restaurant": {
@@ -109,8 +112,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.6,
   "ingredients": ["Salaami", "ananass", "juust", "pitsakaste", "pitsapõhi"],
-  "tags": ["pizza", "praad"],
-  "image": ""
+  "tags": ["pizza", "praad"]
 }, {
   "_id": "7",
   "restaurant": {
@@ -127,8 +129,7 @@
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.4,
   "ingredients": ["Farfalled", "sink", "koor"],
-  "tags": ["pasta", "praad"],
-  "image": ""
+  "tags": ["pasta", "praad"]
 }, {
   "_id": "8",
   "restaurant": {
@@ -146,8 +147,7 @@
   "price": 3.2,
   "ingredients": ["Kodune kotlet", "praekartulid", "salat", "kaste"],
   "tags": ["loom", "praad"],
-  "info": "Pakkumisega kaasas tasuta jook",
-  "image": ""
+  "info": "Pakkumisega kaasas tasuta jook"
 }, {
   "_id": "9",
   "restaurant": {
@@ -165,8 +165,7 @@
   "price": 4.2,
   "ingredients": ["Lambakarree", "ahjukartul", "salat", "kaste"],
   "tags": ["lammas", "praad"],
-  "info": "Pakkumisega kaasas tasuta supp",
-  "image": ""
+  "info": "Pakkumisega kaasas tasuta supp"
 }, {
   "_id": "10",
   "restaurant": {
@@ -184,8 +183,7 @@
   "price": 5.2,
   "ingredients": ["Pardifilee", "ahuõunad", "friikartulid", "värske salat", "kaste"],
   "tags": ["lind", "part", "praad"],
-  "info": "Pakkumisega kaasas tasuta supp",
-  "image": ""
+  "info": "Pakkumisega kaasas tasuta supp"
 }, {
   "_id": "11",
   "restaurant": {
@@ -203,8 +201,7 @@
   "price": 5.9,
   "ingredients": ["Minutihv", "kodune ahjukartul", "astelpaju kaste", "värske salat"],
   "tags": ["loom", "praad"],
-  "info": "Gluteenivaba",
-  "image": ""
+  "info": "Gluteenivaba"
 }, {
   "_id": "12",
   "restaurant": {
@@ -222,7 +219,10 @@
   "price": 2.9,
   "ingredients": ["Kohupiim", "õunad", "vaniljejäätis"],
   "tags": ["magustoit"],
-  "image": "mock-images/meatmarket2.jpg"
+  "image": {
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
+  }
 }, {
   "_id": "13",
   "restaurant": {
@@ -241,5 +241,8 @@
   "ingredients": ["Tomatipüree", "basiilik", "juustune röstsai"],
   "tags": ["supp"],
   "info": "Gluteenivaba, laktoosivaba",
-  "image": "mock-images/meatmarket3.jpg"
+  "image": {
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
+  }
 }]

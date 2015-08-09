@@ -140,7 +140,7 @@ describe('Offer Form', function() {
               price: 2.5,
               from_time: new Date(2015, 3, 15, 10, 0, 0),
               to_time: new Date(2015, 3, 15, 15, 0, 0),
-              image: 'image data',
+              image_data: 'image data',
             });
           });
         });
@@ -186,8 +186,11 @@ describe('Offer Form', function() {
           price: 2.5,
           from_time: new Date(2115, 3, 15, 10, 0, 0),
           to_time: new Date(2115, 3, 15, 15, 0, 0),
-          image: 'image path',
           additionalData: 'just something extra',
+          image: {
+            large: 'large image path',
+            thumbnail: 'thumbnail path',
+          },
         };
       });
       element = compiled.element;
@@ -217,7 +220,7 @@ describe('Offer Form', function() {
       expect($scope.date).toEqual(new Date(2115, 3, 15));
       expect($scope.fromTime).toEqual(new Date(1970, 0, 1, 10, 0, 0));
       expect($scope.toTime).toEqual(new Date(1970, 0, 1, 15, 0, 0));
-      expect($scope.image.src).toEqual('image path');
+      expect($scope.image.src).toEqual('large image path');
     });
 
     describe('submit', function() {
@@ -233,8 +236,29 @@ describe('Offer Form', function() {
           price: 2.5,
           from_time: new Date(2115, 3, 15, 10, 0, 0),
           to_time: new Date(2115, 3, 15, 15, 0, 0),
-          image: 'image path',
           additionalData: 'just something extra',
+        });
+      });
+
+      describe('with the image changed', function() {
+        beforeEach(function() {
+          $scope.image = {src: 'image data'};
+        });
+
+        it('should copy and extend the the original offer', function() {
+          $scope.submitOffer();
+
+          expect($parentScope.submitClicked).toHaveBeenCalledWith({
+            _id: '11',
+            title: 'a title',
+            ingredients: ['ingredient1', 'ingredient2'],
+            tags: ['tag1', 'tag2'],
+            price: 2.5,
+            from_time: new Date(2115, 3, 15, 10, 0, 0),
+            to_time: new Date(2115, 3, 15, 15, 0, 0),
+            image_data: 'image data',
+            additional_data: 'just something extra',
+          });
         });
       });
     });

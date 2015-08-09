@@ -9,7 +9,10 @@
   "price": 4.5,
   "ingredients": ["Lambaliha", "farfalled", "paremesan"],
   "tags": ["lammas", "pasta"],
-  "image": "mock-images/meatmarket.jpg"
+  "image": {
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
+  }
 }, {
   "_id": "6",
   "restaurant": {
@@ -21,7 +24,10 @@
   "price": 4.5,
   "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
   "tags": ["pizza"],
-  "image": "mock-images/meatmarket2.jpg"
+  "image": {
+	"large": "mock-images/meatmarket2.jpg",
+	"thumbnail": "mock-images/meatmarket2.jpg"
+  }
 }, {
   "_id": "7",
   "restaurant": {
@@ -33,7 +39,10 @@
   "price": 4.5,
   "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
   "tags": ["pizza"],
-  "image": "mock-images/meatmarket2.jpg"
+  "image": {
+	"large": "mock-images/meatmarket2.jpg",
+	"thumbnail": "mock-images/meatmarket2.jpg"
+  }
 }, {
   "_id": "8",
   "restaurant": {
@@ -45,7 +54,10 @@
   "price": 4.5,
   "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
   "tags": ["pizza"],
-  "image": "mock-images/meatmarket2.jpg"
+  "image": {
+	"large": "mock-images/meatmarket2.jpg",
+	"thumbnail": "mock-images/meatmarket2.jpg"
+  }
 }, {
   "_id": "9",
   "restaurant": {
@@ -57,5 +69,8 @@
   "price": 4.5,
   "ingredients": ["Salaami", "ananass", "pitsakaste", "pitsapõhi"],
   "tags": ["pizza"],
-  "image": "mock-images/meatmarket2.jpg"
+  "image": {
+	"large": "mock-images/meatmarket2.jpg",
+	"thumbnail": "mock-images/meatmarket2.jpg"
+  }
 }]

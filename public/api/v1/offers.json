@@ -16,7 +16,10 @@
   "price": 3.4,
   "ingredients": ["Kana", "aedviljad", "tsillikaste"],
   "tags": ["praad", "kana"],
-  "image": "mock-images/meatmarket.jpg"
+  "image": {
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
+  }
 }, {
   "_id": "2",
   "restaurant": {
@@ -35,5 +38,8 @@
   "price": 3.3,
   "ingredients": ["Seafilee", "aedviljad", "mahushapu kaste"],
   "tags": ["praad", "siga"],
-  "image": "mock-images/meatmarket2.jpg"
+  "image": {
+	"large": "mock-images/meatmarket2.jpg",
+	"thumbnail": "mock-images/meatmarket2.jpg"
+  }
 }]
