@@ -239,10 +239,11 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
         display: block;
         position: relative;
         padding: 14px 18px 15px 16px;
+        font-size: 16px;
     }
     span {
         position: relative;
-        top: 5px;
+        top: 4px;
         padding-right: 10px;
     }
     &:hover {
