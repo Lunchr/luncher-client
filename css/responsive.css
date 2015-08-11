@@ -66,6 +66,9 @@
             margin-left: -45px
         }
     }
+    .offer-content {
+        padding-left: 45px;
+    }
     .secondary {
         margin-left: -45px;
         margin-right: -11px;
@@ -122,6 +125,22 @@
     }
 }
 @media (max-width: 530px) {
+    header {
+        &.admin-header {
+            a {
+                width: 47px;
+                span {
+                    text-indent: -9999px;
+                }
+            }
+        }
+    }
+    .left {
+        margin-left: -8px;
+    }
+    .right {
+        margin-right: -8px;
+    }
     .offer {
         .image {
             height: 250px;
