@@ -25,7 +25,6 @@
         },
         controller: function($scope, $element, $attrs) {
           $scope.titleMaxLength = 70;
-          $scope.isEdit = !!$scope.offerToEdit;
           $scope.allTags = $resource('api/v1/tags', {}, {
             'queryCached': {
               method: 'GET',
@@ -36,7 +35,8 @@
           $scope.getFilteredTags = function($query) {
             return filterFilter($scope.allTags, $query);
           };
-          (function prefillWith(offer) {
+          function prefillWith(offer) {
+            $scope.isEdit = !!offer;
             if (offer) {
               $scope.title = offer.title;
               $scope.ingredients = offer.ingredients;
@@ -52,9 +52,17 @@
               $scope.toTime.setFullYear(1970);
               $scope.toTime.setMonth(0);
               $scope.toTime.setDate(1);
-              $scope.image = offer.image;
+              if (offer.image) {
+                $scope.image = offer.image.large;
+              } else if (offer.image_data) {
+                $scope.image = offer.image_data;
+              }
             }
-          })($scope.offerToEdit);
+          }
+          prefillWith($scope.offerToEdit);
+          $scope.$watch('offerToEdit', function(value) {
+            prefillWith(value);
+          });
           $scope.idPrefix = (function() {
             if ($scope.isEdit)
               return 'edit-offer-' + $scope.offerToEdit._id + '-';
@@ -89,10 +97,13 @@
               // both getTime()s return the time with added timezone offset, so one offset has to be subtracted
               from_time: new Date($scope.date.getTime() + $scope.fromTime.getTime() - $scope.fromTime.getTimezoneOffset() * 60 * 1000),
               to_time: new Date($scope.date.getTime() + $scope.toTime.getTime() - $scope.toTime.getTimezoneOffset() * 60 * 1000),
-              image: $scope.image && $scope.image.src,
             };
+            if ($scope.image && !$scope.image.isPath) {
+              offer.image_data = $scope.image.src;
+            }
             if ($scope.isEdit) {
               var offerCopy = angular.copy($scope.offerToEdit);
+              delete offerCopy.image;
               angular.extend(offerCopy, offer);
               $scope.submitFunction({
                 $currentOffer: $scope.offerToEdit,
