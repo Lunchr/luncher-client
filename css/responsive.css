@@ -154,6 +154,13 @@
         .col-1 {
             border-bottom: 1px solid #f0f0f0
         }
+        p {
+            &.action {
+                position: absolute;
+                top: 0;
+                right: 15px;;
+            }
+        }
     }
     .expand {
         &.hasimage {
