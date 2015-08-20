@@ -16,31 +16,100 @@
     <div class="container">
         <ul class="faq">
             <li ng-click="question1.state=!question1.state" ng-class="{expand: question1.state}">
-                <h2><strong>1. </strong>Lorem ispum dolor sit a met?</h2>
+                <h2><strong>1. </strong>Kuidas lisada pakkumisi?</h2>
                 <div class="answer">
                     <div class="answer-inner">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sed nulla alias, ex expedita. Sed, nobis! Dicta architecto debitis quibusdam doloribus sunt, necessitatibus aliquid blanditiis quaerat voluptatibus, a, laborum consequuntur!
+                            <span>Administraatori lehe üleval ääres on suur nupp "Lisa uus pakkumine", millele vajutades avaneb pakkumise sisestamise vorm.</span>
+                            <span>Kõik väljad peale pildivälja on kohustuslikud ning neid täitmata pakkumist salvestada ei saa.</span>
+                            <span>Olles kõik nõutud väljad ilusti täitnud vajuta nuppu "Salvesta" ning pakkumine ongi lisatud!</span>
+                        </p>
+                        <p>
+                            <span>Lisatud pakkumised tulevad kõik nähtavale meie avalikule veebilehele www.luncher.ee pakkumise vormis määratud kuupäeval.</span>
+                            <span>Sama kuupäeva hommikul postitatakse pakkumine teie restorani facebook'i lehele pakkumise vormis määratud alguse kellaajast tund aega varem.</span>
+                            <span>Kui pakkumine on lisatud sellest kellaajast hiljem, läheb postitus facebook'i koheselt.</span>
+                        </p>
+                        <p>
+                            Pakkumise lisamise katkestamiseks vajuta nupule "Loobu".
                         </p>
                     </div>
                 </div>
             </li>
             <li ng-click="question2.state=!question2.state" ng-class="{expand: question2.state}">
-                <h2><strong>2. </strong>Lorem ispum dolor sit a met?</h2>
+                <h2><strong>2. </strong>Kuidas muuta olemasolevat pakkumist?</h2>
                 <div class="answer">
                     <div class="answer-inner">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sed nulla alias, ex expedita. Sed, nobis! Dicta architecto debitis quibusdam doloribus sunt, necessitatibus aliquid blanditiis quaerat voluptatibus, a, laborum consequuntur!
+                            <span>Olemasoleva pakkumise muutmiseks vajuta administraatori lehel pakkumiste nimekirjas pakkumisele, mida soovid muuta, ning seejärel avaneb pakkumise muutmise vorm.</span>
+                            <span>Tee vajalikud muudatused ning vajuta nupule "Salvesta".</span>
+                        </p>
+                        <p>
+                            Pakkumise muutmise katkestamiseks vajuta nupule "Loobu".
+                        </p>
+                        <p>
+                            Pakkumise kustutamiseks vajuta nupule "Kustuta".
                         </p>
                     </div>
                 </div>
             </li>
             <li ng-click="question3.state=!question3.state" ng-class="{expand: question3.state}">
-                <h2><strong>3. </strong>Lorem ispum dolor sit a met?</h2>
+                <h2><strong>3. </strong>Proovi lisada pilt nutiseadmest!</h2>
                 <div class="answer">
                     <div class="answer-inner">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sed nulla alias, ex expedita. Sed, nobis! Dicta architecto debitis quibusdam doloribus sunt, necessitatibus aliquid blanditiis quaerat voluptatibus, a, laborum consequuntur!
+                            <span>Mine nutiseadmest restorani administraatori lehele.</span>
+                        </p>
+                        <p>
+                            <span>Pilti saad lisada muutes olemasoelvat pakkumist või uue pakkumise lisamisel.</span>
+                            <span>Vajuta pakkumise lisamise või mutmise vormil pildi väjale ning nutiseadmest avaneb valik, kus saad valida juba tehtud piltide seast või avada pildi tegemiseks kaamera.</span>
+                        </p>
+                        <p>
+                            Nii lihtne see ongi!
+                        </p>
+                        <p>
+                            <strong>Nipp!</strong> Kui teil on pakkumine pikemalt ette teada, saate selle juba varem ära lisada (ka arvutist) ning mugavalt õigel päeval nutiseadmega pildi lisada.
+                        </p>
+
+                    </div>
+                </div>
+            </li>
+            <li ng-click="question4.state=!question4.state" ng-class="{expand: question4.state}">
+                <h2><strong>4. </strong>Kuidas muuta facebook'i mineva postituse teksti?</h2>
+                <div class="answer">
+                    <div class="answer-inner">
+                        <p>
+                            Vajuta administraatori vaates pakkumiste nimekirjas nupule "muuda postitust".
+                            <span>Avanenud tekstiväljas on postituse sissejuhatava teksti vaikeväärtus.</span>
+                        </p>
+                        <p>
+                            <strong>Nipp!</strong> Saate erinevatel tähtpäevadel facebooki fännidele spetsiaalseid tähtpäeva põhiseid tekste kirjutada.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ng-click="question5.state=!question5.state" ng-class="{expand: question5.state}">
+                <h2><strong>5. </strong>Kuidas muuta restorani andmeid?</h2>
+                <div class="answer">
+                    <div class="answer-inner">
+                        <p>
+                            Administraatori lehel vajutades päises hammasratta ikoonile avaneb muuta restorani kontaktandmeid ja infot.
+                            <span>Olles teinud vajalikud muudatused, vajuta nupule "Salvesta" ning andmed ongi muudetud!</span>
+                        </p>
+                        <p>
+                            Andmete muutmise katkestamiseks vajuta uuest hammasratta ikoonile või vajuta nupule "Loobu".
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ng-click="question6.state=!question6.state" ng-class="{expand: question6.state}">
+                <h2><strong>6. </strong>Soovid hallata mitut restorani?</h2>
+                <div class="answer">
+                    <div class="answer-inner">
+                        <p>
+                            Restorani lisamiseks vajuta administraatori vaate päieses restorani nimele ning rippmenüüst vajuta nupule "Lisa uus".
+                        </p>
+                        <p>
+                            Sellest samast menüüst saad hiljem restorane vahetada.
                         </p>
                     </div>
                 </div>

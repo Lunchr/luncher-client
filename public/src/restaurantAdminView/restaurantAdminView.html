@@ -1,4 +1,4 @@
-<header>
+<header class="admin-header">
     <div class="container">
         <p class="left">
             <a href="javascript:undefined" ng-click="vm.state.restaurantSelectionDropdown=!vm.state.restaurantSelectionDropdown" ng-class="{active: vm.state.restaurantSelectionDropdown}" class="icon icon-22">
@@ -118,6 +118,9 @@
                     </div>
                 </div>
                 <p class="buttons">
+                    <a class="btn btn-secondary" href="javascript:undefined" ng-click="settings.state = !settings.state">
+                        Loobu
+                    </a>
                     <input class="btn" type="submit" value="Salvesta">
                 </p>
             </form>
@@ -139,7 +142,7 @@
                         <p class="additional">{{dateOffers.date | date:'justDate'}}</p>
                         <p class="action">
                             <a class="icon icon-17" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = !dateOffers.state.fbMessage">
-                                muuda postituse teksti
+                                muuda postitust
                             </a>
                         </p>
                         <div ng-show="dateOffers.state.fbMessage">
@@ -178,7 +181,8 @@
         <div class="container">
             <ul>
                 <li><a href="mailto:info@luncher.ee">info@luncher.ee</a></li>
-                <li><a href="javascript:undefined">+372 5623 1163</a></li>
+                <li><a href="javascript:undefined">+372 5624 1163</a></li>
+                <li><a href="/#/faq"><strong>Abi</strong></a></li>
             </ul>
         </div>
     </div>
