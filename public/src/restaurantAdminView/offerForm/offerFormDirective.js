@@ -15,8 +15,8 @@
     }
   ]);
 
-  module.directive('offerForm', ['$resource', 'filterFilter', 'dateFilter',
-    function($resource, filterFilter, dateFilter) {
+  module.directive('offerForm', ['$resource', 'filterFilter',
+    function($resource, filterFilter) {
       return {
         scope: {
           offerToEdit: '=edit',
@@ -43,7 +43,8 @@
               $scope.ingredients = offer.ingredients;
               $scope.tags = offer.tags;
               $scope.price = offer.price;
-              $scope.date = dateFilter(new Date(offer.from_time), 'justDate');
+              $scope.date = new Date(offer.from_time);
+              $scope.date.setHours(0, 0, 0, 0);
               $scope.fromTime = new Date(offer.from_time);
               $scope.fromTime.setFullYear(1970);
               $scope.fromTime.setMonth(0);
