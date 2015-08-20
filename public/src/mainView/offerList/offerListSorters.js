@@ -42,7 +42,7 @@
           if ($scope.orderBy === 'restaurant.distance') {
             offerSourceService.subscribeToChanges($scope, function(offerSource) {
               if (offerSource.location) {
-                $isAscending = INITIAL_IS_ASCENDING_STATE;
+                $scope.isAscending = INITIAL_IS_ASCENDING_STATE;
                 updateOrderState();
               }
             });
