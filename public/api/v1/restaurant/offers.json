@@ -1,7 +1,7 @@
 [{
   "_id": "5",
   "restaurant": {
-    "name": "La Dolche Vita"
+    "name": "La Dolce Vita"
   },
   "title": "Lambaliha & parmesaniga pasta",
   "from_time": "2016-11-11T09:00:00.000Z",
@@ -16,7 +16,7 @@
 }, {
   "_id": "6",
   "restaurant": {
-    "name": "La Dolche Vita"
+    "name": "La Dolce Vita"
   },
   "title": "Salaami & ananassi pizza",
   "from_time": "2016-11-11T09:00:00.000Z",
@@ -31,7 +31,7 @@
 }, {
   "_id": "7",
   "restaurant": {
-    "name": "La Dolche Vita"
+    "name": "La Dolce Vita"
   },
   "title": "Salaami & ananassi pizza",
   "from_time": "2016-11-12T09:00:00.000Z",
@@ -46,7 +46,7 @@
 }, {
   "_id": "8",
   "restaurant": {
-    "name": "La Dolche Vita"
+    "name": "La Dolce Vita"
   },
   "title": "Salaami & ananassi pizza",
   "from_time": "2016-11-12T09:00:00.000Z",
@@ -61,7 +61,7 @@
 }, {
   "_id": "9",
   "restaurant": {
-    "name": "La Dolche Vita"
+    "name": "La Dolce Vita"
   },
   "title": "Salaami & ananassi pizza",
   "from_time": "2016-11-13T09:00:00.000Z",

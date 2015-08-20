@@ -24,7 +24,7 @@ header {
         span {
             display: block;
             height: 46px;
-            padding: 14px 14px 14px 36px;
+            padding: 14px 16px 14px 36px;
             box-sizing: border-box;
         }
         &:before {

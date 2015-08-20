@@ -328,8 +328,12 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
         padding-left: 40px;
         &:before {
             position: absolute;
-            left: 12px;
+            left: 10px;
             top: 9px;
+        }
+        .dropdown & {
+            padding-left: 34px;
+            padding-right: 14px;
         }
     }
     &:disabled {
@@ -379,6 +383,10 @@ input[type=radio] {
             border-radius: 50%;
             border: 1px solid #ccc;
             background-color: #fff;
+        }
+        .dropdown & {
+            padding-left: 36px;
+            padding-right: 16px;
         }
     }
     &:disabled + label {
