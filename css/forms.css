@@ -540,29 +540,37 @@ datepicker {
     }
 }
 ._720kb-datepicker-calendar-header-left {
+    position: absolute;
+    right: left;
+    width: 42px;
+    z-index: 10;
     .datepicker-default-button {
         -webkit-transform: rotate(90deg);
         -ms-transform: rotate(90deg);
         transform: rotate(90deg);
         &:before {
-            top: 13px;
-            left: 13px;
+            top: 11px;
+            left: 11px;
         }
     }
 }
 ._720kb-datepicker-calendar-header-right {
+    position: absolute;
+    right: 0;
+    width: 42px;
+    z-index: 10;
     .datepicker-default-button {
         -webkit-transform: rotate(-90deg);
         -ms-transform: rotate(-90deg);
         transform: rotate(-90deg);
         &:before {
             top: 11px;
-            left: 13px;
+            left: 11px;
         }
     }
 }
 ._720kb-datepicker-calendar-header-middle {
-    width: 70%;
+    width: 100%;
     cursor: default;
     a {
         cursor: default;
