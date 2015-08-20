@@ -53,17 +53,32 @@
 
     /* offers */
     .offers-group {
-        .col-1,
+        padding-bottom: 5px;
+        .col-1 {
+            padding-bottom: 3px;
+            width: 100%
+        }
         .col-2 {
             width: 100%
         }
+        p.price {
+            top: 3px;
+            font-size: 13px;
+        }
+        .thumbnail {
+            height: 19px;
+            top: 3px;
+        }
     }
     .offer {
-        padding-left: 45px;
+        padding: 3px 11px 3px 45px;
         .image {
             width: 100%;
             border-radius: 0;
             margin-left: -45px
+        }
+        h3 {
+            font-size: 13px;
         }
     }
     .offer-content {
@@ -79,24 +94,29 @@
     }
     .expand {
         .secondary {
-            height: 248px;
+            height: 267px;
             margin-bottom: -11px;
+        }
+        &.offer {
+            .secondary {
+                height: 28px;
+            }
         }
         &.hasinfo {
             .secondary {
-                height: 29px;
+                height: 48px;
             }
         }
         &.hasimage {
             .secondary {
-                height: 310px;
+                height: 329px;
             }
             .image {
                 height: 300px;
             }
             &.hasinfo {
                 .secondary {
-                    height: 329px;
+                    height: 348px;
                 }
             }
         }
