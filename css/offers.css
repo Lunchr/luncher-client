@@ -270,7 +270,7 @@
         cursor: default;
         padding-left: 15px;
         margin-right: -1px;
-        border-right: 1px solid #f0f0f0;
+        border-right: 1px solid #e4e4e4;
         &:hover {
             background: transparent;
         }
@@ -293,8 +293,8 @@
         width: 75%;
     }
     .offer {
-        border-left: 1px solid #f0f0f0;
-        border-bottom: 1px solid #f0f0f0;
+        border-left: 1px solid #e4e4e4;
+        border-bottom: 1px solid #e4e4e4;
         &:last-child {
             border-bottom: 0;
         }
