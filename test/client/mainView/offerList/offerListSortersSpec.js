@@ -52,12 +52,9 @@ describe('OfferList sorters', function() {
         expect(element.find('span[ng-transclude=""]').children().html()).toBe('4');
       });
 
-      it('should have asc/desc state on scope', function() {
-        expect(scope.isAscending).toBeDefined();
-      });
-
-      it('should have default asc state of false', function() {
-        expect(scope.isAscending).toBe(false);
+      it('should have default asc state of true after a click', function() {
+        clickSorter();
+        expect(scope.isAscending).toBe(true);
       });
 
       it('should hide asc state from parent scope', function() {
