@@ -18,31 +18,23 @@
 
   module.directive('offersSorter', ['offerOrderStateService', 'offerSourceService',
     function(offerOrderStateService, offerSourceService) {
+      var INITIAL_IS_ASCENDING_STATE = true;
       return {
         scope: {
           orderBy: '@',
           isNumeric: '@'
         },
         controller: function($scope, $element, $attrs, $transclude) {
-          $scope.isAscending = false;
-          var loopCheck = true;
           $scope.clicked = function() {
-              if ($scope.isAscending === true) {
-                $scope.isAscending = !$scope.isAscending;
-                updateOrderState();
-              } else {
-                  if (loopCheck === $scope.isAscending) {
-                      loopCheck = true;
-                      offerOrderStateService.update({
-                        orderBy: null,
-                        isAscending: $scope.isAscending,
-                      });
-                  } else {
-                    loopCheck = $scope.isAscending;
-                    $scope.isAscending = !$scope.isAscending;
-                    updateOrderState();
-                  }
-              }
+            if (!$scope.isActive()) {
+              $scope.isAscending = INITIAL_IS_ASCENDING_STATE;
+              updateOrderState();
+            } else if ($scope.isAscending === INITIAL_IS_ASCENDING_STATE) {
+              $scope.isAscending = !$scope.isAscending;
+              updateOrderState();
+            } else {
+              clearOrderState();
+            }
           };
           $scope.isActive = function() {
             return $scope.orderBy === offerOrderStateService.getCurrent().orderBy;
@@ -50,8 +42,7 @@
           if ($scope.orderBy === 'restaurant.distance') {
             offerSourceService.subscribeToChanges($scope, function(offerSource) {
               if (offerSource.location) {
-                $scope.isAscending = true;
-                loopCheck = false;
+                $isAscending = INITIAL_IS_ASCENDING_STATE;
                 updateOrderState();
               }
             });
@@ -60,6 +51,11 @@
             offerOrderStateService.update({
               orderBy: $scope.orderBy,
               isAscending: $scope.isAscending,
+            });
+          }
+          function clearOrderState() {
+            offerOrderStateService.update({
+              orderBy: null,
             });
           }
         },
