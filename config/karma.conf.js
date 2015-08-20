@@ -19,6 +19,7 @@ module.exports = function(config) {
       'public/lib/angular-i18n/angular-locale_et-ee.js',
       'public/lib/ng-*/ng-*.js',
       'public/lib/ng-*/dist/ng-*.js',
+      'public/lib/angularjs-*/dist/angular*.js',
       'public/src/**/*.js',
       'public/src/**/*.html',
       'test/client/**/*.js',
@@ -27,7 +28,6 @@ module.exports = function(config) {
     // list of files to exclude
     exclude: [
       'public/lib/angular-loader/*',
-      'public/lib/**/*.min.js',
       'public/lib/angular-scenario/*',
       '**/*.tmp'
     ],

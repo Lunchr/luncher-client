@@ -4,6 +4,7 @@
     'ngTagsInput',
     'ngResource',
     'ngImageInputWithPreview',
+    '720kb.datepicker',
   ]);
 
   module.config(['tagsInputConfigProvider',
@@ -14,8 +15,8 @@
     }
   ]);
 
-  module.directive('offerForm', ['$resource', 'filterFilter',
-    function($resource, filterFilter) {
+  module.directive('offerForm', ['$resource', 'filterFilter', 'dateFilter',
+    function($resource, filterFilter, dateFilter) {
       return {
         scope: {
           offerToEdit: '=edit',
@@ -42,8 +43,7 @@
               $scope.ingredients = offer.ingredients;
               $scope.tags = offer.tags;
               $scope.price = offer.price;
-              $scope.date = new Date(offer.from_time);
-              $scope.date.setHours(0, 0, 0, 0);
+              $scope.date = dateFilter(new Date(offer.from_time), 'justDate');
               $scope.fromTime = new Date(offer.from_time);
               $scope.fromTime.setFullYear(1970);
               $scope.fromTime.setMonth(0);
@@ -69,12 +69,16 @@
             else
               return 'new-offer-';
           })();
-          $scope.today = (function() {
-            var now = new Date();
+          function dateToDateString(date) {
             // this is basically when the clock in UTC will show what it shows here now
-            var currentTimeInUTC = new Date(now.getTime() - now.getTimezoneOffset() * 60 * 1000);
+            var timeInUTC = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
             // because the toISOString method uses UTC but we want the date in the current timezone
-            return currentTimeInUTC.toISOString().split('T')[0];
+            return timeInUTC.toISOString().split('T')[0];
+          }
+          $scope.yesterday = (function() {
+            var yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            return dateToDateString(yesterday);
           })();
           $scope.isReadyForError = function() {
             for (var i = 0; i < arguments.length; i++) {
@@ -85,6 +89,8 @@
             return false;
           };
           $scope.submitOffer = function() {
+            var date = new Date($scope.date);
+            date.setHours(0, 0, 0, 0);
             var offer = {
               title: $scope.title,
               ingredients: $scope.ingredients.map(function(ingredient) {
@@ -95,8 +101,8 @@
               }),
               price: $scope.price,
               // both getTime()s return the time with added timezone offset, so one offset has to be subtracted
-              from_time: new Date($scope.date.getTime() + $scope.fromTime.getTime() - $scope.fromTime.getTimezoneOffset() * 60 * 1000),
-              to_time: new Date($scope.date.getTime() + $scope.toTime.getTime() - $scope.toTime.getTimezoneOffset() * 60 * 1000),
+              from_time: new Date(date.getTime() + $scope.fromTime.getTime() - $scope.fromTime.getTimezoneOffset() * 60 * 1000),
+              to_time: new Date(date.getTime() + $scope.toTime.getTime() - $scope.toTime.getTimezoneOffset() * 60 * 1000),
             };
             if ($scope.image && !$scope.image.isPath) {
               offer.image_data = $scope.image.src;

@@ -33,12 +33,12 @@ describe('Offer Form', function() {
         expect(compiled.scope.allTags.length).toBe(5);
       }));
 
-      it('should have a date string representing today', function() {
+      it('should have a date string representing yesterday', function() {
         var now = new Date();
-        var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
 
-        var todayInUTC = Date.parse($scope.today);
-        expect(todayInUTC).toEqual(today.getTime() - today.getTimezoneOffset() * 60 * 1000);
+        var yesterdayInUTC = Date.parse($scope.yesterday);
+        expect(yesterdayInUTC).toEqual(yesterday.getTime() - yesterday.getTimezoneOffset() * 60 * 1000);
       });
 
       it('should have a new offer ID prefix', function() {

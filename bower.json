@@ -26,7 +26,8 @@
     "ng-image-input-with-preview": "~0.0.6",
     "angular-cookie": "~4.0.6",
     "ng-geolocator": "~1.0.1",
-    "angular-cookies": "~1.4.0"
+    "angular-cookies": "~1.4.0",
+    "angularjs-datepicker": "~0.2.8"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0",
