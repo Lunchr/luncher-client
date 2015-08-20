@@ -16,7 +16,7 @@
     display: inline-block;
     width: 100%;
     margin: -2px 0;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #e4e4e4;
     box-sizing: border-box;
     &:first-of-type {
         margin-top: 0;
