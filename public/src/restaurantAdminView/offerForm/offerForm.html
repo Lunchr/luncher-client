@@ -90,7 +90,10 @@
       <div class="row">
         <div class="col-xs-3">
           <p>
-            <input ng-class="{filled: date}" placeholder="dd/mm/yyyy" ng-model="date" name="date" id="{{idPrefix}}date" type="date" min="{{today}}" required>
+            <!-- NB: The date-format must be something parsable by new Date() so be careful when changing it -->
+            <datepicker date-min-limit="{{yesterday}}" date-format="justDate">
+              <input ng-model="date" name="date" type="text" id="{{idPrefix}}date" required>
+            </datepicker>
             <label ng-class="{filled: date}" for="{{idPrefix}}date">
               <span ng-show="!isReadyForError(form.date)">
                 Kuupäev
