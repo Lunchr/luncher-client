@@ -137,12 +137,25 @@
     .admin-offers {
         .offer {
             padding-left: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-left: none;
         }
         .col-1 {
             width: 30%;
+            border-right: none;
+            padding-bottom: 11px;
         }
         .col-2 {
             width: 70%;
+        }
+        .icon-wrap {
+            .icon {
+                padding: 12px 13px;
+            }
+        }
+        p.price {
+            padding-top: 10px;
         }
     }
 

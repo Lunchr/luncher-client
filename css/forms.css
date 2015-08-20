@@ -323,6 +323,10 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
         &:hover {
             color: $color-a;
         }
+        + .btn-secondary {
+            margin-left: -9px;
+            padding-left: 9px;
+        }
     }
     &.icon {
         padding-left: 40px;
