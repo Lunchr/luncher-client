@@ -185,6 +185,36 @@
                 }
             }
         }
+        .autocomplete {
+            margin-top: 22px;
+            position: absolute;
+            top: 4px;
+            left: 100px;
+            padding: 0;
+            width: auto;
+            z-index: 999;
+            width: auto;
+            background-color: white;
+            border: none;
+            border-radius: 0 0 2px 2px;
+            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            .suggestion-item {
+                padding: 3px 10px 5px;
+                font: $font;
+                &.selected {
+                    background: $color;
+                    em {
+                        background: $color;
+                    }
+                }
+                em {
+                    font: $font;
+                    font-weight: bold;
+                }
+            }
+        }
     }
 }
 
