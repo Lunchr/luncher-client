@@ -25,24 +25,9 @@
         },
         controller: function($scope, $element, $attrs, $transclude) {
           $scope.isAscending = false;
-          var loopCheck = true;
           $scope.clicked = function() {
-              if ($scope.isAscending === true) {
-                $scope.isAscending = !$scope.isAscending;
-                updateOrderState();
-              } else {
-                  if (loopCheck === $scope.isAscending) {
-                      loopCheck = true;
-                      offerOrderStateService.update({
-                        orderBy: null,
-                        isAscending: $scope.isAscending,
-                      });
-                  } else {
-                    loopCheck = $scope.isAscending;
-                    $scope.isAscending = !$scope.isAscending;
-                    updateOrderState();
-                  }
-              }
+            $scope.isAscending = !$scope.isAscending;
+            updateOrderState();
           };
           $scope.isActive = function() {
             return $scope.orderBy === offerOrderStateService.getCurrent().orderBy;
@@ -51,7 +36,6 @@
             offerSourceService.subscribeToChanges($scope, function(offerSource) {
               if (offerSource.location) {
                 $scope.isAscending = true;
-                loopCheck = false;
                 updateOrderState();
               }
             });
