@@ -124,6 +124,7 @@
         width: 27px;
         background-size: cover;
         background-position: 50%;
+        opacity: .2;
         transition: .2s;
     }
 }
@@ -133,9 +134,17 @@
     padding-left: 47px;
     cursor: pointer;
     box-sizing: border-box;
-    &:hover,
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.02);
+        .thumbnail {
+            opacity: 1;
+        }
+    }
     &.expand {
         background-color: rgba(0, 0, 0, 0.02);
+        .thumbnail {
+            opacity: 0;
+        }
     }
     .icon-15:hover:before {
         content: "r";
@@ -230,9 +239,6 @@
         .secondary {
             height: 229px;
         }
-    }
-    .thumbnail {
-        opacity: 0;
     }
 }
 
