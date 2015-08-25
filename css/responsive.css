@@ -102,11 +102,15 @@
     .expand {
         .secondary {
             height: 267px;
-            margin-bottom: -11px;
         }
         &.offer {
             .secondary {
                 height: 28px;
+            }
+            &:last-child {
+                .secondary {
+                    margin-bottom: -11px;
+                }
             }
         }
         &.hasinfo {
