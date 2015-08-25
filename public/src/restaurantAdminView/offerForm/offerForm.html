@@ -9,13 +9,13 @@
           </span>
           <span ng-show="isReadyForError(form.title)" class="errors">
             <span ng-show="form.title.$error.required">
-              Nimetus on kohustuslik.
+              <strong>Nimetus</strong> on kohustuslik.
             </span>
             <span ng-show="form.title.$error.minlength">
-              Nimetus peab olema vähemalt 4 tähte.
+              <strong>Nimetus</strong> peab olema vähemalt 4 tähte.
             </span>
             <span ng-show="form.title.$error.maxlength">
-              Nimetus võib olla kuni {{::titleMaxLength}} tähte. ({{titleMaxLength-form.title.$viewValue.length}})
+              <strong>Nimetus</strong> võib olla kuni {{::titleMaxLength}} tähte. ({{titleMaxLength-form.title.$viewValue.length}})
             </span>
           </span>
         </label>
@@ -32,13 +32,13 @@
             </span>
             <span ng-show="isReadyForError(form.ingredients) || form.ingredients.$touched && form.ingredients.$error.leftoverText" class="errors">
               <span ng-show="form.ingredients.$error.leftoverText">
-                Viimane koostisosa ei ole sobiv.
+                Viimane <strong>koostisosa</strong> ei ole sobiv.
               </span>
               <span ng-show="!ingredients.length && !form.ingredients.$error.leftoverText">
-                Koostisosad on kohustuslikud.
+                <strong>Koostisosad</strong> on kohustuslikud.
               </span>
               <span ng-show="form.ingredients.$error.minTags && ingredients.length">
-                Pakkumine peab sisaldama vähemalt 2 koostisosa.
+                <strong>Koostisosasi</strong> peab olema vähemalt 2.
               </span>
             </span>
           </label>
@@ -56,13 +56,13 @@
             </span>
             <span ng-show="isReadyForError(form.tags) || form.tags.$touched && form.tags.$error.leftoverText" class="errors">
               <span ng-show="form.tags.$error.leftoverText">
-                Märksõna peab kuuluma ette pakutud hulka.
+                <strong>Märksõnad</strong> peavad kuuluma ette pakutute hulka.
               </span>
               <span ng-show="!tags.length && !form.tags.$error.leftoverText">
-                Märksõnad on kohustuslikud.
+                <strong>Märksõnad</strong> on kohustuslikud.
               </span>
               <span ng-show="form.tags.$error.minTags && tags.length">
-                Märksõnasi peab olema vähemalt 1.
+                <strong>Märksõnu</strong> peab olema vähemalt 1.
               </span>
             </span>
           </label>
@@ -76,13 +76,13 @@
           </span>
           <span ng-show="isReadyForError(form.price)" class="errors">
             <span ng-show="form.price.$error.required">
-              Hind on kohustuslik.
+              <strong>Hind</strong> on kohustuslik.
             </span>
             <span ng-show="form.price.$error.min">
-              Hind ei tohi olla negatiivne.
+              <strong>Hind</strong> ei tohi olla negatiivne.
             </span>
             <span ng-show="form.price.$error.number">
-              Hind peab olema korrektne number.
+              <strong>Hind</strong> peab olema korrektne number.
             </span>
           </span>
         </label>
@@ -100,13 +100,13 @@
               </span>
               <span ng-show="isReadyForError(form.date)" class="errors">
                 <span ng-show="form.date.$error.required">
-                  Kuupäev on kohustuslik.
+                  <strong>Kuupäev</strong> on kohustuslik.
                 </span>
                 <span ng-show="form.date.$error.date">
-                  Kuupäev on vigane.
+                  <strong>Kuupäev</strong> on vigane.
                 </span>
                 <span ng-show="form.date.$error.min">
-                  Kuupäev ei tohi olla minevikus.
+                  <strong>Kuupäev</strong> ei tohi olla minevikus.
                 </span>
               </span>
             </label>
@@ -123,13 +123,13 @@
                   </span>
                   <span ng-show="isReadyForError(form.fromTime, form.toTime)" class="errors">
                     <span ng-show="form.fromTime.$error.required || form.toTime.$error.required" ng-hide="form.fromTime.$error.time || form.toTime.$error.time">
-                      Kellaajad on kohustuslikud.
+                      <strong>Kellaaeg</strong> on kohustuslik.
                     </span>
                     <span ng-show="form.fromTime.$error.time || form.toTime.$error.time">
-                      Kellaajad peavad olema formaadis hh:mm
+                      <strong>Kellaaeg</strong> peab olema formaadis hh:mm
                     </span>
                     <span ng-show="form.toTime.$error.min">
-                      Algusaeg peab olema enne lõpuaega.
+                      <strong>Algusaeg</strong> peab olema enne lõpuaega.
                     </span>
                   </span>
                 </label>
@@ -156,10 +156,10 @@
           </span>
           <span ng-show="isReadyForError(form.image)" class="errors">
             <span ng-show="form.image.$error.image">
-              Pilt peab olema PNG või JPEG formaadis.
+              <strong>Pilt</strong> peab olema PNG või JPEG formaadis.
             </span>
             <span ng-show="form.image.$error.dimensions">
-              Pilt peab olema landscape formaadis ning kõrgusega vähemalt 400.
+              <strong>Pilt</strong> peab olema landscape formaadis ning kõrgusega vähemalt 400.
             </span>
           </span>
         </label>
