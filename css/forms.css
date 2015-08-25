@@ -661,3 +661,9 @@ datepicker {
 ._720kb-datepicker-calendar-years-pagination-pages {
     display: none;
 }
+._720kb-datepicker-calendar-header.ng-hide {
+    display: block !important;
+}
+._720kb-datepicker-calendar-header select {
+    display: none !important;
+}
