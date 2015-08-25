@@ -11,7 +11,7 @@
       ngGeolocatorProvider.setGoogleMapsAPIKey(googleMapsAPIKey);
       ngGeolocatorProvider.extendLocatorMarkerOptions({
         icon: {
-          // url: '/img/geolocator-pointer.svg', - removed becaose of issues in firefox & IE
+          url: '/img/geolocator-pointer.svg',
         },
       });
       ngGeolocatorProvider.extendStaticMarkerOptions({
