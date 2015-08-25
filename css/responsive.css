@@ -158,6 +158,11 @@
             padding-top: 10px;
         }
     }
+    .sorter {
+        &.price-sorter {
+            width: 50px;
+        }
+    }
 
     /* desktop only */
     .desktop {
