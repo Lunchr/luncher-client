@@ -131,12 +131,12 @@
                 <a href="javascript:undefined" ng-click="addingAnOffer=true"><span class="icon-4"></span>Lisa uus pakkumine</a>
             </p>
         </div>
-        <div ng-controller="RestaurantOfferListCtrl as vm">
-            <div class="offers admin-offers" ng-repeat="dateOffers in vm.offersByDate">
+        <div ng-controller="RestaurantOfferListCtrl as offerListCtrl">
+            <div class="offers admin-offers" ng-repeat="dateOffers in offerListCtrl.offersByDate">
                 <div class="offers-group">
                     <div class="col-1">
                         <h3>
-                            <span ng-if="vm.isToday(dateOffers.date)"><strong>Täna</strong>, </span>
+                            <span ng-if="offerListCtrl.isToday(dateOffers.date)"><strong>Täna</strong>, </span>
                             <span class="date">{{dateOffers.date | date:'EEEE'}}</span>
                         </h3>
                         <p class="additional">{{dateOffers.date | date:'justDate'}}</p>
@@ -159,8 +159,8 @@
                     </div>
                     <div class="col-2">
                         <div class="offer" ng-class="{edit: offer.editing}" ng-repeat="offer in dateOffers.offers">
-                            <offer-form ng-show="offer.editing" edit="offer" on-submit="vm.updateOffer($currentOffer, $offer); $offer.editing=false"
-                                on-cancel="offer.editing=false" on-delete="vm.deleteOffer(offer)"></offer-form>
+                            <offer-form ng-show="offer.editing" edit="offer" on-submit="offerListCtrl.updateOffer($currentOffer, $offer); $offer.editing=false"
+                                on-cancel="offer.editing=false" on-delete="offerListCtrl.deleteOffer(offer)"></offer-form>
                             <div ng-show="!offer.editing">
                                 <p class="icon-wrap edit-btn">
                                     <a href="javascript:undefined" ng-click="offer.editing=true" class="icon icon-15"></a>
