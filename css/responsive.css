@@ -211,18 +211,6 @@
             }
         }
     }
-    .expand {
-        &.hasimage {
-            .secondary {
-                height: 260px;
-            }
-            &.hasinfo {
-                .secondary {
-                    height: 279px;
-                }
-            }
-        }
-    }
     .dropdown {
         width: 100%;
         left: 0;
@@ -244,18 +232,6 @@
     .offer {
         .image {
             height: 200px;
-        }
-    }
-    .expand {
-        &.hasimage {
-            .secondary {
-                height: 210px;
-            }
-            &.hasinfo {
-                .secondary {
-                    height: 229px;
-                }
-            }
         }
     }
 }

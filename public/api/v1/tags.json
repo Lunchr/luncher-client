@@ -17,6 +17,9 @@
   "name": "pizza",
   "display_name": "Pizza"
 }, {
+  "name": "pasta",
+  "display_name": "Pasta"
+}, {
   "name": "praad",
   "display_name": "Praad"
 }, {

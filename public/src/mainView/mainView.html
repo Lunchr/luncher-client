@@ -70,9 +70,17 @@
                                     </span>
                                 </a>
                             </p>
-                            <form class="dropdown">
+                            <form class="dropdown desktop">
                               <ul>
                                   <li ng-repeat="tag in tags.list | filter:tags.isNotMainTag">
+                                      <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
+                                      <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
+                                  </li>
+                              </ul>
+                            </form>
+                            <form class="dropdown mobile">
+                              <ul>
+                                  <li ng-repeat="tag in tags.list">
                                       <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
                                       <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
                                   </li>

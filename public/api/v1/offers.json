@@ -2,44 +2,686 @@
   "_id": "1",
   "restaurant": {
     "name": "Asian Chef",
-    "address": "Kompanii 10, Tartu",
+    "address": "Võru 2, Tartu",
     "location": {
       "type": "Point",
       "coordinates": [26.722691, 58.380094]
     },
-    "distance": 1234.123456,
+    "distance": 2804.123456,
     "phone": "+372 5678 910"
   },
-  "title": "Pekingi kana",
+  "title": "Hiina menüü - Chicken eggplant",
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 3.4,
-  "ingredients": ["Kana", "aedviljad", "tsillikaste"],
-  "tags": ["praad", "kana"],
-  "image": {
-	"large": "mock-images/meatmarket.jpg",
-	"thumbnail": "mock-images/meatmarket.jpg"
-  }
+  "ingredients": ["kana", "baklazaan"],
+  "tags": ["lind", "praad"]
 }, {
   "_id": "2",
   "restaurant": {
-    "name": "Bulgarian Dude",
+    "name": "Pahad Poisid",
+    "address": "Küüni 2, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 700.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Suvikõrvitsa ja mozzarella kattega kanafilee friikartulitega",
+  "from_time": "2014-11-10T09:00:00.000Z",
+  "to_time": "2014-11-10T12:00:00.000Z",
+  "price": 3.3,
+  "ingredients": ["Suvikõrvits", "mozzarella", "kanafilee", "friikartulid", "külm kaste"],
+  "tags": ["siga", "praad"],
+  "image": {
+  "large": "mock-images/pahadpoisid.jpg",
+  "thumbnail": "mock-images/pahadpoisid.jpg"
+  }
+}, {
+  "_id": "3",
+  "restaurant": {
+    "name": "Hot pot",
+    "address": "Küütri 6, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 439.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Wonton Chicken soup",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 2.5,
+  "ingredients": ["kana", "supp"],
+  "tags": ["supp", "lind"]
+}, {
+  "_id": "4",
+  "restaurant": {
+    "name": "Hot pot",
+    "address": "Küütri 6, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 439.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "India menüü - Murgh malai methi",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "ingredients": ["kana", "mahe india kaste"],
+  "tags": ["praad", "lind"]
+}, {
+  "_id": "5",
+  "restaurant": {
+    "name": "Hot pot",
+    "address": "Küütri 6, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 439.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Hiina menüü - Chicken eggplant",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3.5,
+  "ingredients": ["vürtsikas kana", "baklazaan"],
+  "tags": ["praad", "lind"]
+}, {
+  "_id": "6",
+  "restaurant": {
+    "name": "Hot pot",
+    "address": "Küütri 6, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 439.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Tai menüü - Red curry pork",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "ingredients": ["sealiha", "kookospiim", "seened", "bambusevõrsed"],
+  "tags": ["praad", "siga"]
+}, {
+  "_id": "7",
+  "restaurant": {
+    "name": "La Dolche Vita",
     "address": "Kompanii 10, Tartu",
     "location": {
       "type": "Point",
       "coordinates": [26.722691, 58.380094]
     },
-    "distance": 125.123456,
+    "distance": 4.123456,
     "phone": "+372 5678 910"
   },
-  "title": "Magushapu seafilee",
-  "from_time": "2014-11-10T09:00:00.000Z",
-  "to_time": "2014-11-10T12:00:00.000Z",
-  "price": 3.3,
-  "ingredients": ["Seafilee", "aedviljad", "mahushapu kaste"],
-  "tags": ["praad", "siga"],
+  "title": "Pitsa",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "ingredients": ["Sink", "ananass"],
+  "tags": ["praad","pizza"]
+}, {
+  "_id": "8",
+  "restaurant": {
+    "name": "La Dolche Vita",
+    "address": "Kompanii 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 4.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Pasta",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "ingredients": ["Paprika", "sink", "juust", "viin"],
+  "tags": ["praad","pasta"]
+}, {
+  "_id": "9",
+  "restaurant": {
+    "name": "Truffe",
+    "address": "Raekoja plats 16, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 504.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Veise röstbeef ahjukartuli ja värske salatiga",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 4.7,
+  "ingredients": ["veiseliha", "kartul", "värske salat"],
+  "tags": ["praad","veis"]
+}, {
+  "_id": "10",
+  "restaurant": {
+    "name": "Sheriff Saloon",
+    "address": "Gildi 7, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 14.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Koriandrikana värske tilli-hernekreemi-ja toorjuustu kastmega ",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 4.5,
+  "ingredients": ["kana", "koriander", "till", "herned", "toorjuust"],
+  "tags": ["praad","veis"]
+}, {
+  "_id": "11",
+  "restaurant": {
+    "name": "Sheriff Saloon",
+    "address": "Gildi 7, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 14.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Sheriff burger",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 5,
+  "ingredients": ["pihv", "sai", "salat", "kaste"],
+  "tags": ["praad"]
+}, {
+  "_id": "12",
+  "restaurant": {
+    "name": "Sheriff Saloon",
+    "address": "Gildi 7, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 14.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "KAMPAANIA - Peacemaker burger",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 7,
+  "ingredients": ["2x pihv", "friikartulid", "kaste"],
+  "tags": ["praad"]
+}, {
+  "_id": "13",
+  "restaurant": {
+    "name": "Sheriff Saloon",
+    "address": "Gildi 7, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 14.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Salatibuffee",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 4,
+  "ingredients": ["salat"],
+  "tags": ["praad"]
+}, {
+  "_id": "14",
+  "restaurant": {
+    "name": "Rabarber",
+    "address": "Karl Ernst von Baeri 6, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 1494.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Lillkapsasupp",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3,
+  "ingredients": ["lillkapsasupp", "sai", "leib", "maitsevõi", "vesi"],
+  "tags": ["supp"]
+}, {
+  "_id": "15",
+  "restaurant": {
+    "name": "Rabarber",
+    "address": "Karl Ernst von Baeri 6, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 1494.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Kikerherne supp",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3,
+  "ingredients": ["kikerherne supp", "sai", "leib", "maitsevõi", "vesi"],
+  "tags": ["supp"]
+}, {
+  "_id": "16",
+  "restaurant": {
+    "name": "Rabarber",
+    "address": "Karl Ernst von Baeri 6, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 1494.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Pratud lest, aurutatud riis, aurutatud aedviljad",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 5,
+  "ingredients": ["lest", "riis", "aedviljad", "kapsasalat", "sai", "leib", "maitsevõi", "vesi"],
+  "tags": ["praad", "kala"]
+}, {
+  "_id": "17",
+  "restaurant": {
+    "name": "Kapriis",
+    "address": "Raekoja plats 9, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 604.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Kanafilee tomati ja juustuga",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3.9,
+  "ingredients": ["kanafilee", "tomat", "juust"],
+  "tags": ["praad", "lind"]
+}, {
+  "_id": "18",
+  "restaurant": {
+    "name": "Kapriis",
+    "address": "Raekoja plats 9, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 604.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Singi - jalapeno pasta",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3.7,
+  "ingredients": ["sink", "jalapeno", "pasta"],
+  "tags": ["praad", "pasta"]
+}, {
+  "_id": "19",
+  "restaurant": {
+    "name": "Suudlevad tudengid",
+    "address": "Raekoja plats 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 574.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Juustune hakkliha lasanje värske salatiga",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3.95,
+  "ingredients": ["juust", "hakkliha", "lasanje", "värske salat"],
+  "tags": ["praad", "pasta"],
   "image": {
-	"large": "mock-images/meatmarket2.jpg",
-	"thumbnail": "mock-images/meatmarket2.jpg"
+  "large": "mock-images/suudlevad2.jpg",
+  "thumbnail": "mock-images/suudlevad2.jpg"
   }
+}, {
+  "_id": "20",
+  "restaurant": {
+    "name": "Suudlevad tudengid",
+    "address": "Raekoja plats 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 574.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Seene-maasuitsusingi pasta",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3.95,
+  "ingredients": ["seened", "sink", "pasta"],
+  "tags": ["praad", "pasta"]
+}, {
+  "_id": "21",
+  "restaurant": {
+    "name": "Suudlevad tudengid",
+    "address": "Raekoja plats 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 574.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Sinepine heeringas kodujuustu, keedetud muna ja värske salatiga",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3.95,
+  "ingredients": ["sinep", "heeringas", "kodujuust", "muna", "salat"],
+  "tags": ["praad", "kala"],
+  "image": {
+  "large": "mock-images/suudlevad3.jpg",
+  "thumbnail": "mock-images/suudlevad3.jpg"
+  }
+}, {
+  "_id": "22",
+  "restaurant": {
+    "name": "Suudlevad tudengid",
+    "address": "Raekoja plats 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 574.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Porgandi-juurselleri püreesupp röstitud kõrvitsaseemnetega",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 2.5,
+  "ingredients": ["porgand", "juurseller", "kõrvitsaseemned"],
+  "tags": ["supp", "taimetoit"],
+  "image": {
+  "large": "mock-images/suudlevad1.jpg",
+  "thumbnail": "mock-images/suudlevad1.jpg"
+  }
+}, {
+  "_id": "23",
+  "restaurant": {
+    "name": "Suudlevad tudengid",
+    "address": "Raekoja plats 10, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 574.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Jäätis puuviljasalatiga",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 2.5,
+  "ingredients": ["jäätis", "puuviljad"],
+  "tags": ["magustoit"]
+}, {
+  "_id": "24",
+  "restaurant": {
+    "name": "Ülikooli kohvik",
+    "address": "Ülikooli 20, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 434.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Koorene kanapasta suitsujuustuga",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3.5,
+  "ingredients": ["koor", "kana", "pasta", "suitsujuust"],
+  "tags": ["praad", "lind", "pasta"]
+}, {
+  "_id": "25",
+  "restaurant": {
+    "name": "Ülikooli kohvik",
+    "address": "Ülikooli 20, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 434.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Guljaši supp",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 2,
+  "ingredients": ["Guljaš"],
+  "tags": ["supp"]
+}, {
+  "_id": "26",
+  "restaurant": {
+    "name": "Ülikooli kohvik",
+    "address": "Ülikooli 20, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 434.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Rabarberi-maasika kissell toorjuustu kreemiga",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 1.5,
+  "ingredients": ["rabarber", "maasikad", "toorjuust"],
+  "tags": ["magustoit"]
+}, {
+  "_id": "27",
+  "restaurant": {
+    "name": "Polpo",
+    "address": "Rüütli 9, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 84.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Suitsutatud tomati püreesupp",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3,
+  "ingredients": ["suitsutatud tomat"],
+  "tags": ["supp"]
+}, {
+  "_id": "28",
+  "restaurant": {
+    "name": "Polpo",
+    "address": "Rüütli 9, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 84.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Kanašnitsel koorekastme, riisi ja punasekapsa salatiga",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 5.5,
+  "ingredients": ["kana", "koor", "riis", "punanekapsas"],
+  "tags": ["praad", "lind"]
+}, {
+  "_id": "29",
+  "restaurant": {
+    "name": "Big Ben",
+    "address": "Riia 4, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 1674.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Sealiha šnitsel värske kartuliga",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3.3,
+  "ingredients": ["sealiha", "värske kartul", "kaste", "toorsalat"],
+  "tags": ["praad", "siga"]
+}, {
+  "_id": "30",
+  "restaurant": {
+    "name": "Big Ben",
+    "address": "Riia 4, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 1674.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Kana-riisisupp",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 2,
+  "ingredients": ["kana", "riis"],
+  "tags": ["supp", "lind"]
+}, {
+  "_id": "31",
+  "restaurant": {
+    "name": "Ristiisa Pubi",
+    "address": "Küüni 7, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 634.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Paneeritud tursk, kartulipuder ning kapsa-spinatisalat",
+  "from_time": "2014-11-11T09:00:00.000Z",
+  "to_time": "2014-11-11T11:00:00.000Z",
+  "price": 3.3,
+  "ingredients": ["tursk", "kartul", "kapsas", "spinat"],
+  "tags": ["praad", "kala"]
+}, {
+  "_id": "32",
+  "restaurant": {
+    "name": "Asian Chef",
+    "address": "Võru 2, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 2804.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Tai menüü - Massaman curry pork",
+  "from_time": "2014-11-10T09:00:00.000Z",
+  "to_time": "2014-11-10T11:00:00.000Z",
+  "price": 3.95,
+  "ingredients": ["siga", "mahe tai karri"],
+  "tags": ["siga", "praad"]
+}, {
+  "_id": "33",
+  "restaurant": {
+    "name": "Vassilissa",
+    "address": "Kompanii 2, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 134.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Lindströmi kotlet, keedukartuli ja värske salatiga",
+  "from_time": "2014-11-10T09:00:00.000Z",
+  "to_time": "2014-11-10T11:00:00.000Z",
+  "price": 4,
+  "ingredients": ["kotlet", "kartul", "värske salat"],
+  "tags": ["siga", "praad"],
+  "image": {
+  "large": "mock-images/vassilissa.jpg",
+  "thumbnail": "mock-images/vassilissa.jpg"
+  }
+}, {
+  "_id": "34",
+  "restaurant": {
+    "name": "Mandala",
+    "address": "Rüütli 3, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 124.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Kana küüslaugukastmes (Hiina)",
+  "from_time": "2014-11-10T09:00:00.000Z",
+  "to_time": "2014-11-10T11:00:00.000Z",
+  "price": 3.4,
+  "ingredients": ["kana", "küüslaugukaste"],
+  "tags": ["kana", "praad"]
+}, {
+  "_id": "35",
+  "restaurant": {
+    "name": "Mandala",
+    "address": "Rüütli 3, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 124.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Rajma masala oad seentega (Nepal) ",
+  "from_time": "2014-11-10T09:00:00.000Z",
+  "to_time": "2014-11-10T11:00:00.000Z",
+  "price": 3.4,
+  "ingredients": ["oad", "seened"],
+  "tags": ["praad"]
+}, {
+  "_id": "36",
+  "restaurant": {
+    "name": "Mandala",
+    "address": "Rüütli 3, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 124.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "Spinati-munasupp",
+  "from_time": "2014-11-10T09:00:00.000Z",
+  "to_time": "2014-11-10T11:00:00.000Z",
+  "price": 3.4,
+  "ingredients": ["spinat", "muna"],
+  "tags": ["supp"]
+}, {
+  "_id": "37",
+  "restaurant": {
+    "name": "Meatmarket",
+    "address": "Küütri 3, Tartu",
+    "location": {
+      "type": "Point",
+      "coordinates": [26.722691, 58.380094]
+    },
+    "distance": 124.123456,
+    "phone": "+372 5678 910"
+  },
+  "title": "grillitud veise abasteik kartuli-porganitambiga",
+  "from_time": "2014-11-10T09:00:00.000Z",
+  "to_time": "2014-11-10T11:00:00.000Z",
+  "price": 5.9,
+  "ingredients": ["Veise abasteik", "kartul", "porgand", "õrnalt vürtsikas sõstrakaste"],
+  "tags": ["praad", "veis"]
 }]
