@@ -5,7 +5,13 @@
 	  Vabandame, postituse teksti laadimine ebaõnnestus.
 	</span>
   </div>
-  <p><textarea name="message" ng-model="ctrl.post.message_template" required></textarea></p>
+  <p>
+  <textarea name="message" required
+    ng-model="ctrl.post.message_template"
+    ng-disabled="ctrl.error || ctrl.submitPending">
+  <!-- TODO style the textarea when disabled -->
+  </textarea>
+  </p>
   <p class="buttons">
     <a class="btn btn-secondary" href="javascript:undefined" ng-click="ctrl.cancelFunction()">
       Loobu

@@ -39,15 +39,20 @@
             ctrl.post.message_template = ctrl.defaultTemplate;
           });
           ctrl.submit = function() {
+            ctrl.submitPending = true;
             if (!!ctrl.post._id) {
               ctrl.post.$update({}, function success() {
               }, function error(httpResponse) {
                 ctrl.error = httpResponse.data;
+              }).finally(function() {
+                ctrl.submitPending = false;
               });
             } else {
               ctrl.post.$save({}, function success() {
               }, function error(httpResponse) {
                 ctrl.error = httpResponse.data;
+              }).finally(function() {
+                ctrl.submitPending = false;
               });
             }
           };
