@@ -3,5 +3,6 @@
   var mainView = angular.module('restaurantAdminView', [
     'restaurantAdminViewControllers',
     'offerFormDirective',
+    'facebookGroupPostDirective',
   ]);
 })();

@@ -1,4 +1,5 @@
 {
   "name": "La Dolce Vita",
-  "address": "Kompanii 10, Tartu"
+  "address": "Kompanii 10, Tartu",
+  "default_group_post_message_template": "Tänane pizza+pasta on:"
 }

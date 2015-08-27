@@ -1,0 +1,15 @@
+<form name="form" novalidate ng-submit="form.$valid && ctrl.submit()">
+  <!-- TODO properly style the error message here-->
+  <div class="message" ng-show="!!ctrl.error">
+	<span class="icon icon-20">
+	  Vabandame, postituse teksti laadimine ebaõnnestus.
+	</span>
+  </div>
+  <p><textarea name="message" ng-model="ctrl.post.message_template" required></textarea></p>
+  <p class="buttons">
+    <a class="btn btn-secondary" href="javascript:undefined" ng-click="ctrl.cancelFunction()">
+      Loobu
+    </a>
+    <input class="btn" type="submit" value="Salvesta">
+  </p>
+</form>

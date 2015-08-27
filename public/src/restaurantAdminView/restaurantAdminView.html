@@ -141,21 +141,15 @@
                         </h3>
                         <p class="additional">{{dateOffers.date | date:'justDate'}}</p>
                         <p class="action">
-                            <a class="icon icon-17" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = !dateOffers.state.fbMessage">
+                            <a class="icon icon-17" href="javascript:undefined" ng-click="dateOffers.state.fbGroupPost = !dateOffers.state.fbGroupPost">
                                 muuda postitust
                             </a>
                         </p>
-                        <div ng-show="dateOffers.state.fbMessage">
-                            <form>
-                                <p><textarea name="name"></textarea></p>
-                                <p class="buttons">
-                                    <a class="btn btn-secondary" href="javascript:undefined" ng-click="dateOffers.state.fbMessage = false">
-                                        Loobu
-                                    </a>
-                                    <input class="btn" type="submit" value="Salvesta">
-                                </p>
-                            </form>
-                        </div>
+                        <facebook-group-post date="dateOffers.date | date:'yyyy-MM-dd'"
+                          default-template="vm.restaurant.default_group_post_message_template"
+                          ng-show="dateOffers.state.fbGroupPost"
+                          on-cancel="dateOffers.state.fbGroupPost=false"
+                          on-submit="dateOffers.state.fbGroupPost=false"></facebook-group-post>
                     </div>
                     <div class="col-2">
                         <div class="offer" ng-class="{edit: offer.editing}" ng-repeat="offer in dateOffers.offers">
