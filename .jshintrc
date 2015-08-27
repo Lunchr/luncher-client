@@ -1,33 +1,33 @@
 {
   "globals": {
     /* jasmine */
-    "describe": false,
-    "it": false,
-    "before": false,
+    "describe":   false,
+    "it":         false,
+    "before":     false,
     "beforeEach": false,
-    "after": false,
-    "afterEach": false,
-    "expect": false,
-    "spyOn": false,
-	"memo": false,
+    "after":      false,
+    "afterEach":  false,
+    "expect":     false,
+    "spyOn":      false,
+	"memo":       false,
     /* angular */
-    "angular": false,
-    "module": false,
-    "inject": false,
-    "$": false,
+    "angular":    false,
+    "module":     false,
+    "inject":     false,
+    "$":          false,
     /* protractor */
-    "browser": false,
-    "by": false,
-    "element": false,
+    "browser":    false,
+    "by":         false,
+    "element":    false,
     /* local */
-    "utils": true,
+    "utils":      true,
     "offerUtils": true,
     /* node */
-    "require": true,
-    "__dirname": false,
-    "exports": false,
-    "global": false,
-    "mockery": true
+    "require":    true,
+    "__dirname":  false,
+    "exports":    false,
+    "global":     false,
+    "mockery":    true
   },
   "expr": true,
   "scripturl": true
