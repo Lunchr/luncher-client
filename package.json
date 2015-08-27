@@ -49,6 +49,7 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-requirejs": "~0.2.2",
     "load-grunt-tasks": "^3.2.0",
+    "memo-is": "0.0.2",
     "postcss": "^4.1.11",
     "postcss-import": "^5.2.2",
     "postcss-media-minmax": "^1.1.0",

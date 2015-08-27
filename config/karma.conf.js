@@ -22,6 +22,8 @@ module.exports = function(config) {
       'public/lib/angularjs-*/dist/angular*.js',
       'public/src/**/*.js',
       'public/src/**/*.html',
+      'config/fix_memo-is_for_jasmine.js',
+      'node_modules/memo-is/lib/memo-is.js',
       'test/client/**/*.js',
     ],
 
