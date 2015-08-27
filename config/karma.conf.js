@@ -23,6 +23,7 @@ module.exports = function(config) {
       'public/src/**/*.js',
       'public/src/**/*.html',
       'config/fix_memo-is_for_jasmine.js',
+      'config/add_context_for_jasmine.js',
       'node_modules/memo-is/lib/memo-is.js',
       'test/client/**/*.js',
     ],
