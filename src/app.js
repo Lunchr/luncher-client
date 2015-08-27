@@ -41,12 +41,17 @@
   app.get('/api/v1/logout', function(req, res) {
     res.redirect('/#/');
   });
+
   app.get('/api/v1/restaurant/posts/:date', function(req, res) {
     // res.status(404).send('uh oh');
     res.send(JSON.stringify({
+      _id: 123,
       message_template: "Tänased päevapakkumised on:",
+      date: req.params.date,
     }));
   });
+  app.post('/api/v1/restaurant/posts', delayedReflector);
+  app.put('/api/v1/restaurant/posts/:date', delayedReflector);
 
   var publicDir = path.join(__dirname, '..', 'public');
   var apiDir = path.join(publicDir, 'api');
