@@ -9,7 +9,7 @@ describe('facebookGroupPostDirective', function() {
     var postResponse = memo().is(function() {});
 
     beforeEach(inject(function($httpBackend) {
-      $httpBackend.expectGET('api/v1/restaurant/posts/2011-04-04').respond(postResponse());
+      $httpBackend.expectGET('api/v1/restaurant/posts/2011-04-04').respond.apply(null, postResponse());
       var compiled = utils.compile('<facebook-group-post ' +
         'on-submit="submitClicked()" ' +
         'on-cancel="cancelClicked()" ' +
@@ -28,11 +28,11 @@ describe('facebookGroupPostDirective', function() {
 
     context('with a successful initial GET', function() {
       postResponse.is(function() {
-        return {
+        return [{
           _id: 1234,
           date: '2011-04-14',
           message_template: 'a message template',
-        };
+        }];
       });
 
       it('sets the post info onto the controller', inject(function($httpBackend) {
@@ -45,7 +45,7 @@ describe('facebookGroupPostDirective', function() {
     });
 
     context('with initial GET returning 404', function() {
-      postResponse.is(function() { return 404; });
+      postResponse.is(function() { return [404]; });
 
       it('loads the default template for the post', inject(function($httpBackend) {
         expect(ctrl.post.$resolved).toBe(false);
@@ -53,6 +53,18 @@ describe('facebookGroupPostDirective', function() {
         expect(ctrl.post._id).not.toBeDefined();
         expect(ctrl.post.date).toEqual('2011-04-04');
         expect(ctrl.post.message_template).toEqual('default message template');
+      }));
+    });
+
+    context('with initial GET failing', function() {
+      postResponse.is(function() { return [500, 'an error message']; });
+
+      it('marks the ctrl to an error state', inject(function($httpBackend) {
+        expect(ctrl.post.$resolved).toBe(false);
+        $httpBackend.flush();
+        expect(ctrl.post._id).not.toBeDefined();
+        expect(ctrl.post.date).not.toBeDefined();
+		expect(ctrl.error).toEqual('an error message');
       }));
     });
   });
