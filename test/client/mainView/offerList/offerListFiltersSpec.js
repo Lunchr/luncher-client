@@ -57,17 +57,17 @@ describe('OfferList filters', function() {
 
     describe('distances smaller than 1km', function() {
       it('should round meters to nearest 10m', function() {
-        expect(filter(23)).toEqual('~20m');
-        expect(filter(25)).toEqual('~30m');
-        expect(filter(923)).toEqual('~920m');
-        expect(filter(925)).toEqual('~930m');
+        expect(filter(23)).toEqual('20m');
+        expect(filter(25)).toEqual('30m');
+        expect(filter(923)).toEqual('920m');
+        expect(filter(925)).toEqual('930m');
       });
     });
 
     describe('distances larger than 1km', function() {
       it('should return in km with 2 decimals', function() {
-        expect(filter(1023)).toEqual('~1.02km');
-        expect(filter(1025)).toEqual('~1.03km');
+        expect(filter(1023)).toEqual('1.02km');
+        expect(filter(1025)).toEqual('1.03km');
       });
     });
   });
