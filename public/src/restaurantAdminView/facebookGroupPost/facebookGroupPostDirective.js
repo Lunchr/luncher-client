@@ -23,6 +23,9 @@
             save: {
               url: 'api/v1/restaurant/posts',
               method: 'POST',
+              params: {
+                date: undefined,
+              },
             },
             update: {
               method: 'PUT',

@@ -118,6 +118,63 @@ describe('facebookGroupPostDirective', function() {
         expect(ctrl.post.date).toEqual('2011-04-04');
         expect(ctrl.post.message_template).toEqual('default message template');
       });
+
+      describe('#submit', function() {
+        var postPostResponse = memo().is(function() {});
+
+        beforeEach(function() {
+          $httpBackend.flush();
+          $httpBackend.expectPOST('api/v1/restaurant/posts').respond.apply(null, postPostResponse());
+          ctrl.post.message_template = 'a new message template';
+        });
+
+        context('with POST succeeding', function() {
+          postPostResponse.is(function() {
+            return [{
+              _id: 1234,
+              date: '2011-04-04',
+              message_template: 'a new message template',
+            }];
+          });
+
+          it('marks submitPending to true while no response', function() {
+            expect(ctrl.submitPending).toBeFalsy();
+            ctrl.submit();
+            expect(ctrl.submitPending).toBe(true);
+            $httpBackend.flush();
+            expect(ctrl.submitPending).toBe(false);
+          });
+
+          it('POSTs the new message', function() {
+            $httpBackend.resetExpectations();
+            $httpBackend.expectPOST('api/v1/restaurant/posts', {
+              date: '2011-04-04',
+              message_template: 'a new message template',
+            }).respond.apply(null, postPostResponse());
+            ctrl.submit();
+            $httpBackend.flush();
+            expect(ctrl.post._id).toEqual(1234);
+          });
+        });
+
+        context('with POST failing', function() {
+          postPostResponse.is(function() { return [500, 'post failed']; });
+
+          it('marks submitPending to true while no response', function() {
+            expect(ctrl.submitPending).toBeFalsy();
+            ctrl.submit();
+            expect(ctrl.submitPending).toBe(true);
+            $httpBackend.flush();
+            expect(ctrl.submitPending).toBe(false);
+          });
+
+          it('marks the ctrl to an error state', function() {
+            ctrl.submit();
+            $httpBackend.flush();
+            expect(ctrl.error).toEqual('post failed');
+          });
+        });
+      });
     });
 
     context('with initial GET failing', function() {
