@@ -13,7 +13,7 @@ describe('Praad App', function() {
 
     it('should initially have 3 offers', function() {
       clickPromise.then(function() {
-        expect(offers.count()).toBe(13);
+        expect(offers.count()).toBe(37);
       });
     });
 
@@ -21,9 +21,9 @@ describe('Praad App', function() {
       clickPromise.then(function() {
         element(by.model('search.query')).sendKeys('kana');
 
-        expect(offers.count()).toBe(1);
+        expect(offers.count()).toBe(11);
         var title = offers.first().element(by.binding('offer.title')).getText();
-        expect(title).toBe('Pekingi kana');
+        expect(title).toBe('Hiina menüü - Chicken eggplant');
       });
     });
   });
