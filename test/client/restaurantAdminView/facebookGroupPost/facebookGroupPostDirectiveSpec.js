@@ -5,11 +5,13 @@ describe('facebookGroupPostDirective', function() {
   });
 
   describe('facebook-group-post directive', function() {
+    var $httpBackend;
     var ctrl, element, $scope, $parentScope;
-    var postResponse = memo().is(function() {});
+    var getPostResponse = memo().is(function() {});
 
-    beforeEach(inject(function($httpBackend) {
-      $httpBackend.expectGET('api/v1/restaurant/posts/2011-04-04').respond.apply(null, postResponse());
+    beforeEach(inject(function(_$httpBackend_) {
+      $httpBackend = _$httpBackend_;
+      $httpBackend.expectGET('api/v1/restaurant/posts/2011-04-04').respond.apply(null, getPostResponse());
       var compiled = utils.compile('<facebook-group-post ' +
         'on-submit="submitClicked()" ' +
         'on-cancel="cancelClicked()" ' +
@@ -26,8 +28,13 @@ describe('facebookGroupPostDirective', function() {
       $parentScope = compiled.parentScope;
     }));
 
+   afterEach(function() {
+     $httpBackend.verifyNoOutstandingExpectation();
+     $httpBackend.verifyNoOutstandingRequest();
+   });
+
     context('with a successful initial GET', function() {
-      postResponse.is(function() {
+      getPostResponse.is(function() {
         return [{
           _id: 1234,
           date: '2011-04-14',
@@ -35,37 +42,94 @@ describe('facebookGroupPostDirective', function() {
         }];
       });
 
-      it('sets the post info onto the controller', inject(function($httpBackend) {
+      it('sets the post info onto the controller', function() {
         expect(ctrl.post.$resolved).toBe(false);
         $httpBackend.flush();
         expect(ctrl.post._id).toEqual(1234);
         expect(ctrl.post.date).toEqual('2011-04-14');
         expect(ctrl.post.message_template).toEqual('a message template');
-      }));
+      });
+
+      describe('#submit', function() {
+        var putPostResponse = memo().is(function() {});
+
+        beforeEach(function() {
+          $httpBackend.flush();
+          $httpBackend.expectPUT('api/v1/restaurant/posts/2011-04-14').respond.apply(null, putPostResponse());
+          ctrl.post.message_template = 'a new message template';
+        });
+
+        context('with PUT succeeding', function() {
+          putPostResponse.is(function() {
+            return [{
+              _id: 1234,
+              date: '2011-04-14',
+              message_template: 'a new message template',
+            }];
+          });
+
+          it('marks submitPending to true while no response', function() {
+            expect(ctrl.submitPending).toBeFalsy();
+            ctrl.submit();
+            expect(ctrl.submitPending).toBe(true);
+            $httpBackend.flush();
+            expect(ctrl.submitPending).toBe(false);
+          });
+
+          it('PUTs the new message', function() {
+            $httpBackend.resetExpectations();
+            $httpBackend.expectPUT('api/v1/restaurant/posts/2011-04-14', {
+              _id: 1234 ,
+              date: '2011-04-14',
+              message_template: 'a new message template',
+            }).respond.apply(null, putPostResponse());
+            ctrl.submit();
+            $httpBackend.flush();
+          });
+        });
+
+        context('with PUT failing', function() {
+          putPostResponse.is(function() { return [500, 'put failed']; });
+
+          it('marks submitPending to true while no response', function() {
+            expect(ctrl.submitPending).toBeFalsy();
+            ctrl.submit();
+            expect(ctrl.submitPending).toBe(true);
+            $httpBackend.flush();
+            expect(ctrl.submitPending).toBe(false);
+          });
+
+          it('marks the ctrl to an error state', function() {
+            ctrl.submit();
+            $httpBackend.flush();
+            expect(ctrl.error).toEqual('put failed');
+          });
+        });
+      });
     });
 
     context('with initial GET returning 404', function() {
-      postResponse.is(function() { return [404]; });
+      getPostResponse.is(function() { return [404]; });
 
-      it('loads the default template for the post', inject(function($httpBackend) {
+      it('loads the default template for the post', function() {
         expect(ctrl.post.$resolved).toBe(false);
         $httpBackend.flush();
         expect(ctrl.post._id).not.toBeDefined();
         expect(ctrl.post.date).toEqual('2011-04-04');
         expect(ctrl.post.message_template).toEqual('default message template');
-      }));
+      });
     });
 
     context('with initial GET failing', function() {
-      postResponse.is(function() { return [500, 'an error message']; });
+      getPostResponse.is(function() { return [500, 'an error message']; });
 
-      it('marks the ctrl to an error state', inject(function($httpBackend) {
+      it('marks the ctrl to an error state', function() {
         expect(ctrl.post.$resolved).toBe(false);
         $httpBackend.flush();
         expect(ctrl.post._id).not.toBeDefined();
         expect(ctrl.post.date).not.toBeDefined();
 		expect(ctrl.error).toEqual('an error message');
-      }));
+      });
     });
   });
 });
