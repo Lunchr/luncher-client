@@ -91,7 +91,7 @@
         <div class="col-xs-3">
           <p>
             <!-- NB: The date-format must be something parsable by new Date() so be careful when changing it -->
-            <datepicker date-min-limit="{{yesterday}}" date-format="justDate">
+            <datepicker date-min-limit="{{yesterday}}">
               <input ng-model="date" name="date" type="text" id="{{idPrefix}}date" required>
             </datepicker>
             <label ng-class="{filled: date}" for="{{idPrefix}}date">
