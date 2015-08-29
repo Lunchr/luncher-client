@@ -43,21 +43,19 @@
           });
           ctrl.submit = function() {
             ctrl.submitPending = true;
-            if (!!ctrl.post._id) {
-              ctrl.post.$update({}, function success() {
-              }, function error(httpResponse) {
+            var promise = (function() {
+              if (!!ctrl.post._id) {
+                return ctrl.post.$update({});
+              } else {
+                return ctrl.post.$save({});
+              }
+            })();
+            promise.then(function success() {
+            }, function error(httpResponse) {
                 ctrl.error = httpResponse.data;
-              }).finally(function() {
+            }).finally(function() {
                 ctrl.submitPending = false;
-              });
-            } else {
-              ctrl.post.$save({}, function success() {
-              }, function error(httpResponse) {
-                ctrl.error = httpResponse.data;
-              }).finally(function() {
-                ctrl.submitPending = false;
-              });
-            }
+            });
           };
         }],
         restrict: 'E',
