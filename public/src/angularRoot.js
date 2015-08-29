@@ -50,7 +50,9 @@
           redirectURL: ['$http', '$route', '$q',
             function($http, $route, $q) {
               return $http.get('/api/v1/register/facebook', {
-                token: $route.current.params.token,
+                params: {
+                  token: $route.current.params.token,
+                },
               }).then(function success(resp) {
                 return {
                   url: resp.data,
