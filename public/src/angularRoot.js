@@ -91,9 +91,7 @@
           page: ['$resource', '$route', '$q',
             function($resource, $route, $q) {
               if (!$route.current.params.pageID) {
-                var deferred = $q.defer();
-                deferred.resolve();
-                return deferred.promise;
+                return $q.resolve();
               }
               return $resource('/api/v1/register/facebook/pages/:id').get({
                 id: $route.current.params.pageID,
