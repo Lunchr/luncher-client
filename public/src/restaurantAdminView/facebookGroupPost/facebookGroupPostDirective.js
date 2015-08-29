@@ -51,10 +51,11 @@
               }
             })();
             promise.then(function success() {
+              ctrl.submitFunction();
             }, function error(httpResponse) {
-                ctrl.error = httpResponse.data;
+              ctrl.error = httpResponse.data;
             }).finally(function() {
-                ctrl.submitPending = false;
+              ctrl.submitPending = false;
             });
           };
         }],

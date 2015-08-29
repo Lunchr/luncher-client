@@ -21,6 +21,7 @@ describe('facebookGroupPostDirective', function() {
       function(parentScope) {
         parentScope.date = "2011-04-04";
         parentScope.defaultTemplate = "default message template";
+        parentScope.submitClicked = jasmine.createSpy();
       });
       element = compiled.element;
       $scope = compiled.scope;
@@ -76,6 +77,14 @@ describe('facebookGroupPostDirective', function() {
             expect(ctrl.submitPending).toBe(false);
           });
 
+          it('calls onSubmit binded method after successful submit', function() {
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
+            ctrl.submit();
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
+            $httpBackend.flush();
+            expect($parentScope.submitClicked).toHaveBeenCalled();
+          });
+
           it('PUTs the new message', function() {
             $httpBackend.resetExpectations();
             $httpBackend.expectPUT('api/v1/restaurant/posts/2011-04-14', {
@@ -97,6 +106,14 @@ describe('facebookGroupPostDirective', function() {
             expect(ctrl.submitPending).toBe(true);
             $httpBackend.flush();
             expect(ctrl.submitPending).toBe(false);
+          });
+
+          it('does not call onSubmit binded method after unsuccessful submit', function() {
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
+            ctrl.submit();
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
+            $httpBackend.flush();
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
           });
 
           it('marks the ctrl to an error state', function() {
@@ -145,6 +162,14 @@ describe('facebookGroupPostDirective', function() {
             expect(ctrl.submitPending).toBe(false);
           });
 
+          it('calls onSubmit binded method after successful submit', function() {
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
+            ctrl.submit();
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
+            $httpBackend.flush();
+            expect($parentScope.submitClicked).toHaveBeenCalled();
+          });
+
           it('POSTs the new message', function() {
             $httpBackend.resetExpectations();
             $httpBackend.expectPOST('api/v1/restaurant/posts', {
@@ -166,6 +191,14 @@ describe('facebookGroupPostDirective', function() {
             expect(ctrl.submitPending).toBe(true);
             $httpBackend.flush();
             expect(ctrl.submitPending).toBe(false);
+          });
+
+          it('does not call onSubmit binded method after unsuccessful submit', function() {
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
+            ctrl.submit();
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
+            $httpBackend.flush();
+            expect($parentScope.submitClicked).not.toHaveBeenCalled();
           });
 
           it('marks the ctrl to an error state', function() {
