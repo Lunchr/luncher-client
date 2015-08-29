@@ -3,6 +3,7 @@
   var module = angular.module('app', [
     'mainViewController',
     'registerPages',
+    'registerLogin',
     'registerForm',
     'restaurantAdminView',
     'commonFilters',
@@ -41,11 +42,30 @@
       when('/faq', {
         templateUrl: 'src/faq.template.html',
       }).
-      when('/register', {
-        redirectTo: '/register/login',
-      }).
-      when('/register/login', {
+      when('/register/login/:token', {
         templateUrl: 'src/register/login.template.html',
+        controller: 'RegisterLoginCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          redirectURL: ['$http', '$route', '$q',
+            function($http, $route, $q) {
+              return $http.get('/api/v1/register/facebook', {
+                token: $route.current.params.token,
+              }).then(function success(resp) {
+                return {
+                  url: resp.data,
+                };
+              }, function error(resp) {
+                if (resp.status === 403 || resp.status === 401) {
+                  return {
+                    error: resp.data,
+                  };
+                }
+                return $q.reject(resp);
+              });
+            }
+          ],
+        }
       }).
       when('/register/pages', {
         templateUrl: 'src/register/pages.template.html',
@@ -75,10 +95,9 @@
                 deferred.resolve();
                 return deferred.promise;
               }
-              var params = {
+              return $resource('/api/v1/register/facebook/pages/:id').get({
                 id: $route.current.params.pageID,
-              };
-              return $resource('/api/v1/register/facebook/pages/:id').get(params).$promise.catch(function(resp) {
+              }).$promise.catch(function(resp) {
                 if (resp.status === 403) {
                   $location.path('/register/login');
                 }
