@@ -53,7 +53,7 @@
           dates[key].offers.push(offer);
         });
         vm.offersByDate = [];
-        Object.keys(dates).forEach(function(key) {
+        Object.keys(dates).sort().forEach(function(key) {
           vm.offersByDate.push(dates[key]);
         });
       });
