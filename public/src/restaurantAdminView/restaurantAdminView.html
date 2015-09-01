@@ -1,6 +1,7 @@
 <header class="admin-header">
     <div class="container">
         <p class="left">
+            <span>{{vm.restaurant.name}}</span>
             <a href="javascript:undefined" ng-click="vm.state.restaurantSelectionDropdown=!vm.state.restaurantSelectionDropdown" ng-class="{active: vm.state.restaurantSelectionDropdown}" class="icon icon-22">
                 <span>{{vm.restaurant.name}}</span>
             </a>
