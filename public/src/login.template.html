@@ -4,11 +4,17 @@
     </div>
 </header>
 <div class="content">
-    <div class="login">
-        <p>Logi sisse oma facebooki kontoga.</p>
-        <p>
-            <a href="/api/v1/login/facebook" class="btn icon icon-17">Logi sisse</a>
+    <div class="container">
+        <p class="message" ng-show="vm.unauthorized">
+            <span class="icon icon-20"></span>
+            Vabandame, kuid teil ei ole õigust ennast registreerida. Kui arvate et tegemist on veaga, siis palun võtke meiega ühendust.
         </p>
+        <div class="login">
+            <p>Logi sisse oma facebooki kontoga.</p>
+            <p>
+                <a href="/api/v1/login/facebook" class="btn icon icon-17">Logi sisse</a>
+            </p>
+        </div>
     </div>
     <div class="footer">
         <div class="container">
