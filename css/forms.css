@@ -52,6 +52,10 @@
         font: $font;
         cursor: text;
         -webkit-appearance: none;
+        &:disabled {
+            cursor: default;
+            opacity: 0.5;
+        }
         &[type=file] {
             position: relative;
             -webkit-box-sizing: border-box;
@@ -427,6 +431,10 @@ textarea {
     resize: none;
     &:focus {
         border-bottom-color: $color;
+    }
+    &:disabled {
+        cursor: default;
+        opacity: 0.5;
     }
 }
 
