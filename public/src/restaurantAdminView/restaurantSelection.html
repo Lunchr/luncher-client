@@ -1,0 +1,35 @@
+<header class="admin-header">
+  <div class="container">
+    <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
+    <p class="right">
+      <a href="/api/v1/logout" class="icon icon-21">
+        <span>Logi välja</span>
+      </a>
+    </p>
+  </div>
+</header>
+<div class="content">
+  <div class="container">
+    <ul>
+      <li ng-repeat="restaurant in vm.restaurants">
+        <a ng-href="/#/admin/{{::restaurant._id}}">
+          <span>{{::restaurant.name}}</span>
+        </a>
+      </li>
+      <li>
+        <a href="/#/register/pages" class="btn icon icon-4">
+          <span>Lisa uus</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="footer">
+    <div class="container">
+      <ul>
+        <li><a href="mailto:info@luncher.ee">info@luncher.ee</a></li>
+        <li><a href="javascript:undefined">+372 5624 1163</a></li>
+        <li><a href="/#/faq"><strong>Abi</strong></a></li>
+      </ul>
+    </div>
+  </div>
+</div>

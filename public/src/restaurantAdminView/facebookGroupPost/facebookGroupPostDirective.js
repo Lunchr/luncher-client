@@ -10,6 +10,7 @@
         scope: {
           submitFunction: '&onSubmit',
           cancelFunction: '&onCancel',
+          restaurantID: '=restaurantId',
           defaultTemplate: '=',
           date: '=',
         },
@@ -17,7 +18,8 @@
         bindToController: true,
         controller: [function() {
           var ctrl = this;
-          ctrl.post = $resource('api/v1/restaurant/posts/:date', {
+          ctrl.post = $resource('api/v1/restaurants/:restaurantID/posts/:date', {
+            restaurantID: ctrl.restaurantID,
             date: '@date',
           }, {
             save: {

@@ -21,14 +21,21 @@
   app.use(bodyParser.json());
   var delayedReflector = function(req, res) {
     setTimeout(function() {
-      res.send(req.body);
+      var response = req.body;
+      if (!response._id) {
+        response._id = getRandomInt(100, 1000);
+      }
+      res.send(response);
       // res.status(500).send('uh oh');
     }, 1000);
   };
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 
-  app.post('/api/v1/offers', delayedReflector);
-  app.put('/api/v1/offers/:id', delayedReflector);
-  app.delete('/api/v1/offers/:id', delayedReflector);
+  app.post('/api/v1/restaurants/:restaurantID/offers', delayedReflector);
+  app.put('/api/v1/restaurants/:restaurantID/offers/:id', delayedReflector);
+  app.delete('/api/v1/restaurants/:restaurantID/offers/:id', delayedReflector);
 
   app.post('/api/v1/restaurants', delayedReflector);
 
@@ -37,13 +44,13 @@
   });
   app.get('/api/v1/register/facebook', function(req, res) {
     // res.status(401).send('uh oh');
-    res.send('/#/register/pages');
+    res.send('/#/admin');
   });
   app.get('/api/v1/logout', function(req, res) {
     res.redirect('/#/');
   });
 
-  app.get('/api/v1/restaurant/posts/:date', function(req, res) {
+  app.get('/api/v1/restaurants/:restaurantID/posts/:date', function(req, res) {
     // res.status(404).send('uh oh');
     res.send(JSON.stringify({
       _id: 123,
@@ -51,8 +58,8 @@
       date: req.params.date,
     }));
   });
-  app.post('/api/v1/restaurant/posts', delayedReflector);
-  app.put('/api/v1/restaurant/posts/:date', delayedReflector);
+  app.post('/api/v1/restaurants/:restaurantID/posts', delayedReflector);
+  app.put('/api/v1/restaurants/:restaurantID/posts/:date', delayedReflector);
 
   var publicDir = path.join(__dirname, '..', 'public');
   var apiDir = path.join(publicDir, 'api');

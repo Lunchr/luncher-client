@@ -6,14 +6,14 @@
   var offerPostedEventChannel = 'offer-posted';
   var offerUpdateOperation = {
     method: 'PUT',
-    url: 'api/v1/offers/:id',
+    url: 'api/v1/restaurants/:restaurantID/offers/:id',
     params: {
       id: '@_id'
     },
   };
   var offerDeleteOperation = {
     method: 'DELETE',
-    url: 'api/v1/offers/:id',
+    url: 'api/v1/restaurants/:restaurantID/offers/:id',
     params: {
       id: '@_id'
     },
@@ -25,7 +25,9 @@
       vm.restaurant = restaurant;
       vm.postOffer = function(offer) {
         offer.restaurant = vm.restaurant;
-        var postedOffer = $resource('api/v1/offers', {}, {
+        var postedOffer = $resource('api/v1/restaurants/:restaurantID/offers', {
+          restaurantID: restaurant._id,
+        }, {
           update: offerUpdateOperation,
           delete: offerDeleteOperation,
         }).save(offer);
@@ -36,9 +38,9 @@
 
   module.controller('RestaurantOfferListCtrl', ['$scope', '$resource', '$window',
     function($scope, $resource, $window) {
-      var vm = this;
+      var ctrl = this;
       $scope.$watchCollection(function() {
-        return vm.offers;
+        return ctrl.offers;
       }, function(newCollection, oldCollection) {
         var dates = {};
         newCollection.forEach(function(offer) {
@@ -52,47 +54,49 @@
           }
           dates[key].offers.push(offer);
         });
-        vm.offersByDate = [];
+        ctrl.offersByDate = [];
         Object.keys(dates).sort().forEach(function(key) {
-          vm.offersByDate.push(dates[key]);
+          ctrl.offersByDate.push(dates[key]);
         });
       });
-      vm.isToday = function(date) {
+      ctrl.isToday = function(date) {
         var dateCopy = new Date(date.getTime());
         dateCopy.setHours(0, 0, 0, 0);
         var today = new Date();
         today.setHours(0, 0, 0, 0);
         return dateCopy.getTime() === today.getTime();
       };
-      vm.offers = $resource('api/v1/restaurant/offers', {}, {
+      ctrl.offers = $resource('api/v1/restaurants/:restaurantID/offers', {
+        restaurantID: $scope.vm.restaurant._id,
+      }, {
         update: offerUpdateOperation,
         delete: offerDeleteOperation,
       }).query();
-      vm.updateOffer = function(currentOffer, offer) {
+      ctrl.updateOffer = function(currentOffer, offer) {
         offer.confirmationPending = true;
-        var index = vm.offers.indexOf(currentOffer);
+        var index = ctrl.offers.indexOf(currentOffer);
         if (index > -1) {
-          vm.offers[index] = offer;
+          ctrl.offers[index] = offer;
         }
         offer.$update({}, function success() {
           offer.confirmationPending = false;
         }, function error() {
           // Put back the previous version if the update fails
-          var index = vm.offers.indexOf(offer);
+          var index = ctrl.offers.indexOf(offer);
           if (index > -1) {
-            vm.offers[index] = currentOffer;
+            ctrl.offers[index] = currentOffer;
           }
         });
 
       };
-      vm.deleteOffer = function(offer) {
+      ctrl.deleteOffer = function(offer) {
         var confirmed = $window.confirm('Oled sa kindel et sa tahad kustutada pakkumise "'+offer.title+'"?');
         if (!confirmed) return;
         offer.confirmationPending = true;
         offer.$delete({}, function success() {
-          var index = vm.offers.indexOf(offer);
+          var index = ctrl.offers.indexOf(offer);
           if (index > -1) {
-            vm.offers.splice(index, 1);
+            ctrl.offers.splice(index, 1);
           }
         }, function error(resp) {
           offer.confirmationPending = false;
@@ -100,7 +104,7 @@
         });
       };
       $scope.$on(offerPostedEventChannel, function(event, offer) {
-        vm.offers.unshift(offer);
+        ctrl.offers.unshift(offer);
 
         offer.confirmationPending = true;
         offer.$promise.then(function() {
@@ -108,9 +112,9 @@
         }, function() {
           // we could, in theory, use shift(), but I don't think we can guarantee at
           // this point that this offer is still the first one
-          var index = vm.offers.indexOf(offer);
+          var index = ctrl.offers.indexOf(offer);
           if (index > -1) {
-            vm.offers.splice(index, 1);
+            ctrl.offers.splice(index, 1);
           }
         });
       });
