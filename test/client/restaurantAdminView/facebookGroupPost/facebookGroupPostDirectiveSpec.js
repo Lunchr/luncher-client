@@ -11,10 +11,11 @@ describe('facebookGroupPostDirective', function() {
 
     beforeEach(inject(function(_$httpBackend_) {
       $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('api/v1/restaurant/posts/2011-04-04').respond.apply(null, getPostResponse());
+      $httpBackend.expectGET('api/v1/restaurants/1337/posts/2011-04-04').respond.apply(null, getPostResponse());
       var compiled = utils.compile('<facebook-group-post ' +
         'on-submit="submitClicked()" ' +
         'on-cancel="cancelClicked()" ' +
+        'restaurant-id="1337" ' +
         'default-template="defaultTemplate" ' +
         'date="date" ' +
         '</facebook-group-post>',
@@ -56,7 +57,7 @@ describe('facebookGroupPostDirective', function() {
 
         beforeEach(function() {
           $httpBackend.flush();
-          $httpBackend.expectPUT('api/v1/restaurant/posts/2011-04-14').respond.apply(null, putPostResponse());
+          $httpBackend.expectPUT('api/v1/restaurants/1337/posts/2011-04-14').respond.apply(null, putPostResponse());
           ctrl.post.message_template = 'a new message template';
         });
 
@@ -87,7 +88,7 @@ describe('facebookGroupPostDirective', function() {
 
           it('PUTs the new message', function() {
             $httpBackend.resetExpectations();
-            $httpBackend.expectPUT('api/v1/restaurant/posts/2011-04-14', {
+            $httpBackend.expectPUT('api/v1/restaurants/1337/posts/2011-04-14', {
               _id: 1234 ,
               date: '2011-04-14',
               message_template: 'a new message template',
@@ -141,7 +142,7 @@ describe('facebookGroupPostDirective', function() {
 
         beforeEach(function() {
           $httpBackend.flush();
-          $httpBackend.expectPOST('api/v1/restaurant/posts').respond.apply(null, postPostResponse());
+          $httpBackend.expectPOST('api/v1/restaurants/1337/posts').respond.apply(null, postPostResponse());
           ctrl.post.message_template = 'a new message template';
         });
 
@@ -172,7 +173,7 @@ describe('facebookGroupPostDirective', function() {
 
           it('POSTs the new message', function() {
             $httpBackend.resetExpectations();
-            $httpBackend.expectPOST('api/v1/restaurant/posts', {
+            $httpBackend.expectPOST('api/v1/restaurants/1337/posts', {
               date: '2011-04-04',
               message_template: 'a new message template',
             }).respond.apply(null, postPostResponse());

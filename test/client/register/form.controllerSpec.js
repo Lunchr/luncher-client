@@ -80,14 +80,14 @@ describe('RegisterFormCtrl', function() {
 
       describe('with submit succeeding', function() {
         beforeEach(function() {
-          respond(201);
+          respond(201, {_id: "1337"});
         });
 
         it('should redirect to admin view', function() {
           vm.submit();
           expect(redirect).not.toHaveBeenCalled();
           $httpBackend.flush();
-          expect(redirect).toHaveBeenCalledWith('/admin');
+          expect(redirect).toHaveBeenCalledWith('/admin/1337');
         });
       });
 

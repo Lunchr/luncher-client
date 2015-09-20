@@ -23,7 +23,7 @@
             date: '@date',
           }, {
             save: {
-              url: 'api/v1/restaurant/posts',
+              url: 'api/v1/restaurants/:restaurantID/posts',
               method: 'POST',
               params: {
                 date: undefined,
