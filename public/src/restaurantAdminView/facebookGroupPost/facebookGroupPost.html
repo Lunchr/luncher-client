@@ -1,5 +1,4 @@
 <form name="form" novalidate ng-submit="form.$valid && ctrl.submit()">
-  <!-- TODO properly style the error message here-->
   <div class="message" ng-show="!!ctrl.error">
 	<span class="icon icon-20">
 	  Vabandame, postituse teksti laadimine ebaõnnestus.
@@ -8,7 +7,7 @@
   <p>
   <textarea name="message" required
     ng-model="ctrl.post.message_template"
-    disabled="ctrl.error || ctrl.submitPending">
+    ng-disabled="ctrl.error || ctrl.submitPending">
   </textarea>
   </p>
   <p class="buttons">
