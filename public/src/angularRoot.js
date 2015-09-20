@@ -20,14 +20,32 @@
         controller: 'MainViewCtrl',
         controllerAs: 'vm',
       }).
-      when('/admin', {
+      when('/admin/:restaurantID', {
         templateUrl: 'src/restaurantAdminView/restaurantAdminView.html',
         controller: 'RestaurantAdminViewCtrl',
         controllerAs: 'vm',
         resolve: {
-          restaurant: ['$resource', '$location',
+          restaurant: ['$resource', '$location', '$route',
+            function ($resource, $location, $route) {
+              return $resource('/api/v1/restaurants/:id').get({
+                id: $route.current.params.restaurantID,
+              }).$promise.catch(function(resp) {
+                if (resp.status === 403) {
+                  $location.path('/login');
+                }
+              });
+            }
+          ],
+        },
+      }).
+      when('/admin', {
+        templateUrl: 'src/restaurantAdminView/restaurantSelection.html',
+        controller: 'RestaurantSelectionCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          restaurants: ['$resource', '$location',
             function ($resource, $location) {
-              return $resource('/api/v1/restaurant').get().$promise.catch(function(resp) {
+              return $resource('/api/v1/user/restaurants').query().$promise.catch(function(resp) {
                 if (resp.status === 403) {
                   $location.path('/login');
                 }
@@ -74,11 +92,11 @@
         controller: 'RegisterPagesCtrl',
         controllerAs: 'vm',
         resolve: {
-          pages: ['$resource',
-            function($resource) {
+          pages: ['$resource', '$location',
+            function($resource, $location) {
               return $resource('/api/v1/register/facebook/pages').query().$promise.catch(function(resp) {
                 if (resp.status === 403) {
-                  $location.path('/register/login');
+                  $location.path('/login');
                 }
               });
             }
@@ -90,8 +108,8 @@
         controller: 'RegisterFormCtrl',
         controllerAs: 'vm',
         resolve: {
-          page: ['$resource', '$route', '$q',
-            function($resource, $route, $q) {
+          page: ['$resource', '$location', '$route', '$q',
+            function($resource, $location, $route, $q) {
               if (!$route.current.params.pageID) {
                 return $q.resolve();
               }
@@ -99,7 +117,7 @@
                 id: $route.current.params.pageID,
               }).$promise.catch(function(resp) {
                 if (resp.status === 403) {
-                  $location.path('/register/login');
+                  $location.path('/login');
                 }
               });
             }
