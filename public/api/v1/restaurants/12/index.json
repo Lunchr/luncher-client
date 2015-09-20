@@ -1,0 +1,6 @@
+{
+  "_id": "12",
+  "name": "Neljapäev",
+  "address": "Võru 25, Tartu",
+  "default_group_post_message_template": "Tänased päevapakkumised on:"
+}
