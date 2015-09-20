@@ -166,6 +166,6 @@ header {
 }
 
 /* temporary solution to hide unfinished features */
-.admin-header .left a {
+.admin-header .left .settings-icon {
     display: none;
 }

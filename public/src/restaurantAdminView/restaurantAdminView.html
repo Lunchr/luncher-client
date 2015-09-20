@@ -1,9 +1,8 @@
 <header class="admin-header">
     <div class="container">
         <p class="left">
-            <span>{{vm.restaurant.name}}</span>
             <a href="javascript:undefined" ng-click="vm.state.restaurantSelectionDropdown=!vm.state.restaurantSelectionDropdown" ng-class="{active: vm.state.restaurantSelectionDropdown}" class="icon icon-22">
-                <span>{{vm.restaurant.name}}</span>
+                <span>{{::vm.restaurant.name}}</span>
             </a>
             <a href="javascript:undefined" ng-click="settings.state = !settings.state" ng-class="{'active' : settings.state}" class="icon icon-1 settings-icon">
                 <span></span>
@@ -21,16 +20,14 @@
     <div class="container">
         <div class="dropdown" ng-class="{active: vm.state.restaurantSelectionDropdown}">
             <ul>
-                <li>
-                    <input type="radio" id="selection-135" name="136" value="La Dolce Vita" checked>
-                    <label for="selection-135">La Dolce Vita</label>
+                <li ng-repeat="restaurant in vm.restaurants">
+                    <a ng-href="/#/admin/{{::restaurant._id}}">
+                        <input type="radio" id="{{$id}}" name="restaurant-selection" ng-checked="restaurant._id == vm.restaurant._id">
+                        <label for="{{$id}}">{{::restaurant.name}}</label>
+                    </a>
                 </li>
                 <li>
-                    <input type="radio" id="selection-137" name="138" value="Itaalia köök">
-                    <label for="selection-137">Itaalia köök</label>
-                </li>
-                <li>
-                    <a href="javascript:undefined" class="btn icon icon-4">
+                    <a href="/#/register/pages" class="btn icon icon-4">
                         <span>Lisa uus</span>
                     </a>
                 </li>

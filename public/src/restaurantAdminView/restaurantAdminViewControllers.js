@@ -19,10 +19,11 @@
     },
   };
 
-  module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource', 'restaurant',
-    function($scope, $resource, restaurant) {
+  module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource', 'restaurant', 'restaurants',
+    function($scope, $resource, restaurant, restaurants) {
       var vm = this;
       vm.restaurant = restaurant;
+      vm.restaurants = restaurants;
       vm.postOffer = function(offer) {
         offer.restaurant = vm.restaurant;
         var postedOffer = $resource('api/v1/restaurants/:restaurantID/offers', {

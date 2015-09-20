@@ -36,6 +36,15 @@
               });
             }
           ],
+          restaurants: ['$resource', '$location',
+            function ($resource, $location) {
+              return $resource('/api/v1/user/restaurants').query().$promise.catch(function(resp) {
+                if (resp.status === 401) {
+                  $location.path('/login');
+                }
+              });
+            }
+          ],
         },
       }).
       when('/admin', {
