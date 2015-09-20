@@ -30,7 +30,7 @@
               return $resource('/api/v1/restaurants/:id').get({
                 id: $route.current.params.restaurantID,
               }).$promise.catch(function(resp) {
-                if (resp.status === 403) {
+                if (resp.status === 401) {
                   $location.path('/login');
                 }
               });
@@ -46,7 +46,7 @@
           restaurants: ['$resource', '$location',
             function ($resource, $location) {
               return $resource('/api/v1/user/restaurants').query().$promise.catch(function(resp) {
-                if (resp.status === 403) {
+                if (resp.status === 401) {
                   $location.path('/login');
                 }
               });
@@ -95,7 +95,7 @@
           pages: ['$resource', '$location',
             function($resource, $location) {
               return $resource('/api/v1/register/facebook/pages').query().$promise.catch(function(resp) {
-                if (resp.status === 403) {
+                if (resp.status === 401) {
                   $location.path('/login');
                 }
               });
@@ -116,7 +116,7 @@
               return $resource('/api/v1/register/facebook/pages/:id').get({
                 id: $route.current.params.pageID,
               }).$promise.catch(function(resp) {
-                if (resp.status === 403) {
+                if (resp.status === 401) {
                   $location.path('/login');
                 }
               });
