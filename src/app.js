@@ -23,7 +23,11 @@
     setTimeout(function() {
       var response = req.body;
       if (!response._id) {
-        response._id = getRandomInt(100, 1000);
+        if (response.facebook_page_id) {
+          response._id = response.facebook_page_id;
+        } else {
+          response._id = getRandomInt(100, 1000);
+        }
       }
       res.send(response);
       // res.status(500).send('uh oh');

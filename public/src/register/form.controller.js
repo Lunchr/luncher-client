@@ -28,8 +28,8 @@
           coordinates: [location.lng, location.lat],
         };
         $resource('/api/v1/restaurants').save(restaurant,
-          function success() {
-            $location.path('/admin');
+          function success(responseRestaurant) {
+            $location.path('/admin/' + responseRestaurant._id);
           }, function fail(response) {
             vm.errorMessage = response.data;
           }
