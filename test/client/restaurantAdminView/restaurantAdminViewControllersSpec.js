@@ -6,6 +6,11 @@ describe('Restaurant admin view', function() {
         return offerUtils.getMockRestaurant();
       }
     });
+    $provide.provider('restaurants', {
+      $get: function() {
+        return [offerUtils.getMockRestaurant()];
+      }
+    });
   }));
 
   describe('RestaurantAdminViewCtrl', function() {
@@ -36,7 +41,7 @@ describe('Restaurant admin view', function() {
         postedOffer = {
           id: 'mocked response from the backend'
         };
-        $httpBackend.whenPOST('api/v1/offers').respond(postedOffer);
+        $httpBackend.whenPOST('api/v1/restaurants/3/offers').respond(postedOffer);
       }));
 
       it('should broadcast the data returned from the POST', inject(function($httpBackend) {
@@ -54,7 +59,7 @@ describe('Restaurant admin view', function() {
       }));
 
       it('should post the combined offer', inject(function($httpBackend) {
-        $httpBackend.expectPOST('api/v1/offers', {
+        $httpBackend.expectPOST('api/v1/restaurants/3/offers', {
           test: 'a test field',
           restaurant: vm.restaurant,
         });
@@ -66,26 +71,27 @@ describe('Restaurant admin view', function() {
   });
 
   describe('RestaurantOfferListCtrl', function() {
-    var vm, $scope;
-    var restaurantId = 'someId';
+    var ctrl, $scope;
+    var restaurantId = '1337';
 
     beforeEach(inject(function($rootScope, $controller, $httpBackend) {
-      $httpBackend.expectGET('api/v1/restaurant/offers').respond(offerUtils.getMockOffers());
+      $httpBackend.expectGET('api/v1/restaurants/1337/offers').respond(offerUtils.getMockOffers());
 
       $scope = $rootScope.$new();
       $rootScope.restaurant = {
         _id: restaurantId
       };
-      $controller('RestaurantOfferListCtrl as vm', {
+      $scope.vm = $rootScope;
+      $controller('RestaurantOfferListCtrl as ctrl', {
         $scope: $scope
       });
-      vm = $scope.vm;
+      ctrl = $scope.ctrl;
     }));
 
     it('should have model with offers after we mock-respond to the HTTP request', inject(function($httpBackend) {
-      expect(vm.offers.length).toBe(0);
+      expect(ctrl.offers.length).toBe(0);
       $httpBackend.flush();
-      expect(vm.offers.length).toBe(4);
+      expect(ctrl.offers.length).toBe(4);
     }));
 
     describe('with the original offers fetched from the backend', function() {
@@ -94,44 +100,44 @@ describe('Restaurant admin view', function() {
       }));
 
       it('should group offers by date', function() {
-        expect(vm.offersByDate.length).toBe(3);
+        expect(ctrl.offersByDate.length).toBe(3);
         // new Date(...) sets the time to 00:00 in UTC, but the setHours forces it to 00:00 in the local timezone
-        expect(vm.offersByDate[0].date.getTime()).toEqual(new Date('2016-11-11').setHours(0, 0, 0, 0));
-        expect(vm.offersByDate[0].offers.length).toBe(2);
-        expect(vm.offersByDate[1].date.getTime()).toEqual(new Date('2016-11-12').setHours(0, 0, 0, 0));
-        expect(vm.offersByDate[1].offers.length).toBe(1);
-        expect(vm.offersByDate[2].date.getTime()).toEqual(new Date('2016-11-13').setHours(0, 0, 0, 0));
-        expect(vm.offersByDate[2].offers.length).toBe(1);
+        expect(ctrl.offersByDate[0].date.getTime()).toEqual(new Date('2016-11-11').setHours(0, 0, 0, 0));
+        expect(ctrl.offersByDate[0].offers.length).toBe(2);
+        expect(ctrl.offersByDate[1].date.getTime()).toEqual(new Date('2016-11-12').setHours(0, 0, 0, 0));
+        expect(ctrl.offersByDate[1].offers.length).toBe(1);
+        expect(ctrl.offersByDate[2].date.getTime()).toEqual(new Date('2016-11-13').setHours(0, 0, 0, 0));
+        expect(ctrl.offersByDate[2].offers.length).toBe(1);
       });
 
       describe('$update an offer', function() {
         var originalOffer, changedOffer, response;
 
         beforeEach(inject(function($httpBackend) {
-          originalOffer = vm.offers[2];
+          originalOffer = ctrl.offers[2];
           changedOffer = angular.copy(originalOffer);
           changedOffer.changed = true;
-          response = $httpBackend.expectPUT('api/v1/offers/3').respond({});
+          response = $httpBackend.expectPUT('api/v1/restaurants/1337/offers/3').respond({});
         }));
 
         it('should update with data added by the server', inject(function($httpBackend) {
-          expect(vm.offers).toContain(originalOffer);
-          vm.updateOffer(originalOffer, changedOffer);
+          expect(ctrl.offers).toContain(originalOffer);
+          ctrl.updateOffer(originalOffer, changedOffer);
 
           expect(originalOffer.changed).toBeUndefined();
-          expect(vm.offers).toContain(changedOffer);
+          expect(ctrl.offers).toContain(changedOffer);
 
           $httpBackend.flush();
           expect(originalOffer.changed).toBeUndefined();
-          expect(vm.offers).toContain(changedOffer);
-          expect(vm.offers).not.toContain(originalOffer);
+          expect(ctrl.offers).toContain(changedOffer);
+          expect(ctrl.offers).not.toContain(originalOffer);
         }));
 
         it('should set the offer as confirmationPending while waiting for the backend', inject(function($httpBackend) {
           expect(originalOffer.confirmationPending).toBeFalsy();
           expect(changedOffer.confirmationPending).toBeFalsy();
 
-          vm.updateOffer(originalOffer, changedOffer);
+          ctrl.updateOffer(originalOffer, changedOffer);
           expect(originalOffer.confirmationPending).toBeFalsy();
           expect(changedOffer.confirmationPending).toBeTruthy();
 
@@ -141,22 +147,22 @@ describe('Restaurant admin view', function() {
         }));
 
         it('should return the original offer in case of an error', inject(function($httpBackend) {
-          expect(vm.offers).toContain(originalOffer);
-          vm.updateOffer(originalOffer, changedOffer);
+          expect(ctrl.offers).toContain(originalOffer);
+          ctrl.updateOffer(originalOffer, changedOffer);
 
-          expect(vm.offers).toContain(changedOffer);
+          expect(ctrl.offers).toContain(changedOffer);
 
           response.respond(500, {});
           $httpBackend.flush();
-          expect(vm.offers).toContain(originalOffer);
-          expect(vm.offers).not.toContain(changedOffer);
+          expect(ctrl.offers).toContain(originalOffer);
+          expect(ctrl.offers).not.toContain(changedOffer);
         }));
       });
 
       describe('$delete an offer', function() {
         var offer;
         beforeEach(inject(function($httpBackend, $window) {
-          offer = vm.offers[2];
+          offer = ctrl.offers[2];
         }));
 
         describe('with user declining the confirmation', function() {
@@ -167,7 +173,7 @@ describe('Restaurant admin view', function() {
           }));
 
           it('should not send a request to the API', inject(function($httpBackend) {
-            vm.deleteOffer({});
+            ctrl.deleteOffer({});
 
             expect(confirm).toHaveBeenCalled();
             $httpBackend.verifyNoOutstandingRequest();
@@ -178,25 +184,25 @@ describe('Restaurant admin view', function() {
           var response;
 
           beforeEach(inject(function($httpBackend, $window) {
-            offer = vm.offers[2];
-            response = $httpBackend.expectDELETE('api/v1/offers/3').respond({});
+            offer = ctrl.offers[2];
+            response = $httpBackend.expectDELETE('api/v1/restaurants/1337/offers/3').respond({});
             $window.confirm = jasmine.createSpy('confirm').and.returnValue(true);
           }));
 
           it('should delete the offer when server succeeds', inject(function($httpBackend) {
-            expect(vm.offers).toContain(offer);
+            expect(ctrl.offers).toContain(offer);
 
-            vm.deleteOffer(offer);
-            expect(vm.offers).toContain(offer);
+            ctrl.deleteOffer(offer);
+            expect(ctrl.offers).toContain(offer);
 
             $httpBackend.flush();
-            expect(vm.offers).not.toContain(offer);
+            expect(ctrl.offers).not.toContain(offer);
           }));
 
           it('should set the offer as confirmationPending while waiting for the backend', inject(function($httpBackend) {
             expect(offer.confirmationPending).toBeFalsy();
 
-            vm.deleteOffer(offer);
+            ctrl.deleteOffer(offer);
             expect(offer.confirmationPending).toBeTruthy();
 
             $httpBackend.flush();
@@ -204,13 +210,13 @@ describe('Restaurant admin view', function() {
           }));
 
           it('should set hasWarning in case of an error', inject(function($httpBackend) {
-            expect(vm.offers).toContain(offer);
+            expect(ctrl.offers).toContain(offer);
 
-            vm.deleteOffer(offer);
+            ctrl.deleteOffer(offer);
             response.respond(500, {});
             $httpBackend.flush();
 
-            expect(vm.offers).toContain(offer);
+            expect(ctrl.offers).toContain(offer);
             expect(offer.hasWarning).toBe(true);
           }));
         });
@@ -227,12 +233,12 @@ describe('Restaurant admin view', function() {
         }));
 
         it('should prepend a broadcasted offer into the list of offers', function() {
-          var nrOfOffers = vm.offers.length;
+          var nrOfOffers = ctrl.offers.length;
 
           $scope.$broadcast('offer-posted', mockOffer);
 
-          expect(vm.offers.length).toEqual(nrOfOffers + 1);
-          expect(vm.offers[0]).toBe(mockOffer);
+          expect(ctrl.offers.length).toEqual(nrOfOffers + 1);
+          expect(ctrl.offers[0]).toBe(mockOffer);
         });
 
         describe('with the offer prepended to the list of offers', function() {
@@ -251,20 +257,18 @@ describe('Restaurant admin view', function() {
           });
 
           it('should remove the offer from the list if promise is rejected', function() {
-            var nrOfOffers = vm.offers.length;
-            expect(vm.offers[0]).toBe(mockOffer);
+            var nrOfOffers = ctrl.offers.length;
+            expect(ctrl.offers[0]).toBe(mockOffer);
 
             $scope.$apply(function() {
               deferred.reject();
             });
 
-            expect(vm.offers.length).toEqual(nrOfOffers - 1);
-            expect(vm.offers[0]).not.toBe(mockOffer);
+            expect(ctrl.offers.length).toEqual(nrOfOffers - 1);
+            expect(ctrl.offers[0]).not.toBe(mockOffer);
           });
         });
       });
     });
   });
-
-
 });

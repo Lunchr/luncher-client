@@ -70,6 +70,7 @@ var offerUtils = (function() {
     },
     getMockRestaurant: function() {
       return {
+        '_id': '3',
         'name': 'Bulgarian Chef',
         'address': 'Some street 3, Tartu'
       };
