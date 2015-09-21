@@ -41,3 +41,6 @@ h6 {
     padding-top: 46px;
     box-sizing: border-box;
 }
+.center-align {
+    text-align: center !important;
+}
