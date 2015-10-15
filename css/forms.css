@@ -408,12 +408,11 @@ input[type=checkbox] + label:before {
     @mixin transition 0.1s;
     border-radius: 2px;
     background: #fff url(../img/check.svg) no-repeat;
-    background-size: 0;
+    background-size: 8px;
     background-position: 50%;
 }
 input[type=checkbox]:checked + label:before {
     background-color: $color;
-    background-size: 8px;
     border-color: $color;
 }
 input[type=radio]:checked + label:before {
