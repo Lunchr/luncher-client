@@ -21,68 +21,20 @@
         </label>
       </p>
       <p>
-        <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
-                     because of this we have to mark it manually for now-->
-        <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="2" on-tag-added="form.ingredients.$dirty=true"
-                    on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}"
-                    replace-spaces-with-dashes="false">
-          <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
-            <span ng-show="!isReadyForError(form.ingredients) && !(form.ingredients.$touched && form.ingredients.$error.leftoverText)">
-              Koostisosad
-            </span>
-            <span ng-show="isReadyForError(form.ingredients) || form.ingredients.$touched && form.ingredients.$error.leftoverText" class="errors">
-              <span ng-show="form.ingredients.$error.leftoverText">
-                Viimane <strong>koostisosa</strong> ei ole sobiv.
-              </span>
-              <span ng-show="!ingredients.length && !form.ingredients.$error.leftoverText">
-                <strong>Koostisosad</strong> on kohustuslikud.
-              </span>
-              <span ng-show="form.ingredients.$error.minTags && ingredients.length">
-                <strong>Koostisosasi</strong> peab olema vähemalt 2.
-              </span>
-            </span>
-          </label>
-        </tags-input>
-      </p>
-      <p>
-        <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
-                     because of this we have to mark it manually for now-->
-        <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="1" add-from-autocomplete-only="true" display-property="name"
-                    on-tag-added="form.tags.$dirty=true" on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
-          <auto-complete source="getFilteredTags($query)" min-length="0" load-on-down-arrow="true"></auto-complete>
-          <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="{{idPrefix}}tags">
-            <span ng-show="!isReadyForError(form.tags) && !(form.tags.$touched && form.tags.$error.leftoverText)">
-              Märksõnad
-            </span>
-            <span ng-show="isReadyForError(form.tags) || form.tags.$touched && form.tags.$error.leftoverText" class="errors">
-              <span ng-show="form.tags.$error.leftoverText">
-                <strong>Märksõnad</strong> peavad kuuluma ette pakutute hulka.
-              </span>
-              <span ng-show="!tags.length && !form.tags.$error.leftoverText">
-                <strong>Märksõnad</strong> on kohustuslikud.
-              </span>
-              <span ng-show="form.tags.$error.minTags && tags.length">
-                <strong>Märksõnu</strong> peab olema vähemalt 1.
-              </span>
-            </span>
-          </label>
-        </tags-input>
-      </p>
-      <p>
-        <input ng-model="price" name="price" id="{{idPrefix}}price" type="number" min="0" required>
-        <label ng-class="{filled: !form.price.$error.required}" for="{{idPrefix}}price">
-          <span ng-show="!isReadyForError(form.price)">
-            Hind
+        <input ng-model="description" name="description" id="{{idPrefix}}description" type="text" ng-minlength="4" ng-maxlength="{{::titleMaxLength}}">
+        <label ng-class="{filled: form.description.$viewValue}" for="{{::idPrefix}}description">
+          <span ng-show="!isReadyForError(form.description)">
+            Kirjeldus
           </span>
-          <span ng-show="isReadyForError(form.price)" class="errors">
-            <span ng-show="form.price.$error.required">
-              <strong>Hind</strong> on kohustuslik.
+          <span ng-show="isReadyForError(form.description)" class="errors">
+            <span ng-show="form.description.$error.required">
+              <strong>Kirjeldus</strong> on kohustuslik.
             </span>
-            <span ng-show="form.price.$error.min">
-              <strong>Hind</strong> ei tohi olla negatiivne.
+            <span ng-show="form.description.$error.minlength">
+              <strong>Kirjeldus</strong> peab olema vähemalt 4 tähte.
             </span>
-            <span ng-show="form.price.$error.number">
-              <strong>Hind</strong> peab olema korrektne number.
+            <span ng-show="form.description.$error.maxlength">
+              <strong>Kirjeldus</strong> võib olla kuni {{::titleMaxLength}} tähte. ({{titleMaxLength-form.title.$viewValue.length}})
             </span>
           </span>
         </label>
@@ -113,36 +65,51 @@
           </p>
         </div>
         <div class="col-xs-3">
-          <div class="row">
-            <div class="col-xs-3">
-              <p class="input-sep">
-                <input ng-class="{filled: fromTime || form.fromTime.$error.time || form.toTime.$error.time}" ng-model="fromTime" name="fromTime" id="{{idPrefix}}fromTime" value="11:30" type="time" required>
-                <label ng-class="{filled: fromTime || form.fromTime.$error.time}" for="{{idPrefix}}fromTime">
-                  <span ng-show="!isReadyForError(form.fromTime, form.toTime)">
-                    Kellaaeg
+            <p>
+              <input ng-model="price" name="price" id="{{idPrefix}}price" type="number" min="0" required>
+              <label ng-class="{filled: !form.price.$error.required}" for="{{idPrefix}}price">
+                <span ng-show="!isReadyForError(form.price)">
+                  Hind
+                </span>
+                <span ng-show="isReadyForError(form.price)" class="errors">
+                  <span ng-show="form.price.$error.required">
+                    <strong>Hind</strong> on kohustuslik.
                   </span>
-                  <span ng-show="isReadyForError(form.fromTime, form.toTime)" class="errors">
-                    <span ng-show="form.fromTime.$error.required || form.toTime.$error.required" ng-hide="form.fromTime.$error.time || form.toTime.$error.time">
-                      <strong>Kellaaeg</strong> on kohustuslik.
-                    </span>
-                    <span ng-show="form.fromTime.$error.time || form.toTime.$error.time">
-                      <strong>Kellaaeg</strong> peab olema formaadis hh:mm
-                    </span>
-                    <span ng-show="form.toTime.$error.min">
-                      <strong>Algusaeg</strong> peab olema enne lõpuaega.
-                    </span>
+                  <span ng-show="form.price.$error.min">
+                    <strong>Hind</strong> ei tohi olla negatiivne.
                   </span>
-                </label>
-              </p>
-            </div>
-            <div class="col-xs-3">
-              <p>
-                <input ng-class="{filled: form.toTime.$viewValue}" ng-model="toTime" name="toTime" id="{{idPrefix}}toTime" value="15:00" type="time" min="{{form.fromTime.$valid ? form.fromTime.$viewValue : '00:00'}}" required>
-              </p>
-            </div>
-          </div>
+                  <span ng-show="form.price.$error.number">
+                    <strong>Hind</strong> peab olema korrektne number.
+                  </span>
+                </span>
+              </label>
+            </p>
         </div>
       </div>
+      <p>
+        <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
+                     because of this we have to mark it manually for now-->
+        <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="0" add-from-autocomplete-only="true" display-property="name"
+                    on-tag-added="form.tags.$dirty=true" on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
+          <auto-complete source="getFilteredTags($query)" min-length="0" load-on-down-arrow="true"></auto-complete>
+          <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="{{idPrefix}}tags">
+            <span ng-show="!isReadyForError(form.tags) && !(form.tags.$touched && form.tags.$error.leftoverText)">
+              Märksõnad
+            </span>
+            <span ng-show="isReadyForError(form.tags) || form.tags.$touched && form.tags.$error.leftoverText" class="errors">
+              <span ng-show="form.tags.$error.leftoverText">
+                <strong>Märksõnad</strong> peavad kuuluma ette pakutute hulka.
+              </span>
+              <span ng-show="!tags.length && !form.tags.$error.leftoverText">
+                <strong>Märksõnad</strong> on kohustuslikud.
+              </span>
+              <span ng-show="form.tags.$error.minTags && tags.length">
+                <strong>Märksõnu</strong> peab olema vähemalt 1.
+              </span>
+            </span>
+          </label>
+        </tags-input>
+      </p>
     </div>
     <div class="col-md-2 col-sm-3">
       <p>

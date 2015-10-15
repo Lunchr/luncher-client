@@ -14,11 +14,11 @@
             margin: -10px 0 0;
         }
         &.image-preview {
-            height: 221px;
+            height: 171px;
             margin-top: -31px;
             margin-bottom: 20px;
             background: #F7F7F7 url(../img/img-icon.svg) center no-repeat;
-            background-size: 50% 50%;
+            background-size: 65% 65%;
             border: 1px dashed $color-secondary-2;
             border-top-style: solid;
             label {

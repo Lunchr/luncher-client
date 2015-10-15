@@ -7,8 +7,8 @@
     <div class="container">
         <div class="form-wrap">
             <p class="message" ng-show="vm.errorMessage">
-              <span class="icon icon-20"></span>
-              Midagi läks valesti. Server vastas veaga: {{vm.errorMessage}}
+                <span class="icon icon-20"></span>
+                Midagi läks valesti. Server vastas veaga: {{vm.errorMessage}}
             </p>
             <form class="form" name="form" ng-submit="vm.submitClicked = true; form.$valid && vm.submit()" novalidate>
                 <div class="row">
@@ -20,23 +20,22 @@
                                     Söögikoha nimi
                                 </span>
                                 <span ng-show="vm.isReadyForError(form.name)" class="errors">
-                                  <span ng-show="form.name.$error.required">
-                                    Nimi on kohustuslik
-                                  </span>
+                                    <span ng-show="form.name.$error.required">
+                                        Nimi on kohustuslik
+                                    </span>
                                 </span>
                             </label>
                         </p>
                         <p>
-                            <input ng-model="vm.restaurant.address" name="address" id="restaurantAddress" type="text" required
-                                   ng-model-options="{ updateOn: 'default blur', debounce: {'default': 2000, 'blur': 0} }">
+                            <input ng-model="vm.restaurant.address" name="address" id="restaurantAddress" type="text" required ng-model-options="{ updateOn: 'default blur', debounce: {'default': 2000, 'blur': 0} }">
                             <label ng-class="{filled: form.address.$viewValue}" for="restaurantAddress">
                                 <span ng-show="!vm.isReadyForError(form.address)">
                                     Aadress
                                 </span>
                                 <span ng-show="vm.isReadyForError(form.address)" class="errors">
-                                  <span ng-show="form.address.$error.required">
-                                    Aadress on kohustuslik
-                                  </span>
+                                    <span ng-show="form.address.$error.required">
+                                        Aadress on kohustuslik
+                                    </span>
                                 </span>
                             </label>
                         </p>
@@ -47,9 +46,9 @@
                                     Telefoni number
                                 </span>
                                 <span ng-show="vm.isReadyForError(form.phone)" class="errors">
-                                  <span ng-show="form.phone.$error.required">
-                                    Telefoni number on kohustuslik
-                                  </span>
+                                    <span ng-show="form.phone.$error.required">
+                                        Telefoni number on kohustuslik
+                                    </span>
                                 </span>
                             </label>
                         </p>
@@ -60,9 +59,9 @@
                                     E-posti aadress
                                 </span>
                                 <span ng-show="vm.isReadyForError(form.email)" class="errors">
-                                  <span ng-show="form.email.$error.required">
-                                    E-posti aadress on kohustuslik
-                                  </span>
+                                    <span ng-show="form.email.$error.required">
+                                        E-posti aadress on kohustuslik
+                                    </span>
                                 </span>
                             </label>
                         </p>
@@ -73,19 +72,46 @@
                                     Kodulehe aadress
                                 </span>
                                 <span ng-show="vm.isReadyForError(form.website)" class="errors">
-                                  <span ng-show="form.website.$error.required">
-                                    Kodulehe aadress on kohustuslik
-                                  </span>
+                                    <span ng-show="form.website.$error.required">
+                                        Kodulehe aadress on kohustuslik
+                                    </span>
                                 </span>
                             </label>
                         </p>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <p class="input-sep">
+                                    <input ng-class="{filled: fromTime || form.fromTime.$error.time || form.toTime.$error.time}" ng-model="fromTime" name="fromTime" id="{{idPrefix}}fromTime" value="11:30" type="time" required>
+                                    <label ng-class="{filled: fromTime || form.fromTime.$error.time}" for="{{idPrefix}}fromTime">
+                                        <span ng-show="!isReadyForError(form.fromTime, form.toTime)">
+                                            Pakkumiste kellaaeg
+                                        </span>
+                                        <span ng-show="isReadyForError(form.fromTime, form.toTime)" class="errors">
+                                            <span ng-show="form.fromTime.$error.required || form.toTime.$error.required" ng-hide="form.fromTime.$error.time || form.toTime.$error.time">
+                                                <strong>Kellaaeg</strong> on kohustuslik.
+                                            </span>
+                                            <span ng-show="form.fromTime.$error.time || form.toTime.$error.time">
+                                                <strong>Kellaaeg</strong> peab olema formaadis hh:mm
+                                            </span>
+                                            <span ng-show="form.toTime.$error.min">
+                                                <strong>Algusaeg</strong> peab olema enne lõpuaega.
+                                            </span>
+                                        </span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="col-xs-3">
+                                <p>
+                                    <input ng-class="{filled: form.toTime.$viewValue}" ng-model="toTime" name="toTime" id="{{idPrefix}}toTime" value="15:00" type="time" min="{{form.fromTime.$valid ? form.fromTime.$viewValue : '00:00'}}" required>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-3">
                         <p>
                             <label class="filled">Asukoha täpsustus kaardil</label>
                             <span class="geolocator-wrap">
-                                <geo-specifier address="vm.restaurant.address" region="vm.restaruant.region"
-                                               register="vm.registerSpecifier($specifier)"></geo-specifier>
+                                <geo-specifier address="vm.restaurant.address" region="vm.restaruant.region" register="vm.registerSpecifier($specifier)"></geo-specifier>
                             </span>
                         </p>
                     </div>
