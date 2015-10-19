@@ -57,7 +57,7 @@
               return $resource('/api/v1/user/restaurants').query().$promise
                 .then(function success(resp) {
                   if (resp.length == 1) {
-                    $location.path('/admin/' + resp[0]._id)
+                    $location.path('/admin/' + resp[0]._id);
                     return $q.reject();
                   }
                   return resp;
@@ -85,7 +85,7 @@
           redirectURL: ['$http', '$route', '$q',
             function($http, $route, $q) {
               var params = (function() {
-                var token = $route.current.params.token
+                var token = $route.current.params.token;
                 if (token) {
                   return {
                     token: token,
@@ -93,7 +93,7 @@
                 } else {
                   return {};
                 }
-              })()
+              })();
               return $http.get('/api/v1/register/facebook', {
                 params: params,
               }).then(function success(resp) {
