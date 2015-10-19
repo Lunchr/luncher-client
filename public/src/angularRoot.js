@@ -52,13 +52,21 @@
         controller: 'RestaurantSelectionCtrl',
         controllerAs: 'vm',
         resolve: {
-          restaurants: ['$resource', '$location',
-            function ($resource, $location) {
-              return $resource('/api/v1/user/restaurants').query().$promise.catch(function(resp) {
-                if (resp.status === 401) {
-                  $location.path('/login');
-                }
-              });
+          restaurants: ['$resource', '$location', '$q',
+            function ($resource, $location, $q) {
+              return $resource('/api/v1/user/restaurants').query().$promise
+                .then(function success(resp) {
+                  if (resp.length == 1) {
+                    $location.path('/admin/' + resp[0]._id)
+                    return $q.reject();
+                  }
+                  return resp;
+                }, function failure(resp) {
+                  if (resp.status === 401) {
+                    $location.path('/login');
+                  }
+                  return $q.reject(resp);
+                });
             }
           ],
         },
