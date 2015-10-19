@@ -212,7 +212,7 @@
 .secondary {
     height: 0;
     overflow: hidden;
-    @mixin transition 0.2s;
+    @mixin transition 0.3s;
     p {
         margin-top: 4px;
         margin-bottom: 0;
