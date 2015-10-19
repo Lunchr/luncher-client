@@ -36,6 +36,10 @@
           $scope.getFilteredTags = function($query) {
             return filterFilter($scope.allTags, $query);
           };
+          (function setDefaults() {
+            $scope.date = new Date();
+            $scope.date.setHours(0, 0, 0, 0);
+          })();
           function prefillWith(offer) {
             $scope.isEdit = !!offer;
             if (offer) {
