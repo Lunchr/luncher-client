@@ -69,17 +69,25 @@
       when('/faq', {
         templateUrl: 'src/faq.template.html',
       }).
-      when('/register/login/:token', {
+      when('/register/login/:token?', {
         templateUrl: 'src/register/login.template.html',
         controller: 'RegisterLoginCtrl',
         controllerAs: 'vm',
         resolve: {
           redirectURL: ['$http', '$route', '$q',
             function($http, $route, $q) {
+              var params = (function() {
+                var token = $route.current.params.token
+                if (token) {
+                  return {
+                    token: token,
+                  };
+                } else {
+                  return {};
+                }
+              })()
               return $http.get('/api/v1/register/facebook', {
-                params: {
-                  token: $route.current.params.token,
-                },
+                params: params,
               }).then(function success(resp) {
                 return {
                   url: resp.data,
