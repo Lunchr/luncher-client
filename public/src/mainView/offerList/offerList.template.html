@@ -1,6 +1,6 @@
 <div class="offers" ng-repeat="offersByRestaurant in ctrl.offersByRestaurantByFavorite">
   <div class="offers-group" ng-repeat="restaurant in offersByRestaurant">
-      <div class="col-1" ng-click="restaurant.toggle.state = !restaurant.toggle.state" ng-class="{favorite: restaurant.isFavorite, expand: restaurant.toggle.state}">
+      <div onclick="mixpanel.track('Restaurant info toggle');" class="col-1" ng-click="restaurant.toggle.state = !restaurant.toggle.state" ng-class="{favorite: restaurant.isFavorite, expand: restaurant.toggle.state}">
           <p class="icon-wrap">
             <a href="javascript:undefined" class="icon icon-8" ng-click="ctrl.toggleFavorite(restaurant.name)"></a>
           </p>
@@ -14,11 +14,11 @@
           <div class="secondary">
               <p class="mobile">{{restaurant.address}}</p>
               <p><a href="tel:{{restaurant.phone}}">{{restaurant.phone}}</a></p>
-              <p class="map" ng-style="{'background-image': 'url({{ctrl.getStaticMap(restaurant)}})'}"></p>
+              <p onclick="mixpanel.track("Static map");" class="map" ng-style="{'background-image': 'url({{ctrl.getStaticMap(restaurant)}})'}"></p>
           </div>
       </div>
       <div class="col-2">
-          <div class="offer" ng-repeat="offer in restaurant.offers" ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state, hasimage: !!offer.image, hasinfo: offer.info}">
+          <div onclick="if (this.classList.contains('hasimage')) { mixpanel.track('Offer toggle (with image)'); } else { mixpanel.track('Offer toggle'); }" class="offer" ng-repeat="offer in restaurant.offers" ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state, hasimage: !!offer.image, hasinfo: offer.info}">
               <p class="thumbnail" ng-style="{'background-image':'url(../{{offer.image.thumbnail}})'}"></p>
               <h3>{{offer.title}}</h3>
               <p class="desktop">{{offer.ingredients | joinTags}}</p>
