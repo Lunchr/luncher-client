@@ -21,28 +21,17 @@
         </label>
       </p>
       <p>
-        <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
-                     because of this we have to mark it manually for now-->
-        <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="2" on-tag-added="form.ingredients.$dirty=true"
-                    on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}"
-                    replace-spaces-with-dashes="false">
-          <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
-            <span ng-show="!isReadyForError(form.ingredients) && !(form.ingredients.$touched && form.ingredients.$error.leftoverText)">
-              Koostisosad
+        <input ng-model="description" name="description" id="{{idPrefix}}description" type="text">
+        <label ng-class="{filled: form.description.$viewValue}" for="{{::idPrefix}}description"  ng-minlength="4" ng-maxlength="{{::descriptionMaxLength}}">
+          <span ng-show="!isReadyForError(form.description)">
+            Kirjeldus
+          </span>
+          <span ng-show="isReadyForError(form.description)" class="errors">
+            <span ng-show="form.description.$error.maxlength">
+              <strong>Nimetus</strong> võib olla kuni {{::descriptionMaxLength}} tähte. ({{descriptionMaxLength-form.title.$viewValue.length}})
             </span>
-            <span ng-show="isReadyForError(form.ingredients) || form.ingredients.$touched && form.ingredients.$error.leftoverText" class="errors">
-              <span ng-show="form.ingredients.$error.leftoverText">
-                Viimane <strong>koostisosa</strong> ei ole sobiv.
-              </span>
-              <span ng-show="!ingredients.length && !form.ingredients.$error.leftoverText">
-                <strong>Koostisosad</strong> on kohustuslikud.
-              </span>
-              <span ng-show="form.ingredients.$error.minTags && ingredients.length">
-                <strong>Koostisosasi</strong> peab olema vähemalt 2.
-              </span>
-            </span>
-          </label>
-        </tags-input>
+          </span>
+        </label>
       </p>
       <p>
         <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)

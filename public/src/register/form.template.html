@@ -79,6 +79,34 @@
                                 </span>
                             </label>
                         </p>
+                        <div class="row">
+                          <div class="col-xs-3">
+                            <p class="input-sep">
+                              <input ng-class="{filled: fromTime || form.fromTime.$error.time || form.toTime.$error.time}" ng-model="fromTime" name="fromTime" id="{{idPrefix}}fromTime" value="11:30" type="time" required>
+                              <label ng-class="{filled: fromTime || form.fromTime.$error.time}" for="{{idPrefix}}fromTime">
+                                <span ng-show="!isReadyForError(form.fromTime, form.toTime)">
+                                  Pakkumiste kellaaeg
+                                </span>
+                                <span ng-show="isReadyForError(form.fromTime, form.toTime)" class="errors">
+                                  <span ng-show="form.fromTime.$error.required || form.toTime.$error.required" ng-hide="form.fromTime.$error.time || form.toTime.$error.time">
+                                    <strong>Kellaaeg</strong> on kohustuslik.
+                                  </span>
+                                  <span ng-show="form.fromTime.$error.time || form.toTime.$error.time">
+                                    <strong>Kellaaeg</strong> peab olema formaadis hh:mm
+                                  </span>
+                                  <span ng-show="form.toTime.$error.min">
+                                    <strong>Algusaeg</strong> peab olema enne lõpuaega.
+                                  </span>
+                                </span>
+                              </label>
+                            </p>
+                          </div>
+                          <div class="col-xs-3">
+                            <p>
+                              <input ng-class="{filled: form.toTime.$viewValue}" ng-model="toTime" name="toTime" id="{{idPrefix}}toTime" value="15:00" type="time" min="{{form.fromTime.$valid ? form.fromTime.$viewValue : '00:00'}}" required>
+                            </p>
+                          </div>
+                        </div>
                     </div>
                     <div class="col-sm-3">
                         <p>

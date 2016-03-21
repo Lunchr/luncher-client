@@ -26,6 +26,7 @@
         },
         controller: function($scope, $element, $attrs) {
           $scope.titleMaxLength = 70;
+          $scope.descriptionMaxLength = 140;
           $scope.allTags = $resource('api/v1/tags', {}, {
             'queryCached': {
               method: 'GET',
