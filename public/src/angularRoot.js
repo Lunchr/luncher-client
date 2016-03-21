@@ -52,13 +52,21 @@
         controller: 'RestaurantSelectionCtrl',
         controllerAs: 'vm',
         resolve: {
-          restaurants: ['$resource', '$location',
-            function ($resource, $location) {
-              return $resource('/api/v1/user/restaurants').query().$promise.catch(function(resp) {
-                if (resp.status === 401) {
-                  $location.path('/login');
-                }
-              });
+          restaurants: ['$resource', '$location', '$q',
+            function ($resource, $location, $q) {
+              return $resource('/api/v1/user/restaurants').query().$promise
+                .then(function success(resp) {
+                  if (resp.length == 1) {
+                    $location.path('/admin/' + resp[0]._id);
+                    return $q.reject();
+                  }
+                  return resp;
+                }, function failure(resp) {
+                  if (resp.status === 401) {
+                    $location.path('/login');
+                  }
+                  return $q.reject(resp);
+                });
             }
           ],
         },
@@ -69,17 +77,25 @@
       when('/faq', {
         templateUrl: 'src/faq.template.html',
       }).
-      when('/register/login/:token', {
+      when('/register/login/:token?', {
         templateUrl: 'src/register/login.template.html',
         controller: 'RegisterLoginCtrl',
         controllerAs: 'vm',
         resolve: {
           redirectURL: ['$http', '$route', '$q',
             function($http, $route, $q) {
+              var params = (function() {
+                var token = $route.current.params.token;
+                if (token) {
+                  return {
+                    token: token,
+                  };
+                } else {
+                  return {};
+                }
+              })();
               return $http.get('/api/v1/register/facebook', {
-                params: {
-                  token: $route.current.params.token,
-                },
+                params: params,
               }).then(function success(resp) {
                 return {
                   url: resp.data,
