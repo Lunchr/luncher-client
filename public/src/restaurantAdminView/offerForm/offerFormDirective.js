@@ -15,14 +15,15 @@
     }
   ]);
 
-  module.directive('offerForm', ['$resource', 'filterFilter',
-    function($resource, filterFilter) {
+  module.directive('offerForm', ['$resource', '$http', 'filterFilter',
+    function($resource, $http, filterFilter) {
       return {
         scope: {
           offerToEdit: '=edit',
           submitFunction: '&onSubmit',
           cancelFunction: '&onCancel',
           deleteFunction: '&onDelete',
+          restaurantID: '=restaurantId',
         },
         controller: function($scope, $element, $attrs) {
           $scope.titleMaxLength = 70;
@@ -126,6 +127,45 @@
               });
             }
           };
+          var titleSubject = new Rx.Subject();
+          $scope.$watch('form.title.$viewValue', function(title) {
+            // Test for self-equality, to avoid calling for NaN values
+            if (title !== null && (typeof title !== 'undefined') && title === title) {
+              titleSubject.onNext(title);
+            }
+          });
+          var disposable = titleSubject
+            .skip(1)
+            .debounce(500)
+            .filter(R.compose(
+              R.lt(2),
+              R.length
+            ))
+            .flatMapLatest(function(title) {
+              return Rx.Observable.fromPromise(
+                $http.post('/api/v1/restaurants/' + $scope.restaurantID + '/offer_suggestions', {
+                  title: title,
+                })
+              );
+            })
+            .map(R.prop('data'))
+            .filter(R.complement(R.isNil))
+            .filter(R.complement(function(suggestions) {
+              return suggestions.length == 1 && suggestions[0].title == $scope.title;
+            }))
+            .subscribe(function(suggestions) {
+              $scope.suggestions = suggestions;
+              $scope.$apply();
+            });
+          $scope.selectSuggestion = function(suggestion) {
+            prefillWith(suggestion);
+            $scope.suggestions = [];
+          };
+
+          $scope.$on('$destroy', function() {
+            titleSubject.dispose();
+            disposable.dispose();
+          });
         },
         restrict: 'E',
         templateUrl: 'src/restaurantAdminView/offerForm/offerForm.html'
