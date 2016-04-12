@@ -21,7 +21,7 @@
     "angular-resource": "~1.4.0",
     "angular-route": "~1.4.0",
     "fontawesome": "~4.3.0",
-    "ng-tags-input": "~2.3.0",
+    "ng-tags-input": "~3.0.0",
     "angular-i18n": "~1.4.0",
     "ng-image-input-with-preview": "~0.0.6",
     "angular-cookie": "~4.0.6",
