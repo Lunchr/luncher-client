@@ -438,6 +438,40 @@ textarea {
     }
 }
 
+/* Grouped select */
+.grouped-select {
+    margin: 0 0 20px;
+    padding: 5px;
+    th, td {
+        padding: 5px 0;
+    }
+    th {
+        text-align: left;
+        padding-right: 5px;
+        + td {
+            padding-left: 5px;
+        }
+    }
+    a {
+        padding: 0px 5px;
+        border: 1px solid;
+        border-radius: 2px;
+        &.more {
+            border: none;
+        }
+        &.disabled {
+            color: #bbb;
+            cursor: default;
+        }
+    }
+    .tags-input + & {
+        margin-top: -30px;
+    }
+}
+.tags-input {
+    z-index: 2;
+}
+
 /* Datepicker */
 .datepicker,
 [datepicker],

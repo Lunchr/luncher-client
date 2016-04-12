@@ -33,7 +33,7 @@
           </span>
         </label>
       </p>
-      <p>
+      <p class="tags-input">
         <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
                      because of this we have to mark it manually for now-->
         <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="1" add-from-autocomplete-only="true" display-property="name"
@@ -57,6 +57,37 @@
           </label>
         </tags-input>
       </p>
+      <div class="grouped-select">
+          <table>
+              <tr>
+                  <th>Tüüp:</th>
+                  <td>
+                      <a href="javascript:undefined">Praad</a>
+                      <a href="javascript:undefined">Supp</a>
+                      <a href="javascript:undefined">Magustoit</a>
+                      <a class="more" href="javascript:undefined">Näita rohkem...</a>
+                  </td>
+              </tr>
+              <tr>
+                  <th>Liha:</th>
+                  <td>
+                      <a href="javascript:undefined">Veis</a>
+                      <a href="javascript:undefined">Siga</a>
+                      <a href="javascript:undefined">Kana</a>
+                      <a href="javascript:undefined">Kala</a>
+                      <a href="javascript:undefined">Taimetoit</a>
+                      <a class="more" href="javascript:undefined">Näita rohkem...</a>
+                  </td>
+              </tr>
+              <tr>
+                  <th>Muu:</th>
+                  <td>
+                      <a href="javascript:undefined">Gluteenivaba</a>
+                      <a href="javascript:undefined">Laktoosivaba</a>
+                  </td>
+              </tr>
+          </table>
+      </div>
       <p>
         <input ng-model="price" name="price" id="{{idPrefix}}price" type="number" min="0" required>
         <label ng-class="{filled: !form.price.$error.required}" for="{{idPrefix}}price">
