@@ -21,7 +21,8 @@
   "dependencies": {
     "express": "^4.12.4",
     "body-parser": "^1.12.4",
-    "serve-static": "^1.9.3"
+    "serve-static": "^1.9.3",
+    "ramda": "^0.21.0"
   },
   "devDependencies": {
     "async": "^1.0.0",
