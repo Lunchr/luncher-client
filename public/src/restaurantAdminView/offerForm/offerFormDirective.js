@@ -45,7 +45,7 @@
             $scope.isEdit = !!offer;
             if (offer) {
               $scope.title = offer.title;
-              $scope.ingredients = offer.ingredients;
+              $scope.description = offer.description;
               $scope.tags = offer.tags;
               $scope.price = offer.price;
               $scope.date = new Date(offer.from_time);
@@ -99,9 +99,7 @@
             date.setHours(0, 0, 0, 0);
             var offer = {
               title: $scope.title,
-              ingredients: $scope.ingredients.map(function(ingredient) {
-                return ingredient.text;
-              }),
+              description: $scope.description,
               tags: $scope.tags.map(function(tag) {
                 return tag.name;
               }),
