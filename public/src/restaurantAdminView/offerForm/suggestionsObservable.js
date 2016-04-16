@@ -16,7 +16,6 @@
     return function(args) {
       var titleObservable = args.titleObservable;
       var restaurantID = args.restaurantID;
-      var getCurrentTitle = args.getCurrentTitle;
       var scheduler = args.scheduler || Rx.Scheduler.default;
 
       return titleObservable
@@ -34,16 +33,24 @@
           return requestSuggestions({
             title: title,
             restaurantID: restaurantID,
-          });
+          }).map(R.prop('data'))
+            .map(function(suggestions) {
+              return {
+                suggestions: suggestions,
+                title: title,
+              };
+            });
         })
-        .map(R.prop('data'))
-        .filter(R.complement(R.isNil))
-        .filter(R.complement(function(suggestions) {
+        .filter(R.propSatisfies(R.complement(R.isNil), 'suggestions'))
+        .filter(R.complement(function(args) {
+          var suggestions = args.suggestions;
+          var title = args.title;
           // Avoid showing the single suggestion after the user has
           // selected a suggestion and the title field is filled with the
           // selected offer.
-          return suggestions.length == 1 && suggestions[0].title == getCurrentTitle();
-        }));
+          return suggestions.length == 1 && suggestions[0].title === title;
+        }))
+        .map(R.prop('suggestions'));
     };
   }]);
 })();

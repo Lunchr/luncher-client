@@ -20,7 +20,6 @@ describe('suggestionsObservable', function() {
   var titleInputs = memo().is(function() {
     return [];
   });
-  var getCurrentTitle = null;
 
   var scheduler = null;
   var suggestions = null;
@@ -30,12 +29,10 @@ describe('suggestionsObservable', function() {
   beforeEach(inject(function($injector, _$httpBackend_) {
     scheduler = new Rx.TestScheduler();
     var titleObservable = scheduler.createColdObservable(titleInputs());
-    getCurrentTitle = jasmine.createSpy();
     var subject = function() {
       return $injector.get('suggestionsObservable')({
         titleObservable: titleObservable,
         restaurantID: restaurantID,
-        getCurrentTitle: getCurrentTitle,
         scheduler: scheduler,
       });
     };
@@ -132,6 +129,7 @@ describe('suggestionsObservable', function() {
       requestSuggestionsResponse.is(function() {
         return [
           onNext(requestDelay, {data: responseSuggestions}),
+          onCompleted(requestDelay),
         ];
       });
 
@@ -140,6 +138,43 @@ describe('suggestionsObservable', function() {
           onNext(suggestionTime, responseSuggestions),
         ]);
       });
+    });
+  });
+
+  context('with the title matching that of the only suggestion', function() {
+    var inputDelay = 200;
+    var requestDelay = 50;
+    var title = 'Lambaliha & parmesaniga pasta';
+
+    var requestSuggestionsResponse = [
+      onNext(requestDelay, {data: [{
+        title: title,
+      }]}),
+      onCompleted(requestDelay),
+    ];
+
+    titleInputs.is(function() {
+      return [
+        onNext(2, ''),
+        onNext(inputDelay, title),
+      ];
+    });
+
+    beforeEach(function() {
+      var suggestionsResponseObservable = scheduler.createColdObservable(requestSuggestionsResponse);
+      requestSuggestions.and.returnValue(suggestionsResponseObservable);
+    });
+
+    afterEach(function() {
+      expect(requestSuggestions.calls.count()).toEqual(1);
+      expect(requestSuggestions).toHaveBeenCalledWith({
+        title: title,
+        restaurantID: restaurantID,
+      });
+    });
+
+    it("doesn't provide new suggestions", function() {
+      expect(suggestions()).toEqual([]);
     });
   });
 });

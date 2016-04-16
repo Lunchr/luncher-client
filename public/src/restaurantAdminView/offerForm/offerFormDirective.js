@@ -141,9 +141,6 @@
           var suggestionsObservable = getSuggestionsObservable({
             titleObservable: titleObservable,
             restaurantID: $scope.restaurantID,
-            getCurrentTitle: function() {
-              return $scope.title;
-            },
           });
           var updateSuggestions = function(suggestions) {
             $scope.suggestions = suggestions;
