@@ -382,7 +382,7 @@ input[type=radio] {
             @mixin transition 0.2s;
             content: "";
             position: absolute;
-            top: 8px;
+            top: 6px;
             left: 16px;
             width: 14px;
             height: 14px;

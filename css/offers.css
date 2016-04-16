@@ -15,17 +15,17 @@
     display: inline-block;
     width: 100%;
     margin: -2px 0;
-    border-bottom: 1px solid #e4e4e4;
+    border-top: 1px solid #e4e4e4;
     box-sizing: border-box;
     border-radius: 0;
     transition: .2s;
     &:first-of-type {
         margin-top: 0;
+        border: none;
         border-radius: 2px 2px 0 0;
     }
     &:last-of-type {
         margin-bottom: -4px;
-        border: none;
         border-radius: 0 0 2px 2px;
     }
     h3 {
@@ -43,6 +43,7 @@
         padding: 0;
         margin: 0;
         font-size: 13px;
+        color: #999;
         line-height: 1.2;
         font-weight: 300;
         overflow: hidden;
@@ -65,6 +66,7 @@
         right: 0px;
         padding: 2px 0;
         font-size: 16px;
+        color: $color-secondary;
         line-height: 1.2;
         font-weight: 300;
         width: 60px;
@@ -76,10 +78,6 @@
         box-sizing: border-box;
         h3 {
             padding: 2px 0;
-        }
-        &:hover,
-        &.expand {
-            background-color: rgba(0, 0, 0, 0.02);
         }
         &.favorite {
           .icon-8:before {
@@ -121,29 +119,40 @@
         top: 16px;
         left: 10px;
         height: 30px;
-        width: 27px;
+        width: 30px;
         background-size: cover;
         background-position: 50%;
         opacity: .2;
         transition: .2s;
+        transform: scale(1);
+    }
+    .offer + .offer {
+        margin-top: -10px;
     }
 }
 .offer {
     position: relative;
+    margin-left: -35px;
     padding: 11px;
     padding-left: 47px;
-    cursor: pointer;
     box-sizing: border-box;
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.02);
-        .thumbnail {
-            opacity: 1;
+    &.hasimage {
+        cursor: pointer;
+        &:hover {
+            .thumbnail {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
     }
     &.expand {
-        background-color: rgba(0, 0, 0, 0.02);
         .thumbnail {
             opacity: 0;
+        }
+        &:hover {
+            .thumbnail {
+                opacity: 0;
+            }
         }
     }
     .icon-15:hover:before {
@@ -302,6 +311,7 @@
         width: 75%;
     }
     .offer {
+        margin: 0;
         border-left: 1px solid #e4e4e4;
         border-bottom: 1px solid #e4e4e4;
         &:last-child {

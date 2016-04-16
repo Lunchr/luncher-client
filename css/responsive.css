@@ -76,8 +76,12 @@
             height: 19px;
             top: 3px;
         }
+        .offer + .offer {
+        margin-top: 0;
+    }
     }
     .offer {
+        margin: 0;
         padding: 3px 11px 3px 45px;
         &:last-child {
             padding-bottom: 8px;

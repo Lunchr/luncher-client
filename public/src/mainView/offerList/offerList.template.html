@@ -18,7 +18,7 @@
           </div>
       </div>
       <div class="col-2">
-          <div onclick="if (this.classList.contains('hasimage')) { mixpanel.track('Offer toggle (with image)'); } else { mixpanel.track('Offer toggle'); }" class="offer" ng-repeat="offer in restaurant.offers" ng-click="offer.toggle.state = !offer.toggle.state" ng-class="{expand: offer.toggle.state, hasimage: !!offer.image, hasinfo: offer.info}">
+          <div onclick="if (this.classList.contains('hasimage')) { mixpanel.track('Offer toggle (with image)'); } else { mixpanel.track('Offer toggle'); }" class="offer" ng-repeat="offer in restaurant.offers" ng-click="!!offer.image && (offer.toggle.state = !offer.toggle.state)" ng-class="{expand: offer.toggle.state, hasimage: !!offer.image, hasinfo: offer.info}">
               <p class="thumbnail" ng-style="{'background-image':'url(../{{offer.image.thumbnail}})'}"></p>
               <h3>{{offer.title}}</h3>
               <p class="desktop">{{offer.description}}</p>
