@@ -230,11 +230,12 @@
           };
 
           var disposable = new Rx.CompositeDisposable();
-          disposable.add(suggestionsObservable.subscribe(updateSuggestions));
-          disposable.add(managedKeypressObservable.subscribe(R.invoker(0, 'preventDefault')));
-          disposable.add(highlightPreviousSuggestionObservable.subscribe(highlightPreviousSuggestion));
-          disposable.add(highlightNextSuggestionObservable.subscribe(highlightNextSuggestion));
-          disposable.add(selectSuggestionObservable.subscribe(selectSuggestion));
+          var err = console.error.bind(console);
+          disposable.add(suggestionsObservable.subscribe(updateSuggestions, err));
+          disposable.add(managedKeypressObservable.subscribe(R.invoker(0, 'preventDefault'), err));
+          disposable.add(highlightPreviousSuggestionObservable.subscribe(highlightPreviousSuggestion, err));
+          disposable.add(highlightNextSuggestionObservable.subscribe(highlightNextSuggestion, err));
+          disposable.add(selectSuggestionObservable.subscribe(selectSuggestion, err));
           disposable.add(keypressObservable.connect());
           $scope.$on('$destroy', disposable.dispose.bind(disposable));
         },
