@@ -20,8 +20,8 @@
     }
   ]);
 
-  module.directive('offerForm', ['$resource', '$http', 'filterFilter',
-    function($resource, $http, filterFilter) {
+  module.directive('offerForm', ['$resource', 'filterFilter', 'suggestionsObservable',
+    function($resource, filterFilter, getSuggestionsObservable) {
       return {
         scope: {
           offerToEdit: '=edit',
@@ -138,32 +138,13 @@
             // for this observable.
             return $scope.$watch('form.title.$viewValue', observer.onNext.bind(observer));
           });
-          var suggestionsObservable = titleObservable
-            .filter(function(title) {
-              // Test for self-equality, to avoid calling for NaN values
-              return title !== null && (typeof title !== 'undefined') && title === title;
-            })
-            .skip(1) // We don't want to show suggestions for the initial value
-            .debounce(500)
-            .filter(R.compose(
-              R.lt(2),
-              R.length
-            ))
-            .flatMapLatest(function(title) {
-              return Rx.Observable.fromPromise(
-                $http.post('/api/v1/restaurants/' + $scope.restaurantID + '/offer_suggestions', {
-                  title: title,
-                })
-              );
-            })
-            .map(R.prop('data'))
-            .filter(R.complement(R.isNil))
-            .filter(R.complement(function(suggestions) {
-              // Avoid showing the single suggestion after the user has
-              // selected a suggestion and the title field is filled with the
-              // selected offer.
-              return suggestions.length == 1 && suggestions[0].title == $scope.title;
-            }));
+          var suggestionsObservable = getSuggestionsObservable({
+            titleObservable: titleObservable,
+            restaurantID: $scope.restaurantID,
+            getCurrentTitle: function() {
+              return $scope.title;
+            },
+          });
           var updateSuggestions = function(suggestions) {
             $scope.suggestions = suggestions;
             $scope.highlightedSuggestionIndex = null;
