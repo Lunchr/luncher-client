@@ -132,14 +132,17 @@
               });
             }
           };
-          var titleSubject = new Rx.Subject();
-          $scope.$watch('form.title.$viewValue', function(title) {
-            // Test for self-equality, to avoid calling for NaN values
-            if (title !== null && (typeof title !== 'undefined') && title === title) {
-              titleSubject.onNext(title);
-            }
+          var titleObservable = Rx.Observable.create(function(observer) {
+            // $scope.$watch returns a function that unregisters the $watching
+            // when called. Return this function to act as the dispose method
+            // for this observable.
+            return $scope.$watch('form.title.$viewValue', observer.onNext.bind(observer));
           });
-          var suggestionsObservable = titleSubject
+          var suggestionsObservable = titleObservable
+            .filter(function(title) {
+              // Test for self-equality, to avoid calling for NaN values
+              return title !== null && (typeof title !== 'undefined') && title === title;
+            })
             .skip(1)
             .debounce(500)
             .filter(R.compose(
@@ -224,7 +227,6 @@
           };
 
           var disposable = new Rx.CompositeDisposable();
-          disposable.add(titleSubject);
           disposable.add(suggestionsObservable.subscribe(updateSuggestions));
           disposable.add(managedKeypressObservable.subscribe(R.invoker(0, 'preventDefault')));
           disposable.add(highlightPreviousSuggestionObservable.subscribe(highlightPreviousSuggestion));
