@@ -143,7 +143,7 @@
               // Test for self-equality, to avoid calling for NaN values
               return title !== null && (typeof title !== 'undefined') && title === title;
             })
-            .skip(1)
+            .skip(1) // We don't want to show suggestions for the initial value
             .debounce(500)
             .filter(R.compose(
               R.lt(2),
