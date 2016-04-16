@@ -20,9 +20,9 @@
             </span>
           </span>
         </label>
-        <ul ng-if="suggestions && suggestions.length > 0">
-          <li ng-repeat="suggestion in suggestions" ng-click="selectSuggestion(suggestion)">
-            {{suggestion.title}}
+        <ul class="suggestions" ng-if="suggestions && suggestions.length > 0">
+          <li ng-repeat="(index, suggestion) in suggestions" ng-click="selectSuggestion(suggestion)">
+            <span ng-class="{highlight: index === highlightedSuggestionIndex}">{{suggestion.title}}</span>
           </li>
         </ul>
       </p>

@@ -7,6 +7,11 @@
     '720kb.datepicker',
   ]);
 
+  // JS % operator doesn't play nice with negative numbers
+  function mod(n, m) {
+    return ((n % m) + m) % m;
+  }
+
   module.config(['tagsInputConfigProvider',
     function(tagsInputConfigProvider) {
       tagsInputConfigProvider.setDefaults('tagsInput', {
@@ -134,7 +139,8 @@
               titleSubject.onNext(title);
             }
           });
-          var disposable = titleSubject
+          var disposable = new Rx.CompositeDisposable();
+          disposable.add(titleSubject
             .skip(1)
             .debounce(500)
             .filter(R.compose(
@@ -155,15 +161,78 @@
             }))
             .subscribe(function(suggestions) {
               $scope.suggestions = suggestions;
+              $scope.highlightedSuggestionIndex = null;
               $scope.$apply();
-            });
+            }));
           $scope.selectSuggestion = function(suggestion) {
             prefillWith(suggestion);
+            $scope.highlightedSuggestionIndex = null;
             $scope.suggestions = [];
           };
 
+          var upArrowSubject = new Rx.Subject();
+          var downArrowSubject = new Rx.Subject();
+          var enterSubject = new Rx.Subject();
+          $element[0].addEventListener('keydown', function(e) {
+            switch(e.keyCode){
+              case 38:
+                upArrowSubject.onNext();
+                e.preventDefault();
+                break;
+              case 40:
+                downArrowSubject.onNext();
+                e.preventDefault();
+                break;
+              case 13:
+                enterSubject.onNext();
+                e.preventDefault();
+                break;
+            }
+          });
+
+          $scope.highlightedSuggestionIndex = null;
+          disposable.add(upArrowSubject
+            .filter(function() {
+              return $scope.suggestions && $scope.suggestions.length > 0;
+            })
+            .subscribe(function() {
+              if ($scope.highlightedSuggestionIndex === null) {
+                // The last element
+                $scope.highlightedSuggestionIndex = $scope.suggestions.length - 1;
+              } else {
+                $scope.highlightedSuggestionIndex = mod($scope.highlightedSuggestionIndex - 1, $scope.suggestions.length);
+              }
+              $scope.$apply();
+            }));
+          disposable.add(downArrowSubject
+            .filter(function() {
+              return $scope.suggestions && $scope.suggestions.length > 0;
+            })
+            .subscribe(function() {
+              if ($scope.highlightedSuggestionIndex === null) {
+                $scope.highlightedSuggestionIndex = 0;
+              } else {
+                $scope.highlightedSuggestionIndex = mod($scope.highlightedSuggestionIndex + 1, $scope.suggestions.length);
+              }
+              $scope.$apply();
+            }));
+          disposable.add(enterSubject
+            .filter(function() {
+              return $scope.highlightedSuggestionIndex !== null;
+            })
+            .subscribe(function() {
+              prefillWith($scope.suggestions[$scope.highlightedSuggestionIndex]);
+              $scope.highlightedSuggestionIndex = null;
+              $scope.suggestions = [];
+              $scope.$apply();
+            }));
+
+
           $scope.$on('$destroy', function() {
             titleSubject.dispose();
+            upArrowSubject.dispose();
+            downArrowSubject.dispose();
+            enterSubject.dispose();
             disposable.dispose();
           });
         },
