@@ -159,6 +159,9 @@
             .map(R.prop('data'))
             .filter(R.complement(R.isNil))
             .filter(R.complement(function(suggestions) {
+              // Avoid showing the single suggestion after the user has
+              // selected a suggestion and the title field is filled with the
+              // selected offer.
               return suggestions.length == 1 && suggestions[0].title == $scope.title;
             }));
           var updateSuggestions = function(suggestions) {
