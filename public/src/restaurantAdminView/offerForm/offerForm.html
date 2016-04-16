@@ -3,7 +3,7 @@
     <div class="col-md-4 col-sm-3">
       <p>
         <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4"
-               ng-maxlength="{{::titleMaxLength}}" required>
+               ng-maxlength="{{::titleMaxLength}}" autocomplete="off" required>
         <label ng-class="{filled: form.title.$viewValue}" for="{{::idPrefix}}title">
           <span ng-show="!isReadyForError(form.title)">
             Nimetus
