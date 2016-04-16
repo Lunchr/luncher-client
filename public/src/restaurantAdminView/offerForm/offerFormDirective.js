@@ -170,28 +170,19 @@
             $scope.suggestions = [];
           };
 
-          var upArrowSubject = new Rx.Subject();
-          var downArrowSubject = new Rx.Subject();
-          var enterSubject = new Rx.Subject();
-          $element[0].addEventListener('keydown', function(e) {
-            switch(e.keyCode){
-              case 38:
-                upArrowSubject.onNext();
-                e.preventDefault();
-                break;
-              case 40:
-                downArrowSubject.onNext();
-                e.preventDefault();
-                break;
-              case 13:
-                enterSubject.onNext();
-                e.preventDefault();
-                break;
-            }
-          });
+          var keypressObservable = Rx.Observable.fromEvent($element, 'keydown').publish();
+          var upArrowObservable = keypressObservable.filter(R.propEq('keyCode', 38));
+          var downArrowObservable = keypressObservable.filter(R.propEq('keyCode', 40));
+          var enterObservable = keypressObservable.filter(R.propEq('keyCode', 13));
+
+          disposable.add(Rx.Observable.merge(
+            upArrowObservable,
+            downArrowObservable,
+            enterObservable
+          ).subscribe(R.invoker(0, 'preventDefault')));
 
           $scope.highlightedSuggestionIndex = null;
-          disposable.add(upArrowSubject
+          disposable.add(upArrowObservable
             .filter(function() {
               return $scope.suggestions && $scope.suggestions.length > 0;
             })
@@ -204,7 +195,7 @@
               }
               $scope.$apply();
             }));
-          disposable.add(downArrowSubject
+          disposable.add(downArrowObservable
             .filter(function() {
               return $scope.suggestions && $scope.suggestions.length > 0;
             })
@@ -216,7 +207,7 @@
               }
               $scope.$apply();
             }));
-          disposable.add(enterSubject
+          disposable.add(enterObservable
             .filter(function() {
               return $scope.highlightedSuggestionIndex !== null;
             })
@@ -226,13 +217,11 @@
               $scope.suggestions = [];
               $scope.$apply();
             }));
+          disposable.add(keypressObservable.connect());
 
 
           $scope.$on('$destroy', function() {
             titleSubject.dispose();
-            upArrowSubject.dispose();
-            downArrowSubject.dispose();
-            enterSubject.dispose();
             disposable.dispose();
           });
         },
