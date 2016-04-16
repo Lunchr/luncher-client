@@ -60,6 +60,23 @@ describe('suggestionsObservable', function() {
     });
   });
 
+  context('with the title input only having up to 2 chars', function() {
+    titleInputs.is(function() {
+      return [
+        onNext(2, 'Lambaliha & parmesaniga pasta'),
+        onNext(200, 'l'),
+        onNext(202, 'la'),
+        onNext(204, 'l'),
+        onNext(206, 'ls'),
+        onNext(208, 'l'),
+      ];
+    });
+
+    it("doesn't fetch any suggestions", function() {
+      expect(suggestions()).toEqual([]);
+    });
+  });
+
   context('with rapid typing', function() {
     var firstInputDelay = 210;
     var lastInputDelay = 216;
