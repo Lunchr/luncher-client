@@ -170,53 +170,62 @@
             $scope.suggestions = [];
           };
 
+          $scope.highlightedSuggestionIndex = null;
+
+          // publish() because then we can guarantee that preventDefault is
+          // actually called on the same single event instance and that that
+          // doesn't stop the rest of the subscriptions here from receiving the
+          // event.
           var keypressObservable = Rx.Observable.fromEvent($element, 'keydown').publish();
           var upArrowObservable = keypressObservable.filter(R.propEq('keyCode', 38));
           var downArrowObservable = keypressObservable.filter(R.propEq('keyCode', 40));
           var enterObservable = keypressObservable.filter(R.propEq('keyCode', 13));
 
-          disposable.add(Rx.Observable.merge(
+          var managedKeypressObservable = Rx.Observable.merge(
             upArrowObservable,
             downArrowObservable,
             enterObservable
-          ).subscribe(R.invoker(0, 'preventDefault')));
+          );
 
-          $scope.highlightedSuggestionIndex = null;
-          disposable.add(upArrowObservable
-            .filter(function() {
-              return $scope.suggestions && $scope.suggestions.length > 0;
-            })
-            .subscribe(function() {
-              if ($scope.highlightedSuggestionIndex === null) {
-                // The last element
-                $scope.highlightedSuggestionIndex = $scope.suggestions.length - 1;
-              } else {
-                $scope.highlightedSuggestionIndex = mod($scope.highlightedSuggestionIndex - 1, $scope.suggestions.length);
-              }
-              $scope.$apply();
-            }));
-          disposable.add(downArrowObservable
-            .filter(function() {
-              return $scope.suggestions && $scope.suggestions.length > 0;
-            })
-            .subscribe(function() {
-              if ($scope.highlightedSuggestionIndex === null) {
-                $scope.highlightedSuggestionIndex = 0;
-              } else {
-                $scope.highlightedSuggestionIndex = mod($scope.highlightedSuggestionIndex + 1, $scope.suggestions.length);
-              }
-              $scope.$apply();
-            }));
-          disposable.add(enterObservable
+          var hasSuggestions = function() {
+            return $scope.suggestions && $scope.suggestions.length > 0;
+          };
+          var higlightPreviousSuggestionObservable = upArrowObservable.filter(hasSuggestions);
+          var higlightNextSuggestionObservable = downArrowObservable.filter(hasSuggestions);
+          var selectSuggestionObservable = enterObservable
             .filter(function() {
               return $scope.highlightedSuggestionIndex !== null;
             })
-            .subscribe(function() {
-              prefillWith($scope.suggestions[$scope.highlightedSuggestionIndex]);
-              $scope.highlightedSuggestionIndex = null;
-              $scope.suggestions = [];
-              $scope.$apply();
-            }));
+            .map(function() {
+              return $scope.suggestions[$scope.highlightedSuggestionIndex];
+            });
+
+          var highlightPreviousSuggestion = function() {
+            if ($scope.highlightedSuggestionIndex === null) {
+              // The last element
+              $scope.highlightedSuggestionIndex = $scope.suggestions.length - 1;
+            } else {
+              $scope.highlightedSuggestionIndex = mod($scope.highlightedSuggestionIndex - 1, $scope.suggestions.length);
+            }
+            $scope.$apply();
+          };
+          var higlightNextSuggestion = function() {
+            if ($scope.highlightedSuggestionIndex === null) {
+              $scope.highlightedSuggestionIndex = 0;
+            } else {
+              $scope.highlightedSuggestionIndex = mod($scope.highlightedSuggestionIndex + 1, $scope.suggestions.length);
+            }
+            $scope.$apply();
+          };
+          var selectSuggestion = function(suggestion) {
+            $scope.selectSuggestion(suggestion);
+            $scope.$apply();
+          };
+
+          disposable.add(managedKeypressObservable.subscribe(R.invoker(0, 'preventDefault')));
+          disposable.add(higlightPreviousSuggestionObservable.subscribe(highlightPreviousSuggestion));
+          disposable.add(higlightNextSuggestionObservable.subscribe(higlightNextSuggestion));
+          disposable.add(selectSuggestionObservable.subscribe(selectSuggestion));
           disposable.add(keypressObservable.connect());
 
 
