@@ -172,11 +172,12 @@
 
           $scope.highlightedSuggestionIndex = null;
 
+          var titleInput = $element[0].querySelector('input[name=title]');
           // publish() because then we can guarantee that preventDefault is
           // actually called on the same single event instance and that that
           // doesn't stop the rest of the subscriptions here from receiving the
           // event.
-          var keypressObservable = Rx.Observable.fromEvent($element, 'keydown').publish();
+          var keypressObservable = Rx.Observable.fromEvent(titleInput, 'keydown').publish();
           var upArrowObservable = keypressObservable.filter(R.propEq('keyCode', 38));
           var downArrowObservable = keypressObservable.filter(R.propEq('keyCode', 40));
           var enterObservable = keypressObservable.filter(R.propEq('keyCode', 13));
