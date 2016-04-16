@@ -139,8 +139,7 @@
               titleSubject.onNext(title);
             }
           });
-          var disposable = new Rx.CompositeDisposable();
-          disposable.add(titleSubject
+          var suggestionsObservable = titleSubject
             .skip(1)
             .debounce(500)
             .filter(R.compose(
@@ -158,12 +157,13 @@
             .filter(R.complement(R.isNil))
             .filter(R.complement(function(suggestions) {
               return suggestions.length == 1 && suggestions[0].title == $scope.title;
-            }))
-            .subscribe(function(suggestions) {
-              $scope.suggestions = suggestions;
-              $scope.highlightedSuggestionIndex = null;
-              $scope.$apply();
             }));
+          var updateSuggestions = function(suggestions) {
+            $scope.suggestions = suggestions;
+            $scope.highlightedSuggestionIndex = null;
+            $scope.$apply();
+          };
+
           $scope.selectSuggestion = function(suggestion) {
             prefillWith(suggestion);
             $scope.highlightedSuggestionIndex = null;
@@ -191,8 +191,8 @@
           var hasSuggestions = function() {
             return $scope.suggestions && $scope.suggestions.length > 0;
           };
-          var higlightPreviousSuggestionObservable = upArrowObservable.filter(hasSuggestions);
-          var higlightNextSuggestionObservable = downArrowObservable.filter(hasSuggestions);
+          var highlightPreviousSuggestionObservable = upArrowObservable.filter(hasSuggestions);
+          var highlightNextSuggestionObservable = downArrowObservable.filter(hasSuggestions);
           var selectSuggestionObservable = enterObservable
             .filter(function() {
               return $scope.highlightedSuggestionIndex !== null;
@@ -210,7 +210,7 @@
             }
             $scope.$apply();
           };
-          var higlightNextSuggestion = function() {
+          var highlightNextSuggestion = function() {
             if ($scope.highlightedSuggestionIndex === null) {
               $scope.highlightedSuggestionIndex = 0;
             } else {
@@ -223,17 +223,15 @@
             $scope.$apply();
           };
 
+          var disposable = new Rx.CompositeDisposable();
+          disposable.add(titleSubject);
+          disposable.add(suggestionsObservable.subscribe(updateSuggestions));
           disposable.add(managedKeypressObservable.subscribe(R.invoker(0, 'preventDefault')));
-          disposable.add(higlightPreviousSuggestionObservable.subscribe(highlightPreviousSuggestion));
-          disposable.add(higlightNextSuggestionObservable.subscribe(higlightNextSuggestion));
+          disposable.add(highlightPreviousSuggestionObservable.subscribe(highlightPreviousSuggestion));
+          disposable.add(highlightNextSuggestionObservable.subscribe(highlightNextSuggestion));
           disposable.add(selectSuggestionObservable.subscribe(selectSuggestion));
           disposable.add(keypressObservable.connect());
-
-
-          $scope.$on('$destroy', function() {
-            titleSubject.dispose();
-            disposable.dispose();
-          });
+          $scope.$on('$destroy', disposable.dispose.bind(disposable));
         },
         restrict: 'E',
         templateUrl: 'src/restaurantAdminView/offerForm/offerForm.html'
