@@ -107,6 +107,10 @@ module.exports = function(grunt) {
         once: {
           singleRun: true
         },
+        chrome: {
+          singleRun: true,
+          browsers: ['Chrome']
+        },
         ci: {
           singleRun: true,
           preprocessors: {
@@ -198,6 +202,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('e2e', ['shell:protractor_update', 'postcss:dist', 'express:dev', 'protractor:ci']);
   grunt.registerTask('once', ['jshint', 'karma:once']);
+  grunt.registerTask('chrome', ['jshint', 'karma:chrome']);
   grunt.registerTask('test', ['clean', 'bower:install', 'jshint', 'karma:ci', 'sed:clean_lcov', 'e2e', 'coveralls']);
   grunt.registerTask('predeploy', ['postcss:dist']);
   grunt.registerTask('dev', ['postcss:dev', 'express:dev', 'watch:postcss']);
