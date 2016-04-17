@@ -46,8 +46,10 @@
             $scope.date = new Date();
             $scope.date.setHours(0, 0, 0, 0);
           })();
-          function prefillWith(offer) {
-            $scope.isEdit = !!offer;
+          $scope.isEdit = function() {
+            return !!$scope.offerToEdit;
+          };
+          function fillWith(offer) {
             if (offer) {
               $scope.title = offer.title;
               $scope.ingredients = offer.ingredients;
@@ -70,12 +72,12 @@
               }
             }
           }
-          prefillWith($scope.offerToEdit);
+          fillWith($scope.offerToEdit);
           $scope.$watch('offerToEdit', function(value) {
-            prefillWith(value);
+            fillWith(value);
           });
           $scope.idPrefix = (function() {
-            if ($scope.isEdit)
+            if ($scope.isEdit())
               return 'edit-offer-' + $scope.offerToEdit._id + '-';
             else
               return 'new-offer-';
@@ -118,7 +120,7 @@
             if ($scope.image && !$scope.image.isPath) {
               offer.image_data = $scope.image.src;
             }
-            if ($scope.isEdit) {
+            if ($scope.isEdit()) {
               var offerCopy = angular.copy($scope.offerToEdit);
               delete offerCopy.image;
               angular.extend(offerCopy, offer);
@@ -149,7 +151,7 @@
           };
 
           $scope.selectSuggestion = function(suggestion) {
-            prefillWith(suggestion);
+            fillWith(suggestion);
             $scope.highlightedSuggestionIndex = null;
             $scope.suggestions = [];
           };
