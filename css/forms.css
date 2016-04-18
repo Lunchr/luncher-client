@@ -453,7 +453,8 @@ textarea {
         padding: 7px 5px;
         border-bottom: 1px solid #eee;
         cursor: pointer;
-        &:hover {
+        &:hover,
+        &.highlight {
             background-color: $color;
             color: #fff;
         }
