@@ -4,6 +4,17 @@ describe('Offer Form', function() {
     module('offerFormDirective', 'partials');
   });
 
+  var triggerKeyDown = function (element, code) {
+    var e = new window.KeyboardEvent('keydown', {
+      bubbles: true,
+      cancelable: true,
+    });
+    delete e.keyCode;
+
+    Object.defineProperty(e, 'keyCode', {'value': code});
+    element.dispatchEvent(e);
+  };
+
   describe('offer-form directive', function() {
     var element, $scope, $parentScope, mockTags;
 
@@ -168,6 +179,98 @@ describe('Offer Form', function() {
 
           expect($parentScope.deleteClicked).toHaveBeenCalled();
         });
+      });
+
+      describe('selecting a suggestion', function() {
+        var suggestions = [{
+          _id: '11',
+          title: 'a title',
+          ingredients: ['ingredient1', 'ingredient2'],
+          tags: ['tag1', 'tag2'],
+          price: 2.5,
+          from_time: new Date(2115, 3, 15, 10, 0, 0),
+          to_time: new Date(2115, 3, 15, 15, 0, 0),
+          image: {
+            large: 'large image path',
+            thumbnail: 'thumbnail path',
+          },
+        },{
+          _id: '12',
+          title: 'another title',
+          ingredients: ['ingredient3', 'ingredient4'],
+          tags: ['tag3', 'tag4'],
+          price: 3.5,
+          from_time: new Date(2114, 3, 15, 10, 0, 0),
+          to_time: new Date(2114, 3, 15, 15, 0, 0),
+          image: {
+            large: 'another large image path',
+            thumbnail: 'another thumbnail path',
+          },
+        }];
+
+        var firstSuggestion = null;
+        var titleInput = null;
+
+        beforeEach(function() {
+          $scope.suggestions = suggestions;
+          $scope.$apply();
+          firstSuggestion = angular.element(element[0].querySelector('ul.suggestions li'));
+          expect(firstSuggestion).toBeTruthy();
+          titleInput = element[0].querySelector('[name=title]');
+          expect(titleInput).toBeTruthy();
+        });
+
+        var itCompletesFormWithFirstSuggestion = function() {
+          it('completes the form with first suggestion', function() {
+            expect($scope.title).toBe(suggestions[0].title);
+            expect($scope.ingredients).toEqual([{
+              text: suggestions[0].ingredients[0],
+            }, {
+              text: suggestions[0].ingredients[1],
+            }]);
+            expect($scope.tags).toEqual([{
+              name: suggestions[0].tags[0],
+            }, {
+              name: suggestions[0].tags[1],
+            }]);
+            expect($scope.price).toEqual(suggestions[0].price);
+            expect($scope.date).toEqual(new Date(2115, 3, 15));
+            expect($scope.fromTime).toEqual(new Date(1970, 0, 1, 10, 0, 0));
+            expect($scope.toTime).toEqual(new Date(1970, 0, 1, 15, 0, 0));
+            expect($scope.image.src).toEqual(suggestions[0].image.large);
+          });
+        };
+
+        context('when clicking on first suggestion', function() {
+          beforeEach(function() {
+            firstSuggestion.click();
+          });
+
+          itCompletesFormWithFirstSuggestion();
+        });
+
+        (navigator.userAgent.indexOf('PhantomJS') != -1 ? xcontext : context)(
+          'when selecting first suggestion with down key + enter', function() {
+            beforeEach(function() {
+              triggerKeyDown(titleInput, 40);
+              triggerKeyDown(titleInput, 13);
+            });
+
+            itCompletesFormWithFirstSuggestion();
+          }
+        );
+
+        (navigator.userAgent.indexOf('PhantomJS') != -1 ? xcontext : context)(
+          'when selecting first suggestion with up key + enter', function() {
+            beforeEach(function() {
+              triggerKeyDown(titleInput, 38);
+              triggerKeyDown(titleInput, 38);
+              triggerKeyDown(titleInput, 13);
+            });
+
+            itCompletesFormWithFirstSuggestion();
+          }
+        );
       });
     });
   });

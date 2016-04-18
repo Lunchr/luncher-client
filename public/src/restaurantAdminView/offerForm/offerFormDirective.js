@@ -7,6 +7,11 @@
     '720kb.datepicker',
   ]);
 
+  // JS % operator doesn't play nice with negative numbers
+  function mod(n, m) {
+    return ((n % m) + m) % m;
+  }
+
   module.config(['tagsInputConfigProvider',
     function(tagsInputConfigProvider) {
       tagsInputConfigProvider.setDefaults('tagsInput', {
@@ -15,14 +20,15 @@
     }
   ]);
 
-  module.directive('offerForm', ['$resource', 'filterFilter',
-    function($resource, filterFilter) {
+  module.directive('offerForm', ['$resource', 'filterFilter', 'suggestionsObservable',
+    function($resource, filterFilter, getSuggestionsObservable) {
       return {
         scope: {
           offerToEdit: '=edit',
           submitFunction: '&onSubmit',
           cancelFunction: '&onCancel',
           deleteFunction: '&onDelete',
+          restaurantID: '=restaurantId',
         },
         controller: function($scope, $element, $attrs) {
           $scope.titleMaxLength = 70;
@@ -41,8 +47,10 @@
             $scope.date = new Date();
             $scope.date.setHours(0, 0, 0, 0);
           })();
-          function prefillWith(offer) {
-            $scope.isEdit = !!offer;
+          $scope.isEdit = function() {
+            return !!$scope.offerToEdit;
+          };
+          function fillWith(offer) {
             if (offer) {
               $scope.title = offer.title;
               $scope.description = offer.description;
@@ -65,12 +73,12 @@
               }
             }
           }
-          prefillWith($scope.offerToEdit);
+          fillWith($scope.offerToEdit);
           $scope.$watch('offerToEdit', function(value) {
-            prefillWith(value);
+            fillWith(value);
           });
           $scope.idPrefix = (function() {
-            if ($scope.isEdit)
+            if ($scope.isEdit())
               return 'edit-offer-' + $scope.offerToEdit._id + '-';
             else
               return 'new-offer-';
@@ -111,7 +119,7 @@
             if ($scope.image && !$scope.image.isPath) {
               offer.image_data = $scope.image.src;
             }
-            if ($scope.isEdit) {
+            if ($scope.isEdit()) {
               var offerCopy = angular.copy($scope.offerToEdit);
               delete offerCopy.image;
               angular.extend(offerCopy, offer);
@@ -125,6 +133,90 @@
               });
             }
           };
+          var titleObservable = Rx.Observable.create(function(observer) {
+            // $scope.$watch returns a function that unregisters the $watching
+            // when called. Return this function to act as the dispose method
+            // for this observable.
+            return $scope.$watch('form.title.$viewValue', observer.onNext.bind(observer));
+          });
+          var suggestionsObservable = getSuggestionsObservable({
+            titleObservable: titleObservable,
+            restaurantID: $scope.restaurantID,
+          });
+          var updateSuggestions = function(suggestions) {
+            $scope.suggestions = suggestions;
+            $scope.highlightedSuggestionIndex = null;
+            $scope.$apply();
+          };
+
+          $scope.selectSuggestion = function(suggestion) {
+            fillWith(suggestion);
+            $scope.highlightedSuggestionIndex = null;
+            $scope.suggestions = [];
+          };
+
+          $scope.highlightedSuggestionIndex = null;
+
+          var titleInput = $element[0].querySelector('input[name=title]');
+          // publish() because then we can guarantee that preventDefault is
+          // actually called on the same single event instance and that that
+          // doesn't stop the rest of the subscriptions here from receiving the
+          // event.
+          var keypressObservable = Rx.Observable.fromEvent(titleInput, 'keydown').publish();
+          var upArrowObservable = keypressObservable.filter(R.propEq('keyCode', 38));
+          var downArrowObservable = keypressObservable.filter(R.propEq('keyCode', 40));
+          var enterObservable = keypressObservable.filter(R.propEq('keyCode', 13));
+
+          var managedKeypressObservable = Rx.Observable.merge(
+            upArrowObservable,
+            downArrowObservable,
+            enterObservable
+          );
+
+          var hasSuggestions = function() {
+            return $scope.suggestions && $scope.suggestions.length > 0;
+          };
+          var highlightPreviousSuggestionObservable = upArrowObservable.filter(hasSuggestions);
+          var highlightNextSuggestionObservable = downArrowObservable.filter(hasSuggestions);
+          var selectSuggestionObservable = enterObservable
+            .filter(function() {
+              return $scope.highlightedSuggestionIndex !== null;
+            })
+            .map(function() {
+              return $scope.suggestions[$scope.highlightedSuggestionIndex];
+            });
+
+          var highlightPreviousSuggestion = function() {
+            if ($scope.highlightedSuggestionIndex === null) {
+              // The last element
+              $scope.highlightedSuggestionIndex = $scope.suggestions.length - 1;
+            } else {
+              $scope.highlightedSuggestionIndex = mod($scope.highlightedSuggestionIndex - 1, $scope.suggestions.length);
+            }
+            $scope.$apply();
+          };
+          var highlightNextSuggestion = function() {
+            if ($scope.highlightedSuggestionIndex === null) {
+              $scope.highlightedSuggestionIndex = 0;
+            } else {
+              $scope.highlightedSuggestionIndex = mod($scope.highlightedSuggestionIndex + 1, $scope.suggestions.length);
+            }
+            $scope.$apply();
+          };
+          var selectSuggestion = function(suggestion) {
+            $scope.selectSuggestion(suggestion);
+            $scope.$apply();
+          };
+
+          var disposable = new Rx.CompositeDisposable();
+          var err = console.error.bind(console);
+          disposable.add(suggestionsObservable.subscribe(updateSuggestions, err));
+          disposable.add(managedKeypressObservable.subscribe(R.invoker(0, 'preventDefault'), err));
+          disposable.add(highlightPreviousSuggestionObservable.subscribe(highlightPreviousSuggestion, err));
+          disposable.add(highlightNextSuggestionObservable.subscribe(highlightNextSuggestion, err));
+          disposable.add(selectSuggestionObservable.subscribe(selectSuggestion, err));
+          disposable.add(keypressObservable.connect());
+          $scope.$on('$destroy', disposable.dispose.bind(disposable));
         },
         restrict: 'E',
         templateUrl: 'src/restaurantAdminView/offerForm/offerForm.html'

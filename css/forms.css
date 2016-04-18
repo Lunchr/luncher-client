@@ -472,6 +472,32 @@ textarea {
     z-index: 2;
 }
 
+/* Suggestions */
+.suggestions {
+    position: absolute;
+    z-index: 1;
+    width: calc(100% - 24px);
+    margin: 0;
+    margin-top: -30px;
+    padding: 0;
+    list-style: none;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    li {
+        padding: 7px 5px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        &:hover,
+        &.highlight {
+            background-color: $color;
+            color: #fff;
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
+
 /* Datepicker */
 .datepicker,
 [datepicker],
