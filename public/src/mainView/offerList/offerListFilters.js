@@ -72,9 +72,7 @@
           var query = new RegExp(filterState.query, 'i');
 
           var result = offer.title.match(query);
-          result = result || offer.description.some(function(ingredient) {
-            return ingredient.match(query);
-          });
+          result = result || offer.description.match(query);
           result = result || offer.restaurant.name.match(query);
           result = result || offer.tags.some(function(tag) {
             return tag.match(query);
