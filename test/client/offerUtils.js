@@ -15,7 +15,7 @@ var offerUtils = (function() {
         'from_time': '2016-11-11T11:00:00.000Z',
         'to_time': '2016-11-11T15:00:00.000Z',
         'title': 'Sweet & Sour Chicken',
-        'ingredients': ['Kana', 'aedviljad', 'tsillikaste'],
+        'description': 'Kana, aedviljad, tsillikaste',
         'price': 3.4,
         'tags': ['lind', 'praad']
       }, {
@@ -31,7 +31,7 @@ var offerUtils = (function() {
         'from_time': '2016-11-11T11:00:00.000Z',
         'to_time': '2016-11-11T15:00:00.000Z',
         'title': 'Sweet & Sour Pork',
-        'ingredients': ['Seafilee', 'aedviljad', 'mahushapu kaste'],
+        'description': 'Seafilee, aedviljad, mahushapu kaste',
         'price': 3.3,
         'tags': ['siga', 'praad']
       }, {
@@ -47,7 +47,7 @@ var offerUtils = (function() {
         'from_time': '2016-11-12T11:00:00.000Z',
         'to_time': '2016-11-12T15:00:00.000Z',
         'title': 'Sweet & Sour Beef',
-        'ingredients': ['Veiseliha pihv', 'burgerisai', 'kodused friikartulid', 'kaste', 'salat'],
+        'description': 'Veiseliha pihv, burgerisai, kodused friikartulid, kaste, salat',
         'price': 3.6,
         'tags': ['loom', 'praad']
       }, {
@@ -63,7 +63,7 @@ var offerUtils = (function() {
         'from_time': '2016-11-13T11:00:00.000Z',
         'to_time': '2016-11-13T15:00:00.000Z',
         'title': 'Sweet & Sour Duck Soup',
-        'ingredients': ['Part', 'aedviljad', 'magushapu kaste'],
+        'description': 'Part, aedviljad, magushapu kaste',
         'price': 3.2,
         'tags': ['lind', 'supp']
       }];

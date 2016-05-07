@@ -122,11 +122,7 @@ describe('Offer Form', function() {
         describe('with the form filled', function() {
           beforeEach(function() {
             $scope.title = 'a title';
-            $scope.ingredients = [{
-              text: 'ingredient1'
-            }, {
-              text: 'ingredient2'
-            }];
+            $scope.description = 'a short description';
             $scope.tags = [{
               name: 'tag1',
               a: 'a'
@@ -146,7 +142,7 @@ describe('Offer Form', function() {
 
             expect($parentScope.submitClicked).toHaveBeenCalledWith({
               title: 'a title',
-              ingredients: ['ingredient1', 'ingredient2'],
+              description: 'a short description',
               tags: ['tag1', 'tag2'],
               price: 2.5,
               from_time: new Date(2015, 3, 15, 10, 0, 0),
@@ -185,7 +181,7 @@ describe('Offer Form', function() {
         var suggestions = [{
           _id: '11',
           title: 'a title',
-          ingredients: ['ingredient1', 'ingredient2'],
+          description: 'ingredient1, ingredient2',
           tags: ['tag1', 'tag2'],
           price: 2.5,
           from_time: new Date(2115, 3, 15, 10, 0, 0),
@@ -197,7 +193,7 @@ describe('Offer Form', function() {
         },{
           _id: '12',
           title: 'another title',
-          ingredients: ['ingredient3', 'ingredient4'],
+          description: 'ingredient3, ingredient4',
           tags: ['tag3', 'tag4'],
           price: 3.5,
           from_time: new Date(2114, 3, 15, 10, 0, 0),
@@ -223,11 +219,7 @@ describe('Offer Form', function() {
         var itCompletesFormWithFirstSuggestion = function() {
           it('completes the form with first suggestion', function() {
             expect($scope.title).toBe(suggestions[0].title);
-            expect($scope.ingredients).toEqual([{
-              text: suggestions[0].ingredients[0],
-            }, {
-              text: suggestions[0].ingredients[1],
-            }]);
+            expect($scope.description).toEqual(suggestions[0].description);
             expect($scope.tags).toEqual([{
               name: suggestions[0].tags[0],
             }, {
@@ -284,7 +276,7 @@ describe('Offer Form', function() {
         parentScope.prefillOffer = {
           _id: '11',
           title: 'a title',
-          ingredients: ['ingredient1', 'ingredient2'],
+          description: 'ingredient1, ingredient2',
           tags: ['tag1', 'tag2'],
           price: 2.5,
           from_time: new Date(2115, 3, 15, 10, 0, 0),
@@ -308,11 +300,7 @@ describe('Offer Form', function() {
 
     it('should prefill the inner scope variables', function() {
       expect($scope.title).toBe('a title');
-      expect($scope.ingredients).toEqual([{
-        text: 'ingredient1'
-      }, {
-        text: 'ingredient2'
-      }]);
+      expect($scope.description).toEqual('ingredient1, ingredient2');
       expect($scope.tags).toEqual([{
         name: 'tag1'
       }, {
@@ -333,7 +321,7 @@ describe('Offer Form', function() {
         expect($parentScope.submitClicked).toHaveBeenCalledWith({
           _id: '11',
           title: 'a changed title',
-          ingredients: ['ingredient1', 'ingredient2'],
+          description: 'ingredient1, ingredient2',
           tags: ['tag1', 'tag2'],
           price: 2.5,
           from_time: new Date(2115, 3, 15, 10, 0, 0),
@@ -352,7 +340,7 @@ describe('Offer Form', function() {
           expect($parentScope.submitClicked).toHaveBeenCalledWith({
             _id: '11',
             title: 'a title',
-            ingredients: ['ingredient1', 'ingredient2'],
+            description: 'ingredient1, ingredient2',
             tags: ['tag1', 'tag2'],
             price: 2.5,
             from_time: new Date(2115, 3, 15, 10, 0, 0),
