@@ -243,7 +243,7 @@ describe('Offer Form', function() {
 
         context('when clicking on first suggestion', function() {
           beforeEach(function() {
-            firstSuggestion.click();
+            firstSuggestion.trigger('mousedown');
           });
 
           itCompletesFormWithFirstSuggestion();
