@@ -21,9 +21,9 @@ describe('Praad App', function() {
       clickPromise.then(function() {
         element(by.model('search.query')).sendKeys('kana');
 
-        expect(offers.count()).toBe(11);
+        expect(offers.count()).toBe(7);
         var title = offers.first().element(by.binding('offer.title')).getText();
-        expect(title).toBe('Hiina menüü - Chicken eggplant');
+        expect(title).toBe('Kana-riisisupp');
       });
     });
   });
