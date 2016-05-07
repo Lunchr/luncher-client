@@ -157,6 +157,9 @@
           };
 
           $scope.highlightedSuggestionIndex = null;
+          $scope.clearSuggestionHighlight = function() {
+            $scope.highlightedSuggestionIndex = null;
+          };
 
           var titleInput = $element[0].querySelector('input[name=title]');
           // publish() because then we can guarantee that preventDefault is
