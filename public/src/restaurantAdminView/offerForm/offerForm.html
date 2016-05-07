@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-4 col-sm-3">
       <p>
-        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4" ng-maxlength="{{::titleMaxLength}}" required>
+        <input ng-model="title" name="title" id="{{idPrefix}}title" type="text" ng-minlength="4"
+               ng-maxlength="{{::titleMaxLength}}" autocomplete="off" required>
         <label ng-class="{filled: form.title.$viewValue}" for="{{::idPrefix}}title">
           <span ng-show="!isReadyForError(form.title)">
             Nimetus
@@ -19,12 +20,17 @@
             </span>
           </span>
         </label>
+        <ul class="suggestions" ng-if="suggestions && suggestions.length > 0 && !suggestionsClosed">
+          <li ng-class="{highlight: index === highlightedSuggestionIndex}"
+              ng-repeat="(index, suggestion) in suggestions"
+              ng-click="selectSuggestion(suggestion)"
+              ng-mouseover="clearSuggestionHighlight()">
+            {{suggestion.title}}
+          </li>
+        </ul>
       </p>
       <p>
-        <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
-                     because of this we have to mark it manually for now-->
-        <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="2" on-tag-added="form.ingredients.$dirty=true"
-                    on-tag-removed="form.ingredients.$dirty=true" ng-class="{'ng-dirty': form.ingredients.$dirty}"
+        <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="2"
                     replace-spaces-with-dashes="false">
           <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
             <span ng-show="!isReadyForError(form.ingredients) && !(form.ingredients.$touched && form.ingredients.$error.leftoverText)">
@@ -45,10 +51,8 @@
         </tags-input>
       </p>
       <p>
-        <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
-                     because of this we have to mark it manually for now-->
-        <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="1" add-from-autocomplete-only="true" display-property="name"
-                    on-tag-added="form.tags.$dirty=true" on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
+        <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="1" add-from-autocomplete-only="true"
+                    display-property="name">
           <auto-complete source="getFilteredTags($query)" min-length="0" load-on-down-arrow="true"></auto-complete>
           <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="{{idPrefix}}tags">
             <span ng-show="!isReadyForError(form.tags) && !(form.tags.$touched && form.tags.$error.leftoverText)">
@@ -172,7 +176,7 @@
     </div>
   </div>
   <p class="buttons">
-    <a ng-if="isEdit && !!deleteFunction" class="btn btn-secondary" href="javascript:undefined" ng-click="deleteFunction()">
+    <a ng-if="isEdit() && !!deleteFunction" class="btn btn-secondary" href="javascript:undefined" ng-click="deleteFunction()">
       Kustuta
     </a>
     <a class="btn btn-secondary" href="javascript:undefined" ng-click="cancelFunction()">

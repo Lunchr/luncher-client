@@ -124,10 +124,11 @@
             </form>
         </div>
         <div class="form-wrap">
-            <offer-form ng-show="addingAnOffer" on-submit="vm.postOffer($offer); addingAnOffer=false" on-cancel="addingAnOffer=false"></offer-form>
-            <p ng-show="!addingAnOffer" class="new-offer-btn">
-                <a href="javascript:undefined" ng-click="addingAnOffer=true"><span class="icon-4"></span>Lisa uus pakkumine</a>
-            </p>
+          <offer-form ng-show="addingAnOffer" on-submit="vm.postOffer($offer); addingAnOffer=false"
+            on-cancel="addingAnOffer=false" restaurant-id="vm.restaurant._id"></offer-form>
+          <p ng-show="!addingAnOffer" class="new-offer-btn">
+            <a href="javascript:undefined" ng-click="addingAnOffer=true"><span class="icon-4"></span>Lisa uus pakkumine</a>
+          </p>
         </div>
         <div ng-controller="RestaurantOfferListCtrl as offerListCtrl">
             <div class="offers admin-offers" ng-repeat="dateOffers in offerListCtrl.offersByDate">
@@ -153,7 +154,7 @@
                     <div class="col-2">
                         <div class="offer" ng-class="{edit: offer.editing}" ng-repeat="offer in dateOffers.offers">
                             <offer-form ng-show="offer.editing" edit="offer" on-submit="offerListCtrl.updateOffer($currentOffer, $offer); $offer.editing=false"
-                                on-cancel="offer.editing=false" on-delete="offerListCtrl.deleteOffer(offer)"></offer-form>
+                                on-cancel="offer.editing=false" on-delete="offerListCtrl.deleteOffer(offer)" restaurant-id="vm.restaurant._id"></offer-form>
                             <div ng-show="!offer.editing">
                                 <p class="icon-wrap edit-btn">
                                     <a href="javascript:undefined" ng-click="offer.editing=true" class="icon icon-15"></a>

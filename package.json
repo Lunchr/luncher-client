@@ -21,7 +21,8 @@
   "dependencies": {
     "express": "^4.12.4",
     "body-parser": "^1.12.4",
-    "serve-static": "^1.9.3"
+    "serve-static": "^1.9.3",
+    "ramda": "^0.21.0"
   },
   "devDependencies": {
     "async": "^1.0.0",
@@ -42,7 +43,7 @@
     "grunt-sed": "^0.1.1",
     "grunt-shell": "^1.1.2",
     "karma": "~0.12.33",
-    "karma-chrome-launcher": "~0.1.12",
+    "karma-chrome-launcher": "^0.2.3",
     "karma-coverage": "^0.3.1",
     "karma-jasmine": "^0.3.5",
     "karma-ng-html2js-preprocessor": "^0.1.2",
