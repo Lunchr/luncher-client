@@ -25,8 +25,8 @@
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
   "image": {
-	"large": "mock-images/meatmarket2.jpg",
-	"thumbnail": "mock-images/meatmarket2.jpg"
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
   }
 }, {
   "_id": "7",
@@ -40,8 +40,8 @@
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
   "image": {
-	"large": "mock-images/meatmarket2.jpg",
-	"thumbnail": "mock-images/meatmarket2.jpg"
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
   }
 }, {
   "_id": "8",
@@ -55,8 +55,8 @@
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
   "image": {
-	"large": "mock-images/meatmarket2.jpg",
-	"thumbnail": "mock-images/meatmarket2.jpg"
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
   }
 }, {
   "_id": "9",
@@ -70,7 +70,7 @@
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
   "image": {
-	"large": "mock-images/meatmarket2.jpg",
-	"thumbnail": "mock-images/meatmarket2.jpg"
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
   }
 }]
