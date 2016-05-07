@@ -23,7 +23,7 @@
         <ul class="suggestions" ng-if="suggestions && suggestions.length > 0 && !suggestionsClosed">
           <li ng-class="{highlight: index === highlightedSuggestionIndex}"
               ng-repeat="(index, suggestion) in suggestions"
-              ng-click="selectSuggestion(suggestion)"
+              ng-mousedown="selectSuggestion(suggestion)"
               ng-mouseover="clearSuggestionHighlight()">
             {{suggestion.title}}
           </li>
