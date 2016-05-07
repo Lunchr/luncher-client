@@ -30,29 +30,23 @@
         </ul>
       </p>
       <p>
-        <tags-input ng-model="ingredients" name="ingredients" id="{{idPrefix}}ingredients" min-tags="2"
-                    replace-spaces-with-dashes="false">
-          <label ng-class="{filled: ingredients.length || form.ingredients.$error.leftoverText}" for="{{idPrefix}}ingredients">
-            <span ng-show="!isReadyForError(form.ingredients) && !(form.ingredients.$touched && form.ingredients.$error.leftoverText)">
-              Koostisosad
+        <input ng-model="description" name="description" id="{{idPrefix}}description" type="text">
+        <label ng-class="{filled: form.description.$viewValue}" for="{{::idPrefix}}description"  ng-minlength="4" ng-maxlength="{{::descriptionMaxLength}}">
+          <span ng-show="!isReadyForError(form.description)">
+            Kirjeldus
+          </span>
+          <span ng-show="isReadyForError(form.description)" class="errors">
+            <span ng-show="form.description.$error.maxlength">
+              <strong>Nimetus</strong> võib olla kuni {{::descriptionMaxLength}} tähte. ({{descriptionMaxLength-form.title.$viewValue.length}})
             </span>
-            <span ng-show="isReadyForError(form.ingredients) || form.ingredients.$touched && form.ingredients.$error.leftoverText" class="errors">
-              <span ng-show="form.ingredients.$error.leftoverText">
-                Viimane <strong>koostisosa</strong> ei ole sobiv.
-              </span>
-              <span ng-show="!ingredients.length && !form.ingredients.$error.leftoverText">
-                <strong>Koostisosad</strong> on kohustuslikud.
-              </span>
-              <span ng-show="form.ingredients.$error.minTags && ingredients.length">
-                <strong>Koostisosasi</strong> peab olema vähemalt 2.
-              </span>
-            </span>
-          </label>
-        </tags-input>
+          </span>
+        </label>
       </p>
-      <p>
-        <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="1" add-from-autocomplete-only="true"
-                    display-property="name">
+      <p class="tags-input">
+        <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
+                     because of this we have to mark it manually for now-->
+        <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="1" add-from-autocomplete-only="true" display-property="name"
+                    on-tag-added="form.tags.$dirty=true" on-tag-removed="form.tags.$dirty=true" ng-class="{'ng-dirty': form.tags.$dirty}">
           <auto-complete source="getFilteredTags($query)" min-length="0" load-on-down-arrow="true"></auto-complete>
           <label ng-class="{filled: tags.length || form.tags.$error.leftoverText}" for="{{idPrefix}}tags">
             <span ng-show="!isReadyForError(form.tags) && !(form.tags.$touched && form.tags.$error.leftoverText)">
@@ -72,6 +66,37 @@
           </label>
         </tags-input>
       </p>
+      <div class="grouped-select">
+          <table>
+              <tr>
+                  <th>Tüüp:</th>
+                  <td>
+                      <a href="javascript:undefined">Praad</a>
+                      <a href="javascript:undefined">Supp</a>
+                      <a href="javascript:undefined">Magustoit</a>
+                      <a class="more" href="javascript:undefined">Näita rohkem...</a>
+                  </td>
+              </tr>
+              <tr>
+                  <th>Liha:</th>
+                  <td>
+                      <a href="javascript:undefined">Veis</a>
+                      <a href="javascript:undefined">Siga</a>
+                      <a href="javascript:undefined">Kana</a>
+                      <a href="javascript:undefined">Kala</a>
+                      <a href="javascript:undefined">Taimetoit</a>
+                      <a class="more" href="javascript:undefined">Näita rohkem...</a>
+                  </td>
+              </tr>
+              <tr>
+                  <th>Muu:</th>
+                  <td>
+                      <a href="javascript:undefined">Gluteenivaba</a>
+                      <a href="javascript:undefined">Laktoosivaba</a>
+                  </td>
+              </tr>
+          </table>
+      </div>
       <p>
         <input ng-model="price" name="price" id="{{idPrefix}}price" type="number" min="0" required>
         <label ng-class="{filled: !form.price.$error.required}" for="{{idPrefix}}price">

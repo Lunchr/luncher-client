@@ -14,7 +14,7 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 3.4,
-  "ingredients": ["kana", "baklazaan"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["lind", "praad"]
 }, {
   "_id": "2",
@@ -32,7 +32,7 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T12:00:00.000Z",
   "price": 3.3,
-  "ingredients": ["Suvikõrvits", "mozzarella", "kanafilee", "friikartulid", "külm kaste"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["siga", "praad"],
   "image": {
   "large": "mock-images/pahadpoisid.jpg",
@@ -54,7 +54,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 2.5,
-  "ingredients": ["kana", "supp"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["supp", "lind"]
 }, {
   "_id": "4",
@@ -72,7 +72,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "ingredients": ["kana", "mahe india kaste"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "lind"]
 }, {
   "_id": "5",
@@ -90,7 +90,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.5,
-  "ingredients": ["vürtsikas kana", "baklazaan"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "lind"]
 }, {
   "_id": "6",
@@ -108,7 +108,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "ingredients": ["sealiha", "kookospiim", "seened", "bambusevõrsed"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "siga"]
 }, {
   "_id": "7",
@@ -126,7 +126,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "ingredients": ["Sink", "ananass"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad","pizza"]
 }, {
   "_id": "8",
@@ -144,7 +144,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "ingredients": ["Paprika", "sink", "juust", "viin"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad","pasta"]
 }, {
   "_id": "9",
@@ -162,7 +162,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.7,
-  "ingredients": ["veiseliha", "kartul", "värske salat"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad","veis"]
 }, {
   "_id": "10",
@@ -180,7 +180,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4.5,
-  "ingredients": ["kana", "koriander", "till", "herned", "toorjuust"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad","veis"]
 }, {
   "_id": "11",
@@ -198,7 +198,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 5,
-  "ingredients": ["pihv", "sai", "salat", "kaste"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad"]
 }, {
   "_id": "12",
@@ -216,7 +216,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 7,
-  "ingredients": ["2x pihv", "friikartulid", "kaste"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad"]
 }, {
   "_id": "13",
@@ -234,7 +234,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 4,
-  "ingredients": ["salat"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad"]
 }, {
   "_id": "14",
@@ -252,7 +252,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3,
-  "ingredients": ["lillkapsasupp", "sai", "leib", "maitsevõi", "vesi"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["supp"]
 }, {
   "_id": "15",
@@ -270,7 +270,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3,
-  "ingredients": ["kikerherne supp", "sai", "leib", "maitsevõi", "vesi"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["supp"]
 }, {
   "_id": "16",
@@ -288,7 +288,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 5,
-  "ingredients": ["lest", "riis", "aedviljad", "kapsasalat", "sai", "leib", "maitsevõi", "vesi"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "kala"]
 }, {
   "_id": "17",
@@ -306,7 +306,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.9,
-  "ingredients": ["kanafilee", "tomat", "juust"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "lind"]
 }, {
   "_id": "18",
@@ -324,7 +324,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.7,
-  "ingredients": ["sink", "jalapeno", "pasta"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "pasta"]
 }, {
   "_id": "19",
@@ -342,7 +342,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.95,
-  "ingredients": ["juust", "hakkliha", "lasanje", "värske salat"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "pasta"],
   "image": {
   "large": "mock-images/suudlevad2.jpg",
@@ -364,7 +364,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.95,
-  "ingredients": ["seened", "sink", "pasta"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "pasta"]
 }, {
   "_id": "21",
@@ -382,7 +382,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.95,
-  "ingredients": ["sinep", "heeringas", "kodujuust", "muna", "salat"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "kala"],
   "image": {
   "large": "mock-images/suudlevad3.jpg",
@@ -404,7 +404,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 2.5,
-  "ingredients": ["porgand", "juurseller", "kõrvitsaseemned"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["supp", "taimetoit"],
   "image": {
   "large": "mock-images/suudlevad1.jpg",
@@ -426,7 +426,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 2.5,
-  "ingredients": ["jäätis", "puuviljad"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["magustoit"]
 }, {
   "_id": "24",
@@ -444,7 +444,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.5,
-  "ingredients": ["koor", "kana", "pasta", "suitsujuust"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "lind", "pasta"]
 }, {
   "_id": "25",
@@ -462,7 +462,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 2,
-  "ingredients": ["Guljaš"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["supp"]
 }, {
   "_id": "26",
@@ -480,7 +480,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 1.5,
-  "ingredients": ["rabarber", "maasikad", "toorjuust"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["magustoit"]
 }, {
   "_id": "27",
@@ -498,7 +498,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3,
-  "ingredients": ["suitsutatud tomat"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["supp"]
 }, {
   "_id": "28",
@@ -516,7 +516,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 5.5,
-  "ingredients": ["kana", "koor", "riis", "punanekapsas"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "lind"]
 }, {
   "_id": "29",
@@ -534,7 +534,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.3,
-  "ingredients": ["sealiha", "värske kartul", "kaste", "toorsalat"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "siga"]
 }, {
   "_id": "30",
@@ -552,7 +552,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 2,
-  "ingredients": ["kana", "riis"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["supp", "lind"]
 }, {
   "_id": "31",
@@ -570,7 +570,7 @@
   "from_time": "2014-11-11T09:00:00.000Z",
   "to_time": "2014-11-11T11:00:00.000Z",
   "price": 3.3,
-  "ingredients": ["tursk", "kartul", "kapsas", "spinat"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "kala"]
 }, {
   "_id": "32",
@@ -588,7 +588,7 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 3.95,
-  "ingredients": ["siga", "mahe tai karri"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["siga", "praad"]
 }, {
   "_id": "33",
@@ -606,7 +606,7 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 4,
-  "ingredients": ["kotlet", "kartul", "värske salat"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["siga", "praad"],
   "image": {
   "large": "mock-images/vassilissa.jpg",
@@ -628,7 +628,7 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 3.4,
-  "ingredients": ["kana", "küüslaugukaste"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["kana", "praad"]
 }, {
   "_id": "35",
@@ -646,7 +646,7 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 3.4,
-  "ingredients": ["oad", "seened"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad"]
 }, {
   "_id": "36",
@@ -664,7 +664,7 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 3.4,
-  "ingredients": ["spinat", "muna"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["supp"]
 }, {
   "_id": "37",
@@ -682,6 +682,6 @@
   "from_time": "2014-11-10T09:00:00.000Z",
   "to_time": "2014-11-10T11:00:00.000Z",
   "price": 5.9,
-  "ingredients": ["Veise abasteik", "kartul", "porgand", "õrnalt vürtsikas sõstrakaste"],
+  "description": "Lorem ipsum dolor sit amet",
   "tags": ["praad", "veis"]
 }]

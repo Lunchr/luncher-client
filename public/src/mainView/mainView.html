@@ -1,13 +1,13 @@
 <header>
     <div class="container">
         <p class="left">
-            <a href="javascript:undefined" ng-click="vm.state.regionSelectionDropdown=!vm.state.regionSelectionDropdown" ng-class="{active: vm.state.regionSelectionDropdown}" class="icon icon-22">
+            <a  onclick="mixpanel.track('Region select');" href="javascript:undefined" ng-click="vm.state.regionSelectionDropdown=!vm.state.regionSelectionDropdown" ng-class="{active: vm.state.regionSelectionDropdown}" class="icon icon-22">
                 <span>{{vm.offerSource.region}}</span>
             </a>
         </p>
         <h1 id="logo">Luncher.ee - Päevapakkumised</h1>
         <p class="search-wrap" ng-controller="SearchCtrl as search">
-            <input ng-class="{ 'filled': search.query.length }" id="search" type="text" ng-model="search.query">
+            <input onclick="mixpanel.track('Search');" ng-class="{ 'filled': search.query.length }" id="search" type="text" ng-model="search.query">
             <button ng-click="search.query = ''" id="search-submit" class="icon-7"></button>
         </p>
     </div>
@@ -35,7 +35,7 @@
         <div class="controls">
             <div class="col-1">
                 <p ng-if="!vm.offerSource.location">
-                    <a href="javascript:undefined" ng-click="vm.state.geolocatorDropdown='active'">
+                    <a onclick="mixpanel.track('Sorter - distance');" href="javascript:undefined" ng-click="vm.state.geolocatorDropdown='active'">
                         Kaugus
                     </a>
                 </p>
@@ -51,19 +51,19 @@
                     <div ng-controller="TagListCtrl as tags">
                         <ul class="horizontal desktop">
                             <li ng-repeat="tag in tags.list | filter:tags.isMainTag | orderBy:tags.mainTagIndex">
-                                <input type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
+                                <input onclick="mixpanel.track('Filter - main tag');" type="checkbox" id="checkbox-{{tag.name}}" name="tag.name" ng-model="tag.selected">
                                 <label ng-class="{selected: tag.selected}" for="checkbox-{{tag.name}}">{{tag.display_name}}</label>
                             </li>
                         </ul>
                         <div class="select-dropdown" ng-class="{active: vm.state.filtersDropdown}">
                             <p>
-                                <a class="desktop" href="javascript:undefined" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown">
+                                <a onclick="mixpanel.track('Filter - dropdown');" class="desktop" href="javascript:undefined" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown">
                                     {{(tags.selected | joinTags) || 'Veel filtreid'}}
                                     <span class="icon-wrap">
                                         <span class="icon icon-22"></span>
                                     </span>
                                 </a>
-                                <a class="mobile" href="javascript:undefined" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown">
+                                <a onclick="mixpanel.track('Filter - mobile dropdown');" class="mobile" href="javascript:undefined" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown">
                                     {{(tags.selected | joinTags) || 'Filtreeri'}}
                                     <span class="icon-wrap">
                                         <span class="icon icon-22"></span>
@@ -89,7 +89,7 @@
                         </div>
                         <div class="overlay" ng-click="vm.state.filtersDropdown=!vm.state.filtersDropdown"></div>
                     </div>
-                    <offers-sorter is-numeric="true" order-by="price" class="price-sorter">
+                    <offers-sorter onclick="mixpanel.track('Sorter - price');" is-numeric="true" order-by="price" class="price-sorter">
                         Hind
                     </offers-sorter>
                 </div>
