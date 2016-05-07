@@ -319,6 +319,13 @@
                 color: $color;
             }
         }
+        &:last-child {
+            .form {
+                .buttons:last-child {
+                    margin: 0;
+                }
+            }
+        }
     }
     .icon-wrap {
         strong {

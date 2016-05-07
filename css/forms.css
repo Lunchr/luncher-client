@@ -51,6 +51,7 @@
         border-radius: 0;
         line-height: 22px;
         background: #fff;
+        color: $color-secondary;
         outline: none;
         font: $font;
         cursor: text;
@@ -113,6 +114,7 @@
         top: 0;
         left: 5px;
         cursor: text;
+        color: $color-secondary;
         @mixin transition 0.2s;
         &.filled
         {
@@ -159,6 +161,7 @@
                 border: none;
                 border-radius: 0;
                 background: transparent;
+                color: $color-secondary;
                 .remove-button {
                     display: inline-block;
                     margin: 0 -3px;

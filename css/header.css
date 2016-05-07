@@ -75,7 +75,7 @@ header {
     box-sizing: border-box;
     font-size: 14px;
     border-radius: 3px;
-    color: #222;
+    color: $color-secondary;
     background: transparent;
     z-index: 5;
     outline: none;

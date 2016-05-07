@@ -98,7 +98,7 @@
     left: 12px;
     margin-top: -200%;
     z-index: 900;
-    color: #222;
+    color: $color-secondary;
     @mixin transition 0.2s;
     ul,
     .dropdown-inner {
