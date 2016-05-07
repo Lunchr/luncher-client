@@ -299,12 +299,11 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
 .btn {
     @simple-extend-addto material-box;
     display: inline-block;
-    padding: 8px 18px 5px;
+    padding: 8px 18px;
     background: $color;
     color: #fff;
     text-decoration: none;
     border: none;
-    border-bottom: 3px solid $color-h;
     &:focus,
     &:hover {
         background: $color-h;
@@ -442,6 +441,7 @@ textarea {
 .grouped-select {
     margin: 0 0 20px;
     padding: 5px;
+
     th, td {
         padding: 5px 0;
     }
@@ -453,15 +453,28 @@ textarea {
         }
     }
     a {
-        padding: 0px 5px;
-        border: 1px solid;
+        padding: 3px 7px;
         border-radius: 2px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.3);
         &.more {
             border: none;
+            box-shadow: none;
+            &:hover {
+                box-shadow: none;
+            }
         }
         &.disabled {
             color: #bbb;
             cursor: default;
+        }
+        &:hover,
+        &:focus {
+            box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+        }
+        &.active {
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            color: #fff;
+            background: $color;
         }
     }
     .tags-input + & {
