@@ -11,10 +11,10 @@
         position: relative;
         margin: 0 0 30px;
         &.buttons:last-child {
-            margin: -10px 0 0;
+            margin: 0 0 0;
         }
         &.image-preview {
-            height: 295px;
+            height: 220px;
             margin-top: -31px;
             margin-bottom: 20px;
             background: #F7F7F7 url(../img/img-icon.svg) center no-repeat;
@@ -28,6 +28,9 @@
                 cursor: pointer;
                 img {
                     display: block;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
                     max-height: 100%;
                     max-width: 100%;
                     margin-left: auto;
@@ -356,7 +359,8 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
     }
 }
 .buttons {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
 }
 .btn-wrap {
     position: absolute;
@@ -439,9 +443,13 @@ textarea {
 
 /* Grouped select */
 .grouped-select {
+    position: absolute;
+    width: calc(100% - 34px);
     margin: 0 0 20px;
     padding: 5px;
-
+    z-index: 1;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    background: #fff;
     th, td {
         padding: 5px 0;
     }
@@ -453,9 +461,9 @@ textarea {
         }
     }
     a {
-        padding: 3px 7px;
+        padding: 2px 7px;
         border-radius: 2px;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        border: 1px solid;
         &.more {
             border: none;
             box-shadow: none;
@@ -470,15 +478,21 @@ textarea {
         &:hover,
         &:focus {
             box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            color: $color;
         }
         &.active {
-            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            box-shadow: none;
             color: #fff;
             background: $color;
+            border-color: $color;
         }
     }
     .tags-input + & {
+        display: none;
         margin-top: -30px;
+    }
+    .tags-input.active + & {
+        display: block;
     }
 }
 .tags-input {
