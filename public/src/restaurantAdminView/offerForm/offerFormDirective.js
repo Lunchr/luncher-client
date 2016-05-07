@@ -177,6 +177,9 @@
             enterObservable
           );
 
+          var titleBlurObservable = Rx.Observable.fromEvent(titleInput, 'blur');
+          var titleFocusObservable = Rx.Observable.fromEvent(titleInput, 'focus');
+
           var hasSuggestions = function() {
             return $scope.suggestions && $scope.suggestions.length > 0;
           };
@@ -211,6 +214,15 @@
             $scope.selectSuggestion(suggestion);
             $scope.$apply();
           };
+          var closeSuggestions = function() {
+            $scope.suggestionsClosed = true;
+            $scope.clearSuggestionHighlight();
+            $scope.$apply();
+          };
+          var openSuggestions = function() {
+            $scope.suggestionsClosed = false;
+            $scope.$apply();
+          };
 
           var disposable = new Rx.CompositeDisposable();
           var err = console.error.bind(console);
@@ -220,6 +232,8 @@
           disposable.add(highlightNextSuggestionObservable.subscribe(highlightNextSuggestion, err));
           disposable.add(selectSuggestionObservable.subscribe(selectSuggestion, err));
           disposable.add(keypressObservable.connect());
+          disposable.add(titleBlurObservable.subscribe(closeSuggestions, err));
+          disposable.add(titleFocusObservable.subscribe(openSuggestions, err));
           $scope.$on('$destroy', disposable.dispose.bind(disposable));
         },
         restrict: 'E',
