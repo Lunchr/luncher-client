@@ -226,10 +226,13 @@ describe('Offer Form', function() {
               name: suggestions[0].tags[1],
             }]);
             expect($scope.price).toEqual(suggestions[0].price);
-            expect($scope.date).toEqual(new Date(2115, 3, 15));
-            expect($scope.fromTime).toEqual(new Date(1970, 0, 1, 10, 0, 0));
-            expect($scope.toTime).toEqual(new Date(1970, 0, 1, 15, 0, 0));
             expect($scope.image.src).toEqual(suggestions[0].image.large);
+          });
+
+          it('does not change time fields', function() {
+            expect($scope.date).not.toEqual(new Date(2115, 3, 15));
+            expect($scope.fromTime).not.toEqual(new Date(1970, 0, 1, 10, 0, 0));
+            expect($scope.toTime).not.toEqual(new Date(1970, 0, 1, 15, 0, 0));
           });
         };
 

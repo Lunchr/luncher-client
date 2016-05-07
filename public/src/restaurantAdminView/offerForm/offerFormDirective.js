@@ -50,22 +50,24 @@
           $scope.isEdit = function() {
             return !!$scope.offerToEdit;
           };
-          function fillWith(offer) {
+          function fillWith(offer, opts) {
             if (offer) {
               $scope.title = offer.title;
               $scope.description = offer.description;
               $scope.tags = offer.tags;
               $scope.price = offer.price;
-              $scope.date = new Date(offer.from_time);
-              $scope.date.setHours(0, 0, 0, 0);
-              $scope.fromTime = new Date(offer.from_time);
-              $scope.fromTime.setFullYear(1970);
-              $scope.fromTime.setMonth(0);
-              $scope.fromTime.setDate(1);
-              $scope.toTime = new Date(offer.to_time);
-              $scope.toTime.setFullYear(1970);
-              $scope.toTime.setMonth(0);
-              $scope.toTime.setDate(1);
+              if (!(opts && opts.avoidOverwritingTime)) {
+                $scope.date = new Date(offer.from_time);
+                $scope.date.setHours(0, 0, 0, 0);
+                $scope.fromTime = new Date(offer.from_time);
+                $scope.fromTime.setFullYear(1970);
+                $scope.fromTime.setMonth(0);
+                $scope.fromTime.setDate(1);
+                $scope.toTime = new Date(offer.to_time);
+                $scope.toTime.setFullYear(1970);
+                $scope.toTime.setMonth(0);
+                $scope.toTime.setDate(1);
+              }
               if (offer.image) {
                 $scope.image = offer.image.large;
               } else if (offer.image_data) {
@@ -150,7 +152,7 @@
           };
 
           $scope.selectSuggestion = function(suggestion) {
-            fillWith(suggestion);
+            fillWith(suggestion, {avoidOverwritingTime: true});
             $scope.highlightedSuggestionIndex = null;
             $scope.suggestions = [];
           };
