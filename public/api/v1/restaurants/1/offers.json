@@ -4,8 +4,8 @@
     "name": "La Dolce Vita"
   },
   "title": "Lambaliha & parmesaniga pasta",
-  "from_time": "2016-11-11T09:00:00.000Z",
-  "to_time": "2016-11-11T11:00:00.000Z",
+  "from_time": "2016-05-08T09:00:00.000Z",
+  "to_time": "2016-05-08T11:00:00.000Z",
   "price": 4.5,
   "description": "Lambaliha, farfalled, paremesan",
   "tags": ["lammas", "pasta"],
@@ -19,8 +19,8 @@
     "name": "La Dolce Vita"
   },
   "title": "Salaami & ananassi pizza",
-  "from_time": "2016-11-11T09:00:00.000Z",
-  "to_time": "2016-11-11T11:00:00.000Z",
+  "from_time": "2016-05-08T09:00:00.000Z",
+  "to_time": "2016-05-08T11:00:00.000Z",
   "price": 4.5,
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
@@ -34,8 +34,8 @@
     "name": "La Dolce Vita"
   },
   "title": "Tagliatelle boscaiola",
-  "from_time": "2016-11-12T09:00:00.000Z",
-  "to_time": "2016-11-12T11:00:00.000Z",
+  "from_time": "2016-05-09T09:00:00.000Z",
+  "to_time": "2016-05-09T11:00:00.000Z",
   "price": 4.5,
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
@@ -49,8 +49,8 @@
     "name": "La Dolce Vita"
   },
   "title": "Spaghetti alla bolognese",
-  "from_time": "2016-11-12T09:00:00.000Z",
-  "to_time": "2016-11-12T11:00:00.000Z",
+  "from_time": "2016-05-10T09:00:00.000Z",
+  "to_time": "2016-05-10T11:00:00.000Z",
   "price": 4.5,
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
@@ -64,8 +64,38 @@
     "name": "La Dolce Vita"
   },
   "title": "Spaghetti alla carbonara",
-  "from_time": "2016-11-13T09:00:00.000Z",
-  "to_time": "2016-11-13T11:00:00.000Z",
+  "from_time": "2016-05-11T09:00:00.000Z",
+  "to_time": "2016-05-11T11:00:00.000Z",
+  "price": 4.5,
+  "description": "Salaami, ananass, pitsakaste, pitsapõhi",
+  "tags": ["pizza"],
+  "image": {
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
+  }
+}, {
+  "_id": "9",
+  "restaurant": {
+    "name": "La Dolce Vita"
+  },
+  "title": "Spaghetti bolognese",
+  "from_time": "2016-05-12T09:00:00.000Z",
+  "to_time": "2016-05-12T11:00:00.000Z",
+  "price": 4.5,
+  "description": "Salaami, ananass, pitsakaste, pitsapõhi",
+  "tags": ["pizza"],
+  "image": {
+	"large": "mock-images/meatmarket.jpg",
+	"thumbnail": "mock-images/meatmarket.jpg"
+  }
+}, {
+  "_id": "9",
+  "restaurant": {
+    "name": "La Dolce Vita"
+  },
+  "title": "Spaghetti alla carbonara",
+  "from_time": "2016-05-12T09:00:00.000Z",
+  "to_time": "2016-05-12T11:00:00.000Z",
   "price": 4.5,
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
