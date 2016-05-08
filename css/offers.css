@@ -11,11 +11,13 @@
     }
 }
 .offers-group {
-    @simple-extend-addto material-box;
     display: inline-block;
     width: 100%;
     margin: -2px 0;
+    padding: 4px 5px 5px 0;
     box-sizing: border-box;
+    background: rgba(0,0,0,0.04);
+    border-top: 1px solid rgba(0,0,0,0.07);
     border-radius: 0;
     transition: .2s;
     &:first-of-type {
@@ -25,7 +27,8 @@
     }
     &:last-of-type {
         margin-bottom: -4px;
-        border-radius: 0 0 2px 2px;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
     }
     h3 {
         margin: 0;
@@ -34,8 +37,6 @@
         line-height: 1.2;
         font-weight: $font-weight;
         overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
     }
     p {
         position: relative;
@@ -75,11 +76,14 @@
     }
     .col-1 {
         position: relative;
-        padding: 11px 11px 11px 45px;
+        padding: 11px 45px;
         cursor: pointer;
         box-sizing: border-box;
         h3 {
             padding: 2px 0;
+            + p {
+                color: #666;
+            }
         }
         &.favorite {
           .icon-8:before {
@@ -88,9 +92,9 @@
           }
         }
         .icon {
-            color: #e0e0e0;
+            color: #999;
             &:hover {
-                color: #999;
+                color: $color;
             }
         }
         .map {
@@ -119,25 +123,26 @@
     .thumbnail {
         position: absolute;
         top: 15px;
-        left: 10px;
+        left: 15px;
         height: 31px;
-        width: 31px;
+        width: 35px;
         background-size: cover;
         background-position: 50%;
+        border-radius: 2px;
         opacity: .2;
         transition: .2s;
         transform: scale(1);
     }
-    .offer + .offer {
-        margin-top: -10px;
-    }
 }
 .offer {
+    @simple-extend-addto material-box;
     position: relative;
-    margin-left: -35px;
+    margin: 10px;
+    margin-left: -45px;
     padding: 11px 11px 14px;
-    padding-left: 47px;
+    padding-left: 60px;
     box-sizing: border-box;
+    border-radius: 0;
     &.hasimage {
         cursor: pointer;
         &:hover {
@@ -196,6 +201,16 @@
         border-radius: 2px;
         background-size: cover;
         background-position: 50%;
+    }
+    + .offer {
+        margin-top: -10px;
+    }
+    &:first-of-type {
+        border-radius: 2px 2px 0 0;
+    }
+    &:last-of-type {
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
     }
 }
 .edit {
@@ -337,6 +352,7 @@
         margin-bottom: 5px;
         background-color: rgba(0,0,0,0.05);
         box-shadow: none;
+        padding: 4px 5px 5px;
         .thumbnail {
             left: 15px;
             opacity: 1;
@@ -354,7 +370,8 @@
                 border-radius: 2px 2px 0 0;
             }
             &:last-of-type {
-                border-radius: 0 0 2px 2px;
+                border-bottom-left-radius: 2px;
+                border-bottom-right-radius: 2px;
             }
             &:hover {
                 .thumbnail {

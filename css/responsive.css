@@ -53,6 +53,7 @@
 
     /* offers */
     .offers-group {
+        padding: 0;
         .col-1 {
             padding-bottom: 3px;
             width: 100%;
@@ -68,32 +69,43 @@
             font-size: 13px;
         }
         p.price {
-            top: 3px;
+            top: 7px;
             width: 50px;
             font-size: 13px;
+            font-weight: 600;
         }
         .thumbnail {
-            height: 19px;
-            top: 3px;
+            height: 22px;
+            width: 26px;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 6px;
+            border-radius: 2px;
+            opacity: 1;
         }
         .offer + .offer {
         margin-top: 0;
     }
     }
     .offer {
-        margin: 0;
-        padding: 3px 11px 3px 45px;
+        margin: 0 8px;
+        padding: 7px 11px 6px 38px;
         &:last-child {
-            padding-bottom: 8px;
+            margin-bottom: 9px;
         }
         .image {
             width: 100%;
             border-radius: 0;
             margin-left: -45px
         }
-    }
-    .offer-content {
-        padding-left: 45px;
+        &:first-of-type {
+            margin-top: 5px;
+        }
+        &.hasimage:hover {
+            .thumbnail {
+                transform: translateY(-50%);
+            }
+        }
     }
     .secondary {
         margin-left: -45px;
@@ -143,17 +155,21 @@
         }
     }
     .admin-offers {
-        .offer {
-            padding-left: 0;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        .col-1 {
-            width: 30%;
-            padding-bottom: 11px;
-        }
-        .col-2 {
-            width: 70%;
+        .offers-group {
+            .offer {
+                padding-left: 0;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 40px;
+                .icon-18:before {
+                    top: -1px;
+                    left: -2px;
+                    font-size: 20px;
+                }
+            }
+            .thumbnail {
+                left: 8px;
+            }
         }
         .icon-wrap {
             .icon {
@@ -161,7 +177,7 @@
             }
         }
         p.price {
-            padding-top: 10px;
+            padding-top: 5px;
         }
     }
     .sorter {
@@ -197,26 +213,6 @@
             height: 250px;
         }
     }
-    .admin-offers {
-        .offer {
-            border-left: none;
-        }
-        .col-1,
-        .col-2 {
-            width: 100%;
-        }
-        .col-1 {
-            border-bottom: 1px solid #f0f0f0;
-            border-right: none;
-        }
-        p {
-            &.action {
-                position: absolute;
-                top: 0;
-                right: 15px;;
-            }
-        }
-    }
     .dropdown {
         width: 100%;
         left: 0;
@@ -239,6 +235,12 @@
         .image {
             height: 200px;
         }
+    }
+}
+
+@media (max-width: 350px) {
+    .offers-group p.action {
+        position: static;
     }
 }
 
