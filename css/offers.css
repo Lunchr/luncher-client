@@ -93,8 +93,10 @@
         }
         .icon {
             color: #999;
+            transform: scale(1);
             &:hover {
                 color: $color;
+                transform: scale(1.15);
             }
         }
         .map {
