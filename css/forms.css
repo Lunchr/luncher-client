@@ -4,7 +4,6 @@
 /* Form */
 .form {
     display: block;
-    width: 100%;
     padding: 35px 20px 20px;
     box-sizing: border-box;
     p {
@@ -171,7 +170,7 @@
                     }
                     &:focus,
                     &:active {
-                        color: $color-a;
+                        color: $color-h;
                     }
                 }
                 &.selected {
@@ -279,25 +278,37 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
         position: relative;
         padding: 14px 18px 15px 16px;
         font-size: 16px;
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color;
+        }
     }
     span {
         position: relative;
         top: 4px;
         padding-right: 10px;
     }
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.02);
-    }
 }
 .form-wrap {
     @simple-extend-addto material-box;
     display: inline-block;
     width: 100%;
-    margin: 15px 0;
+    margin: 20px 0;
     background-color: #fff;
     box-sizing: border-box;
     + .form-wrap {
         margin-top: 0;
+    }
+    &:hover {
+        transform: scale(1.03);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 1px rgba(0,0,0,0.2);
+    }
+    &.open {
+        &:hover {
+            transform: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
     }
 }
 
@@ -310,16 +321,18 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
     color: #fff;
     text-decoration: none;
     border: none;
+    transform: scale(1);
     &:focus,
     &:hover {
-        background: $color-h;
+        transform: scale(1.03);
         color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 1px rgba(0,0,0,0.2);
     }
     &:active {
-        background: $color-a;
-        border-bottom: 3px solid $color-a;
+        background: $color-h;
         color: #fff;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: 0;
+        transform: scale(1);
         outline: none;
     }
     &.btn-secondary {
@@ -329,7 +342,7 @@ body:not(:-moz-handler-blocked) input[type="file"] { /* Targets firefox - http:/
         box-shadow: none;
         border-bottom: none;
         &:hover {
-            color: $color-a;
+            color: $color-h;
         }
         + .btn-secondary {
             margin-left: -9px;
@@ -714,7 +727,7 @@ datepicker {
     a:hover {
         font-size: 12px;
         padding: 0 7px;
-        font-weight: 400;
+        font-weight: $font-weight;
         margin: 3px 1% 0;
         line-height: 20px;
         display: inline-block;

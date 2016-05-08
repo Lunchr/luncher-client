@@ -1,6 +1,6 @@
 .settings {
     display: block;
-    margin-top: -200px;
+    margin-top: -195px;
     margin-bottom: 160px;
     opacity: 1;
     @mixin transition 0.2s;

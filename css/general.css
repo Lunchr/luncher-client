@@ -12,6 +12,7 @@ body {
     background-image: url(../img/bg.png);
     background-position: top center;
     background-size: cover;
+    background-color: #f2f2f2;
     font: $font;
     color: $color-secondary;
     margin: 0;
@@ -22,7 +23,7 @@ a {
     &:hover,
     &:focus,
     &:active {
-        color: $color-a;
+        color: $color-h;
     }
 }
 h1,
@@ -32,7 +33,7 @@ h4,
 h5,
 h6 {
     font-family: $font-family;
-    font-weight: 100;
+    font-weight: $font-weight;
 }
 .content {
     position: relative;

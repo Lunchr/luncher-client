@@ -33,7 +33,7 @@
         padding: 2px 55px 2px 0;
         font-size: 16px;
         line-height: 1.2;
-        font-weight: 300;
+        font-weight: $font-weight;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -42,10 +42,10 @@
         position: relative;
         padding: 0;
         margin: 0;
-        font-size: 13px;
+        font-size: 11px;
         color: #999;
         line-height: 1.2;
-        font-weight: 300;
+        font-weight: $font-weight;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -68,7 +68,7 @@
         font-size: 16px;
         color: $color-secondary;
         line-height: 1.2;
-        font-weight: 300;
+        font-weight: $font-weight;
         width: 60px;
     }
     .col-1 {
@@ -116,10 +116,10 @@
     }
     .thumbnail {
         position: absolute;
-        top: 16px;
+        top: 15px;
         left: 10px;
-        height: 30px;
-        width: 30px;
+        height: 31px;
+        width: 31px;
         background-size: cover;
         background-position: 50%;
         opacity: .2;
@@ -133,7 +133,7 @@
 .offer {
     position: relative;
     margin-left: -35px;
-    padding: 11px;
+    padding: 11px 11px 14px;
     padding-left: 47px;
     box-sizing: border-box;
     &.hasimage {
@@ -280,7 +280,8 @@
 
 .admin-offers {
     .col-1 {
-        width: 25%;
+        width: 100%;
+        float: none;
         cursor: default;
         padding-left: 15px;
         margin-right: -1px;
@@ -303,16 +304,19 @@
         }
     }
     .col-2 {
-        width: 75%;
+        width: 100%;
     }
     .offer {
-        margin: 0;
         &:last-child {
             border-bottom: 0;
         }
         .icon-18 {
             &:before {
                 opacity: 0;
+                top: 7px;
+                left: 8px;
+                position: relative;
+                font-size: 22px;
             }
             &:hover:before {
                 opacity: 1;
@@ -325,6 +329,39 @@
                     margin: 0;
                 }
             }
+        }
+    }
+    .offers-group {
+        margin-bottom: 5px;
+        background-color: rgba(0,0,0,0.05);
+        box-shadow: none;
+        .thumbnail {
+            left: 15px;
+            opacity: 1;
+            transition: 0s;
+        }
+        .offer {
+            margin: 10px;
+            padding-left: 60px;
+            background: #fff;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2), 0 0 1px rgba(0,0,0,0.2);
+            + .offer {
+                margin-top: -10px;
+            }
+            &:first-of-type {
+                border-radius: 2px 2px 0 0;
+            }
+            &:last-of-type {
+                border-radius: 0 0 2px 2px;
+            }
+            &:hover {
+                .thumbnail {
+                    opacity: 0;
+                }
+            }
+        }
+        p {
+            color: #666;
         }
     }
     .icon-wrap {
@@ -348,9 +385,6 @@
         z-index: 100;
     }
     .form {
-        padding-left: 47px;
-        .buttons:last-child {
-            margin: 0 0 25px;
-        }
+        margin-left: -55px;
     }
 }
