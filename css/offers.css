@@ -15,7 +15,6 @@
     display: inline-block;
     width: 100%;
     margin: -2px 0;
-    border-top: 1px solid #e4e4e4;
     box-sizing: border-box;
     border-radius: 0;
     transition: .2s;
@@ -55,6 +54,9 @@
         &.action {
             padding-top: 15px;
             white-space: inherit;
+            position: absolute;
+            top: 3px;
+            right: 11px;
         }
         &.buttons {
             margin-top: 10px;
@@ -283,7 +285,7 @@
         width: 100%;
         float: none;
         cursor: default;
-        padding-left: 15px;
+        padding-left: 11px;
         margin-right: -1px;
         &:hover {
             background: transparent;
