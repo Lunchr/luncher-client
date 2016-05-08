@@ -10,8 +10,8 @@
   "description": "Lambaliha, farfalled, paremesan",
   "tags": ["lammas", "pasta"],
   "image": {
-	"large": "mock-images/meatmarket.jpg",
-	"thumbnail": "mock-images/meatmarket.jpg"
+	"large": "mock-images/pahadpoisid.jpg",
+	"thumbnail": "mock-images/pahadpoisid.jpg"
   }
 }, {
   "_id": "6",
@@ -25,8 +25,8 @@
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
   "image": {
-	"large": "mock-images/meatmarket.jpg",
-	"thumbnail": "mock-images/meatmarket.jpg"
+	"large": "mock-images/suudlevad1.jpg",
+	"thumbnail": "mock-images/suudlevad1.jpg"
   }
 }, {
   "_id": "7",
@@ -55,8 +55,8 @@
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
   "image": {
-	"large": "mock-images/meatmarket.jpg",
-	"thumbnail": "mock-images/meatmarket.jpg"
+	"large": "mock-images/suudlevad1.jpg",
+	"thumbnail": "mock-images/suudlevad1.jpg"
   }
 }, {
   "_id": "9",
@@ -85,8 +85,8 @@
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
   "image": {
-	"large": "mock-images/meatmarket.jpg",
-	"thumbnail": "mock-images/meatmarket.jpg"
+	"large": "mock-images/suudlevad2.jpg",
+	"thumbnail": "mock-images/suudlevad2.jpg"
   }
 }, {
   "_id": "9",
@@ -100,7 +100,7 @@
   "description": "Salaami, ananass, pitsakaste, pitsapõhi",
   "tags": ["pizza"],
   "image": {
-	"large": "mock-images/meatmarket.jpg",
-	"thumbnail": "mock-images/meatmarket.jpg"
+	"large": "mock-images/pahadpoisid.jpg",
+	"thumbnail": "mock-images/pahadpoisid.jpg"
   }
 }]
