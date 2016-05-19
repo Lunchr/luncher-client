@@ -9,20 +9,43 @@
     'sourceSelection',
   ]);
 
-  module.controller('MainViewCtrl', ['$scope', 'offerSourceService',
-    function($scope, offerSourceService) {
+  var TALLINN = 'Tallinn';
+
+  module.controller('MainViewCtrl', ['$scope', '$resource', 'offerSourceService',
+    function($scope, $resource, offerSourceService) {
       var vm = this;
       if (!vm.state) {
         vm.state = {};
       }
       var offerSource = offerSourceService.getCurrent();
       vm.offerSource = offerSource;
-      if (!offerSource || !offerSource.region) {
-        vm.state.sourceSelectionPopup = 'active';
-      }
       offerSourceService.subscribeToChanges($scope, function loadOffers(offerSource) {
         vm.offerSource = offerSource;
       });
+
+      var openSourceSelection = function() {
+        vm.state.sourceSelectionPopup = 'active';
+      };
+      var selectTallinn = function() {
+        offerSourceService.update({
+          region: TALLINN,
+        });
+      };
+      if (!offerSource) {
+        var regions = $resource('api/v1/regions').query();
+        regions.$promise.then(function success() {
+          var containsTallinn = R.any(R.propEq('name', TALLINN), regions);
+          if (containsTallinn) {
+            selectTallinn();
+          } else {
+            openSourceSelection();
+          }
+        }, function failure() {
+          openSourceSelection();
+        });
+      } else if (!offerSource.region) {
+        openSourceSelection();
+      }
     }
   ]);
 })();

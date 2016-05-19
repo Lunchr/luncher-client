@@ -8,6 +8,7 @@ describe('mainViewController', function() {
           return {
             subscribeToChanges: jasmine.createSpy('subscribeToChanges'),
             getCurrent: jasmine.createSpy('getCurrent'),
+            update: jasmine.createSpy('update'),
           };
         }
       });
@@ -68,9 +69,43 @@ describe('mainViewController', function() {
           vm = $scope.vm;
         }));
 
-        it('should open the source selection popup', function() {
-          expect(vm.state.sourceSelectionPopup).toBe('active');
-          expect(vm.state.isLocationSelectionEnabled).toBeFalsy();
+        context('with Tallinn available as one of the sources', function() {
+          beforeEach(inject(function($httpBackend) {
+            $httpBackend.expectGET('api/v1/regions').respond([
+              {
+                name: 'Tartu'
+              }, {
+                name: 'Tallinn'
+              }
+            ]);
+            $httpBackend.flush();
+          }));
+
+          it('should select Tallinn region', function() {
+            expect(vm.state.sourceSelectionPopup).not.toBe('active');
+            expect(vm.state.isLocationSelectionEnabled).toBeFalsy();
+            expect(offerSourceService.update).toHaveBeenCalledWith({
+              region: 'Tallinn',
+            });
+          });
+        });
+
+        context('without Tallinn available as one of the sources', function() {
+          beforeEach(inject(function($httpBackend) {
+            $httpBackend.expectGET('api/v1/regions').respond([
+              {
+                name: 'Tartu'
+              }, {
+                name: 'NotTallinn'
+              }
+            ]);
+            $httpBackend.flush();
+          }));
+
+          it('should open the source selection popup', function() {
+            expect(vm.state.sourceSelectionPopup).toBe('active');
+            expect(vm.state.isLocationSelectionEnabled).toBeFalsy();
+          });
         });
 
         it('should keep offer source up to date', function() {
