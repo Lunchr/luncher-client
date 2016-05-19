@@ -99,12 +99,17 @@
           $scope.isReadyForError = function() {
             for (var i = 0; i < arguments.length; i++) {
               var input = arguments[i];
-              if (input.$dirty && input.$touched && input.$invalid)
+              var dirty = $scope.submitClicked || (input.$dirty && input.$touched);
+              if (dirty && input.$invalid)
                 return true;
             }
             return false;
           };
           $scope.submitOffer = function() {
+            $scope.submitClicked = true;
+            if (!$scope.form.$valid) {
+              return;
+            }
             var date = new Date($scope.date);
             date.setHours(0, 0, 0, 0);
             var offer = {
