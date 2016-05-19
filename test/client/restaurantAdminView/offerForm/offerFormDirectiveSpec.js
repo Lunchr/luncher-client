@@ -133,7 +133,6 @@ describe('Offer Form', function() {
             $scope.price = 2.5;
             $scope.date = new Date(2015, 3, 15);
             $scope.fromTime = new Date(1970, 0, 1, 10, 0, 0);
-            $scope.toTime = new Date(1970, 0, 1, 15, 0, 0);
             $scope.image = {src: 'image data'};
             $scope.$apply();
           });
@@ -147,7 +146,7 @@ describe('Offer Form', function() {
               tags: ['tag1', 'tag2'],
               price: 2.5,
               from_time: new Date(2015, 3, 15, 10, 0, 0),
-              to_time: new Date(2015, 3, 15, 15, 0, 0),
+              to_time: new Date(2015, 3, 15, 23, 55, 0),
               image_data: 'image data',
             });
           });

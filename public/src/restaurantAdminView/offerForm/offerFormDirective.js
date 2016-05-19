@@ -46,6 +46,7 @@
           (function setDefaults() {
             $scope.date = new Date();
             $scope.date.setHours(0, 0, 0, 0);
+            $scope.toTime = new Date(1970, 0, 1, 23, 55);
           })();
           $scope.isEdit = function() {
             return !!$scope.offerToEdit;
