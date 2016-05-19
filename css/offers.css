@@ -302,7 +302,7 @@
         width: 100%;
         float: none;
         cursor: default;
-        padding-left: 11px;
+        padding: 11px;
         margin-right: -1px;
         &:hover {
             background: transparent;
