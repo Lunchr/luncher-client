@@ -20,6 +20,9 @@
   };
   var FB_PUBLISH_TIME_BUFFER = 1000 * 60 * 15; // 15 min
   var A_DAY = 1000 * 60 * 60 * 24;
+  var reduceNonEmptyList = R.curry(function(fn, list) {
+    return R.reduce(R.min, R.head(list), R.tail(list));
+  });
 
   module.controller('RestaurantAdminViewCtrl', ['$scope', '$resource', 'restaurant', 'restaurants',
     function($scope, $resource, restaurant, restaurants) {
@@ -62,9 +65,8 @@
           ctrl.offersByDate.push(dates[key]);
         });
         ctrl.offersByDate.forEach(function(offerGroup) {
-          var endOfDay = new Date(offerGroup.date.getTime() + A_DAY);
           var firstOfferTime = R.compose(
-            R.reduce(R.min, endOfDay),
+            reduceNonEmptyList(R.min),
             R.map(R.constructN(1, Date)),
             R.map(R.prop('from_time'))
           )(offerGroup.offers);
