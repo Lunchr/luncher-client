@@ -106,7 +106,7 @@
         padding: 10px 0;
         background-color: #fff;
         border-radius: 0 0 2px 2px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         height: 0;
         overflow: hidden;
     }
