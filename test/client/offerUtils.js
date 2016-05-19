@@ -12,7 +12,7 @@ var offerUtils = (function() {
             'coordinates': [26.722691, 58.380094]
           }
         },
-        'from_time': '2016-11-11T11:00:00.000Z',
+        'from_time': '2016-11-11T10:30:00.000Z',
         'to_time': '2016-11-11T15:00:00.000Z',
         'title': 'Sweet & Sour Chicken',
         'description': 'Kana, aedviljad, tsillikaste',

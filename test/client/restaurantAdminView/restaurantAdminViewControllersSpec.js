@@ -104,10 +104,13 @@ describe('Restaurant admin view', function() {
         // new Date(...) sets the time to 00:00 in UTC, but the setHours forces it to 00:00 in the local timezone
         expect(ctrl.offersByDate[0].date.getTime()).toEqual(new Date('2016-11-11').setHours(0, 0, 0, 0));
         expect(ctrl.offersByDate[0].offers.length).toBe(2);
+        expect(ctrl.offersByDate[0].fbPostTime).toEqual(new Date('2016-11-11T10:15:00.000Z'));
         expect(ctrl.offersByDate[1].date.getTime()).toEqual(new Date('2016-11-12').setHours(0, 0, 0, 0));
         expect(ctrl.offersByDate[1].offers.length).toBe(1);
+        expect(ctrl.offersByDate[1].fbPostTime).toEqual(new Date('2016-11-12T10:45:00.000Z'));
         expect(ctrl.offersByDate[2].date.getTime()).toEqual(new Date('2016-11-13').setHours(0, 0, 0, 0));
         expect(ctrl.offersByDate[2].offers.length).toBe(1);
+        expect(ctrl.offersByDate[2].fbPostTime).toEqual(new Date('2016-11-13T10:45:00.000Z'));
       });
 
       describe('$update an offer', function() {

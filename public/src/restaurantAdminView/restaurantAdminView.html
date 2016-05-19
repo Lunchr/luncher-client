@@ -178,6 +178,7 @@
                           ng-show="dateOffers.state.fbGroupPost"
                           on-cancel="dateOffers.state.fbGroupPost=false"
                           on-submit="dateOffers.state.fbGroupPost=false"></facebook-group-post>
+                        Postituse aeg: {{dateOffers.fbPostTime | date:'H:mm'}}
                     </div>
                     <div class="col-2">
                         <div class="offer" ng-class="{edit: offer.editing}" ng-repeat="offer in dateOffers.offers">
