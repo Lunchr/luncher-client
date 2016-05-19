@@ -135,6 +135,7 @@ describe('Offer Form', function() {
             $scope.fromTime = new Date(1970, 0, 1, 10, 0, 0);
             $scope.toTime = new Date(1970, 0, 1, 15, 0, 0);
             $scope.image = {src: 'image data'};
+            $scope.$apply();
           });
 
           it('should call the specified function with $offer as the argument', function() {
