@@ -182,7 +182,7 @@
 
                     </div>
                     <div class="col-2">
-                        <div class="offer" ng-class="{edit: offer.editing}" ng-repeat="offer in dateOffers.offers">
+                        <div class="offer" ng-class="{edit: offer.editing, hasimage: !!offer.image, hasinfo: offer.description}" ng-repeat="offer in dateOffers.offers">
                             <offer-form ng-show="offer.editing" edit="offer" on-submit="offerListCtrl.updateOffer($currentOffer, $offer); $offer.editing=false"
                                 on-cancel="offer.editing=false" on-delete="offerListCtrl.deleteOffer(offer)" restaurant-id="vm.restaurant._id"></offer-form>
                             <div ng-show="!offer.editing">

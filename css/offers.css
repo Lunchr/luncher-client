@@ -63,17 +63,6 @@
             margin-top: 10px;
         }
     }
-    p.price {
-        position: absolute;
-        top: 11px;
-        right: 0px;
-        padding: 2px 0;
-        font-size: 16px;
-        color: $color-secondary;
-        line-height: 1.2;
-        font-weight: $font-weight;
-        width: 60px;
-    }
     .col-1 {
         position: relative;
         padding: 11px 45px;
@@ -141,18 +130,49 @@
     position: relative;
     margin: 10px;
     margin-left: -45px;
-    padding: 11px 11px 14px;
-    padding-left: 60px;
+    padding: 11px 11px 12px 60px;
     box-sizing: border-box;
     border-radius: 0;
+    .price {
+        position: absolute;
+        top: 11px;
+        right: 0px;
+        padding: 2px 0;
+        font-size: 16px;
+        color: $color-secondary;
+        line-height: 1.2;
+        font-weight: $font-weight;
+        width: 60px;
+    }
     &.hasimage {
+        min-height: 55px;
+        padding-top: 16px;
+        padding-bottom: 14px;
         cursor: pointer;
+        .price {
+            top: 16px;
+        }
+        .thumbnail {
+            top: 12px;
+        }
+        &.hasinfo {
+            padding-top: 11px;
+            .price {
+                top: 11px;
+            }
+            .thumbnail {
+                top: 15px;
+            }
+        }
         &:hover {
             .thumbnail {
                 opacity: 1;
                 transform: scale(1.2);
             }
         }
+    }
+    &.hasinfo {
+        padding-bottom: 14px;
     }
     &.expand {
         .thumbnail {
@@ -332,7 +352,7 @@
         .icon-18 {
             &:before {
                 opacity: 0;
-                top: 7px;
+                top: 0;
                 left: 8px;
                 position: relative;
                 font-size: 22px;
@@ -340,6 +360,21 @@
             &:hover:before {
                 opacity: 1;
                 color: $color;
+            }
+        }
+        &.hasinfo {
+            .icon-18:before {
+                top: 7px;
+            }
+        }
+        &.hasimage {
+            .icon-18:before {
+                top: 5px;
+            }
+            &.hasinfo {
+                .icon-18:before {
+                    top: 7px;
+                }
             }
         }
         &:last-child {
