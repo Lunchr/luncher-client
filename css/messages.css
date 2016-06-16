@@ -19,6 +19,7 @@
     }
     &.static {
         position: relative;
+        width: 100%;
         padding: 10px 0 11px 15px;
         background-color: #fff;
         border-radius: 2px;
