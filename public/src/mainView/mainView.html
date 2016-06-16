@@ -14,20 +14,27 @@
 </header>
 <div class="popup" ng-class="vm.state.sourceSelectionPopup">
     <h2>Vali enda asukoht</h2>
-    <offer-source-selection on-selected="vm.state.sourceSelectionPopup=''">
+    <offer-source-selection
+      on-selected="vm.state.sourceSelectionPopup=''"
+      on-cancel="vm.state.sourceSelectionPopup=''">
     </offer-source-selection>
 </div>
 <div class="overlay"></div>
 <div class="content">
     <div class="container">
         <div class="dropdown" ng-class="{active: vm.state.regionSelectionDropdown}">
-            <region-selection on-selected="vm.state.regionSelectionDropdown=!vm.state.regionSelectionDropdown">
+            <region-selection
+              on-selected="vm.state.regionSelectionDropdown=!vm.state.regionSelectionDropdown"
+              on-cancel="vm.state.regionSelectionDropdown=!vm.state.regionSelectionDropdown">
             </region-selection>
         </div>
         <div class="overlay" ng-click="vm.state.regionSelectionDropdown=!vm.state.regionSelectionDropdown"></div>
         <div class="dropdown" ng-class="vm.state.geolocatorDropdown">
             <div class="dropdown-inner">
-                <geolocator on-selected="vm.state.geolocatorDropdown=''" ng-show="vm.state.geolocatorDropdown">
+                <geolocator
+                  on-selected="vm.state.geolocatorDropdown=''"
+                  on-cancel="vm.state.geolocatorDropdown=''"
+                  ng-show="vm.state.geolocatorDropdown">
                 </geolocator>
             </div>
         </div>

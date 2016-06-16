@@ -11,6 +11,7 @@
       return {
         scope: {
           onSelected: '&',
+          onCancel: '&',
         },
         controllerAs: 'ctrl',
         bindToController: true,

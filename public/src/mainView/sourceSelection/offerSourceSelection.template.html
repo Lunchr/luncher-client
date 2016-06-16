@@ -7,7 +7,7 @@
         <label for="checkbox-proximal-{{$id}}">Näita lähimaid pakkumisi</label>
     </li>
     <li>
-        <geolocator on-selected="ctrl.onSelected()" ng-show="ctrl.locationSelected">
+        <geolocator on-selected="ctrl.onSelected()" on-cancel="ctrl.onCancel()" ng-show="ctrl.locationSelected">
         </geolocator>
     </li>
 </ul>
