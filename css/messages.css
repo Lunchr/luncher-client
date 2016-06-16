@@ -1,10 +1,14 @@
 .message {
-    position: relative;
-    padding: 10px 0 11px 15px;
+    position: absolute;
+    top: 7px;
+    width: calc(100% - 24px);
+    padding: 16px 0 16px 15px;
+    box-sizing: border-box;
     background-color: #fff;
     border-radius: 2px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     font-weight: bold;
+    z-index: 1000;
     &.success {
         color: $color-success;
         border: 2px solid;
@@ -12,6 +16,14 @@
     &.error {
         color: $color-error;
         border: 2px solid;
+    }
+    &.static {
+        position: relative;
+        padding: 10px 0 11px 15px;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        font-weight: bold;
     }
 }
 .dropdown,
