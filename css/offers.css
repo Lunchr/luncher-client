@@ -360,6 +360,13 @@
             opacity: 1;
             transition: 0s;
         }
+        .col-1 {
+            padding: 11px;
+            .icon:hover {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
         .offer {
             margin: 10px;
             padding-left: 60px;
@@ -383,6 +390,30 @@
         }
         p {
             color: #666;
+        }
+        .action {
+            span {
+                width: 100%;
+                text-align: right;
+                &:first-child {
+                    color: #666;
+                }
+                &:last-child {
+                    margin-top: 3px;
+                    display: block;
+                }
+            }
+            .icon {
+                display: block;
+                &:before {
+                    color: #666;
+                }
+                &:hover {
+                    &:before {
+                        color: #666;
+                    }
+                }
+            }
         }
     }
     .icon-wrap {
