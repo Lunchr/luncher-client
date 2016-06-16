@@ -169,7 +169,8 @@
                         <p class="additional">{{dateOffers.date | date:'justDate'}}</p>
                         <p class="action">
                             <a class="icon icon-17" href="javascript:undefined" ng-click="dateOffers.state.fbGroupPost = !dateOffers.state.fbGroupPost">
-                                muuda postituse teksti
+                                <span>Postituse aeg: {{dateOffers.fbPostTime | date:'H:mm'}}</span>
+                                <span>muuda teksti</span>
                             </a>
                         </p>
                         <facebook-group-post date="dateOffers.date | date:'yyyy-MM-dd'"
@@ -178,7 +179,7 @@
                           ng-show="dateOffers.state.fbGroupPost"
                           on-cancel="dateOffers.state.fbGroupPost=false"
                           on-submit="dateOffers.state.fbGroupPost=false"></facebook-group-post>
-                        Postituse aeg: {{dateOffers.fbPostTime | date:'H:mm'}}
+
                     </div>
                     <div class="col-2">
                         <div class="offer" ng-class="{edit: offer.editing}" ng-repeat="offer in dateOffers.offers">
