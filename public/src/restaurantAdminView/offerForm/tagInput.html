@@ -1,0 +1,33 @@
+<input ng-model="ctrl.filter" id="{{::$id}}tags-filter">
+<label ng-class="{filled: ctrl.filter.length}" for="{{::$id}}tags-filter">
+  <span>
+    Märksõnad
+  </span>
+</label>
+<div class="grouped-select">
+  <table>
+    <tr>
+      <th>Tüüp:</th>
+      <td>
+        <a ng-repeat="availableTag in ctrl.getAvailableTagList()"
+          ng-class="{active: ctrl.isSelected(availableTag)}"
+          ng-click="ctrl.selectTag(availableTag)"
+        >
+          {{::availableTag.name}}
+        </a>
+        <a class="more-toggle"
+          ng-click="ctrl.showMore = true"
+          ng-show="!ctrl.showMore && ctrl.availableTagListIsLimited()"
+        >
+          Näita rohkem...
+        </a>
+        <a class="more-toggle"
+          ng-click="ctrl.showMore = false"
+          ng-show="ctrl.showMore && ctrl.availableTagListIsLimited()"
+        >
+          Näita vähem
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>

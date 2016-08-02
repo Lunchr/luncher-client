@@ -43,6 +43,9 @@
         </label>
       </p>
       <p class="tags-input">
+        <tag-input ng-model="tags"></tag-input>
+      </p>
+      <p class="tags-input">
         <!-- The dirty check isn't working in this version of angular (https://github.com/mbenford/ngTagsInput/issues/341)
                      because of this we have to mark it manually for now-->
         <tags-input ng-model="tags" name="tags" id="{{idPrefix}}tags" min-tags="1" add-from-autocomplete-only="true" display-property="name"
