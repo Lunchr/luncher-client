@@ -12,6 +12,15 @@
     };
   }]);
 
+  // Can be used to avoid showing the single suggestion after the user has
+  // selected a suggestion and the title field is filled with the selected
+  // offer.
+  function onlySuggestionSelected(args) {
+    var suggestions = args.suggestions;
+    var title = args.title;
+    return suggestions.length == 1 && suggestions[0].title === title;
+  }
+
   module.factory('suggestionsObservable', ['requestSuggestions', function(requestSuggestions) {
     return function(args) {
       var titleObservable = args.titleObservable;
@@ -42,14 +51,7 @@
             });
         })
         .filter(R.propSatisfies(R.complement(R.isNil), 'suggestions'))
-        .filter(R.complement(function(args) {
-          var suggestions = args.suggestions;
-          var title = args.title;
-          // Avoid showing the single suggestion after the user has
-          // selected a suggestion and the title field is filled with the
-          // selected offer.
-          return suggestions.length == 1 && suggestions[0].title === title;
-        }))
+        .filter(R.complement(onlySuggestionSelected))
         .map(R.prop('suggestions'));
     };
   }]);
