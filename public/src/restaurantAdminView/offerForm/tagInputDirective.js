@@ -47,6 +47,21 @@
             )(ctrl.tags);
           };
 
+          var toggleTagInList = function(tag, tagList) {
+            var matchesTag = R.propEq('name', tag.name);
+            return R.ifElse(
+              R.isNil,
+              R.always([tag]),
+              R.ifElse(
+                R.any(matchesTag),
+                R.reject(matchesTag),
+                R.append(tag)
+              )
+            )(tagList);
+          };
+          ctrl.selectTag = function(tag) {
+            ctrl.tags = toggleTagInList(tag, ctrl.tags);
+          };
         },
         restrict: 'E',
         templateUrl: 'src/restaurantAdminView/offerForm/tagInput.html'
