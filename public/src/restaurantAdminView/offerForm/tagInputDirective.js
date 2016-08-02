@@ -32,7 +32,11 @@
           };
 
           ctrl.isSelected = function(availableTag) {
-            return R.any(R.propEq('name', availableTag.name), ctrl.tags);
+            return R.ifElse(
+              R.isNil,
+              R.always(false),
+              R.any(R.propEq('name', availableTag.name))
+            )(ctrl.tags);
           };
 
         },
