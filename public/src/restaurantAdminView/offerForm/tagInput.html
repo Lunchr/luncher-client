@@ -1,4 +1,9 @@
-<input>
+<input ng-model="ctrl.filter" id="{{::$id}}tags-filter">
+<label ng-class="{filled: ctrl.filter.length}" for="{{::$id}}tags-filter">
+  <span>
+    Märksõnad
+  </span>
+</label>
 <ul>
   <li ng-repeat="tag in ctrl.tags">
     {{tag.name}}
