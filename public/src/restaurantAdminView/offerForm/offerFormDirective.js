@@ -1,6 +1,7 @@
 (function() {
   'use strict';
   var module = angular.module('offerFormDirective', [
+    'tagInputDirective',
     'ngTagsInput',
     'ngResource',
     'ngImageInputWithPreview',
