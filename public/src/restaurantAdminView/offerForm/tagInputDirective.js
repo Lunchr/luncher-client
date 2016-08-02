@@ -4,6 +4,8 @@
     'ngResource',
   ]);
 
+  var SHOW_MORE_LIMIT = 5;
+
   module.directive('tagInput', ['$resource', 'filterFilter',
     function($resource, filterFilter) {
       return {
@@ -24,11 +26,17 @@
           }).queryCached();
 
           ctrl.showMore = false;
-          ctrl.getFilteredTags = function(query) {
-            return R.compose(
-              R.unless(R.always(ctrl.showMore), R.take(5)),
-              R.curryN(2, filterFilter)(R.__, query)
-            )(availableTagList);
+          var getFilteredTagList = function() {
+            return filterFilter(availableTagList, ctrl.filter);
+          };
+          ctrl.getAvailableTagList = function() {
+            return R.unless(
+              R.always(ctrl.showMore),
+              R.take(SHOW_MORE_LIMIT)
+            )(getFilteredTagList());
+          };
+          ctrl.availableTagListIsLimited = function() {
+            return getFilteredTagList().length > SHOW_MORE_LIMIT;
           };
 
           ctrl.isSelected = function(availableTag) {

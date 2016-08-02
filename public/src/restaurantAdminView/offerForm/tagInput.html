@@ -9,13 +9,23 @@
     <tr>
       <th>Tüüp:</th>
       <td>
-        <a ng-repeat="availableTag in ctrl.getFilteredTags(ctrl.filter)"
-           ng-class="{active: ctrl.isSelected(availableTag)}"
+        <a ng-repeat="availableTag in ctrl.getAvailableTagList()"
+          ng-class="{active: ctrl.isSelected(availableTag)}"
         >
           {{::availableTag.name}}
         </a>
-        <a class="more-toggle" ng-click="ctrl.showMore = true" ng-show="!ctrl.showMore">Näita rohkem...</a>
-        <a class="more-toggle" ng-click="ctrl.showMore = false" ng-show="ctrl.showMore">Näita vähem...</a>
+        <a class="more-toggle"
+          ng-click="ctrl.showMore = true"
+          ng-show="!ctrl.showMore && ctrl.availableTagListIsLimited()"
+        >
+          Näita rohkem...
+        </a>
+        <a class="more-toggle"
+          ng-click="ctrl.showMore = false"
+          ng-show="ctrl.showMore && ctrl.availableTagListIsLimited()"
+        >
+          Näita vähem
+        </a>
       </td>
     </tr>
   </table>
