@@ -26,6 +26,16 @@
           }).queryCached();
 
           ctrl.showMore = false;
+          var showMoreLimit = function() {
+            return R.ifElse(
+              R.isNil,
+              R.always(SHOW_MORE_LIMIT),
+              R.compose(
+                R.max(SHOW_MORE_LIMIT),
+                R.length
+              )
+            )(ctrl.tags);
+          };
           var getFilteredTagList = function() {
             return filterFilter(availableTagList, ctrl.filter);
           };
@@ -33,13 +43,13 @@
             return R.compose(
               R.unless(
                 R.always(ctrl.showMore),
-                R.take(SHOW_MORE_LIMIT)
+                R.take(showMoreLimit())
               ),
               R.sortBy(R.complement(ctrl.isSelected))
             )(getFilteredTagList());
           };
           ctrl.availableTagListIsLimited = function() {
-            return getFilteredTagList().length > SHOW_MORE_LIMIT;
+            return getFilteredTagList().length > showMoreLimit();
           };
 
           ctrl.isSelected = function(availableTag) {
