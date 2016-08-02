@@ -30,9 +30,12 @@
             return filterFilter(availableTagList, ctrl.filter);
           };
           ctrl.getAvailableTagList = function() {
-            return R.unless(
-              R.always(ctrl.showMore),
-              R.take(SHOW_MORE_LIMIT)
+            return R.compose(
+              R.unless(
+                R.always(ctrl.showMore),
+                R.take(SHOW_MORE_LIMIT)
+              ),
+              R.sortBy(R.complement(ctrl.isSelected))
             )(getFilteredTagList());
           };
           ctrl.availableTagListIsLimited = function() {
