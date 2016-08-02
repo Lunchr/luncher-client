@@ -480,7 +480,8 @@ textarea {
         padding: 2px 7px;
         border-radius: 2px;
         border: 1px solid;
-        &.more {
+        &.more-toggle {
+            cursor: pointer;
             border: none;
             box-shadow: none;
             &:hover {

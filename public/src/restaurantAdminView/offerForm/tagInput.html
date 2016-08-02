@@ -9,12 +9,13 @@
     <tr>
       <th>Tüüp:</th>
       <td>
-        <a ng-repeat="availableTag in ctrl.availableTagList"
+        <a ng-repeat="availableTag in ctrl.getFilteredTags(ctrl.filter)"
            ng-class="{active: ctrl.isSelected(availableTag)}"
         >
           {{::availableTag.name}}
         </a>
-        <a class="more">Näita rohkem...</a>
+        <a class="more-toggle" ng-click="ctrl.showMore = true" ng-show="!ctrl.showMore">Näita rohkem...</a>
+        <a class="more-toggle" ng-click="ctrl.showMore = false" ng-show="ctrl.showMore">Näita vähem...</a>
       </td>
     </tr>
   </table>
