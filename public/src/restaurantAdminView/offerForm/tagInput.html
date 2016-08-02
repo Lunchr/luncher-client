@@ -4,8 +4,18 @@
     Märksõnad
   </span>
 </label>
-<ul>
-  <li ng-repeat="tag in ctrl.tags">
-    {{tag.name}}
-  </li>
-</ul>
+<div class="grouped-select">
+  <table>
+    <tr>
+      <th>Tüüp:</th>
+      <td>
+        <a ng-repeat="availableTag in ctrl.availableTagList"
+           ng-class="{active: ctrl.isSelected(availableTag)}"
+        >
+          {{::availableTag.name}}
+        </a>
+        <a class="more">Näita rohkem...</a>
+      </td>
+    </tr>
+  </table>
+</div>

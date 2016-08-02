@@ -460,7 +460,6 @@ textarea {
 
 /* Grouped select */
 .grouped-select {
-    position: absolute;
     width: calc(100% - 34px);
     margin: 0 0 20px;
     padding: 5px;
